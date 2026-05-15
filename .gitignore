@@ -17,3 +17,12 @@ build/
 # Audit run artefacts (these are ephemeral)
 .ai-auditor/
 sessions/
+
+# Next.js
+.next/
+out/
+next-env.d.ts
+
+# env
+.env.local
+.env*.local
