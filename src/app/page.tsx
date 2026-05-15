@@ -30,14 +30,14 @@ export default function Home() {
             For ERC-8004 registered agents · Sepolia testnet · V0
           </p>
           <h1 className="mb-6 font-serif text-5xl font-bold leading-[1.05] text-ink-900 sm:text-6xl">
-            The audit layer
+            The FDA stamp
             <br />
             for AI agents.
           </h1>
           <p className="mb-10 max-w-xl text-lg text-ink-600">
-            Paste your ERC-8004 agent. Get a verifiable EU AI Act score in
-            minutes, anchored on chain — every clause cited file-and-line in
-            your code.
+            Paste your ERC-8004 agent or GitHub repo. Get a verifiable EU AI
+            Act score in minutes — anchored on chain, recognisable across
+            markets, every finding cited file-and-line in your code.
           </p>
           <IntakeForm />
           <p className="mt-6 max-w-xl font-mono text-xs text-ink-400">
@@ -70,9 +70,17 @@ export default function Home() {
       </section>
 
       <section className="mt-24 border-t border-ink-200 pt-16">
-        <h2 className="mb-4 font-serif text-3xl font-bold text-ink-900">
-          Why now
+        <h2 className="mb-6 font-serif text-3xl font-bold text-ink-900">
+          AI is global. Regulation is local.
         </h2>
+        <p className="mb-8 max-w-3xl text-lg text-ink-600">
+          Excellent AI agents are being built everywhere — but compliance
+          isn&rsquo;t transferable. A team shipping a stellar agent into a
+          new market spends months and tens of thousands of euros proving it
+          complies with rules it was never designed against. AiAuditor turns
+          that into <strong className="text-ink-900">60 seconds of on-chain attestation</strong> any buyer, anywhere,
+          can independently verify.
+        </p>
         <div className="grid gap-8 text-ink-600 sm:grid-cols-2">
           <p>
             The EU AI Act becomes fully applicable on{" "}

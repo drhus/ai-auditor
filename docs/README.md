@@ -7,7 +7,8 @@ Living documentation for the AiAuditor project. These docs originate in an Obsid
 ## Start here
 
 - [overview](./overview.md) — landing page, locked V1 summary, links into every other doc.
-- [team-brief](./team-brief.md) — shareable one-pager for marketing / video / social work.
+- [vision](./vision.md) — the long-term arc: continuous attestation, GitHub App, MCP, multi-jurisdiction.
+- [team-brief](./team-brief.md) — shareable one-pager with the three positioning angles (FDA stamp / Michelin stars / nutrition label).
 
 ## Build & ship
 

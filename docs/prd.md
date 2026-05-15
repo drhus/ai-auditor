@@ -8,9 +8,17 @@ status: v1-locked
 
 # AiAuditor — PRD
 
+## Hackathon objective
+
+Help world-class AI builders — especially Chinese teams — expand into Western markets by clearing the regulatory wall faster than anyone else can. AI is global; regulation is local; compliance is currently not transferable. AiAuditor makes it transferable.
+
+See [vision](./vision.md) for the full long-term arc.
+
 ## Problem
 
-AI agents are shipping faster than compliance can review them. The EU AI Act becomes fully applicable on **2 August 2026** — high-risk conformity assessment, CE marking, EU database registration, Article 50 transparency obligations all in force. Builders need a fast way to know:
+AI is global; regulation is local. Excellent AI agents are being built in many markets, but compliance is **not transferable** — a team that built a stellar agent in one jurisdiction has to spend months and tens of thousands of euros proving it complies with the rules of every other jurisdiction they want to sell into. This kills cross-border AI commerce.
+
+The EU AI Act becomes fully applicable on **2 August 2026** — high-risk conformity assessment, CE marking, EU database registration, Article 50 transparency obligations all in force. Penalties reach **€35M or 7% of global turnover**. Builders need a fast way to know:
 
 1. Whether their agent falls under high-risk classification.
 2. Which specific code-level controls are missing (logging, oversight hooks, transparency, robustness, content provenance).
@@ -111,6 +119,19 @@ INTAKE → FETCH → RECON → SCOPE → MAP → CHECK → VERIFY → GRADE → 
 - [ ] False-positive rate on golden corpus <20% for "fail" verdicts.
 - [ ] Code/external split in [regulations-matrix](./regulations-matrix.md) reviewed by a compliance-savvy reader.
 - [ ] On-chain attestations visible on Sepolia for at least 10 real agents, all retrievable via standard 8004 discovery.
+
+## Long-term roadmap (post-V1)
+
+The end-state is **continuous attestation**: every commit triggers a new audit, every score is live on chain, every agent's compliance trail evolves with its code. Full detail in [vision](./vision.md).
+
+| Version | Ships | Headline capability |
+| ------- | ----- | ------------------- |
+| V0      | today | Front door — intake + agent resolution |
+| V1      | 6 weeks | Full pipeline, Sepolia attestations, 20+ clause checkers |
+| V2      | +8–12 weeks | GitHub App + CI/CD: re-audit on every commit |
+| V3      | +3–4 months | MCP server: agents self-audit before deploy |
+| V4      | +4–6 months | Multi-jurisdiction: one audit, per-market scores |
+| V5      | +6–12 months | Decentralised audit market on ERC-8004 Validation Registry |
 
 ## Open Questions (still unresolved)
 

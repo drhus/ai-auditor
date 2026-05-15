@@ -16,7 +16,12 @@ inspirations:
 
 # AiAuditor
 
-An auditing AI agent that fetches a target AI agent's source repo (via GitHub URL or [ERC-8004](https://eips.ethereum.org/EIPS/eip-8004) agent ID) and scores it against region-specific AI regulations — starting with the EU AI Act, NIST AI RMF, and ISO/IEC 42001 — producing a per-clause rating with code-anchored evidence.
+**The FDA stamp for AI agents.** An auditing AI agent that fetches a target AI agent's source repo (via GitHub URL or [ERC-8004](https://eips.ethereum.org/EIPS/eip-8004) agent ID) and scores it against region-specific AI regulations — starting with the EU AI Act, NIST AI RMF, and ISO/IEC 42001 — producing a per-clause rating with code-anchored evidence and a verifiable on-chain attestation.
+
+> [!info] Hackathon objective
+> Help world-class AI builders — especially Chinese teams — expand into Western markets by clearing the regulatory wall faster than anyone else can. AI is global; regulation is local; AiAuditor makes compliance *portable* — instantly verifiable across borders, anchored on chain, recognisable by any buyer in any market.
+
+See [vision](./vision.md) for the long-term arc (continuous attestation, GitHub App, MCP, multi-jurisdiction).
 
 > [!summary]
 > - **Stage:** V1 scope locked. V0 build starting today.
@@ -40,6 +45,7 @@ An auditing AI agent that fetches a target AI agent's source repo (via GitHub UR
 
 ## Internal docs
 
+- [vision](./vision.md) — the long-term arc: continuous attestation, GitHub App, MCP, multi-jurisdiction
 - [prd](./prd.md) — full product requirements (V0 + V1 cuts locked)
 - [pipeline-design](./pipeline-design.md) — the RECON → SCOPE → MAP → CHECK → VERIFY → GRADE → REPORT pipeline
 - [regulations-matrix](./regulations-matrix.md) — clause-level split: code-checkable vs external (jurisdiction / governance / org)

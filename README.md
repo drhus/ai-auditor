@@ -1,6 +1,8 @@
 # AiAuditor
 
-**The audit layer for AI agents.** Paste an ERC-8004 agent URL — we resolve the registered repository, audit the code against the EU AI Act and NIST AI RMF, and publish a verifiable score on chain.
+**The FDA stamp for AI agents — earned in minutes, anchored on chain, recognised across markets.**
+
+Paste an ERC-8004 agent URL or a GitHub repo. We resolve the source code, audit it against the EU AI Act and NIST AI RMF, and publish a verifiable score on chain. AI is global; regulation is local; AiAuditor makes compliance *portable*.
 
 ```
 https://8004scan.io/agents/ethereum/9382  →  per-clause audit  →  on-chain attestation
@@ -53,9 +55,15 @@ vercel --prod
 
 ## Roadmap
 
+The end-state is **continuous attestation** — every commit triggers a new audit, every score is live on chain, every agent's compliance trail evolves with the code. Full detail in [docs/vision.md](./docs/vision.md).
+
 - **V0 (today):** landing + agent resolution.
 - **V0.5 (2 weeks):** repo cloning + first 5 EU AI Act clause checkers (Art 12, 14, 15, 50; high-risk classification).
 - **V1 (4–6 weeks):** Sepolia contract deployed, full pipeline live, public directory of audits, 20+ clauses across EU AI Act + NIST AI RMF.
+- **V2 (+8–12 weeks):** GitHub App + CI/CD — re-audit on every commit, score evolves with the code.
+- **V3 (+3–4 months):** MCP server — Claude Code / Codex / autonomous agents audit themselves before deploy.
+- **V4 (+4–6 months):** Multi-jurisdiction — one audit, per-market scores for EU + US + UK + Japan + Singapore + more.
+- **V5 (+6–12 months):** Decentralised audit market on ERC-8004's Validation Registry.
 
 ## Docs
 

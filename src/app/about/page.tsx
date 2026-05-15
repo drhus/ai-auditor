@@ -13,13 +13,20 @@ export default function About() {
       </header>
 
       <h1 className="mb-6 font-serif text-5xl font-bold leading-[1.05] text-ink-900">
-        The audit layer for AI agents.
+        The FDA stamp for AI agents.
       </h1>
 
       <div className="prose-paragraphs space-y-6 text-lg text-ink-600">
         <p>
-          AI agents are shipping into production faster than compliance teams
-          can review them. The EU AI Act becomes fully applicable on{" "}
+          AI is global. Regulation is local. World-class AI agents are being
+          built in many markets — but compliance is not transferable. A team
+          that built a stellar agent in one jurisdiction has to spend months
+          and tens of thousands of euros proving it complies with the rules of
+          every other jurisdiction they want to sell into. That gap is
+          killing cross-border AI commerce.
+        </p>
+        <p>
+          The EU AI Act becomes fully applicable on{" "}
           <strong className="text-ink-900">2 August 2026</strong> with
           high-risk conformity assessment, CE marking, and Article 50
           transparency obligations all in force. Penalties for prohibited-practice

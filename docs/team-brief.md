@@ -14,30 +14,37 @@ For team members working on social, video, design, and other media in parallel w
 
 ---
 
+## The hackathon objective
+
+**Help world-class AI builders — especially Chinese teams — expand into Western markets by clearing the regulatory wall faster than anyone else can.**
+
+AI is global. Regulation is local. A team in Shenzhen or Hangzhou shipping a brilliant agent into Europe or the US runs head-on into the EU AI Act, NIST AI RMF, and a dozen frameworks the agent was never designed against. Manual compliance costs €25k–€150k and takes months — long enough to kill the market window. AiAuditor turns that into **60 seconds of on-chain attestation** any buyer, anywhere, can verify.
+
+Public-good framing: every piece of AI software on the planet, with a live, on-chain "nutrition label" telling buyers what's inside and whether it's safe to use.
+
 ## In one sentence
 
-**AiAuditor is the audit layer for the ERC-8004 AI-agent ecosystem — point us at a registered agent and we score it against the EU AI Act, on chain, in minutes.**
+**The FDA stamp for AI agents — earned in minutes, anchored on chain, recognised across markets.**
 
 ## In 30 seconds
 
-The EU AI Act is fully enforceable on **2 August 2026**. Forty-five thousand AI agents are already registered on Ethereum's **ERC-8004** standard, with thousands more arriving every week. Right now, none of them have a verifiable record of whether they comply with the regulation that's about to start fining them up to 7% of global revenue.
+World-class AI agents are being built faster than regulators can review them — and the teams building the best ones often sell into markets whose rules they weren't designed against. A Chinese AI startup shipping into the EU collides with the EU AI Act. A European agent shipping into the US bumps into NIST. Manual audits cost €25k–€150k and take months.
 
-AiAuditor fixes that. Paste your ERC-8004 agent link, we fetch your source code, run an AI-powered audit pipeline against the EU AI Act (and NIST AI RMF), publish a per-clause score on chain, and produce a public, verifiable "AI nutritional facts" report anyone can check.
+AiAuditor closes the gap: paste your ERC-8004 agent or GitHub repo, get an instant audit, publish a verifiable compliance attestation on chain that any buyer in any market can independently check in 30 seconds. The audit re-runs on every commit. The score evolves with the code. The trust is portable, public, and permanent.
 
 ## In two minutes — the pitch
 
-**The problem.** AI agents are shipping into production faster than compliance teams can review them. Manual audits cost €25k–€150k and take weeks. There's no fast way for a builder — especially a solo founder — to know:
-1. Does my agent fall under the EU AI Act's high-risk classification?
-2. What specific code-level controls am I missing (logging, oversight, transparency, content provenance)?
-3. How would I score against NIST AI RMF if a customer asked?
+**The problem.** AI is global; regulation is local. Excellent AI agents are being built in China, the EU, the US, the UK, and many other markets — but compliance isn't transferable. A team that built a stellar agent in one jurisdiction has to spend months (and tens of thousands of euros) proving it complies with the rules of every other jurisdiction they want to sell into. That gap is killing cross-border AI commerce.
 
-**The window.** The EU AI Act's full high-risk regime — conformity assessment, CE marking, EU database registration, Article 50 transparency — kicks in on 2 August 2026. Right now, the entire AI-agent industry is racing toward a deadline with no off-the-shelf way to prove they're ready.
+**The window.** The EU AI Act's full high-risk regime — conformity assessment, CE marking, Article 50 transparency — kicks in on **2 August 2026**. Penalties reach **€35M or 7% of global turnover**. The entire global AI-agent industry is racing toward a deadline with no off-the-shelf way to prove they're ready, and Western buyers are getting increasingly nervous about procurement from teams without a recognisable compliance trail.
 
-**Our edge.** ERC-8004 went live on Ethereum mainnet on 29 January 2026 — already past **45,000 registered agents**. It's the emerging standard for AI agent identity on chain. We position AiAuditor as the **default audit layer for the 8004 ecosystem**: every registered agent gets a verifiable compliance attestation, posted to the standard ERC-8004 Validation Registry, queryable by any wallet, any dApp, any customer.
+**Our edge — ERC-8004.** Mainnet since 29 January 2026, already past **45,000 registered AI agents**. It's the emerging standard for agent identity on chain. We position AiAuditor as the **default audit layer for the 8004 ecosystem**: every registered agent gets a verifiable compliance attestation, posted to the standard Validation Registry, queryable by any wallet, any dApp, any customer.
 
-**The product.** Paste an `https://8004scan.io/agents/ethereum/9382`-style URL (or any 8004 agent ID), authorise the audit, get a nutritional-facts-style report with per-clause scoring, all anchored on-chain. Hacker-bob-style multi-stage pipeline (RECON → MAP → CHECK → VERIFY → GRADE → REPORT), adapted from security findings to regulatory clauses. Every finding cites file and line.
+**The product.** Paste an `https://8004scan.io/agents/ethereum/9382`-style URL (or a GitHub repo), authorise the audit, get a nutritional-facts-style report with per-clause scoring, all anchored on chain. Hacker-bob-style multi-stage pipeline (RECON → MAP → CHECK → VERIFY → GRADE → REPORT), adapted from security findings to regulatory clauses. Every finding cites file and line.
 
-**The moat over time.** The clauses are public; the *checker library* is what compounds. We build the open-source canonical implementation, become the standard validator on the Validation Registry, and over time anyone running our checker against the same commit gets the same bundle hash — meaning the audit is independently verifiable. Trust scales with verifiability, not with reputation.
+**The full vision.** Manual paste → continuous attestation. V2 ships a **GitHub App + CI/CD hook**: every commit re-audits, every score updates, every push is a new on-chain attestation. V3 ships an **MCP server** so AI agents (Claude Code, Codex, the next thing) can audit themselves before they deploy. V4 spans multiple jurisdictions in one run — pick your destination markets, get a score for each. The end-state: **every piece of AI software in the world carries a live, on-chain compliance score that updates with the code.**
+
+**The moat.** The clauses are public; the checker library is what compounds. We build the open-source canonical implementation, become the standard validator on the Validation Registry, and over time anyone running our checker against the same commit gets the same bundle hash — meaning the audit is independently verifiable. Trust scales with verifiability, not reputation.
 
 ## Visual identity — the "AI Nutritional Facts" panel
 
@@ -76,17 +83,41 @@ The single most shareable artefact of the product. Every audit produces one. Pri
 
 Designers: this is the seed. Take it and run.
 
-## Tagline candidates
+## Taglines — the three angles
 
-- **The audit layer for AI agents.**
-- **AI compliance, on chain.**
-- **Audit any AI agent in minutes.**
-- **Your agent, audited.**
-- **Compliance verification for the autonomous-agent era.**
-- **Read the regulation. Read the code. Score the agent.**
-- **Trust, but verifiably.**
+Three positioning angles, each strong on its own. Use whichever fits the channel: serious (regulators, buyers), aspirational (builders, ecosystem), public-good (press, BGA, civic).
 
-(My lean: **"The audit layer for AI agents."** Pairs naturally with "on ERC-8004" sub-line.)
+### 1. Authority — *the FDA angle*
+
+> **The FDA stamp for AI agents — earned in minutes, not years.**
+
+Variants:
+- *An FDA-style approval for AI. Minutes to issue. On chain to verify. Free to check.*
+- *Like the FDA, for AI. Except it doesn't take ten years.*
+
+Names the pain (speed) and the prize (legitimacy). Best for **buyers and regulators** — anyone whose default mental model is "is this thing approved?"
+
+### 2. Aspiration — *the Michelin angle*
+
+> **Michelin stars for AI agents — every score public, every audit on chain.**
+
+Variants:
+- *A Michelin guide for AI compliance — public scores, public chases.*
+- *Stars for the agents that earn them. On chain, forever.*
+
+Memorable, visual, implies a public ranking the whole ecosystem chases. Best for **builders and ecosystem** — anyone who wants their work seen, scored, and celebrated.
+
+### 3. Public good — *the nutrition-label angle*
+
+> **A nutrition label for AI — what's inside, what's safe, at a glance.**
+
+Variants:
+- *The nutrition label for AI. Read it in 5 seconds. Verify it on chain in 30.*
+- *Every AI agent deserves a label. Every buyer deserves to read it.*
+
+Best for **press, BGA, civic audiences** — anyone whose framing is "the public has a right to know."
+
+**Top-level lean:** lead with **"The FDA stamp for AI agents"** for headlines, layer in *Michelin* and *nutrition label* in deeper copy. The Nutritional Facts visual operationalises all three at once.
 
 ## Key stats (use freely in copy)
 
@@ -110,6 +141,21 @@ Designers: this is the seed. Take it and run.
 - ❌ "Officially endorsed by the EU AI Office" / "Notified Body" — we are **evidence-producing**, not certifying.
 - ❌ Claims of legal-grade certainty. Our output is technical evidence to feed into a compliance process, not a replacement for one.
 
+## The long-term arc (a.k.a. the demo storyboard)
+
+The end state is *continuous attestation*: every AI agent on the planet carries a live, on-chain compliance score that updates with the code.
+
+| Version | What ships | What the user does | What lands on chain |
+| ------- | ---------- | ------------------ | ------------------- |
+| **V0 (today)** | Landing + intake + agent resolution + waitlist | Pastes ERC-8004 agent URL | Nothing yet — proves the front door |
+| **V1 (6 weeks)** | Full pipeline, 20+ clause checkers, dashboard, directory | Pastes URL, runs audit | Packed `AuditScored` event + ERC-8004 `validationResponse` |
+| **V2** | GitHub App + CI/CD hook | Installs app on repo, pushes commits | New attestation per relevant commit; score evolves |
+| **V3** | MCP server | Claude Code / Codex / autonomous agents call us before deploy | Pre-deploy attestation; agents self-audit |
+| **V4** | Multi-jurisdiction support | Picks destination markets (EU + US + UK + Japan + Singapore + …) | One audit, per-market scores |
+| **V5** | Trust graph | Auditors stake on each other's verdicts; protocol selects best validators | Decentralised audit market with AiAuditor as the founding canonical validator |
+
+End-state pitch: *"Like SSL certificates for AI compliance. Every agent has one. It's free to check. It updates with the code. Buyers worldwide can verify in 30 seconds before they integrate."*
+
 ## Status (for honest communication)
 
 - **Today** (Day 0): scoping locked, V0 landing page shipping today.
@@ -118,15 +164,19 @@ Designers: this is the seed. Take it and run.
 - **Week 5–6:** Sepolia contracts deployed; first real on-chain attestations.
 - **V1 launch:** invite-only beta with 10 partner 8004 agents.
 - **Public launch:** when the false-positive rate on golden corpus is <20%.
+- **V2 (post-hackathon, 8–12 weeks):** GitHub App + continuous re-audit on push.
+- **V3 (3–4 months):** MCP server. Agents audit themselves.
 
 ## Content angles for video / social
 
-1. **"How to audit an AI agent in 5 minutes"** — screen recording of pasting a real 8004 URL and getting a score.
-2. **"What does the EU AI Act actually want from your code?"** — explainer on the code-checkable subset of Article 12, 14, 15, 50.
-3. **"45,000 AI agents are on chain. How many are compliant?"** — provocative framing piece.
-4. **"From security audit to regulation audit"** — credit hacker-bob, explain the pattern adaptation.
-5. **"Inside an AI Nutritional Facts label"** — visual breakdown of the panel.
-6. **"Why we built this on Sepolia first"** — show the on-chain attestation flow.
+1. **"How to sell your Chinese AI agent into Europe — in 60 seconds"** — screen recording of a real 8004 URL → instant audit → on-chain attestation that an EU buyer can verify. *The hero hackathon video.*
+2. **"The FDA stamp for AI — except it takes 60 seconds, not 10 years"** — explainer of the analogy, tied to a live demo.
+3. **"Inside an AI Nutritional Facts label"** — visual breakdown of the panel, what each line means, why it matters.
+4. **"What does the EU AI Act actually want from your code?"** — explainer on the code-checkable subset of Article 12, 14, 15, 50.
+5. **"45,000 AI agents are on chain. How many are compliant?"** — provocative framing piece.
+6. **"From security audit to regulation audit"** — credit hacker-bob, explain the pattern adaptation.
+7. **"Continuous compliance — every commit, a new attestation"** — the long-term vision: GitHub push → re-audit → updated on-chain score.
+8. **"Why we built this on ERC-8004"** — positioning AiAuditor as the default validator for the 8004 ecosystem.
 
 ## Logo / brand direction (open)
 
