@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { WaitlistForm } from "./_waitlist-form";
+import { AuditPanel } from "@/app/_components/audit-panel";
 
 interface PageProps {
   params: Promise<{ owner: string; repo: string }>;
@@ -14,7 +14,6 @@ export default async function RepoPage({ params }: PageProps) {
   }
 
   const repoUrl = `https://github.com/${owner}/${repo}`;
-  const auditRef = `gh:${owner}/${repo}`;
 
   // Probe whether the repo exists publicly — non-blocking; renders even on error.
   let exists: boolean | null = null;
@@ -86,20 +85,16 @@ export default async function RepoPage({ params }: PageProps) {
         <Field label="ERC-8004 status" value="Not registered (V1.5 auto-register)" />
       </div>
 
-      <section className="mb-10 rounded-lg border-2 border-ink-900 bg-white p-6">
-        <p className="mb-2 font-mono text-xs uppercase tracking-widest text-ink-400">
-          Audit status
-        </p>
-        <h2 className="mb-3 font-serif text-2xl font-bold text-ink-900">
-          Full audit pipeline coming soon
-        </h2>
-        <p className="mb-6 text-ink-600">
-          We&rsquo;ve identified your repo. The full audit pipeline (EU AI Act
-          + NIST AI RMF, on-chain attestation via the ERC-8004 Validation
-          Registry) is in active build. Drop your email and we&rsquo;ll notify
-          you the moment we audit this repo.
-        </p>
-        <WaitlistForm auditRef={auditRef} repoUrl={repoUrl} />
+      <section className="mb-10 space-y-6">
+        <div className="rounded-lg border border-ink-200 bg-white p-6">
+          <p className="mb-2 font-mono text-xs uppercase tracking-widest text-ink-400">
+            Audit
+          </p>
+          <h2 className="mb-3 font-serif text-2xl font-bold text-ink-900">
+            Run an audit against EU AI Act + NIST AI RMF
+          </h2>
+          <AuditPanel source={{ kind: "repo", owner, repo }} />
+        </div>
       </section>
     </main>
   );

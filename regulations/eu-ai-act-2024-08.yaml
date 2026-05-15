@@ -1,0 +1,943 @@
+# Regulation (EU) 2024/1689 — Artificial Intelligence Act
+# Atomic clause decomposition for AiAuditor V1
+#
+# Source of legal text: https://eur-lex.europa.eu/eli/reg/2024/1689/oj
+# Working consolidated index: https://artificialintelligenceact.eu/
+#
+# Convention: each clause is the SMALLEST independently auditable
+# requirement. Wide articles are decomposed (e.g. Art 14 splits into
+# 14.1 = oversight measures, 14.2 = stop function, 14.3 = override).
+#
+# `classification` = code | mixed | external — drives whether we auto-score.
+
+regulation:
+  id: eu-ai-act
+  full_name: "Regulation (EU) 2024/1689 — Artificial Intelligence Act"
+  version: "2024-08"
+  source: "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
+  consolidated_index: "https://artificialintelligenceact.eu/"
+  enforcement_dates:
+    - { phase: "in_force",      date: "2024-08-01" }
+    - { phase: "prohibited",    date: "2025-02-02" }
+    - { phase: "gpai",          date: "2025-08-02" }
+    - { phase: "high_risk_v2",  date: "2026-08-02" }
+    - { phase: "embedded_high", date: "2027-08-02" }
+  clause_id_namespace: 0x0C
+
+# Maps RECON signals to Annex III high-risk categories. The MAP stage uses these
+# to derive Article 6(2) classification automatically from code signals.
+annex_iii_triggers:
+  - signal: bio_metric_signals
+    category: "1"
+    description: "Biometric ID, categorisation, emotion recognition"
+  - signal: critical_infra_signals
+    category: "2"
+    description: "Management and operation of critical infrastructure"
+  - signal: education_signals
+    category: "3"
+    description: "Education and vocational training (admissions, scoring, monitoring)"
+  - signal: employment_signals
+    category: "4"
+    description: "Employment, workers management, access to self-employment"
+  - signal: essential_services_signals
+    category: "5"
+    description: "Access to and enjoyment of essential private and public services"
+  - signal: law_enforcement_signals
+    category: "6"
+    description: "Law enforcement"
+  - signal: migration_signals
+    category: "7"
+    description: "Migration, asylum, border control management"
+  - signal: justice_signals
+    category: "8"
+    description: "Administration of justice and democratic processes"
+
+# Maps signals → Art 50 transparency triggers (limited-risk obligations)
+art_50_triggers:
+  - signal: content_generation_signals
+    paragraph: "50(2)"
+    description: "AI-generated synthetic content"
+  - signal: emotion_recognition_signals
+    paragraph: "50(3)"
+    description: "Emotion recognition / biometric categorisation"
+  - signal: agent_framework        # any interactive AI is in scope
+    paragraph: "50(1)"
+    description: "Interaction with natural persons"
+
+# -----------------------------------------------------------------------------
+# CLAUSES
+# -----------------------------------------------------------------------------
+clauses:
+
+  # ---------------------------------------------------------------------------
+  # Article 5 — Prohibited AI practices (always in scope)
+  # ---------------------------------------------------------------------------
+
+  - id: eu-ai-act/art-5/1a-subliminal
+    clause_id_bytes: 0x0C51
+    article: "5(1)(a)"
+    title: "Subliminal techniques distorting behaviour"
+    subject: [provider, deployer]
+    classification: code
+    text: |
+      The placing on the market, putting into service or use of an AI system
+      that deploys subliminal techniques beyond a person's consciousness, or
+      purposefully manipulative or deceptive techniques, with the objective or
+      effect of materially distorting the behaviour of a person or a group of
+      persons by appreciably impairing their ability to make an informed
+      decision, thereby causing them or another person significant harm.
+    in_scope_when: { always: true }
+    signals_required: [agent_framework]
+    checker:
+      deterministic:
+        - rule: detect_manipulative_prompt_patterns
+          weight: 1.0
+          description: |
+            Scans system prompts and user-facing copy for documented dark-pattern
+            phrasings (urgency manufacture, false scarcity, fabricated authority,
+            covert persuasion). Also flags any explicit "manipulate" / "persuade
+            against will" instructions in prompts.
+    score_mapping: { pass_default: 4, fail_on_match: 0 }
+    remediation_hint: |
+      Review every system prompt, persona file, and user-facing copy. Remove
+      language designed to bypass conscious deliberation. If the agent's
+      *purpose* is persuasion (e.g. sales), keep persuasion overt and labeled —
+      hidden manipulation is the prohibition, transparent influence is not.
+    external_notes: |
+      Whether a technique is "subliminal" can require user-research evidence.
+      A code-only audit can flag obvious red flags but cannot prove absence.
+
+  - id: eu-ai-act/art-5/1b-vulnerability
+    clause_id_bytes: 0x0C52
+    article: "5(1)(b)"
+    title: "Exploiting vulnerabilities (age, disability, socio-economic)"
+    subject: [provider, deployer]
+    classification: code
+    text: |
+      The placing on the market, putting into service or use of an AI system
+      that exploits any of the vulnerabilities of a natural person or a
+      specific group of persons due to their age, disability or a specific
+      social or economic situation, with the objective or effect of materially
+      distorting the behaviour of that person in a manner that causes or is
+      reasonably likely to cause that person or another person significant harm.
+    in_scope_when: { always: true }
+    signals_required: [agent_framework, pii_signals]
+    checker:
+      deterministic:
+        - rule: detect_protected_attribute_targeting
+          weight: 1.0
+          description: |
+            Looks for branching/segmentation logic gated on age, disability
+            status, socio-economic markers (income brackets, benefits status,
+            zip-code-as-class-proxy) where the *output* differs adversely for
+            the protected group.
+    score_mapping: { pass_default: 4, fail_on_match: 0 }
+    remediation_hint: |
+      If your system segments users by age, disability, or socio-economic
+      status, audit each branch: are vulnerable groups receiving worse
+      treatment? If so, either remove the segmentation, document the
+      legitimate reason, or fail the prohibition.
+
+  - id: eu-ai-act/art-5/1c-social-scoring
+    clause_id_bytes: 0x0C53
+    article: "5(1)(c)"
+    title: "Social scoring leading to detrimental treatment"
+    subject: [provider, deployer]
+    classification: mixed
+    text: |
+      The placing on the market, putting into service or the use of AI systems
+      for the evaluation or classification of natural persons or groups of
+      persons over a certain period of time based on their social behaviour or
+      known, inferred or predicted personal or personality characteristics,
+      with the social score leading to either or both of the following:
+      (i) detrimental or unfavourable treatment of certain natural persons or
+      groups of persons in social contexts that are unrelated to the contexts
+      in which the data was originally generated or collected;
+      (ii) detrimental or unfavourable treatment of certain natural persons or
+      groups of persons that is unjustified or disproportionate to their
+      social behaviour or its gravity.
+    in_scope_when: { always: true }
+    signals_required: [agent_framework, pii_signals]
+    checker:
+      deterministic:
+        - rule: detect_scoring_with_persistent_user_state
+          weight: 1.0
+          description: |
+            Looks for combinations of (per-user numeric "score" / "rating" /
+            "trust_level" stored in a DB) + (decisions that gate access to
+            services). Triggers a manual review prompt — full classification
+            requires use-context evidence.
+    score_mapping: { pass_default: 4, partial_on_match: 2 }
+    external_notes: |
+      Deployer context (public authority vs private platform, intended use,
+      cross-context application) is required for full classification.
+
+  - id: eu-ai-act/art-5/1d-predictive-policing
+    clause_id_bytes: 0x0C54
+    article: "5(1)(d)"
+    title: "Predictive policing solely from profiling"
+    subject: [provider, deployer]
+    classification: code
+    text: |
+      The placing on the market, the putting into service for this specific
+      purpose, or the use of an AI system for making risk assessments of
+      natural persons in order to assess or predict the risk of a natural
+      person committing a criminal offence, based solely on the profiling of a
+      natural person or on assessing their personality traits and
+      characteristics.
+    in_scope_when: { always: true }
+    signals_required: [law_enforcement_signals, pii_signals]
+    checker:
+      deterministic:
+        - rule: detect_crime_risk_scoring_from_profile
+          weight: 1.0
+          description: |
+            Flags code that outputs crime-likelihood / recidivism / "risk to
+            commit X" scores when the input contains only person profile data
+            (no objective verifiable evidence of fact). Looks for variable
+            names like `crime_risk`, `recidivism_score`, `offender_likelihood`
+            combined with profile inputs.
+    score_mapping: { pass_default: 4, fail_on_match: 0 }
+    remediation_hint: |
+      Predictive policing AI that bases predictions solely on personality
+      profiling is prohibited. Either replace with an evidence-based system
+      that requires verifiable facts as input, or remove the feature.
+
+  - id: eu-ai-act/art-5/1e-facial-scraping
+    clause_id_bytes: 0x0C55
+    article: "5(1)(e)"
+    title: "Untargeted facial image scraping for face databases"
+    subject: [provider, deployer]
+    classification: code
+    text: |
+      The placing on the market, the putting into service for this specific
+      purpose, or the use of AI systems that create or expand facial
+      recognition databases through the untargeted scraping of facial images
+      from the internet or CCTV footage.
+    in_scope_when: { always: true }
+    signals_required: [bio_metric_signals, data_io]
+    checker:
+      deterministic:
+        - rule: detect_face_image_scraping
+          weight: 1.0
+          description: |
+            Detects scraping loops (requests.get / fetch / playwright in
+            iteration) targeting image content combined with face-detection
+            calls (mediapipe, face_recognition, dlib, opencv haar cascade).
+    score_mapping: { pass_default: 4, fail_on_match: 0 }
+    remediation_hint: |
+      Building or expanding a facial-recognition dataset by indiscriminate
+      web/CCTV scraping is prohibited. Use only targeted enrolment with the
+      data subject's consent, or licensed datasets with documented provenance.
+
+  - id: eu-ai-act/art-5/1f-emotion-workplace-edu
+    clause_id_bytes: 0x0C56
+    article: "5(1)(f)"
+    title: "Emotion recognition in workplace and education"
+    subject: [provider, deployer]
+    classification: code
+    text: |
+      The placing on the market, the putting into service for this specific
+      purpose, or the use of AI systems to infer emotions of a natural person
+      in the areas of workplace and education institutions, except where the
+      use of the AI system is intended to be put in place or into the market
+      for medical or safety reasons.
+    in_scope_when: { always: true }
+    signals_required: [emotion_recognition_signals, employment_signals, education_signals]
+    checker:
+      deterministic:
+        - rule: detect_emotion_recognition_in_workplace_education
+          weight: 1.0
+          description: |
+            Triggers when emotion_recognition_signals fire alongside
+            employment_signals OR education_signals.
+    score_mapping: { pass_default: 4, fail_on_match: 0 }
+
+  - id: eu-ai-act/art-5/1g-biometric-categorisation
+    clause_id_bytes: 0x0C57
+    article: "5(1)(g)"
+    title: "Biometric categorisation by protected attributes"
+    subject: [provider, deployer]
+    classification: code
+    text: |
+      The placing on the market, the putting into service for this specific
+      purpose, or the use of biometric categorisation systems that categorise
+      individually natural persons based on their biometric data to deduce or
+      infer their race, political opinions, trade union membership, religious
+      or philosophical beliefs, sex life or sexual orientation.
+    in_scope_when: { always: true }
+    signals_required: [bio_metric_signals]
+    checker:
+      deterministic:
+        - rule: detect_biometric_categorisation_by_protected_attrs
+          weight: 1.0
+          description: |
+            Flags any biometric pipeline whose output enum / classification
+            target contains protected attributes (race, political, religion,
+            sexual orientation).
+    score_mapping: { pass_default: 4, fail_on_match: 0 }
+
+  - id: eu-ai-act/art-5/1h-realtime-rbi
+    clause_id_bytes: 0x0C58
+    article: "5(1)(h)"
+    title: "Real-time remote biometric identification in public spaces"
+    subject: [deployer]
+    classification: external
+    text: |
+      The use of real-time remote biometric identification systems in publicly
+      accessible spaces for the purposes of law enforcement (with narrow
+      exceptions under judicial authorisation).
+    in_scope_when: { always: true }
+    signals_required: []
+    external_notes: |
+      Deployment context (public space, real-time, law enforcement use, judicial
+      authorisation) is operational, not knowable from code. Always external.
+
+  # ---------------------------------------------------------------------------
+  # Article 9 — Risk management system (high-risk only)
+  # ---------------------------------------------------------------------------
+
+  - id: eu-ai-act/art-9/risk-management
+    clause_id_bytes: 0x0C90
+    article: "9"
+    title: "Risk management system established, implemented, documented"
+    subject: [provider]
+    classification: mixed
+    text: |
+      A risk management system shall be established, implemented, documented
+      and maintained in relation to high-risk AI systems. It shall consist of
+      a continuous iterative process planned and run throughout the entire
+      lifecycle of the high-risk AI system, requiring regular systematic
+      review and updating. It shall comprise: identification and analysis of
+      reasonably foreseeable risks; estimation and evaluation of risks; and
+      adoption of appropriate and targeted risk management measures.
+    in_scope_when: { risk_classifications: [high] }
+    signals_required: [governance_docs, eval_artefacts, oversight_hooks]
+    checker:
+      deterministic:
+        - rule: presence_of_risk_register
+          weight: 0.4
+          description: "RISK_REGISTER.md / RISKS.md / docs/risks.md present and non-trivial"
+        - rule: presence_of_threat_model
+          weight: 0.3
+          description: "THREAT_MODEL.md / SECURITY.md with AI-specific threats"
+        - rule: ci_eval_gates
+          weight: 0.3
+          description: "CI workflow runs evals / fails build on regression"
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+    remediation_hint: |
+      Add `RISK_REGISTER.md` enumerating: foreseeable AI-specific risks
+      (hallucination, prompt injection, output bias, leakage, capability
+      escalation), mitigation owner, status. Wire eval suite into CI with
+      a regression gate. Reference these in your README.
+
+  # ---------------------------------------------------------------------------
+  # Article 10 — Data and data governance (high-risk only)
+  # ---------------------------------------------------------------------------
+
+  - id: eu-ai-act/art-10/data-governance
+    clause_id_bytes: 0x0CA0
+    article: "10"
+    title: "Data and data governance practices documented"
+    subject: [provider]
+    classification: mixed
+    text: |
+      High-risk AI systems which make use of techniques involving the
+      training of models with data shall be developed on the basis of
+      training, validation and testing data sets that meet the quality
+      criteria. Data sets shall be subject to data governance and
+      management practices appropriate for the intended purpose, addressing:
+      design choices, data collection processes, data preparation, the
+      formulation of assumptions, prior assessment of the availability,
+      quantity and suitability of data sets, examination in view of possible
+      biases, appropriate measures to detect, prevent and mitigate such
+      biases, identification of relevant data gaps or shortcomings.
+    in_scope_when: { risk_classifications: [high] }
+    signals_required: [governance_docs, data_io]
+    checker:
+      deterministic:
+        - rule: presence_of_data_card
+          weight: 0.5
+          description: "DATA_CARD.md / docs/data.md describing training data lineage"
+        - rule: data_loading_code_quality
+          weight: 0.25
+          description: "Data loaders include deduplication / cleaning / validation"
+        - rule: bias_evaluation_present
+          weight: 0.25
+          description: "Bias-evaluation scripts present (langfair, aif360, fairlearn, custom)"
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+    remediation_hint: |
+      Add a `DATA_CARD.md` covering: provenance, collection method, consent
+      basis, demographic composition (where measurable), known biases, gaps,
+      pre-processing pipeline. Add at least one bias evaluation script to
+      your eval suite — even a simple subgroup-performance check.
+
+  # ---------------------------------------------------------------------------
+  # Article 11 — Technical documentation (high-risk only)
+  # ---------------------------------------------------------------------------
+
+  - id: eu-ai-act/art-11/technical-documentation
+    clause_id_bytes: 0x0CB0
+    article: "11"
+    title: "Technical documentation drawn up before placing on market"
+    subject: [provider]
+    classification: mixed
+    text: |
+      The technical documentation of a high-risk AI system shall be drawn
+      up before that system is placed on the market or put into service and
+      shall be kept up-to-date. The technical documentation shall be drawn
+      up in such a way as to demonstrate that the high-risk AI system
+      complies with the requirements set out in this Section and provide
+      national competent authorities and notified bodies with the necessary
+      information in a clear and comprehensive form. It shall contain, at
+      a minimum, the elements set out in Annex IV.
+    in_scope_when: { risk_classifications: [high] }
+    signals_required: [governance_docs]
+    checker:
+      deterministic:
+        - rule: presence_of_model_card
+          weight: 0.5
+          description: "MODEL_CARD.md present with intended-use + limitations sections"
+        - rule: readme_quality
+          weight: 0.3
+          description: "README.md covers intended use, scope, deployment context"
+        - rule: architecture_docs
+          weight: 0.2
+          description: "ADRs / architecture/ folder / docs/architecture present"
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+    remediation_hint: |
+      Adopt the Hugging Face Model Card template, add intended-use,
+      out-of-scope-uses, training-data summary, evaluation results, and
+      known limitations. Reference it from your README.
+
+  # ---------------------------------------------------------------------------
+  # Article 12 — Record-keeping / logging (high-risk only)
+  # ---------------------------------------------------------------------------
+
+  - id: eu-ai-act/art-12/p1-automatic-logs
+    clause_id_bytes: 0x0CC1
+    article: "12(1)"
+    title: "Automatic recording of events over the lifetime"
+    subject: [provider]
+    classification: code
+    text: |
+      High-risk AI systems shall technically allow for the automatic
+      recording of events ('logs') over the lifetime of the system.
+    in_scope_when: { risk_classifications: [high] }
+    signals_required: [logging_hooks, agent_framework]
+    checker:
+      deterministic:
+        - rule: structured_logging_imported
+          weight: 0.3
+          description: |
+            Imports of `logging`, `structlog`, `loguru`, `pino`, `winston`,
+            `bunyan`, or `@opentelemetry/api`.
+        - rule: logging_at_tool_call_boundaries
+          weight: 0.5
+          description: |
+            Tool-call entry/exit functions (functions with names matching
+            tool|execute|run|invoke|handle and that call an LLM or take
+            external action) emit a log line.
+        - rule: logging_persistent_sink
+          weight: 0.2
+          description: |
+            Logs go to a persistent sink (file, OTEL collector, DB, cloud
+            log API), not just stdout.
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+    remediation_hint: |
+      Use a structured logger (Python `logging`/`structlog` with JSON
+      handler, or Node `pino`/`winston`). Log at the START and END of every
+      tool call: inputs, outputs (or hashes of large outputs), latency,
+      error. Route logs to a persistent sink suitable for retention.
+
+  - id: eu-ai-act/art-12/p2-traceability
+    clause_id_bytes: 0x0CC2
+    article: "12(2)"
+    title: "Logging ensures traceability appropriate to risk"
+    subject: [provider]
+    classification: mixed
+    text: |
+      The logging capabilities shall ensure a level of traceability of the AI
+      system's functioning that is appropriate to the intended purpose of
+      the system.
+    in_scope_when: { risk_classifications: [high] }
+    signals_required: [logging_hooks]
+    checker:
+      deterministic:
+        - rule: logs_include_input_output_pairs
+          weight: 0.5
+          description: "Logging records both input and output of model calls"
+        - rule: logs_include_model_identity
+          weight: 0.25
+          description: "Logs identify which model/version was called"
+        - rule: logs_include_request_id
+          weight: 0.25
+          description: "Each request has a correlation ID linking related log lines"
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+    external_notes: |
+      Whether logging is "appropriate to the intended purpose" depends on
+      use case (medical agent needs more detail than a chatbot). We surface
+      the technical capability; the deployer judges sufficiency.
+
+  # ---------------------------------------------------------------------------
+  # Article 13 — Transparency and provision of information to deployers
+  # ---------------------------------------------------------------------------
+
+  - id: eu-ai-act/art-13/deployer-instructions
+    clause_id_bytes: 0x0CD0
+    article: "13"
+    title: "Transparent operation and instructions for use"
+    subject: [provider]
+    classification: mixed
+    text: |
+      High-risk AI systems shall be designed and developed in such a way as
+      to ensure that their operation is sufficiently transparent to enable
+      deployers to interpret the system's output and use it appropriately.
+      An appropriate type and degree of transparency shall be ensured with
+      a view to achieving compliance with the relevant obligations.
+    in_scope_when: { risk_classifications: [high] }
+    signals_required: [governance_docs]
+    checker:
+      deterministic:
+        - rule: presence_of_deployer_instructions
+          weight: 0.5
+          description: "README or docs/ has intended-use / how-to-deploy section"
+        - rule: output_interpretation_guidance
+          weight: 0.3
+          description: "Documentation explains how to interpret model outputs (confidence, limitations)"
+        - rule: limitations_section_present
+          weight: 0.2
+          description: "Explicit 'limitations' / 'known issues' section in docs"
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+
+  # ---------------------------------------------------------------------------
+  # Article 14 — Human oversight (high-risk only)
+  # ---------------------------------------------------------------------------
+
+  - id: eu-ai-act/art-14/p1-oversight-measures
+    clause_id_bytes: 0x0CE1
+    article: "14(1)"
+    title: "Effective human oversight designed and built-in"
+    subject: [provider]
+    classification: code
+    text: |
+      High-risk AI systems shall be designed and developed in such a way,
+      including with appropriate human-machine interface tools, that they
+      can be effectively overseen by natural persons during the period in
+      which they are in use.
+    in_scope_when: { risk_classifications: [high] }
+    signals_required: [oversight_hooks, agent_framework]
+    checker:
+      deterministic:
+        - rule: human_in_loop_hooks_present
+          weight: 0.5
+          description: |
+            Code contains explicit human-in-the-loop hooks: `human_input()`,
+            interrupt nodes in LangGraph, approval-gate functions, manual-
+            review flags, confirmation prompts.
+        - rule: oversight_ui_present
+          weight: 0.3
+          description: |
+            UI surfaces (dashboards, admin pages, approval queues) where a
+            human can inspect agent decisions before / during execution.
+        - rule: tool_calls_have_dry_run
+          weight: 0.2
+          description: |
+            Side-effecting tools (write, send, deploy) support a dry-run /
+            preview mode.
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+    remediation_hint: |
+      Add explicit human approval gates before any side-effecting tool call
+      in the high-risk path. For LangGraph: use `interrupt()` nodes. For
+      custom flows: build an approval-queue pattern. Document where humans
+      can intervene in the README.
+
+  - id: eu-ai-act/art-14/p4d-stop-button
+    clause_id_bytes: 0x0CE2
+    article: "14(4)(d)"
+    title: "Interrupt / stop function reachable by overseer"
+    subject: [provider]
+    classification: code
+    text: |
+      The natural persons assigned to ensure human oversight shall, as
+      appropriate and proportionate, be enabled to intervene on the
+      operation of the high-risk AI system or interrupt the system through
+      a 'stop' button or a similar procedure that allows the system to come
+      to a halt in a safe state.
+    in_scope_when: { risk_classifications: [high] }
+    signals_required: [oversight_hooks]
+    checker:
+      deterministic:
+        - rule: kill_switch_present
+          weight: 0.7
+          description: |
+            Code contains a documented kill-switch / emergency-stop / disable
+            mechanism (function named `kill_switch`, `emergency_stop`,
+            `disable_agent`, a feature flag with explicit disable, an admin
+            endpoint that halts processing).
+        - rule: graceful_shutdown_handler
+          weight: 0.3
+          description: |
+            Handles SIGTERM / shutdown signal to drain work and persist state.
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+    remediation_hint: |
+      Implement a kill-switch reachable by an operator without redeploying.
+      Options: a feature flag (LaunchDarkly, GrowthBook, simple env var); an
+      admin HTTP endpoint with auth that halts new work; a signal handler
+      that drains. Document the procedure in your runbook.
+
+  - id: eu-ai-act/art-14/p4e-override
+    clause_id_bytes: 0x0CE3
+    article: "14(4)(e)"
+    title: "Ability to override / reverse the system's output"
+    subject: [provider]
+    classification: code
+    text: |
+      The natural persons assigned to ensure human oversight shall, as
+      appropriate and proportionate, be enabled to override the output of
+      the high-risk AI system or reverse its decision.
+    in_scope_when: { risk_classifications: [high] }
+    signals_required: [oversight_hooks]
+    checker:
+      deterministic:
+        - rule: override_path_present
+          weight: 0.6
+          description: |
+            Code exposes an override path: function/endpoint that lets a
+            human revert a decision, undo a side effect, or supersede the
+            agent's output for a given case.
+        - rule: decisions_are_addressable
+          weight: 0.4
+          description: |
+            Decisions are stored with stable IDs (so a human can reference
+            and reverse one specifically).
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+
+  # ---------------------------------------------------------------------------
+  # Article 15 — Accuracy, robustness and cybersecurity (high-risk only)
+  # ---------------------------------------------------------------------------
+
+  - id: eu-ai-act/art-15/p1-accuracy
+    clause_id_bytes: 0x0CF1
+    article: "15(1)"
+    title: "Appropriate level of accuracy declared and tested"
+    subject: [provider]
+    classification: code
+    text: |
+      High-risk AI systems shall be designed and developed in such a way
+      that they achieve an appropriate level of accuracy, robustness, and
+      cybersecurity, and perform consistently in those respects throughout
+      their lifecycle.
+    in_scope_when: { risk_classifications: [high] }
+    signals_required: [eval_artefacts]
+    checker:
+      deterministic:
+        - rule: eval_suite_present
+          weight: 0.5
+          description: "evals/ or benchmarks/ directory with executable evaluation scripts"
+        - rule: metrics_documented
+          weight: 0.3
+          description: "MODEL_CARD or README declares accuracy/quality metrics on a benchmark"
+        - rule: eval_in_ci
+          weight: 0.2
+          description: "CI workflow runs the eval suite"
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+
+  - id: eu-ai-act/art-15/p4-robustness
+    clause_id_bytes: 0x0CF2
+    article: "15(4)"
+    title: "Resilience to errors, faults, inconsistencies"
+    subject: [provider]
+    classification: code
+    text: |
+      High-risk AI systems shall be as resilient as possible regarding
+      errors, faults or inconsistencies that may occur within the system or
+      the environment in which the system operates, in particular due to
+      their interaction with natural persons or other systems.
+    in_scope_when: { risk_classifications: [high] }
+    signals_required: [eval_artefacts, cybersec_hooks]
+    checker:
+      deterministic:
+        - rule: error_handling_at_tool_boundaries
+          weight: 0.4
+          description: "Tool calls wrapped in try/except with explicit recovery"
+        - rule: retry_logic
+          weight: 0.3
+          description: "Idempotent retry with backoff on transient failures"
+        - rule: fallback_behaviour
+          weight: 0.3
+          description: "Fallback path defined when primary model fails"
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+
+  - id: eu-ai-act/art-15/p5-cybersecurity
+    clause_id_bytes: 0x0CF3
+    article: "15(5)"
+    title: "Cybersecurity measures appropriate to circumstances"
+    subject: [provider]
+    classification: code
+    text: |
+      High-risk AI systems shall be resilient against attempts by
+      unauthorised third parties to alter their use, outputs or
+      performance by exploiting system vulnerabilities. Solutions shall
+      include, where appropriate, measures to prevent, detect, respond
+      to, resolve and control for attacks trying to manipulate the
+      training data set (data poisoning), pre-trained components used in
+      training (model poisoning), inputs designed to cause the model to
+      make a mistake (adversarial examples or model evasion),
+      confidentiality attacks or model flaws.
+    in_scope_when: { risk_classifications: [high] }
+    signals_required: [cybersec_hooks, agent_framework]
+    checker:
+      deterministic:
+        - rule: prompt_injection_defences
+          weight: 0.4
+          description: |
+            Code includes prompt-injection mitigations: output filters,
+            input sanitisation, instruction-data segregation, system-prompt
+            integrity checks.
+        - rule: rate_limiting
+          weight: 0.2
+          description: "Rate limiting on user-facing endpoints"
+        - rule: secrets_not_in_prompts
+          weight: 0.2
+          description: "Secrets (API keys, tokens) loaded from env, not embedded in prompts/code"
+        - rule: adversarial_eval_present
+          weight: 0.2
+          description: "Eval suite includes prompt-injection / adversarial cases"
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+    remediation_hint: |
+      Add a prompt-injection eval set (e.g. from `promptbench`, `garak`,
+      or your own canonical injection prompts). Sanitise tool-call outputs
+      before they re-enter the model context. Never put secrets in system
+      prompts.
+
+  # ---------------------------------------------------------------------------
+  # Article 26 — Deployer obligations
+  # ---------------------------------------------------------------------------
+
+  - id: eu-ai-act/art-26/p6-keep-logs
+    clause_id_bytes: 0x0D60
+    article: "26(6)"
+    title: "Deployer log-retention capability supported"
+    subject: [provider]
+    classification: mixed
+    text: |
+      Deployers of high-risk AI systems shall keep the logs automatically
+      generated by that high-risk AI system to the extent such logs are
+      under their control, for a period appropriate to the intended
+      purpose, of at least six months, unless provided otherwise.
+    in_scope_when: { risk_classifications: [high] }
+    signals_required: [logging_hooks]
+    checker:
+      deterministic:
+        - rule: logs_externally_exportable
+          weight: 1.0
+          description: |
+            Logs go to (or can be configured to go to) a deployer-controlled
+            sink: file, OTEL, syslog, S3 bucket, etc. The provider exposes
+            this configuration in docs.
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      "<0.65":  2
+    external_notes: |
+      Six-month retention is a deployer operational policy. We verify the
+      *technical capability* to retain; the deployer enforces duration.
+
+  # ---------------------------------------------------------------------------
+  # Article 50 — Transparency (limited-risk obligations; always potentially in scope)
+  # ---------------------------------------------------------------------------
+
+  - id: eu-ai-act/art-50/p1-ai-disclosure
+    clause_id_bytes: 0x0E01
+    article: "50(1)"
+    title: "Users informed they are interacting with an AI"
+    subject: [provider, deployer]
+    classification: code
+    text: |
+      Providers shall ensure that AI systems intended to interact directly
+      with natural persons are designed and developed in such a way that
+      the natural persons concerned are informed that they are interacting
+      with an AI system, unless this is obvious from the perspective of a
+      natural person who is reasonably well-informed, observant and
+      circumspect.
+    in_scope_when: { always: true }
+    signals_required: [agent_framework]
+    checker:
+      deterministic:
+        - rule: ai_disclosure_in_user_facing_strings
+          weight: 0.6
+          description: |
+            User-facing copy (HTML, system messages, intro flows) contains an
+            explicit "AI" / "automated" / "bot" disclosure on first contact.
+        - rule: persona_not_human_impersonating
+          weight: 0.4
+          description: |
+            System prompts and persona definitions do not instruct the model
+            to claim it is a human or deny being an AI when asked.
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+    remediation_hint: |
+      On first contact, surface a clear "You're chatting with an AI" line.
+      Audit system prompts: remove any "act as if you are a real person"
+      instructions. If the agent has a humanoid persona, make sure that
+      persona itself acknowledges being AI when challenged.
+
+  - id: eu-ai-act/art-50/p2-synthetic-content
+    clause_id_bytes: 0x0E02
+    article: "50(2)"
+    title: "AI-generated content marked as such, machine-readable"
+    subject: [provider]
+    classification: code
+    text: |
+      Providers of AI systems generating synthetic audio, image, video or
+      text content shall ensure that the outputs of the AI system are
+      marked in a machine-readable format and detectable as artificially
+      generated or manipulated. Providers shall ensure their technical
+      solutions are effective, interoperable, robust and reliable as far
+      as this is technically feasible.
+    in_scope_when:
+      art_50_triggers: [content_generation_signals]
+    signals_required: [content_generation_signals, provenance_hooks]
+    checker:
+      deterministic:
+        - rule: c2pa_or_watermark_library_imported
+          weight: 0.5
+          description: |
+            Code imports a content-provenance library: c2pa, opencv c2pa
+            bindings, invisible-watermark, stable-signature, synthid.
+        - rule: provenance_metadata_written_to_outputs
+          weight: 0.5
+          description: |
+            Generation pipeline writes provenance metadata into the output
+            artefact (EXIF / XMP / C2PA manifest / text-watermark).
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+    remediation_hint: |
+      Adopt C2PA for images/audio/video. For text, watermark with SynthID or
+      a comparable scheme; at minimum, attach a machine-readable signature
+      to API responses (HTTP header, JSON field).
+
+  - id: eu-ai-act/art-50/p3-emotion-biometric-disclosure
+    clause_id_bytes: 0x0E03
+    article: "50(3)"
+    title: "Emotion recognition / biometric categorisation disclosure"
+    subject: [deployer]
+    classification: code
+    text: |
+      Deployers of an emotion recognition system or a biometric
+      categorisation system shall inform the natural persons exposed
+      thereto of the operation of the system.
+    in_scope_when:
+      art_50_triggers: [emotion_recognition_signals]
+    signals_required: [emotion_recognition_signals, bio_metric_signals]
+    checker:
+      deterministic:
+        - rule: emotion_or_biometric_disclosure_string
+          weight: 1.0
+          description: |
+            When emotion/biometric detection code is present, user-facing
+            strings include an explicit disclosure that such detection is
+            running.
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+
+  - id: eu-ai-act/art-50/p4-deepfake-disclosure
+    clause_id_bytes: 0x0E04
+    article: "50(4)"
+    title: "Deepfake content labelled as artificially generated"
+    subject: [deployer]
+    classification: code
+    text: |
+      Deployers of an AI system that generates or manipulates image, audio
+      or video content constituting a deep fake, shall disclose that the
+      content has been artificially generated or manipulated.
+    in_scope_when:
+      art_50_triggers: [content_generation_signals]
+    signals_required: [content_generation_signals]
+    checker:
+      deterministic:
+        - rule: deepfake_label_on_outputs
+          weight: 1.0
+          description: |
+            Generation pipeline attaches a human-visible label (overlay,
+            caption, embedded badge) to outputs of face-swap, voice-clone,
+            or full-scene video generation.
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0

@@ -1,0 +1,304 @@
+# NIST AI Risk Management Framework 1.0 (NIST AI 100-1)
+# Atomic decomposition of code-mappable subcategories for AiAuditor V1
+#
+# Source: https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf
+# Companion: NIST AI 600-1 (Generative AI Profile)
+#
+# Scope: subcategories whose evidence is meaningfully present in a code
+# repository. Pure-policy subcategories (GOVERN 1.1, 4.1, 5.1) are noted
+# as `external` and shown in the report's "External Controls" sidebar.
+
+regulation:
+  id: nist-ai-rmf
+  full_name: "NIST AI Risk Management Framework 1.0 (NIST AI 100-1)"
+  version: "1.0"
+  source: "https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf"
+  companion_docs:
+    - "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"  # Generative AI Profile
+    - "https://airc.nist.gov/airmf-resources/playbook/"          # Playbook
+  enforcement_dates:
+    - { phase: "voluntary", date: "2023-01-26" }
+  clause_id_namespace: 0x01  # 0x01=GOVERN 0x02=MAP 0x03=MEASURE 0x04=MANAGE
+
+clauses:
+
+  # ---------------------------------------------------------------------------
+  # GOVERN function (0x01xx)
+  # ---------------------------------------------------------------------------
+
+  - id: nist-ai-rmf/govern-1.4
+    clause_id_bytes: 0x0114
+    article: "GOVERN 1.4"
+    title: "Risk management process documented and accountable"
+    subject: [provider]
+    classification: mixed
+    text: |
+      The risk management process and its outcomes are established
+      through transparent policies, procedures, and other controls based
+      on organizational risk priorities.
+    in_scope_when: { always: true }
+    signals_required: [governance_docs]
+    checker:
+      deterministic:
+        - rule: presence_of_risk_register
+          weight: 0.6
+        - rule: risk_owner_assignment
+          weight: 0.4
+          description: "Risk register entries name an owner / responsible role"
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+
+  - id: nist-ai-rmf/govern-1.5
+    clause_id_bytes: 0x0115
+    article: "GOVERN 1.5"
+    title: "Ongoing monitoring and periodic review of risk management"
+    subject: [provider]
+    classification: mixed
+    text: |
+      Ongoing monitoring and periodic review of the risk management
+      process and its outcomes are planned and organizational roles and
+      responsibilities clearly defined, including determining the
+      frequency of periodic review.
+    in_scope_when: { always: true }
+    signals_required: [eval_artefacts, governance_docs]
+    checker:
+      deterministic:
+        - rule: ci_eval_gates
+          weight: 0.5
+          description: "Eval suite runs on CI on every PR / nightly"
+        - rule: drift_monitoring_present
+          weight: 0.5
+          description: "Code includes drift monitoring / canary / health checks for model behaviour"
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+
+  # ---------------------------------------------------------------------------
+  # MAP function (0x02xx)
+  # ---------------------------------------------------------------------------
+
+  - id: nist-ai-rmf/map-1.1
+    clause_id_bytes: 0x0211
+    article: "MAP 1.1"
+    title: "Context of use established and understood"
+    subject: [provider]
+    classification: mixed
+    text: |
+      Intended purposes, potentially beneficial uses, context-specific
+      laws, norms and expectations, and prospective settings in which the
+      AI system will be deployed are understood and documented.
+    in_scope_when: { always: true }
+    signals_required: [governance_docs]
+    checker:
+      deterministic:
+        - rule: intended_use_documented
+          weight: 0.6
+          description: "MODEL_CARD or README has intended-use + out-of-scope-uses sections"
+        - rule: deployment_context_documented
+          weight: 0.4
+          description: "Documentation specifies deployment context (user base, geography, sector)"
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+
+  - id: nist-ai-rmf/map-3.4
+    clause_id_bytes: 0x0234
+    article: "MAP 3.4"
+    title: "Risks and benefits to people identified"
+    subject: [provider]
+    classification: mixed
+    text: |
+      Processes for operator and practitioner proficiency with AI system
+      performance and trustworthiness — and relevant technical standards
+      and certifications — are defined, assessed, and documented.
+    in_scope_when: { always: true }
+    signals_required: [governance_docs]
+    checker:
+      deterministic:
+        - rule: presence_of_risk_register
+          weight: 0.6
+        - rule: presence_of_threat_model
+          weight: 0.4
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+
+  # ---------------------------------------------------------------------------
+  # MEASURE function (0x03xx)
+  # ---------------------------------------------------------------------------
+
+  - id: nist-ai-rmf/measure-2.3
+    clause_id_bytes: 0x0323
+    article: "MEASURE 2.3"
+    title: "AI system performance evaluated and documented"
+    subject: [provider]
+    classification: code
+    text: |
+      AI system performance or assurance criteria are measured
+      qualitatively or quantitatively and demonstrated for conditions
+      similar to deployment settings. Measures are documented.
+    in_scope_when: { always: true }
+    signals_required: [eval_artefacts]
+    checker:
+      deterministic:
+        - rule: eval_suite_present
+          weight: 0.5
+        - rule: metrics_documented
+          weight: 0.3
+        - rule: eval_in_ci
+          weight: 0.2
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+
+  - id: nist-ai-rmf/measure-2.7
+    clause_id_bytes: 0x0327
+    article: "MEASURE 2.7"
+    title: "Security and resilience evaluated"
+    subject: [provider]
+    classification: code
+    text: |
+      AI system security and resilience — as identified in the MAP
+      function — are evaluated and documented.
+    in_scope_when: { always: true }
+    signals_required: [cybersec_hooks, eval_artefacts]
+    checker:
+      deterministic:
+        - rule: prompt_injection_defences
+          weight: 0.4
+        - rule: adversarial_eval_present
+          weight: 0.4
+        - rule: rate_limiting
+          weight: 0.2
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+
+  - id: nist-ai-rmf/measure-2.8
+    clause_id_bytes: 0x0328
+    article: "MEASURE 2.8"
+    title: "Privacy risk of the AI system evaluated"
+    subject: [provider]
+    classification: code
+    text: |
+      Risks associated with transparency and accountability — as
+      identified in the MAP function — are examined and documented.
+      (Privacy assessment derived from the MEASURE family.)
+    in_scope_when: { always: true }
+    signals_required: [pii_signals, governance_docs]
+    checker:
+      deterministic:
+        - rule: pii_redaction_present
+          weight: 0.5
+          description: "Code redacts or hashes PII before logging or sending to external models"
+        - rule: privacy_documentation
+          weight: 0.5
+          description: "PRIVACY.md or relevant docs/ section documents PII handling"
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+
+  - id: nist-ai-rmf/measure-2.11
+    clause_id_bytes: 0x032B
+    article: "MEASURE 2.11"
+    title: "Fairness and bias evaluated"
+    subject: [provider]
+    classification: code
+    text: |
+      Fairness and bias — as identified in the MAP function — are
+      evaluated and results are documented.
+    in_scope_when: { always: true }
+    signals_required: [eval_artefacts]
+    checker:
+      deterministic:
+        - rule: bias_evaluation_present
+          weight: 1.0
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      "<0.40":  0
+
+  # ---------------------------------------------------------------------------
+  # MANAGE function (0x04xx)
+  # ---------------------------------------------------------------------------
+
+  - id: nist-ai-rmf/manage-2.3
+    clause_id_bytes: 0x0423
+    article: "MANAGE 2.3"
+    title: "Mechanisms to supersede or deactivate AI systems"
+    subject: [provider]
+    classification: code
+    text: |
+      Mechanisms are in place and applied to supersede, disengage, or
+      deactivate existing applications of AI systems that demonstrate
+      performance or outcomes inconsistent with intended use.
+    in_scope_when: { always: true }
+    signals_required: [oversight_hooks]
+    checker:
+      deterministic:
+        - rule: kill_switch_present
+          weight: 0.6
+        - rule: feature_flag_for_disable
+          weight: 0.4
+          description: "Feature flag controlling whether the AI runs at all"
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
+
+  - id: nist-ai-rmf/manage-4.1
+    clause_id_bytes: 0x0441
+    article: "MANAGE 4.1"
+    title: "Post-deployment monitoring, appeal and override, change management"
+    subject: [provider]
+    classification: code
+    text: |
+      Post-deployment AI system monitoring plans are implemented,
+      including mechanisms for capturing and evaluating input from users
+      and other relevant AI actors, appeal and override, decommissioning,
+      incident response, and change management.
+    in_scope_when: { always: true }
+    signals_required: [oversight_hooks, logging_hooks]
+    checker:
+      deterministic:
+        - rule: feedback_capture_present
+          weight: 0.3
+          description: "Endpoint or UI surface for user to flag bad outputs"
+        - rule: override_path_present
+          weight: 0.3
+        - rule: structured_logging_imported
+          weight: 0.2
+        - rule: versioning_visible
+          weight: 0.2
+          description: "Model / prompt version surfaced in logs and responses"
+    score_mapping:
+      ">=0.85": 4
+      ">=0.65": 3
+      ">=0.40": 2
+      ">=0.15": 1
+      "<0.15":  0
