@@ -35,7 +35,7 @@ Ship an **auditing AI agent** positioned as **the audit layer for the ERC-8004 e
 - Accepts an ERC-8004 agent URL (`https://8004scan.io/agents/{chain}/{tokenId}`), a raw agentId, **or a direct GitHub repo URL**.
 - For 8004 inputs: resolves agent metadata + repo URL from the Identity Registry. If no source service is present, prompts for a manual repo URL.
 - For direct repo inputs: auto-registers the agent on ERC-8004 (custodial NFT, claim flow in V1.5) so every audit anchors to a real agentId on chain.
-- Runs a multi-stage pipeline (modelled on [hacker-bob's pipeline](https://github.com/vmihalis/hacker-bob)) targeting regulatory clauses.
+- Runs a multi-stage pipeline (multi-stage audit pipeline) targeting regulatory clauses.
 - Posts findings on-chain: one compact `AuditScored` event + one canonical ERC-8004 `validationResponse` — for *every* audit, registered or not.
 - Surfaces the audit on a public directory and a per-audit detail page (nutritional-facts style) on [8RR8.com](https://8RR8.com).
 
@@ -135,7 +135,7 @@ The end-state is **continuous attestation**: every commit triggers a new audit, 
 
 ## Open Questions (still unresolved)
 
-- **Stack** for the checker engine: Python+LangGraph (lean) vs Node MCP (mirrors hacker-bob). V0 is Next.js regardless; the checker can be a separate service.
+- **Stack** for the checker engine: Python+LangGraph (lean) vs Node MCP. V0 is Next.js regardless; the checker can be a separate service.
 - **Compliance reviewer** to sanity-check the atomic clause decomposition before V1 ships.
 - **24h grace window** UX detail: do we hide the score from the user during grace, or show it as "publishing in 22h"?
 - **Sepolia ERC-8004 deployment addresses** for Identity + Validation Registry — to confirm before contract calls.

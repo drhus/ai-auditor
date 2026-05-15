@@ -24,10 +24,7 @@ Read these files before starting any major feature work:
 
 AiAuditor is an auditing AI agent that fetches a target AI agent's source repo (via GitHub URL or ERC-8004 agentId) and scores it against region-specific AI regulations (EU AI Act, NIST AI RMF, ISO/IEC 42001) with per-clause, code-anchored evidence.
 
-Inspired by the hacker-bob (https://github.com/vmihalis/hacker-bob) MCP pipeline pattern — adapted from security findings to regulatory clauses.
-
 ## Stack
 
-To be decided. Two candidates documented in `pipeline-design.md`:
-- A: Node 20 + MCP server (mirrors hacker-bob).
-- B: Python + LangGraph (richer regulatory/NLP ecosystem). Currently leaning B for the checker engine.
+V0 is Next.js + TypeScript + viem; the audit pipeline runs in-process.
+Future considerations documented in `docs/pipeline-design.md`.

@@ -34,7 +34,7 @@ This is especially true for Chinese AI teams shipping technically world-class pr
 A protocol and a service that makes AI compliance **portable**:
 
 1. **Read the code.** Any GitHub repo, or any ERC-8004 registered agent.
-2. **Score it.** Multi-stage audit pipeline (modelled on hacker-bob's security audit pattern) against jurisdiction-specific regulation packs.
+2. **Score it.** Multi-stage audit pipeline (RECON → MAP → CHECK → VERIFY → GRADE → REPORT) against jurisdiction-specific regulation packs.
 3. **Anchor it.** Compact on-chain attestation — packed clause scores + canonical ERC-8004 validation response.
 4. **Verify it.** Anyone, anywhere, in 30 seconds. The audit is reproducible: same checker version + same regulations version + same commit = same bundle hash.
 5. **Re-run it.** Every commit triggers a new attestation. The score evolves with the code. Trust is current, not stale.
@@ -130,7 +130,7 @@ V3.5 ships build-only attestation for the simplest case (a Dockerised agent, sin
 
 **The buyers.** Western enterprises are starting to require compliance trails before procuring AI from any vendor — let alone from foreign vendors. The procurement gap is now a market-access barrier, and it's only widening.
 
-**The technology.** Multi-agent code-analysis pipelines (hacker-bob, semgrep + LLM judges, AST-driven static analysis) have matured to the point where automated regulatory audit is achievable, not just aspirational.
+**The technology.** Multi-agent code-analysis pipelines (semgrep + LLM judges, AST-driven static analysis) have matured to the point where automated regulatory audit is achievable, not just aspirational.
 
 ## The three-angle pitch
 

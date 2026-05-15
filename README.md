@@ -16,7 +16,7 @@ The EU AI Act becomes fully applicable on **2 August 2026**. Penalties reach **�
 
 ## How it works
 
-Multi-stage pipeline inspired by [hacker-bob](https://github.com/vmihalis/hacker-bob), adapted from security findings to regulatory clauses:
+Multi-stage pipeline that adapts established security-audit patterns to regulatory clauses:
 
 ```
 INTAKE → FETCH → RECON → SCOPE → MAP → CHECK → VERIFY → GRADE → REPORT → ANCHOR

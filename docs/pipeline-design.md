@@ -4,34 +4,33 @@ tags:
   - pipeline
   - architecture
 parent: "[overview](./overview.md)"
-inspired_by: "https://github.com/vmihalis/hacker-bob"
 ---
 
 # AiAuditor — Pipeline Design
 
+> **Acknowledgement.** The multi-stage security-audit pattern that inspired this regulation-audit pipeline comes from prior work in agentic security tooling — notably the orchestrated `RECON → HUNT → VERIFY → GRADE → REPORT` flow popularised by projects like [hacker-bob](https://github.com/vmihalis/hacker-bob). This is the only place we name that lineage; everywhere else, the pipeline stands on its own.
+
 ## TL;DR
 
-Hacker-bob's MCP-orchestrated pipeline does **security** triage on a target: `RECON → AUTH → HUNT → CHAIN → VERIFY → GRADE → REPORT`. We rebrand the same scaffolding into a **regulation-audit** pipeline:
+The regulation-audit pipeline is multi-stage and orchestrated, with each stage producing typed artefacts the next stage consumes:
 
 ```
 INTAKE → FETCH → RECON → SCOPE → MAP → CHECK → VERIFY → GRADE → REPORT
 ```
 
-Each stage produces structured artefacts the next stage consumes — same "MCP runtime coordinates handoff" pattern hacker-bob uses, just with regulatory checkers in place of vuln hunters.
+## Stage purpose
 
-## Side-by-side mapping
-
-| hacker-bob (security)       | AiAuditor (regulation)             | Why the swap                                                                 |
-| --------------------------- | ---------------------------------- | ---------------------------------------------------------------------------- |
-| —                           | **INTAKE**                         | New stage: take agentId or repo URL, resolve which.                          |
-| —                           | **FETCH**                          | New stage: clone repo (OAuth if private), pin commit SHA, build worktree.    |
-| RECON (subdomains, hosts)   | RECON (stack, deps, model usage)   | Same idea — passive enumeration of the target's surface.                     |
-| AUTH (login profiles)       | SCOPE (region + regulation set)    | Replaced: instead of authed sessions, we pick which regulations apply.       |
-| HUNT (parallel scanners)    | CHECK (parallel clause checkers)   | Same idea — fan-out specialised probes.                                      |
-| CHAIN (combine findings)    | MAP (Article 6 / Annex III mapping)| Cross-clause reasoning: does this trigger high-risk classification?          |
-| VERIFY (independent re-run) | VERIFY (LLM-judge + heuristic)     | Same — second-pass confirmation before scoring.                              |
-| GRADE (severity, submit?)   | GRADE (per-clause score 0–4)       | Same — quantification step.                                                  |
-| REPORT (md report)          | REPORT (md + JSON, code-anchored)  | Same artefact shape, different content.                                      |
+| Stage     | What it does                                                                 |
+| --------- | ---------------------------------------------------------------------------- |
+| INTAKE    | Take an 8004 agentId or a repo URL, resolve which.                           |
+| FETCH     | Clone the repo (OAuth if private), pin commit SHA, build worktree.           |
+| RECON     | Passive enumeration of the agent's surface — stack, deps, model usage, signals. |
+| SCOPE     | Select which regulation packs apply to the user.                             |
+| MAP       | Cross-clause reasoning — Article 6 + Annex III high-risk classification.     |
+| CHECK     | Fan-out parallel clause checkers (deterministic + LLM-judge fallback).       |
+| VERIFY    | Independent second-pass confirmation before scoring.                         |
+| GRADE     | Quantification — per-clause score 0–4, weighted aggregates.                  |
+| REPORT    | Code-anchored markdown + JSON artefact, plus on-chain attestation payload.   |
 
 ## Stage details
 
@@ -61,7 +60,7 @@ Each stage produces structured artefacts the next stage consumes — same "MCP r
 
 ### 2. RECON — passive stack and surface enumeration
 
-Mirror of hacker-bob's RECON but pointed at the codebase, not the network. Fan-out reads (parallel, deterministic, no LLM yet):
+Pointed at the codebase, not the network. Fan-out reads (parallel, deterministic, no LLM yet):
 
 | Detector             | What it finds                                                          | Why it matters for regulation                                                  |
 | -------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -96,7 +95,7 @@ User input + RECON output drive which regulations and which clauses apply:
 
 ### 4. MAP — risk classification
 
-Cross-clause reasoning step (hacker-bob's "CHAIN" analogue). The interesting question for EU AI Act isn't "did the code pass clause X?" but **"is this thing high-risk in the first place?"** That decision changes the entire downstream check set.
+Cross-clause reasoning step. The interesting question for EU AI Act isn't "did the code pass clause X?" but **"is this thing high-risk in the first place?"** That decision changes the entire downstream check set.
 
 - **Article 6(1)** safety component test: requires external info (we'll mark as external in [regulations-matrix](./regulations-matrix.md) — but we surface code signals that *suggest* a safety-component role).
 - **Article 6(2) + Annex III** test: derive from RECON signals (biometric/employment/health/education/lawenf/migration/justice/critical infra). If any trigger → high-risk.
@@ -178,16 +177,15 @@ End-to-end target: **<10 min on a typical agent repo** (≈50k LoC).
 
 Two candidates:
 
-**Option A — Mirror hacker-bob:** Node 20 + MCP server. Pros: closest copy of the working pattern, MCP host adapters (Claude Code/Codex) come for free. Cons: regulatory-NLP libraries are weaker in Node.
+**Option A — Node + MCP server:** Pros: MCP host adapters (Claude Code/Codex) come for free. Cons: regulatory-NLP libraries are weaker in Node.
 
-**Option B — Python + LangGraph:** Pros: richer ecosystem (`langgraph`, `langfair`, `aif360`, structured outputs, vector DBs). Cons: have to build MCP integration ourselves; less mirrored on hacker-bob.
+**Option B — Python + LangGraph:** Pros: richer ecosystem (`langgraph`, `langfair`, `aif360`, structured outputs, vector DBs). Cons: have to build MCP integration ourselves.
 
 **Recommendation:** Python + LangGraph for the checker engine; thin Node MCP layer if/when we want CLI/IDE integration. Decided in a follow-up.
 
-## What we re-use from hacker-bob, almost literally
+## Operating principles
 
-- Stage-by-stage handoff via JSON artefacts persisted under a session directory (`~/.ai-auditor/sessions/{run_id}/`).
+- Stage-by-stage handoff via typed artefacts persisted under a session directory (`~/.ai-auditor/sessions/{run_id}/`).
 - "Optional tools" pattern — pipeline runs with degraded RECON if `syft` / `semgrep` aren't installed; better with them.
 - VERIFY-before-GRADE rule (no score without two-pass confirmation).
-- MCP runtime as the orchestrator if/when we go Node, otherwise LangGraph supervisor.
 - Local evidence handling: nothing PHI/secret leaves the user's machine without explicit consent.

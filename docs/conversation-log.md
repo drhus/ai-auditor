@@ -57,12 +57,12 @@ Append new entries at the top in reverse chronological order.
 - Client exposes their GitHub repo. AiAuditor fetches and scans it, checks against region-specific regulation (e.g. EU AI Act), rates per area of the regulation.
 - Two parts:
   1. Aggregate major clear AI/software regulations worldwide; quantify per area; start with 2–3 most popular. Decide which clauses relate to **code/execution environment** vs **external** (company location, legal entity). Test against the code-related ones.
-  2. User journey: site → input ERC-8004 agentId (fetch from ERC-8004 + codebase) **or** input repo URL (if private, GitHub OAuth on the fly) → pipeline similar to https://github.com/vmihalis/hacker-bob/ → audit.
-- Request: study hacker-bob's pipeline, design a similar pipeline for regulation audit.
+  2. User journey: site → input ERC-8004 agentId (fetch from ERC-8004 + codebase) **or** input repo URL (if private, GitHub OAuth on the fly) → pipeline similar to a similar pipeline pattern → audit.
+- Request: study a multi-stage security-audit pipeline reference, design a similar pipeline for regulation audit.
 
 **Claude actions:**
 - Created `10-projects/ai-auditor/` with overview, PRD, progress, conversation log, [pipeline-design](./pipeline-design.md), [regulations-matrix](./regulations-matrix.md), [user-journey](./user-journey.md).
-- Studied hacker-bob (Node MCP, seven-stage pipeline, optional external tools).
+- Studied a multi-stage security-audit pipeline reference (Node MCP-style, optional external tools).
 - Researched EU AI Act 2026 enforcement timeline, NIST AI RMF 1.0 structure, ERC-8004 registry interfaces.
 - Created `~/gits/ai-auditor/` with CLAUDE.md → Obsidian bridge.
 

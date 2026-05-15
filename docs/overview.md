@@ -10,8 +10,6 @@ contacts: []
 industry: AI compliance / regtech
 started: 2026-05-15
 working_name: AiAuditor
-inspirations:
-  - "https://github.com/vmihalis/hacker-bob"
 ---
 
 # AiAuditor
@@ -27,7 +25,7 @@ See [vision](./vision.md) for the long-term arc (continuous attestation, GitHub 
 > - **Stage:** V1 scope locked. V0 shipped locally; deploy to 8RR8.com next.
 > - **Working name:** AiAuditor · **Domain:** [8RR8.com](https://8RR8.com)
 > - **Positioning:** *The FDA stamp for AI agents — anchored on chain, recognised across markets.*
-> - **Core thesis:** Adapt hacker-bob's multi-stage MCP audit pipeline (RECON → HUNT → VERIFY → GRADE → REPORT) from CVEs to regulatory clauses.
+> - **Core thesis:** Multi-stage audit pipeline (RECON → MAP → CHECK → VERIFY → GRADE → REPORT) adapting established security-audit patterns from CVEs to regulatory clauses.
 > - **V1 input:** Two paths — (a) ERC-8004 agent URL like `https://8004scan.io/agents/{chain}/{tokenId}` for the 200k+ already-registered agents, **or** (b) direct GitHub repo URL for unregistered software. We auto-register unregistered repos on 8004 so every audit lands in the canonical Validation Registry.
 > - **V1 chain:** Sepolia for V0/V1; Base for mainnet rollout.
 > - **V1 anchoring:** One custom `AuditScored` event + one canonical ERC-8004 `validationResponse`. No IPFS in V1 — packed event payload + server-side rich content.
@@ -38,7 +36,6 @@ See [vision](./vision.md) for the long-term arc (continuous attestation, GitHub 
 ## Key Links
 
 - [GitHub Repo](https://github.com/drhus/ai-auditor) (to be created)
-- Inspiration — hacker-bob: https://github.com/vmihalis/hacker-bob
 - EU AI Act consolidated text: https://artificialintelligenceact.eu/
 - NIST AI RMF 1.0 PDF: https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf
 - ERC-8004 spec: https://eips.ethereum.org/EIPS/eip-8004

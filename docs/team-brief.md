@@ -168,7 +168,6 @@ End-state pitch: *"Like SSL certificates for AI compliance. Every agent has one.
 3. **"Inside an AI Nutritional Facts label"** — visual breakdown of the panel, what each line means, why it matters.
 4. **"What does the EU AI Act actually want from your code?"** — explainer on the code-checkable subset of Article 12, 14, 15, 50.
 5. **"200,000 AI agents are on chain. How many are compliant?"** — provocative framing piece.
-6. **"From security audit to regulation audit"** — credit hacker-bob, explain the pattern adaptation.
 7. **"Continuous compliance — every commit, a new attestation"** — the long-term vision: GitHub push → re-audit → updated on-chain score.
 8. **"Why we built this on ERC-8004"** — positioning AiAuditor as the default validator for the 8004 ecosystem.
 9. **"How do you know the deployed AI is the audited AI?"** — TEE-attested build + runtime chain. The provenance angle. Differentiates us from every other audit tool.
@@ -191,4 +190,3 @@ Visual direction: think *clinical*, *clean*, *verifiable*. Nutritional-facts pan
 - ERC-8004 deployed contracts: https://github.com/erc-8004/erc-8004-contracts
 - 8004 ecosystem explorer: https://8004scan.io (200k+ agents indexed)
 - EU AI Act reference: https://artificialintelligenceact.eu/
-- Hacker-bob (inspiration): https://github.com/vmihalis/hacker-bob

@@ -7,7 +7,7 @@ parent: "[overview](./overview.md)"
 
 # AiAuditor — User Journey
 
-End-to-end flow from landing page to scored audit report. Mirrors hacker-bob's "low-friction one-command" feel — but on the web.
+End-to-end flow from landing page to scored audit report. Low-friction, one-paste UX on the web.
 
 ## High-level flow
 

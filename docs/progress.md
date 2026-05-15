@@ -12,7 +12,7 @@ parent: "[overview](./overview.md)"
 ### 2026-05-15 (Day 0)
 - Project onboarded into Second Brain — folder `10-projects/ai-auditor/`.
 - Brain dump captured into [prd](./prd.md) and [overview](./overview.md).
-- Studied [hacker-bob](https://github.com/vmihalis/hacker-bob) pipeline: confirmed seven-stage MCP-driven flow.
+- Studied multi-stage security-audit pipeline patterns to inform the regulatory-audit design.
 - Designed adapted pipeline for regulation audits: [pipeline-design](./pipeline-design.md). RECON → SCOPE → MAP → CHECK → VERIFY → GRADE → REPORT.
 - Drafted [regulations-matrix](./regulations-matrix.md) separating code-checkable vs external clauses for EU AI Act, NIST AI RMF, ISO/IEC 42001.
 - Researched ERC-8004 (mainnet 2026-01-29, 200k+ agents, Identity + Reputation + Validation registries).

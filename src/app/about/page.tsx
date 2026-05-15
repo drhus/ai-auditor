@@ -47,16 +47,11 @@ export default function About() {
           Every finding cites a file and line in the audited code.
         </p>
         <p>
-          The audit pipeline is modelled on{" "}
-          <a href="https://github.com/vmihalis/hacker-bob" target="_blank" rel="noreferrer">
-            hacker-bob
-          </a>
-          &rsquo;s seven-stage security audit flow, rebuilt for regulatory
-          clauses. RECON discovers your agent&rsquo;s framework, model usage,
-          and data signals. MAP determines whether you fall under high-risk
-          classification. CHECK runs deterministic and LLM-judge probes against
-          each in-scope clause. VERIFY confirms findings with a second pass.
-          GRADE scores. REPORT anchors on chain.
+          The audit pipeline is multi-stage. RECON discovers your agent&rsquo;s
+          framework, model usage, and data signals. MAP determines whether you
+          fall under high-risk classification. CHECK runs deterministic and
+          LLM-judge probes against each in-scope clause. VERIFY confirms
+          findings with a second pass. GRADE scores. REPORT anchors on chain.
         </p>
         <p>
           V1 runs on Sepolia and audits only ERC-8004-registered agents. Each
