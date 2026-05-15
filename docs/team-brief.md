@@ -25,6 +25,8 @@ Public-good framing: every piece of AI software on the planet, with a live, on-c
 ## In one sentence
 
 **The FDA stamp for AI agents — earned in minutes, anchored on chain, recognised across markets.**
+OR 
+"Think Michelin stars, but for AI compliance." OR "A nutrition label for AI — at a glance, you know what's inside and whether it's safe."
 
 ## In 30 seconds
 
@@ -127,19 +129,6 @@ Best for **press, BGA, civic audiences** — anyone whose framing is "the public
 - **Manual audit cost**: €25k–€150k. Weeks to months.
 - **AiAuditor cost**: minutes per audit; pricing TBD (free tier + paid private tier likely).
 
-## What we can say publicly right now
-
-**Safe to say:**
-- "We're building the audit layer for AI agents — point us at an ERC-8004 agent, we audit the code against the EU AI Act."
-- "Compliance verification, on chain, in minutes."
-- "Built on the hacker-bob pipeline pattern, adapted from security to compliance."
-- "Sepolia testnet for V1; mainnet to follow."
-
-**Not yet safe to say:**
-- ❌ Specific pricing (TBD).
-- ❌ Specific launch date for full V1 (4–6 weeks from build start; gating on regulatory-content review).
-- ❌ "Officially endorsed by the EU AI Office" / "Notified Body" — we are **evidence-producing**, not certifying.
-- ❌ Claims of legal-grade certainty. Our output is technical evidence to feed into a compliance process, not a replacement for one.
 
 ## The long-term arc (a.k.a. the demo storyboard)
 
@@ -203,11 +192,3 @@ Visual direction: think *clinical*, *clean*, *verifiable*. Nutritional-facts pan
 - 8004 ecosystem explorer: https://8004scan.io (200k+ agents indexed)
 - EU AI Act reference: https://artificialintelligenceact.eu/
 - Hacker-bob (inspiration): https://github.com/vmihalis/hacker-bob
-
-## Who's working on what
-
-- **Hus + Claude:** engineering — V0 landing → full V1 pipeline → Sepolia contracts.
-- **Marketing / social / video:** team in parallel. Take everything in this doc as fair game.
-- **Compliance review:** TBD — looking for a reviewer to sanity-check the clause decomposition before V1 launch.
-
-Questions to me anytime.
