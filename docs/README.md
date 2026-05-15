@@ -1,4 +1,4 @@
-# AiAuditor — Project Docs
+# RATE 8RR8 // AiAuditor — Project Docs
 
 Living documentation for the AiAuditor project. Mirrored from the Obsidian vault; the vault is canonical.
 
