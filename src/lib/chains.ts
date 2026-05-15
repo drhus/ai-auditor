@@ -20,10 +20,12 @@ const DEFAULT_REGISTRIES = {
   sepoliaReputation: "0x8004B663056A597Dffe9eCcC1965A193B7388713",
 } as const;
 
+// PublicNode is rate-limit-friendly and has a 99.9% SLA on the free tier —
+// the prior default (eth.merkle.io) was Cloudflare-throttled on Vercel.
 const DEFAULT_RPCS = {
-  ethereum: "https://eth.merkle.io",
-  base: "https://mainnet.base.org",
-  optimism: "https://mainnet.optimism.io",
+  ethereum: "https://ethereum-rpc.publicnode.com",
+  base: "https://base-rpc.publicnode.com",
+  optimism: "https://optimism-rpc.publicnode.com",
   sepolia: "https://ethereum-sepolia-rpc.publicnode.com",
 } as const;
 

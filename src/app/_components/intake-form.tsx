@@ -46,7 +46,7 @@ export function IntakeForm() {
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        placeholder="https://8004scan.io/agents/ethereum/9382  or  github.com/owner/repo"
+        placeholder="https://8004scan.io/agents/ethereum/9382  ·  github.com/owner/repo  ·  owner/repo"
         className="flex-1 rounded-md border border-ink-200 bg-white px-4 py-3 font-mono text-sm text-ink-900 outline-none placeholder:text-ink-400 focus:border-ink-900"
         disabled={pending}
         autoFocus

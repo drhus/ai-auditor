@@ -20,7 +20,13 @@ const SCAN_HOSTS = new Set(["8004scan.io", "www.8004scan.io"]);
 const GITHUB_HOSTS = new Set(["github.com", "www.github.com"]);
 
 export function parseAgentInput(input: string): ParsedInput {
-  const trimmed = input.trim();
+  let trimmed = input.trim().replace(/\s+/g, "");
+
+  // Accept URLs without scheme: `github.com/foo/bar`, `8004scan.io/agents/...`.
+  // Add `https://` so the URL constructor doesn't choke.
+  if (!/^https?:\/\//i.test(trimmed) && /^(?:www\.)?(?:github\.com|8004scan\.io)\//i.test(trimmed)) {
+    trimmed = "https://" + trimmed;
+  }
 
   if (/^https?:\/\//i.test(trimmed)) {
     return parseUrl(trimmed);
