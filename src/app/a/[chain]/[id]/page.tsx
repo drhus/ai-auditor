@@ -2,8 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isSupportedSlug } from "@/lib/chains";
 import { resolveAgent, type AgentRegistration } from "@/lib/erc8004";
-import { WaitlistForm } from "./_waitlist-form";
 import { BrandMark } from "@/app/_components/brand-mark";
+import { AuditPanel } from "@/app/_components/audit-panel";
+import { AgentAuditWithFallback } from "./_agent-audit";
 
 interface PageProps {
   params: Promise<{ chain: string; id: string }>;
@@ -77,20 +78,18 @@ function ResolvedAgent({ agent }: { agent: AgentRegistration }) {
         <Field label="Chain ID" value={agent.chainId.toString()} />
       </div>
 
-      <section className="mb-10 rounded-lg border-2 border-ink-900 bg-white p-6">
+      <section className="mb-10 rounded-lg border border-ink-200 bg-white p-6">
         <p className="mb-2 font-mono text-xs uppercase tracking-widest text-ink-400">
-          Audit status
+          Audit
         </p>
         <h2 className="mb-3 font-serif text-2xl font-bold text-ink-900">
-          Full audit pipeline coming soon
+          Audit this agent against EU AI Act + NIST AI RMF
         </h2>
-        <p className="mb-6 text-ink-600">
-          We&rsquo;ve identified your agent on ERC-8004. The full audit pipeline
-          (EU AI Act + NIST AI RMF, on-chain attestation) is in active build.
-          Drop your email and we&rsquo;ll notify you the moment we audit this
-          agent.
-        </p>
-        <WaitlistForm auditRef={`${agent.chain}/${agent.agentId}`} />
+        <AgentAuditWithFallback
+          chain={agent.chain}
+          tokenId={agent.agentId}
+          resolvedRepoUrl={agent.repoUrl}
+        />
       </section>
     </>
   );

@@ -26,7 +26,7 @@ export async function POST(req: Request) {
   }
 
   const auditId = generateAuditId();
-  createState(auditId);
+  await createState(auditId);
 
   // Build the AuditInput. For 8004-agent sources without an attached repoUrl
   // we refuse — front-end must collect repoUrl first.
@@ -65,9 +65,9 @@ export async function POST(req: Request) {
   }
 
   // Fire-and-forget: caller polls /api/audit/[id] for status.
-  void runAudit(input).catch((e) => {
+  void runAudit(input).catch(async (e) => {
     const msg = e instanceof Error ? e.message : String(e);
-    setError(auditId, msg);
+    await setError(auditId, msg);
   });
 
   return NextResponse.json({ auditId, status: "queued" }, { status: 202 });

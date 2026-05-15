@@ -9,7 +9,7 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
-  const state = getState(id);
+  const state = await getState(id);
   if (!state) {
     return NextResponse.json({ error: "Audit not found." }, { status: 404 });
   }

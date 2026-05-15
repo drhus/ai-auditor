@@ -3,7 +3,17 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 
-export function IntakeForm() {
+interface IntakeFormProps {
+  placeholder?: string;
+  submitLabel?: string;
+  submittingLabel?: string;
+}
+
+export function IntakeForm({
+  placeholder = "https://8004scan.io/agents/ethereum/9382  ·  github.com/owner/repo  ·  owner/repo",
+  submitLabel = "Audit my agent",
+  submittingLabel = "Resolving…",
+}: IntakeFormProps = {}) {
   const [value, setValue] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
@@ -46,7 +56,7 @@ export function IntakeForm() {
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        placeholder="https://8004scan.io/agents/ethereum/9382  ·  github.com/owner/repo  ·  owner/repo"
+        placeholder={placeholder}
         className="flex-1 rounded-md border border-ink-200 bg-white px-4 py-3 font-mono text-sm text-ink-900 outline-none placeholder:text-ink-400 focus:border-ink-900"
         disabled={pending}
         autoFocus
@@ -58,7 +68,7 @@ export function IntakeForm() {
         disabled={pending}
         className="rounded-md bg-ink-900 px-6 py-3 text-sm font-semibold text-ink-50 transition hover:bg-ink-800 disabled:opacity-60"
       >
-        {pending ? "Resolving…" : "Audit my agent"}
+        {pending ? submittingLabel : submitLabel}
       </button>
       {error && (
         <p

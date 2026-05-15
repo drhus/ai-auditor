@@ -21,7 +21,7 @@ export async function runAudit(input: AuditInput): Promise<AuditReport> {
     throw new Error("Only repo-source audits are supported by the V0 pipeline");
   }
 
-  updateState(input.auditId, { status: "fetching", progressNote: "Cloning repository tarball" });
+  await updateState(input.auditId, { status: "fetching", progressNote: "Cloning repository tarball" });
   const fetchResult = await fetchRepo({
     owner: input.source.owner,
     repo: input.source.repo,
@@ -29,32 +29,32 @@ export async function runAudit(input: AuditInput): Promise<AuditReport> {
     auditId: input.auditId,
   });
 
-  updateState(input.auditId, {
+  await updateState(input.auditId, {
     status: "recon",
     progressNote: `Scanning ${fetchResult.fileCount} files for AI-system signals`,
   });
   const reconResult = await runRecon(fetchResult);
 
-  updateState(input.auditId, { status: "scope" });
+  await updateState(input.auditId, { status: "scope" });
   const scopeResult = runScope(input);
 
-  updateState(input.auditId, { status: "map" });
+  await updateState(input.auditId, { status: "map" });
   const packs = await loadRegulationPacks(input.regulations);
   const mapResult = runMap(reconResult, packs);
 
-  updateState(input.auditId, {
+  await updateState(input.auditId, {
     status: "check",
     progressNote: `Risk class: ${mapResult.classification} — running clause checkers`,
   });
   const checkResults = await runCheck(fetchResult, reconResult, scopeResult, mapResult, packs);
 
-  updateState(input.auditId, { status: "verify" });
+  await updateState(input.auditId, { status: "verify" });
   const verifyResults = runVerify(checkResults);
 
-  updateState(input.auditId, { status: "grade" });
+  await updateState(input.auditId, { status: "grade" });
   const gradeResult = runGrade(verifyResults);
 
-  updateState(input.auditId, { status: "reporting" });
+  await updateState(input.auditId, { status: "reporting" });
   const report = buildReport({
     input,
     fetch: fetchResult,
@@ -68,7 +68,7 @@ export async function runAudit(input: AuditInput): Promise<AuditReport> {
     startedAt,
   });
 
-  updateState(input.auditId, { status: "completed", report });
+  await updateState(input.auditId, { status: "completed", report });
   return report;
 }
 
