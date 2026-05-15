@@ -26,10 +26,14 @@ export function IntakeForm() {
         });
         const data = await res.json();
         if (!res.ok) {
-          setError(data?.error ?? "Could not resolve that agent.");
+          setError(data?.error ?? "Could not resolve that input.");
           return;
         }
-        router.push(`/a/${data.chain}/${data.agentId}`);
+        if (typeof data?.auditPath === "string") {
+          router.push(data.auditPath);
+        } else {
+          setError("Resolver returned an unexpected response.");
+        }
       } catch {
         setError("Network error. Try again.");
       }
@@ -42,7 +46,7 @@ export function IntakeForm() {
         type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        placeholder="https://8004scan.io/agents/ethereum/9382"
+        placeholder="https://8004scan.io/agents/ethereum/9382  or  github.com/owner/repo"
         className="flex-1 rounded-md border border-ink-200 bg-white px-4 py-3 font-mono text-sm text-ink-900 outline-none placeholder:text-ink-400 focus:border-ink-900"
         disabled={pending}
         autoFocus

@@ -38,7 +38,7 @@ AiAuditor closes the gap: paste your ERC-8004 agent or GitHub repo, get an insta
 
 **The window.** The EU AI Act's full high-risk regime — conformity assessment, CE marking, Article 50 transparency — kicks in on **2 August 2026**. Penalties reach **€35M or 7% of global turnover**. The entire global AI-agent industry is racing toward a deadline with no off-the-shelf way to prove they're ready, and Western buyers are getting increasingly nervous about procurement from teams without a recognisable compliance trail.
 
-**Our edge — ERC-8004.** Mainnet since 29 January 2026, already past **45,000 registered AI agents**. It's the emerging standard for agent identity on chain. We position AiAuditor as the **default audit layer for the 8004 ecosystem**: every registered agent gets a verifiable compliance attestation, posted to the standard Validation Registry, queryable by any wallet, any dApp, any customer.
+**Our edge — ERC-8004.** Mainnet since 29 January 2026, already past **200,000 registered AI agents**. It's the emerging standard for agent identity on chain. We position AiAuditor as the **default audit layer for the 8004 ecosystem**: every registered agent gets a verifiable compliance attestation, posted to the standard Validation Registry, queryable by any wallet, any dApp, any customer.
 
 **The product.** Paste an `https://8004scan.io/agents/ethereum/9382`-style URL (or a GitHub repo), authorise the audit, get a nutritional-facts-style report with per-clause scoring, all anchored on chain. Hacker-bob-style multi-stage pipeline (RECON → MAP → CHECK → VERIFY → GRADE → REPORT), adapted from security findings to regulatory clauses. Every finding cites file and line.
 
@@ -122,7 +122,7 @@ Best for **press, BGA, civic audiences** — anyone whose framing is "the public
 ## Key stats (use freely in copy)
 
 - **EU AI Act**: Regulation (EU) 2024/1689. Full applicability **2 August 2026**. Penalties up to **€35M or 7% of global turnover** for prohibited-practice violations; up to €15M / 3% for high-risk obligation violations.
-- **ERC-8004**: Mainnet live since **29 January 2026**. **45,000+** registered agents as of mid-2026.
+- **ERC-8004**: Mainnet live since **29 January 2026**. **200,000+** registered agents as of mid-2026.
 - **NIST AI RMF 1.0**: Released January 2023. Four functions (GOVERN, MAP, MEASURE, MANAGE). Voluntary in the US but the de facto reference for enterprise procurement.
 - **Manual audit cost**: €25k–€150k. Weeks to months.
 - **AiAuditor cost**: minutes per audit; pricing TBD (free tier + paid private tier likely).
@@ -151,10 +151,15 @@ The end state is *continuous attestation*: every AI agent on the planet carries 
 | **V1 (6 weeks)** | Full pipeline, 20+ clause checkers, dashboard, directory | Pastes URL, runs audit | Packed `AuditScored` event + ERC-8004 `validationResponse` |
 | **V2** | GitHub App + CI/CD hook | Installs app on repo, pushes commits | New attestation per relevant commit; score evolves |
 | **V3** | MCP server | Claude Code / Codex / autonomous agents call us before deploy | Pre-deploy attestation; agents self-audit |
+| **V3.5** | **TEE build attestation** | Builds binary in a TEE (Nitro / TDX / SEV-SNP) | `buildAttestation { commitSha, enclaveMeasurement, binaryHash }` |
 | **V4** | Multi-jurisdiction support | Picks destination markets (EU + US + UK + Japan + Singapore + …) | One audit, per-market scores |
+| **V4.5** | **TEE runtime attestation** | Deploys to a TEE host (Phala / Marlin / Automata) | `runtimeAttestation { binaryHash, runtimeEnclaveMeasurement }` |
 | **V5** | Trust graph | Auditors stake on each other's verdicts; protocol selects best validators | Decentralised audit market with AiAuditor as the founding canonical validator |
+| **V5.5** | **Per-session verification** | Buyer's browser challenges the live enclave before sending a prompt | `sessionProof { sessionId, runtimeAttestation, transcript }` |
 
 End-state pitch: *"Like SSL certificates for AI compliance. Every agent has one. It's free to check. It updates with the code. Buyers worldwide can verify in 30 seconds before they integrate."*
+
+**The provenance pitch (V3.5+):** *"The audit is true. The build matches the audit. The runtime matches the build. The agent you're talking to right now matches the runtime. Every link verifiable on chain."* This is what answers the hardest Western enterprise objection: *"how do I know the deployed system is what was audited?"*
 
 ## Status (for honest communication)
 
@@ -173,10 +178,11 @@ End-state pitch: *"Like SSL certificates for AI compliance. Every agent has one.
 2. **"The FDA stamp for AI — except it takes 60 seconds, not 10 years"** — explainer of the analogy, tied to a live demo.
 3. **"Inside an AI Nutritional Facts label"** — visual breakdown of the panel, what each line means, why it matters.
 4. **"What does the EU AI Act actually want from your code?"** — explainer on the code-checkable subset of Article 12, 14, 15, 50.
-5. **"45,000 AI agents are on chain. How many are compliant?"** — provocative framing piece.
+5. **"200,000 AI agents are on chain. How many are compliant?"** — provocative framing piece.
 6. **"From security audit to regulation audit"** — credit hacker-bob, explain the pattern adaptation.
 7. **"Continuous compliance — every commit, a new attestation"** — the long-term vision: GitHub push → re-audit → updated on-chain score.
 8. **"Why we built this on ERC-8004"** — positioning AiAuditor as the default validator for the 8004 ecosystem.
+9. **"How do you know the deployed AI is the audited AI?"** — TEE-attested build + runtime chain. The provenance angle. Differentiates us from every other audit tool.
 
 ## Logo / brand direction (open)
 
@@ -190,9 +196,11 @@ Visual direction: think *clinical*, *clean*, *verifiable*. Nutritional-facts pan
 
 ## Repo / public links
 
+- Site: **[8RR8.com](https://8RR8.com)**
 - Code (open source): https://github.com/drhus/ai-auditor
-- Site: TBD (target: `aiauditor.app` or `aiauditor.drhus.com`)
 - ERC-8004 reference: https://eips.ethereum.org/EIPS/eip-8004
+- ERC-8004 deployed contracts: https://github.com/erc-8004/erc-8004-contracts
+- 8004 ecosystem explorer: https://8004scan.io (200k+ agents indexed)
 - EU AI Act reference: https://artificialintelligenceact.eu/
 - Hacker-bob (inspiration): https://github.com/vmihalis/hacker-bob
 

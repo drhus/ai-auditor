@@ -1,28 +1,43 @@
 import { isSupportedSlug, type SupportedSlug } from "./chains";
 
 export interface ParsedAgent {
+  kind: "agent";
   chain: SupportedSlug;
   tokenId: bigint;
 }
 
-const SCAN_HOSTS = new Set(["8004scan.io", "www.8004scan.io"]);
+export interface ParsedRepo {
+  kind: "repo";
+  host: "github.com";
+  owner: string;
+  repo: string;
+  ref?: string;
+}
 
-export function parseAgentInput(input: string): ParsedAgent {
+export type ParsedInput = ParsedAgent | ParsedRepo;
+
+const SCAN_HOSTS = new Set(["8004scan.io", "www.8004scan.io"]);
+const GITHUB_HOSTS = new Set(["github.com", "www.github.com"]);
+
+export function parseAgentInput(input: string): ParsedInput {
   const trimmed = input.trim();
 
   if (/^https?:\/\//i.test(trimmed)) {
-    return parseAgentUrl(trimmed);
+    return parseUrl(trimmed);
   }
 
   const compact = parseCompactRef(trimmed);
   if (compact) return compact;
 
+  const shorthand = parseRepoShorthand(trimmed);
+  if (shorthand) return shorthand;
+
   throw new ParseError(
-    "Paste an 8004scan.io URL (e.g. https://8004scan.io/agents/ethereum/9382) or a chain:tokenId reference.",
+    "Paste an 8004scan.io URL, a GitHub repo URL, or a chain:tokenId / owner/repo reference.",
   );
 }
 
-function parseAgentUrl(raw: string): ParsedAgent {
+function parseUrl(raw: string): ParsedInput {
   let url: URL;
   try {
     url = new URL(raw);
@@ -30,17 +45,22 @@ function parseAgentUrl(raw: string): ParsedAgent {
     throw new ParseError("Not a valid URL.");
   }
 
-  if (!SCAN_HOSTS.has(url.hostname)) {
-    throw new ParseError(
-      `Unsupported host "${url.hostname}". V0 supports 8004scan.io URLs.`,
-    );
+  if (SCAN_HOSTS.has(url.hostname)) {
+    return parseScanPath(url);
+  }
+  if (GITHUB_HOSTS.has(url.hostname)) {
+    return parseGithubPath(url);
   }
 
+  throw new ParseError(
+    `Unsupported host "${url.hostname}". Use an 8004scan.io URL or a github.com URL.`,
+  );
+}
+
+function parseScanPath(url: URL): ParsedAgent {
   const segments = url.pathname.split("/").filter(Boolean);
   if (segments.length < 3 || segments[0] !== "agents") {
-    throw new ParseError(
-      "URL should look like /agents/{chain}/{tokenId}.",
-    );
+    throw new ParseError("URL should look like /agents/{chain}/{tokenId}.");
   }
 
   const chainSlug = segments[1].toLowerCase();
@@ -53,16 +73,42 @@ function parseAgentUrl(raw: string): ParsedAgent {
     throw new ParseError(`Token ID "${tokenIdStr}" must be a positive integer.`);
   }
 
-  return { chain: chainSlug, tokenId: BigInt(tokenIdStr) };
+  return { kind: "agent", chain: chainSlug, tokenId: BigInt(tokenIdStr) };
+}
+
+function parseGithubPath(url: URL): ParsedRepo {
+  const segments = url.pathname.split("/").filter(Boolean);
+  if (segments.length < 2) {
+    throw new ParseError("GitHub URL should look like github.com/{owner}/{repo}.");
+  }
+  const owner = segments[0];
+  const repo = segments[1].replace(/\.git$/, "");
+  if (!/^[\w.-]+$/.test(owner) || !/^[\w.-]+$/.test(repo)) {
+    throw new ParseError("Owner / repo names contain unexpected characters.");
+  }
+  // segments[2] is "tree" / "blob" / "commit" / "pull"
+  let ref: string | undefined;
+  if (segments[2] === "tree" || segments[2] === "blob" || segments[2] === "commit") {
+    ref = segments[3];
+  }
+  return { kind: "repo", host: "github.com", owner, repo, ref };
 }
 
 function parseCompactRef(s: string): ParsedAgent | null {
-  // Accepts forms like "ethereum:9382" or "base/1380"
+  // "ethereum:9382" or "base/1380"
   const m = s.match(/^([a-z]+)[:/](\d+)$/i);
   if (!m) return null;
   const chain = m[1].toLowerCase();
   if (!isSupportedSlug(chain)) return null;
-  return { chain, tokenId: BigInt(m[2]) };
+  return { kind: "agent", chain, tokenId: BigInt(m[2]) };
+}
+
+function parseRepoShorthand(s: string): ParsedRepo | null {
+  // "owner/repo" but not "chain/123" (already caught above)
+  const m = s.match(/^([\w.-]+)\/([\w.-]+?)(?:\.git)?$/);
+  if (!m) return null;
+  if (/^\d+$/.test(m[2])) return null; // "ethereum/9382" already handled
+  return { kind: "repo", host: "github.com", owner: m[1], repo: m[2] };
 }
 
 export class ParseError extends Error {

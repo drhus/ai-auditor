@@ -99,7 +99,7 @@ The canonical one. Makes our audit discoverable through standard 8004 queries.
 ValidationRegistry.validationResponse(
     requestHash,                               // matches a validationRequest
     response: 1=pass | 2=partial | 3=fail,
-    responseURI: "https://aiauditor.app/a/{auditId}",
+    responseURI: "https://8RR8.com/a/{auditId}",
     hash: bundleHash,                          // same as AuditScored.bundleHash
     tag: "eu-ai-act@2024-08"                   // primary regulation tag
 );
@@ -115,7 +115,7 @@ For V1 we self-request: same address calls `validationRequest()` first, then `va
 ValidationRegistry.validationRequest(
     validator: auditorAddress,
     agentId,
-    requestURI: "https://aiauditor.app/a/{auditId}/request",
+    requestURI: "https://8RR8.com/a/{auditId}/request",
     hash: bundleHash
 );
 ```
@@ -144,14 +144,39 @@ For an audit to be third-party verifiable:
 
 Anyone can: clone our checker at `checkerVersion`, clone the audited repo at `commitSha`, load `regulationsVersion`, run the pipeline, compute `bundleHash`, compare. Mismatch = we lied or one of the inputs drifted.
 
+## Auto-registration for non-registered repos (re-opened)
+
+V1 now supports **direct GitHub repo input** as well as 8004 agent URLs. To keep every audit anchored in the canonical Validation Registry, we auto-register repos that aren't yet on 8004:
+
+1. User pastes `https://github.com/owner/repo`.
+2. We mint an Identity Registry NFT with `agentURI` pointing to a placeholder registration JSON (hosted by us) containing `{ type, name: owner/repo, services: [{name: "source", endpoint: githubUrl}], status: "audit-claim-pending" }`.
+3. Our custodial wallet owns the NFT until claimed.
+4. We publish `validationRequest` + `validationResponse` against the new agentId.
+5. The real repo owner can later **claim** the agentId via a `setAgentWallet` flow gated on GitHub OAuth proof of repo control (V1.5 — see [Claim flow](#claim-flow-v1-5)).
+
+Sepolia in V0/V1 keeps the squatting risk near-zero (testnet identities have no economic value). Mainnet rollout (V1.5+) ships the claim flow first so non-consensual mainnet registrations never happen without a defined exit.
+
+## Claim flow (V1.5)
+
+When a non-registered repo's real owner finds out we hold their agentId:
+
+1. They authenticate via GitHub OAuth proving control of `owner/repo`.
+2. They connect a wallet on the matching chain.
+3. We sign a `setAgentWallet(agentId, newWallet, deadline, signature)` transfer authorising their wallet.
+4. They submit on-chain; the NFT is now theirs.
+5. They can optionally update `agentURI` to a registration file they control.
+
+All prior audit attestations remain valid — they're tied to `bundleHash`, not to ownership.
+
 ## Custodial wallet — `auditorAddress`
 
 A single hot wallet on Sepolia, holds:
 - Sepolia ETH for gas (faucet-funded).
 - Authorisation to call `AiAuditorV1.publishAudit` (our contract, `onlyAuditor` modifier).
 - Authorisation to call `ValidationRegistry.validationResponse` (we self-elect as validator).
+- Custodial Identity Registry NFTs for auto-registered repos until claimed.
 
-Wallet is a server-side key in `vercel env` (production) / `.env.local` (dev). Rotate on schedule. No NFT custody in V1 (we drop auto-registration), so blast radius is just attesting.
+Wallet is a server-side key in `vercel env` (production) / `.env.local` (dev). Rotate on schedule.
 
 ## Deployment plan
 

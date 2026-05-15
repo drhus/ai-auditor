@@ -24,15 +24,16 @@ inspirations:
 See [vision](./vision.md) for the long-term arc (continuous attestation, GitHub App, MCP, multi-jurisdiction).
 
 > [!summary]
-> - **Stage:** V1 scope locked. V0 build starting today.
-> - **Working name:** AiAuditor (rename TBD)
-> - **Positioning:** *The audit layer for the ERC-8004 ecosystem.*
+> - **Stage:** V1 scope locked. V0 shipped locally; deploy to 8RR8.com next.
+> - **Working name:** AiAuditor · **Domain:** [8RR8.com](https://8RR8.com)
+> - **Positioning:** *The FDA stamp for AI agents — anchored on chain, recognised across markets.*
 > - **Core thesis:** Adapt hacker-bob's multi-stage MCP audit pipeline (RECON → HUNT → VERIFY → GRADE → REPORT) from CVEs to regulatory clauses.
-> - **V1 input:** ERC-8004 agent URL (e.g. `https://8004scan.io/agents/{chain}/{tokenId}`) or any direct ERC-8004 agentId. Non-8004 agents are out of scope for V1.
-> - **V1 chain:** Sepolia only. No IPFS. Compact on-chain payload: one custom `AuditScored` event + one canonical ERC-8004 `validationResponse`.
+> - **V1 input:** Two paths — (a) ERC-8004 agent URL like `https://8004scan.io/agents/{chain}/{tokenId}` for the 200k+ already-registered agents, **or** (b) direct GitHub repo URL for unregistered software. We auto-register unregistered repos on 8004 so every audit lands in the canonical Validation Registry.
+> - **V1 chain:** Sepolia for V0/V1; Base for mainnet rollout.
+> - **V1 anchoring:** One custom `AuditScored` event + one canonical ERC-8004 `validationResponse`. No IPFS in V1 — packed event payload + server-side rich content.
 > - **V1 regulations:** EU AI Act + NIST AI RMF 1.0 (~20 code-checkable clauses to start). ISO/IEC 42001 deferred to V1.5.
-> - **V0 (ships in hours):** landing page + 8004scan URL intake + agent resolution + waitlist. See [v0-mvp-spec](./v0-mvp-spec.md).
-> - **Next:** (1) ship V0 to Vercel, (2) Phase 1+2 of [regulations-matrix](./regulations-matrix.md) decomposition on EU AI Act starter slice, (3) deploy minimal `AiAuditorV1` event contract on Sepolia.
+> - **V0 (today):** landing page + dual intake (8004 URL or GitHub URL) + agent/repo resolution + waitlist. See [v0-mvp-spec](./v0-mvp-spec.md).
+> - **Next:** (1) ship V0 to 8RR8.com via Vercel, (2) Phase 1+2 of [regulations-matrix](./regulations-matrix.md) decomposition on EU AI Act starter slice, (3) deploy minimal `AiAuditorV1` event contract on Sepolia.
 
 ## Key Links
 

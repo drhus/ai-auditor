@@ -35,11 +35,30 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Could not parse input." }, { status: 422 });
   }
 
+  if (parsed.kind === "repo") {
+    return NextResponse.json(
+      {
+        kind: "repo",
+        owner: parsed.owner,
+        repo: parsed.repo,
+        ref: parsed.ref ?? null,
+        repoUrl: `https://github.com/${parsed.owner}/${parsed.repo}`,
+        auditPath: `/r/${parsed.owner}/${parsed.repo}`,
+      },
+      {
+        headers: { "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600" },
+      },
+    );
+  }
+
   try {
     const agent = await resolveAgent(parsed.chain, parsed.tokenId);
-    return NextResponse.json(agent, {
-      headers: { "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600" },
-    });
+    return NextResponse.json(
+      { kind: "agent", auditPath: `/a/${parsed.chain}/${parsed.tokenId}`, ...agent },
+      {
+        headers: { "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600" },
+      },
+    );
   } catch (e) {
     const message = e instanceof Error ? e.message : "Resolution failed.";
     return NextResponse.json(

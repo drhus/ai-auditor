@@ -26,22 +26,21 @@ The EU AI Act becomes fully applicable on **2 August 2026** — high-risk confor
 
 Manual audits cost €25k–€150k and take weeks. Existing tooling covers slices but doesn't read the actual repo.
 
-In parallel: **45k+ AI agents are registered on ERC-8004** as of early 2026. Every one of them needs a verifiable compliance record. There is no standard for that record yet.
+In parallel: **200k+ AI agents are registered on ERC-8004** as of early 2026. Every one of them needs a verifiable compliance record. There is no standard for that record yet.
 
 ## Goal
 
 Ship an **auditing AI agent** positioned as **the audit layer for the ERC-8004 ecosystem**, that:
 
-- Accepts an ERC-8004 agent URL (`https://8004scan.io/agents/{chain}/{tokenId}`) or a raw agentId.
-- Resolves agent metadata + repo URL from the Identity Registry.
+- Accepts an ERC-8004 agent URL (`https://8004scan.io/agents/{chain}/{tokenId}`), a raw agentId, **or a direct GitHub repo URL**.
+- For 8004 inputs: resolves agent metadata + repo URL from the Identity Registry. If no source service is present, prompts for a manual repo URL.
+- For direct repo inputs: auto-registers the agent on ERC-8004 (custodial NFT, claim flow in V1.5) so every audit anchors to a real agentId on chain.
 - Runs a multi-stage pipeline (modelled on [hacker-bob's pipeline](https://github.com/vmihalis/hacker-bob)) targeting regulatory clauses.
-- Posts findings on-chain: one compact `AuditScored` event + one canonical ERC-8004 `validationResponse`.
-- Surfaces the audit on a public directory and a per-audit detail page (nutritional-facts style).
+- Posts findings on-chain: one compact `AuditScored` event + one canonical ERC-8004 `validationResponse` — for *every* audit, registered or not.
+- Surfaces the audit on a public directory and a per-audit detail page (nutritional-facts style) on [8RR8.com](https://8RR8.com).
 
 ## Non-goals (V1)
 
-- Auditing agents not registered on ERC-8004 (deferred to V1.5).
-- Auto-registration of agents we audit (deferred — claim mechanism complexity).
 - IPFS / Arweave / off-chain decentralised storage (deferred to mainnet).
 - EAS attestations (deferred — see [onchain-anchoring § future-mainnet-and-non-8004-path](./onchain-anchoring.md#future-mainnet-and-non-8004-path)).
 - Mainnet deployment (V1 is Sepolia-only).
@@ -61,7 +60,8 @@ See full spec: [v0-mvp-spec](./v0-mvp-spec.md).
 ## Scope — V1 (next 4–6 weeks)
 
 **Input gate:**
-- Only ERC-8004-registered agents are auditable. Non-registered URLs surface a "Register first" CTA.
+- ERC-8004-registered agents → resolved via Identity Registry; if no source service present, prompt for manual repo URL.
+- Direct GitHub repo URLs → auto-registered on ERC-8004 via our custodial wallet, then audited. Claim mechanism deferred to V1.5.
 
 **Pipeline:** See [pipeline-design](./pipeline-design.md). Locked at:
 ```
@@ -139,4 +139,4 @@ The end-state is **continuous attestation**: every commit triggers a new audit, 
 - **Compliance reviewer** to sanity-check the atomic clause decomposition before V1 ships.
 - **24h grace window** UX detail: do we hide the score from the user during grace, or show it as "publishing in 22h"?
 - **Sepolia ERC-8004 deployment addresses** for Identity + Validation Registry — to confirm before contract calls.
-- **Domain** for V0 deploy: `aiauditor.drhus.com`? `aiauditor.app`? `aiauditor.eu`? (rests with marketing/team).
+- **Domain:** [8RR8.com](https://8RR8.com) confirmed.

@@ -81,11 +81,52 @@ Landing page + ERC-8004 agent intake + repo resolution + waitlist. Proves the UR
 - A trust graph emerges: validators stake reputation on each other's accuracy; the protocol surfaces the most-trusted validators.
 - AiAuditor's moat is being the reference implementation, the most widely cited validator, and the operator of the highest-quality regulation packs.
 
+## Parallel axis — verifiable provenance (TEE)
+
+The roadmap above grows the *audit*. This axis grows the *guarantee* — proving that the agent you're talking to is the same code we audited.
+
+The bare audit answers "did the code at commit X comply?". On its own it leaves three gaps:
+
+1. **Build gap.** Did the binary deployed actually come from commit X, or from a quietly-modified branch?
+2. **Runtime gap.** Is the binary the user is talking to *right now* the binary that was built from commit X, or has it been swapped?
+3. **Host gap.** Does the operator have backdoors that let them mutate the agent's behaviour outside the audited code path?
+
+TEE-based attestations close all three:
+
+| Stage | TEE adds | Attestation content | Verifier |
+| ----- | -------- | ------------------- | -------- |
+| Build (V3.5) | Reproducible build inside a TEE (e.g. AWS Nitro Enclave, Intel TDX, AMD SEV-SNP) | `{ commitSha, builderEnclaveMeasurement, binaryHash }` | Anyone — re-builds in same enclave, expects same hash |
+| Deploy (V4.5) | TEE-hosted runtime (Phala, Marlin, Automata, Flashbots TEE) | `{ binaryHash, runtimeEnclaveMeasurement, signedAttestation }` | Anyone — challenges the running enclave, gets a signed attestation |
+| Live verify (V5.5) | Per-session attestation challenge | `{ sessionId, runtimeAttestation, transcript }` | The user, in-browser, before sending a sensitive prompt |
+
+Each stage emits its own on-chain artefact, chained to the prior:
+
+```
+auditAttestation (V1)
+   ↓ buildHash
+buildAttestation (V3.5) — proves binary came from audited commit
+   ↓ runtimeMeasurement
+runtimeAttestation (V4.5) — proves running enclave is the attested binary
+   ↓ sessionId
+sessionProof (V5.5) — proves THIS request was served by THAT enclave
+```
+
+End-to-end pitch: *"The audit is true. The build matches the audit. The runtime matches the build. The agent you're talking to right now matches the runtime. Every link verifiable on chain, in 30 seconds."*
+
+This is what separates "we believe the agent is compliant" from "we can mathematically prove the agent you're using is compliant." It's also the answer to the hardest objection from Western enterprise buyers: *"how do I know the deployed system is what was audited?"*
+
+Tech foundation already exists — we're integrating, not inventing:
+- **Reproducible builds in TEEs**: Stagex, Nix in enclaves, Flashbots `tdx-build`.
+- **TEE attestation services**: AWS Nitro, Azure Confidential VMs, Intel TDX, AMD SEV-SNP, Phala, Marlin.
+- **On-chain attestation registries**: Automata's attestation contracts, Phala's on-chain attestation, EAS with TEE-typed schemas.
+
+V3.5 ships build-only attestation for the simplest case (a Dockerised agent, single binary, reproducible build). V4.5 extends to runtime. V5.5 ships in-browser per-session verification — the user clicks "verify this conversation", their browser challenges the enclave, the agent replies with a signed attestation, the browser cross-references against on-chain audit + build chain.
+
 ## Why now
 
 **The deadline.** The EU AI Act becomes fully applicable on **2 August 2026**. Penalties reach **€35M or 7% of global turnover**. The entire global AI-agent industry is racing toward this date with no off-the-shelf way to prove compliance.
 
-**The ecosystem.** ERC-8004 went live on Ethereum mainnet on 29 January 2026. **45,000+ AI agents** are already registered, with thousands more arriving weekly. The standard for AI agent identity on chain has emerged — and it's natively designed for third-party validation.
+**The ecosystem.** ERC-8004 went live on Ethereum mainnet on 29 January 2026. **200,000+ AI agents** are already registered, with thousands more arriving weekly. The standard for AI agent identity on chain has emerged — and it's natively designed for third-party validation.
 
 **The buyers.** Western enterprises are starting to require compliance trails before procuring AI from any vendor — let alone from foreign vendors. The procurement gap is now a market-access barrier, and it's only widening.
 

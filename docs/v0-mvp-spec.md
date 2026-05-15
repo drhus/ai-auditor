@@ -95,7 +95,7 @@ ai-auditor/
 
 **Mid-page:**
 - The nutritional-facts visual (static SVG / styled component) — shows what an audit produces.
-- "Why now" — EU AI Act enforcement on 2 Aug 2026, 45k+ 8004 agents already registered.
+- "Why now" — EU AI Act enforcement on 2 Aug 2026, 200k+ 8004 agents already registered.
 - 3-step "How it works" — Connect → Audit → Verify on chain.
 
 **Footer:**
@@ -208,7 +208,7 @@ WAITLIST_STORAGE=vercel-kv | flatfile
 
 ## Open
 
-- Domain choice: `aiauditor.app` / `aiauditor.eu` / `aiauditor.drhus.com`. Decide before launch.
+- Domain choice: `8RR8.com` / `8RR8.com` / `8RR8.com`. Decide before launch.
 - Email storage: Vercel KV vs flat file vs Plunk/Resend forward. Vercel KV is fastest path.
 - Should `/api/resolve` cache responses? Yes, 5 min TTL — many users will paste the same URL.
 - What error states need their own UI page (404 agent, malformed URL, RPC down)? V0 = inline error banners only.

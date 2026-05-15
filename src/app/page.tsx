@@ -35,14 +35,17 @@ export default function Home() {
             for AI agents.
           </h1>
           <p className="mb-10 max-w-xl text-lg text-ink-600">
-            Paste your ERC-8004 agent or GitHub repo. Get a verifiable EU AI
-            Act score in minutes — anchored on chain, recognisable across
-            markets, every finding cited file-and-line in your code.
+            Paste your ERC-8004 agent — or a plain GitHub repo. Get a
+            verifiable EU AI Act score in minutes, anchored on chain in the
+            canonical ERC-8004 Validation Registry, recognisable across
+            markets. Every finding cited file-and-line in your code.
           </p>
           <IntakeForm />
           <p className="mt-6 max-w-xl font-mono text-xs text-ink-400">
-            Example: <code>https://8004scan.io/agents/ethereum/9382</code> · or
-            paste a chain:tokenId reference like <code>base:1380</code>.
+            Examples:{" "}
+            <code>https://8004scan.io/agents/ethereum/9382</code>,{" "}
+            <code>github.com/owner/repo</code>, or shorthand{" "}
+            <code>base:1380</code> / <code>owner/repo</code>.
           </p>
         </div>
 
@@ -91,7 +94,7 @@ export default function Home() {
           </p>
           <p>
             ERC-8004 went live on Ethereum mainnet on 29 January 2026.{" "}
-            <strong className="text-ink-900">45,000+ AI agents</strong> are
+            <strong className="text-ink-900">200,000+ AI agents</strong> are
             registered. None of them yet have a standard verifiable record of
             compliance. AiAuditor is that record.
           </p>
