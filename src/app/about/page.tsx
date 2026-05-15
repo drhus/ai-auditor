@@ -1,12 +1,11 @@
 import Link from "next/link";
+import { BrandMark } from "../_components/brand-mark";
 
 export default function About() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
       <header className="mb-12 flex items-center justify-between">
-        <Link href="/" className="font-serif text-xl font-bold text-ink-900 no-underline">
-          AiAuditor
-        </Link>
+        <BrandMark />
         <Link href="/" className="text-sm text-ink-600 no-underline hover:text-ink-900">
           ← Audit an agent
         </Link>
@@ -44,10 +43,11 @@ export default function About() {
           yet have a standard verifiable record of compliance.
         </p>
         <p>
-          AiAuditor is that record. Paste an ERC-8004 agent URL, we resolve the
-          registered repository, run a multi-stage audit pipeline against the
-          EU AI Act and NIST AI RMF, and publish a per-clause score on chain.
-          Every finding cites a file and line in the audited code.
+          <strong className="text-ink-900">8RR8</strong> is that record. Paste an
+          ERC-8004 agent URL, we resolve the registered repository, run a
+          multi-stage audit pipeline against the EU AI Act and NIST AI RMF, and
+          publish a per-clause score on chain. Every finding cites a file and
+          line in the audited code.
         </p>
         <p>
           The audit pipeline is multi-stage. RECON discovers your agent&rsquo;s

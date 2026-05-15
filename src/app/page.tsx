@@ -1,14 +1,13 @@
 import Link from "next/link";
 import { IntakeForm } from "./_components/intake-form";
 import { NutritionalFactsPanel } from "./_components/nutritional-facts";
+import { BrandMark } from "./_components/brand-mark";
 
 export default function Home() {
   return (
     <main className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
       <header className="mb-12 flex items-center justify-between">
-        <Link href="/" className="font-serif text-xl font-bold text-ink-900 no-underline">
-          AiAuditor
-        </Link>
+        <BrandMark />
         <nav className="flex items-center gap-6 text-sm text-ink-600">
           <Link href="/about" className="no-underline hover:text-ink-900">
             About
@@ -105,7 +104,7 @@ export default function Home() {
       </section>
 
       <footer className="mt-24 flex flex-col gap-4 border-t border-ink-200 pt-8 text-sm text-ink-400 sm:flex-row sm:items-center sm:justify-between">
-        <p>© AiAuditor · open source on GitHub</p>
+        <p>© 8RR8 · open source on GitHub</p>
         <p className="font-mono text-xs">v0.0.1 · Sepolia testnet</p>
       </footer>
     </main>

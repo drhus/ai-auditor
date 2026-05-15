@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { isSupportedSlug } from "@/lib/chains";
 import { resolveAgent, type AgentRegistration } from "@/lib/erc8004";
 import { WaitlistForm } from "./_waitlist-form";
+import { BrandMark } from "@/app/_components/brand-mark";
 
 interface PageProps {
   params: Promise<{ chain: string; id: string }>;
@@ -27,9 +28,7 @@ export default async function AgentPage({ params }: PageProps) {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
       <header className="mb-10 flex items-center justify-between">
-        <Link href="/" className="font-serif text-xl font-bold text-ink-900 no-underline">
-          AiAuditor
-        </Link>
+        <BrandMark />
         <Link href="/" className="text-sm text-ink-600 no-underline hover:text-ink-900">
           ← New audit
         </Link>

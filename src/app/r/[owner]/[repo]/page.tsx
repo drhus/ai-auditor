@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AuditPanel } from "@/app/_components/audit-panel";
+import { BrandMark } from "@/app/_components/brand-mark";
 
 interface PageProps {
   params: Promise<{ owner: string; repo: string }>;
@@ -37,9 +38,7 @@ export default async function RepoPage({ params }: PageProps) {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
       <header className="mb-10 flex items-center justify-between">
-        <Link href="/" className="font-serif text-xl font-bold text-ink-900 no-underline">
-          AiAuditor
-        </Link>
+        <BrandMark />
         <Link href="/" className="text-sm text-ink-600 no-underline hover:text-ink-900">
           ← New audit
         </Link>
