@@ -29,11 +29,14 @@ export default function Home() {
           <p className="mb-4 font-mono text-xs uppercase tracking-widest text-ink-400">
             For ERC-8004 registered agents · Sepolia testnet · V0
           </p>
-          <h1 className="mb-6 font-serif text-5xl font-bold leading-[1.05] text-ink-900 sm:text-6xl">
-            The FDA stamp
+          <h1 className="mb-4 font-serif text-5xl font-bold leading-[1.05] text-ink-900 sm:text-6xl">
+            The Verified Fact Stamp
             <br />
-            for AI agents.
+            about your agent.
           </h1>
+          <p className="mb-6 max-w-xl text-base font-medium text-ink-900">
+            Compliance and regulation conformity — anchored on chain.
+          </p>
           <p className="mb-10 max-w-xl text-lg text-ink-600">
             Paste your ERC-8004 agent — or a plain GitHub repo. Get a
             verifiable EU AI Act score in minutes, anchored on chain in the

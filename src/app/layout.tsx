@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AiAuditor — The audit layer for AI agents",
+  title: "AiAuditor — The Verified Fact Stamp about your agent",
   description:
-    "Audit ERC-8004 AI agents against the EU AI Act and NIST AI RMF. On-chain, in minutes.",
+    "Compliance and regulation conformity for AI agents — anchored on chain. EU AI Act, NIST AI RMF, in minutes.",
   openGraph: {
-    title: "AiAuditor",
+    title: "AiAuditor — The Verified Fact Stamp about your agent",
     description:
-      "Audit ERC-8004 AI agents against the EU AI Act. On-chain, in minutes.",
+      "Compliance and regulation conformity for AI agents — anchored on chain.",
     type: "website",
   },
 };

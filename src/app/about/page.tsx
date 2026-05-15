@@ -12,9 +12,12 @@ export default function About() {
         </Link>
       </header>
 
-      <h1 className="mb-6 font-serif text-5xl font-bold leading-[1.05] text-ink-900">
-        The FDA stamp for AI agents.
+      <h1 className="mb-4 font-serif text-5xl font-bold leading-[1.05] text-ink-900">
+        The Verified Fact Stamp about your agent.
       </h1>
+      <p className="mb-6 max-w-2xl text-lg font-medium text-ink-900">
+        Compliance and regulation conformity — anchored on chain.
+      </p>
 
       <div className="prose-paragraphs space-y-6 text-lg text-ink-600">
         <p>

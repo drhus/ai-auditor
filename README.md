@@ -1,8 +1,8 @@
 # AiAuditor
 
-**The FDA stamp for AI agents — earned in minutes, anchored on chain, recognised across markets.**
+**The Verified Fact Stamp about your agent — compliance and regulation conformity, anchored on chain.**
 
-Paste an ERC-8004 agent URL or a GitHub repo. We resolve the source code, audit it against the EU AI Act and NIST AI RMF, and publish a verifiable score on chain. AI is global; regulation is local; AiAuditor makes compliance *portable*.
+Paste an ERC-8004 agent URL or a GitHub repo. We resolve the source code, audit it against the EU AI Act and NIST AI RMF, and publish a verifiable score on chain. AI is global; regulation is local; AiAuditor makes compliance *portable* and the audit trail *verifiable*.
 
 ```
 https://8004scan.io/agents/ethereum/9382  →  per-clause audit  →  on-chain attestation
