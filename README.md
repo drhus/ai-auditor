@@ -59,7 +59,11 @@ vercel --prod
 
 ## Docs
 
-The product docs live alongside the code in the [project vault](https://github.com/drhus/second-brain) under `10-projects/ai-auditor/` — PRD, pipeline design, regulations matrix, on-chain anchoring spec, team brief.
+Full project documentation lives in [`docs/`](./docs):
+
+- [Overview](./docs/overview.md) · [PRD](./docs/prd.md) · [Team brief](./docs/team-brief.md)
+- [Pipeline design](./docs/pipeline-design.md) · [On-chain anchoring](./docs/onchain-anchoring.md) · [User journey](./docs/user-journey.md)
+- [Regulations matrix](./docs/regulations-matrix.md) · [V0 MVP spec](./docs/v0-mvp-spec.md)
 
 ## License
 

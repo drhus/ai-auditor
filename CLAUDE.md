@@ -2,16 +2,23 @@
 
 ## Project Context
 
-All specs, PRD, progress, and decisions live in the Obsidian vault.
+All specs, PRD, progress, and decisions live in two places:
+
+1. **In this repo**, under `docs/` — public, GitHub-rendered, the version anyone can read.
+2. **Canonical source**: the project vault at `/home/agent/Documents/Second-Brain/10-projects/ai-auditor/`. When the two diverge, the vault wins.
+
 Read these files before starting any major feature work:
 
-- Overview: /home/agent/Documents/Second-Brain/10-projects/ai-auditor/overview.md
-- PRD: /home/agent/Documents/Second-Brain/10-projects/ai-auditor/prd.md
-- Pipeline design: /home/agent/Documents/Second-Brain/10-projects/ai-auditor/pipeline-design.md
-- Regulations matrix: /home/agent/Documents/Second-Brain/10-projects/ai-auditor/regulations-matrix.md
-- User journey: /home/agent/Documents/Second-Brain/10-projects/ai-auditor/user-journey.md
-- Progress: /home/agent/Documents/Second-Brain/10-projects/ai-auditor/progress.md
-- Conversation log: /home/agent/Documents/Second-Brain/10-projects/ai-auditor/conversation-log.md
+- Overview: `docs/overview.md`
+- PRD: `docs/prd.md`
+- Pipeline design: `docs/pipeline-design.md`
+- Regulations matrix: `docs/regulations-matrix.md`
+- User journey: `docs/user-journey.md`
+- On-chain anchoring: `docs/onchain-anchoring.md`
+- V0 MVP spec: `docs/v0-mvp-spec.md`
+- Team brief: `docs/team-brief.md`
+- Progress: `docs/progress.md`
+- Conversation log: `docs/conversation-log.md`
 
 ## What this is
 
