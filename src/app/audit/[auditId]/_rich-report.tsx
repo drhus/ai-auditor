@@ -58,6 +58,8 @@ function Headline({
 }) {
   const risk = report.map.classification;
   const riskBadge = RISK_COLOUR[risk] ?? RISK_COLOUR.unknown;
+  const outOfScope = risk === "unknown";
+
   return (
     <header className="rounded-lg border border-ink-200 bg-white p-6">
       <p className="mb-1 font-mono text-xs uppercase tracking-widest text-ink-400">
@@ -78,51 +80,74 @@ function Headline({
         scanned · {(report.fetch.totalBytes / 1024).toFixed(0)} KB
       </p>
 
-      <div className="grid gap-4 sm:grid-cols-3">
-        <div>
-          <p className="font-mono text-[10px] uppercase tracking-widest text-ink-400">
-            Risk classification
+      {outOfScope ? (
+        <div className="rounded-md border-2 border-ink-900 bg-ink-50 p-5">
+          <p className="mb-1 font-mono text-[10px] uppercase tracking-widest text-ink-400">
+            Out of scope
           </p>
-          <p className="mt-1">
-            <span className={`rounded px-2 py-0.5 font-mono text-xs uppercase text-ink-50 ${riskBadge}`}>
-              {risk}
-            </span>
+          <p className="font-serif text-2xl font-bold text-ink-900">
+            Not an AI system
           </p>
-          {report.map.annexIiiCategories.length > 0 && (
-            <p className="mt-1 text-xs text-ink-600">
-              Annex III §{report.map.annexIiiCategories.join(", §")}
+          <p className="mt-2 text-sm text-ink-600">
+            No agent framework or LLM call sites were detected in this
+            repository. The EU AI Act and NIST AI RMF target AI systems —
+            with no AI system present, the substantive clauses ({verdicts.na}{" "}
+            marked n/a) don&rsquo;t apply. Article 5 prohibitions still pass
+            trivially: no prohibited practices were detected because nothing
+            could practise them.
+          </p>
+          <p className="mt-3 font-mono text-[11px] text-ink-600">
+            If this repo is part of an AI system, point us at the repo
+            containing the agent code instead.
+          </p>
+        </div>
+      ) : (
+        <div className="grid gap-4 sm:grid-cols-3">
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-ink-400">
+              Risk classification
             </p>
-          )}
+            <p className="mt-1">
+              <span className={`rounded px-2 py-0.5 font-mono text-xs uppercase text-ink-50 ${riskBadge}`}>
+                {risk}
+              </span>
+            </p>
+            {report.map.annexIiiCategories.length > 0 && (
+              <p className="mt-1 text-xs text-ink-600">
+                Annex III §{report.map.annexIiiCategories.join(", §")}
+              </p>
+            )}
+          </div>
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-ink-400">
+              Overall score
+            </p>
+            <p className="mt-1 font-serif text-3xl font-bold text-ink-900">
+              {report.grade.overallScore.toFixed(2)}
+              <span className="text-base font-normal text-ink-400"> / 4.0</span>
+            </p>
+          </div>
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-ink-400">
+              Verdicts
+            </p>
+            <p className="mt-1 flex gap-2 text-xs">
+              <span className="rounded bg-[var(--color-pass)] px-1.5 py-0.5 text-ink-50">
+                {verdicts.pass} pass
+              </span>
+              <span className="rounded bg-[var(--color-partial)] px-1.5 py-0.5 text-ink-50">
+                {verdicts.partial} partial
+              </span>
+              <span className="rounded bg-[var(--color-fail)] px-1.5 py-0.5 text-ink-50">
+                {verdicts.fail} fail
+              </span>
+            </p>
+            <p className="mt-1 text-xs text-ink-600">
+              +{verdicts.external} external · {verdicts.na} n/a
+            </p>
+          </div>
         </div>
-        <div>
-          <p className="font-mono text-[10px] uppercase tracking-widest text-ink-400">
-            Overall score
-          </p>
-          <p className="mt-1 font-serif text-3xl font-bold text-ink-900">
-            {report.grade.overallScore.toFixed(2)}
-            <span className="text-base font-normal text-ink-400"> / 4.0</span>
-          </p>
-        </div>
-        <div>
-          <p className="font-mono text-[10px] uppercase tracking-widest text-ink-400">
-            Verdicts
-          </p>
-          <p className="mt-1 flex gap-2 text-xs">
-            <span className="rounded bg-[var(--color-pass)] px-1.5 py-0.5 text-ink-50">
-              {verdicts.pass} pass
-            </span>
-            <span className="rounded bg-[var(--color-partial)] px-1.5 py-0.5 text-ink-50">
-              {verdicts.partial} partial
-            </span>
-            <span className="rounded bg-[var(--color-fail)] px-1.5 py-0.5 text-ink-50">
-              {verdicts.fail} fail
-            </span>
-          </p>
-          <p className="mt-1 text-xs text-ink-600">
-            +{verdicts.external} external · {verdicts.na} n/a
-          </p>
-        </div>
-      </div>
+      )}
 
       {report.map.rationale.length > 0 && (
         <details className="mt-4">

@@ -1,12 +1,12 @@
 {
-  "auditId": "aud_01KRQD9SJCVFBMS57S3F2G",
+  "auditId": "aud_01KRQE8M7ZDZ6TDM5MTGT9",
   "source": {
     "kind": "repo",
     "owner": "vmihalis",
     "repo": "hacker-bob"
   },
   "input": {
-    "auditId": "aud_01KRQD9SJCVFBMS57S3F2G",
+    "auditId": "aud_01KRQE8M7ZDZ6TDM5MTGT9",
     "source": {
       "kind": "repo",
       "owner": "vmihalis",
@@ -24,7 +24,7 @@
     "repo": "hacker-bob",
     "ref": "945d55ae0a060e205b38044487c300af55a08702",
     "commitSha": "945d55ae0a060e205b38044487c300af55a08702",
-    "worktreeDir": "/tmp/ai-auditor/aud_01KRQD9SJCVFBMS57S3F2G",
+    "worktreeDir": "/tmp/ai-auditor/aud_01KRQE8M7ZDZ6TDM5MTGT9",
     "fileCount": 437,
     "totalBytes": 7103712,
     "languages": {
@@ -68,7 +68,7 @@
         "package.json"
       ]
     },
-    "fetchedAt": "2026-05-16T03:29:28.441Z"
+    "fetchedAt": "2026-05-16T03:46:18.847Z"
   },
   "recon": {
     "signals": {
@@ -137,69 +137,6 @@
             "rule": "log_at_tool_boundary"
           },
           {
-            "file": ".claude/skills/bob-hunt/SKILL.md",
-            "lines": [
-              171,
-              171
-            ],
-            "snippet": "ify(d, null, 2)); console.log(\"Copied! Paste in Claude Code.\"); })(); ``` After any successful signup, poll email up to 12 times, extract",
-            "rule": "log_at_tool_boundary"
-          },
-          {
-            "file": "README.md",
-            "lines": [
-              29,
-              29
-            ],
-            "snippet": "'./mcp/server.js'); console.log('MCP ok')\" ``` Restart your host CLI from the same project directory, then run the matching command: | Hos",
-            "rule": "log_at_tool_boundary"
-          },
-          {
-            "file": "README.md",
-            "lines": [
-              230,
-              230
-            ],
-            "snippet": "'./mcp/server.js'); console.log('MCP ok')\"` should pass from the installed project. - Claude Code must be restarted after install or update",
-            "rule": "log_at_tool_boundary"
-          },
-          {
-            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
-            "lines": [
-              112,
-              112
-            ],
-            "snippet": "ify(d, null, 2)); console.log(\"Copied! Paste in the current Codex session.\"); })(); ``` After any successful signup, poll email up to 12",
-            "rule": "log_at_tool_boundary"
-          },
-          {
-            "file": "adapters/codex/skills/bob-status/SKILL.md",
-            "lines": [
-              26,
-              26
-            ],
-            "snippet": "/update-check.js'); console.log(JSON.stringify(update.readUpdateCache(process.cwd()) || null, null, 2));\" ``` This command must only read th",
-            "rule": "log_at_tool_boundary"
-          },
-          {
-            "file": "adapters/codex/skills/bob-update/SKILL.md",
-            "lines": [
-              13,
-              13
-            ],
-            "snippet": "/update-check.js'); console.log(JSON.stringify(update.readUpdateCache(process.cwd()) || null, null, 2));\" ``` ## Check Latest Run this only",
-            "rule": "log_at_tool_boundary"
-          },
-          {
-            "file": "adapters/codex/skills/bob-update/SKILL.md",
-            "lines": [
-              19,
-              19
-            ],
-            "snippet": "}).then((result) => console.log(update.renderUpdatePlan(result))).catch((error) => { console.error(error.message || String(error)); process.",
-            "rule": "log_at_tool_boundary"
-          },
-          {
             "file": "bin/hacker-bob.js",
             "lines": [
               87,
@@ -224,42 +161,6 @@
               91
             ],
             "snippet": "} else { console.log(\"Update complete. Restart the selected host adapter before continuing.\"); } } return; } i",
-            "rule": "log_at_tool_boundary"
-          },
-          {
-            "file": "docs/hacker-bob-offline-guide.md",
-            "lines": [
-              2259,
-              2259
-            ],
-            "snippet": "TOOL_REGISTRY) { console.log(`${t.name} roles=${t.role_bundles.join(',')} writes=${t.session_artifacts_written.join(',') || '-'}`); } NOD",
-            "rule": "log_at_tool_boundary"
-          },
-          {
-            "file": "docs/hacker-bob-offline-guide.md",
-            "lines": [
-              2290,
-              2290
-            ],
-            "snippet": "'./mcp/server.js'); console.log(s.TOOLS.length)\" ``` ## Search For Artifact Ownership Rules ```bash rg \"MCP-owned|handoff|evidence-packs|p",
-            "rule": "log_at_tool_boundary"
-          },
-          {
-            "file": "docs/releases/v1.1.8.md",
-            "lines": [
-              13,
-              13
-            ],
-            "snippet": "'./mcp/server.js'); console.log('MCP ok')\"` to the repo-link install flow. - Documented the stale-runtime failure mode where `mcp/lib/tool-r",
-            "rule": "log_at_tool_boundary"
-          },
-          {
-            "file": "prompts/roles/orchestrator.md",
-            "lines": [
-              87,
-              87
-            ],
-            "snippet": "ify(d, null, 2)); console.log(\"Copied! Paste in the current agent session.\"); })(); ``` After any successful signup, poll email up to 12",
             "rule": "log_at_tool_boundary"
           },
           {
@@ -332,6 +233,105 @@
               433
             ],
             "snippet": "sults.claude) { console.log(` ${summary.agents} Claude agent definitions`); console.log(\" Claude command shims (/bob-update, /bob-",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/install.js",
+            "lines": [
+              434,
+              434
+            ],
+            "snippet": "definitions`); console.log(\" Claude command shims (/bob-update, /bob-egress, /bob-export)\"); console.log(\" Claude bob-hunt + bob-",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/lib/codex-role-renderer.js",
+            "lines": [
+              209,
+              209
+            ],
+            "snippet": "/update-check.js'); console.log(JSON.stringify(update.readUpdateCache(process.cwd()) || null, null, 2));\\\"\", ) .replace(/Use host-no",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/lib/codex-role-renderer.js",
+            "lines": [
+              322,
+              322
+            ],
+            "snippet": "/update-check.js'); console.log(JSON.stringify(update.readUpdateCache(process.cwd()) || null, null, 2));\\\"\", \"```\", \"\", \"## Chec",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/lib/codex-role-renderer.js",
+            "lines": [
+              328,
+              328
+            ],
+            "snippet": "}).then((result) => console.log(update.renderUpdatePlan(result))).catch((error) => { console.error(error.message || String(error)); process.",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/merge-claude-config.js",
+            "lines": [
+              146,
+              146
+            ],
+            "snippet": ", bobSettings)); console.log(`merged ${mcpPath}`); console.log(`merged ${settingsPath}`); } if (require.main === module) { main(); }",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/merge-claude-config.js",
+            "lines": [
+              147,
+              147
+            ],
+            "snippet": "ged ${mcpPath}`); console.log(`merged ${settingsPath}`); } if (require.main === module) { main(); } module.exports = { BRUTALIST_MCP",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/release-check.js",
+            "lines": [
+              46,
+              46
+            ],
+            "snippet": "tatus, message) { console.log(`${status} ${message}`); } function pass(message) { log(\"OK\", message); } function info(message) { log",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/release-check.js",
+            "lines": [
+              414,
+              414
+            ],
+            "snippet": "function main() { console.log(\"Hacker Bob release check\"); if (registryMode) info(\"registry checks enabled\"); const { rootPackage, wr",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/release-check.js",
+            "lines": [
+              429,
+              429
+            ],
+            "snippet": "cess.exit(1); } console.log(`Release check passed with ${warnings} warning(s).`); } main();",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/replay-refusal.js",
+            "lines": [
+              209,
+              209
+            ],
+            "snippet": "lp || args.h) { console.log(fs.readFileSync(__filename, \"utf8\").slice(0, 1300)); process.exit(0); } const transcriptPath = expan",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/replay-refusal.js",
+            "lines": [
+              292,
+              292
+            ],
+            "snippet": "})), })); console.log(JSON.stringify({ dry_run: true, shape }, null, 2)); return; } for (let i = 1; i <= n; i++) { co",
             "rule": "log_at_tool_boundary"
           }
         ]
@@ -480,17 +480,8 @@
       "cybersec_hooks": {
         "signal": "cybersec_hooks",
         "fired": true,
-        "strength": 0.8704365036222725,
+        "strength": 0.83167249841905,
         "evidence": [
-          {
-            "file": ".claude/agents/hunter-evm-agent.md",
-            "lines": [
-              53,
-              53
-            ],
-            "snippet": "bridge_invariant`, `rate_limit_normalization`, `stale_module_allowlist`, `delegatecall`, `arbitrary_external_call`, `selector_collision`, `r",
-            "rule": "rate_limit_usage"
-          },
           {
             "file": ".claude/hooks/bounty-statusline.js",
             "lines": [
@@ -507,15 +498,6 @@
               64
             ],
             "snippet": "nst sevenDay = data.rate_limits?.seven_day?.used_percentage; const worst = Math.max(fiveHr || 0, sevenDay || 0); if (worst >= 80) ra",
-            "rule": "rate_limit_usage"
-          },
-          {
-            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
-            "lines": [
-              1069,
-              1069
-            ],
-            "snippet": "bridge_invariant`, `rate_limit_normalization`, `stale_module_allowlist`, `delegatecall`, `arbitrary_external_call`, `selector_collision`, `r",
             "rule": "rate_limit_usage"
           },
           {
@@ -579,15 +561,6 @@
               699
             ],
             "snippet": "github.com/sponsors/express-rate-limit\" }, \"peerDependencies\": { \"express\": \">= 4.11\" } }, \"node_modules/f",
-            "rule": "rate_limit_usage"
-          },
-          {
-            "file": "prompts/roles/hunter-evm.md",
-            "lines": [
-              39,
-              39
-            ],
-            "snippet": "bridge_invariant`, `rate_limit_normalization`, `stale_module_allowlist`, `delegatecall`, `arbitrary_external_call`, `selector_collision`, `r",
             "rule": "rate_limit_usage"
           },
           {
@@ -782,132 +755,6 @@
         "strength": 1,
         "evidence": [
           {
-            "file": ".claude/agents/brutalist-verifier.md",
-            "lines": [
-              26,
-              26
-            ],
-            "snippet": "im, severity, and a redacted PoC excerpt into `mcp__brutalist__roast`. 2. Fold the roast verdict into your `reasoning` for that finding's `b",
-            "rule": "pii_redaction_present"
-          },
-          {
-            "file": ".claude/agents/evidence-agent.md",
-            "lines": [
-              67,
-              67
-            ],
-            "snippet": "ds: [\"account_id\", \"email\", \"invoice_total\"], redacted_object_id: \"acct_...789\" } ], sensitive_clusters: [\"bil",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": ".claude/agents/evidence-agent.md",
-            "lines": [
-              29,
-              29
-            ],
-            "snippet": "`observed_fields`, `redacted_object_id`. No raw bodies, no auth headers, no cookies. 4. **Smart-contract (`runner: \"bounty_<chain>_run\"`)**:",
-            "rule": "pii_redaction_present"
-          },
-          {
-            "file": ".claude/agents/evidence-agent.md",
-            "lines": [
-              45,
-              45
-            ],
-            "snippet": "chain state slot. - Redact or omit secrets, auth headers, cookies, tokens, passwords, API keys, full PII values, raw large response bodies,",
-            "rule": "pii_redaction_present"
-          },
-          {
-            "file": ".claude/agents/evidence-agent.md",
-            "lines": [
-              46,
-              46
-            ],
-            "snippet": "object type labels, redacted IDs, field names, short excerpts, count summaries, function signatures, role/owner addresses. - `sensitive_clus",
-            "rule": "pii_redaction_present"
-          },
-          {
-            "file": ".claude/agents/evidence-agent.md",
-            "lines": [
-              47,
-              47
-            ],
-            "snippet": "ame data classes or redacted clusters, not raw sensitive values. - `report_snippet` should be prose the report writer can reuse as proof/imp",
-            "rule": "pii_redaction_present"
-          },
-          {
-            "file": ".claude/agents/evidence-agent.md",
-            "lines": [
-              68,
-              68
-            ],
-            "snippet": "_total\"], redacted_object_id: \"acct_...789\" } ], sensitive_clusters: [\"billing profile fields\", \"invoice metad",
-            "rule": "pii_redaction_present"
-          },
-          {
-            "file": ".claude/agents/hunter-agent.md",
-            "lines": [
-              36,
-              36
-            ],
-            "snippet": "_hints` as bounded, redacted static-analysis leads only. If you need to scan token contract source, first import pasted content with `bounty",
-            "rule": "pii_redaction_present"
-          },
-          {
-            "file": ".claude/skills/bob-hunt/SKILL.md",
-            "lines": [
-              158,
-              158
-            ],
-            "snippet": "endpoint with temp email and generated password. 3. Tier 2 browser signup: call `bounty_auto_signup({ target_domain, signup_url, email, pas",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": ".claude/skills/bob-hunt/SKILL.md",
-            "lines": [
-              159,
-              159
-            ],
-            "snippet": "domain, signup_url, email, password, profile_name: \"attacker\" })`; if `result.data.auth_stored` is true, continue to verification, and if `r",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": ".claude/skills/bob-hunt/SKILL.md",
-            "lines": [
-              160,
-              160
-            ],
-            "snippet": "ister with the temp email/password, then poll/extract verification mail and store auth with `bounty_auth_store({ target_domain, profile_name",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": ".claude/skills/bob-hunt/SKILL.md",
-            "lines": [
-              175,
-              175
-            ],
-            "snippet": "essful signup, poll email up to 12 times, extract a code/link, complete verification through `bounty_http_scan` with `target_domain` and `eg",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": ".claude/skills/bob-hunt/SKILL.md",
-            "lines": [
-              175,
-              175
-            ],
-            "snippet": "ile with a new temp email. Verify auth with `bounty_http_scan` with `target_domain` and `egress_profile` against a protected endpoint and ca",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": ".claude/skills/bob-hunt/SKILL.md",
-            "lines": [
-              113,
-              113
-            ],
-            "snippet": "ic_artifact` writes redacted token contract source under `static-imports/` and metadata to `static-artifacts.jsonl`. - `bounty_static_scan`",
-            "rule": "pii_redaction_present"
-          },
-          {
             "file": ".hacker-bob/knowledge/hunter-techniques.json",
             "lines": [
               44,
@@ -953,24 +800,6 @@
             "rule": "pii_keywords"
           },
           {
-            "file": "CHANGELOG.md",
-            "lines": [
-              218,
-              218
-            ],
-            "snippet": "idation, credential redaction, and audit fields for `egress_profile` and `egress_region`. - Added geofence/reachability visibility for repea",
-            "rule": "pii_redaction_present"
-          },
-          {
-            "file": "CONTRIBUTING.md",
-            "lines": [
-              78,
-              78
-            ],
-            "snippet": "ssion-write, secret-redaction, or authorization guardrails without tests and a clear rationale. ## Testing installed changes For local e",
-            "rule": "pii_redaction_present"
-          },
-          {
             "file": "adapters/codex/hacker-bob/.codex-plugin/plugin.json",
             "lines": [
               7,
@@ -980,73 +809,189 @@
             "rule": "pii_keywords"
           },
           {
-            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+            "file": "dev-sync.sh",
             "lines": [
-              99,
-              99
+              95,
+              95
             ],
-            "snippet": "endpoint with temp email and generated password. 3. Tier 2 browser signup: call `bounty_auto_signup({ target_domain, signup_url, email, pas",
+            "snippet": "cp \"$SCRIPT_DIR/mcp/redaction.js\" \"$TARGET_ABS/mcp/\" cp \"$SCRIPT_DIR/mcp/lib/\"*.js \"$TARGET_ABS/mcp/lib/\" rm -rf \"$TARGET_ABS/mcp/lib/to",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": "docs/bob-architecture-event.html",
+            "lines": [
+              1196,
+              1196
+            ],
+            "snippet": "t the proof needed, redact sensitive data, and report responsibly.</p></div> </div> </div> <div class=\"foot\"><span",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": "docs/bob-architecture-event.html",
+            "lines": [
+              1603,
+              1603
+            ],
+            "snippet": "h MCP, which writes redacted audit metadata and egress information.</p> </div> <div class=\"code-card\"> <div",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": "docs/bob-architecture-event.html",
+            "lines": [
+              1616,
+              1616
+            ],
+            "snippet": "n>Audited requests, redacted URLs, visible egress</span></div> </section> <section class=\"slide\" data-title=\"Egress\"> <",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": "docs/bob-architecture-event.html",
+            "lines": [
+              1858,
+              1858
+            ],
+            "snippet": "b collects bounded, redacted evidence packs for final reportable findings.</p> <div class=\"pill-row\"> <span class=\"pil",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": "docs/bob-architecture-event.html",
+            "lines": [
+              1860,
+              1860
+            ],
+            "snippet": "<span class=\"pill\">redacted</span> <span class=\"pill\">bounded</span> <span class=\"pill\">per finding</span>",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": "mcp/auto-signup.js",
+            "lines": [
+              357,
+              357
+            ],
+            "snippet": "ELD_SELECTORS = { email: [ 'input[name=\"email\"]', 'input[name=\"e-mail\"]', 'input[name=\"user_email\"]', 'input[name=\"userEmail\"]', '",
             "rule": "pii_keywords"
           },
           {
-            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+            "file": "mcp/auto-signup.js",
             "lines": [
-              100,
-              100
+              358,
+              358
             ],
-            "snippet": "domain, signup_url, email, password, profile_name: \"attacker\" })`; if `result.data.auth_stored` is true, continue to verification, and if `r",
+            "snippet": "[ 'input[name=\"email\"]', 'input[name=\"e-mail\"]', 'input[name=\"user_email\"]', 'input[name=\"userEmail\"]', 'input[name=\"username\"][typ",
             "rule": "pii_keywords"
           },
           {
-            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+            "file": "mcp/auto-signup.js",
             "lines": [
-              101,
-              101
+              359,
+              359
             ],
-            "snippet": "ister with the temp email/password, then poll/extract verification mail and store auth with `bounty_auth_store({ target_domain, profile_name",
+            "snippet": "e=\"username\"][type=\"email\"]', 'input[type=\"email\"]', 'input[placeholder*=\"email\" i]', 'input[autocomplete=\"email\"]', 'input[id*=\"ema",
             "rule": "pii_keywords"
+          },
+          {
+            "file": "mcp/auto-signup.js",
+            "lines": [
+              360,
+              360
+            ],
+            "snippet": "', 'input[type=\"email\"]', 'input[placeholder*=\"email\" i]', 'input[autocomplete=\"email\"]', 'input[id*=\"email\" i]', ], password: [",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "mcp/auto-signup.js",
+            "lines": [
+              360,
+              360
+            ],
+            "snippet": "input[placeholder*=\"email\" i]', 'input[autocomplete=\"email\"]', 'input[id*=\"email\" i]', ], password: [ 'input[name=\"password\"]',",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "mcp/lib/auth-differential.js",
+            "lines": [
+              11,
+              11
+            ],
+            "snippet": "ivate[_-]?key/i, /ssn|social[_-]?security/i, /tax[_-]?id/i, /salary|compensation/i, /credit[_-]?card|cc[_-]?num/i, /^email$/i, /",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "mcp/lib/auth-differential.js",
+            "lines": [
+              15,
+              15
+            ],
+            "snippet": "d|cc[_-]?num/i, /^email$/i, /^phone$/i, /^address$/i, /date[_-]?of[_-]?birth|^dob$/i, /internal[_-]?id/i, /admin/i, ]; const SE",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "mcp/lib/egress-profiles.js",
+            "lines": [
+              5,
+              5
+            ],
+            "snippet": "re(\"path\"); const { redactUrlSensitiveValues } = require(\"../redaction.js\"); const EGRESS_PROFILES_VERSION = 1; const EGRESS_PROFILE_NAME_R",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": "mcp/lib/egress-profiles.js",
+            "lines": [
+              5,
+              5
+            ],
+            "snippet": "ues } = require(\"../redaction.js\"); const EGRESS_PROFILES_VERSION = 1; const EGRESS_PROFILE_NAME_RE = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": "mcp/lib/egress-profiles.js",
+            "lines": [
+              71,
+              71
+            ],
+            "snippet": "value; } function redactProxyUrl(proxyUrl) { if (proxyUrl == null) return null; const text = String(proxyUrl); if (ENV_REF_RE.test(t",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": "mcp/lib/egress-profiles.js",
+            "lines": [
+              75,
+              75
+            ],
+            "snippet": "eturn text; const redacted = redactUrlSensitiveValues(text); if (redacted !== text) return redacted; return text.replace(/:\\/\\/([^:@/\\",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": "mcp/lib/egress-profiles.js",
+            "lines": [
+              75,
+              75
+            ],
+            "snippet": "const redacted = redactUrlSensitiveValues(text); if (redacted !== text) return redacted; return text.replace(/:\\/\\/([^:@/\\s]+):([^@/\\",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": "mcp/lib/evidence.js",
+            "lines": [
+              193,
+              193
+            ],
+            "snippet": "CHARS, ); const redactionNotes = pack.redaction_notes == null ? null : assertMaxChars(normalizeOptionalText(pack.redaction_notes",
+            "rule": "pii_redaction_present"
           }
         ]
       },
       "bio_health_signals": {
         "signal": "bio_health_signals",
-        "fired": true,
-        "strength": 0.4,
-        "evidence": [
-          {
-            "file": "docs/releases/v1.2.2.md",
-            "lines": [
-              13,
-              13
-            ],
-            "snippet": "sions before deeper diagnosis. - The canonical npm package no longer includes ignored local install metadata such as `.claude/bob/VERSION`,",
-            "rule": "health_terms"
-          }
-        ]
+        "fired": false,
+        "strength": 0,
+        "evidence": []
       },
       "employment_signals": {
         "signal": "employment_signals",
         "fired": true,
         "strength": 1,
         "evidence": [
-          {
-            "file": ".claude/agents/deep-recon-agent.md",
-            "lines": [
-              314,
-              314
-            ],
-            "snippet": "d(f\"tech/CVE review candidate: {name}\") def classify(text): text_l = text.lower() hints, flows = [], [] if re.search(r'graphql|g",
-            "rule": "employment_terms"
-          },
-          {
-            "file": ".claude/agents/deep-recon-agent.md",
-            "lines": [
-              415,
-              415
-            ],
-            "snippet": "ates.txt; the broad candidate set is not fed into CDX, nuclei, JS extraction, or active probing\"], 35) counts = { \"subdomains\": len(line",
-            "rule": "employment_terms"
-          },
           {
             "file": ".claude/hooks/session-read-guard.sh",
             "lines": [
@@ -1075,123 +1020,6 @@
             "rule": "employment_terms"
           },
           {
-            "file": ".claude/skills/bob-hunt/SKILL.md",
-            "lines": [
-              4,
-              4
-            ],
-            "snippet": "int: \"[target-url | resume <domain> [force-merge]] [--deep] [--egress <profile>]\" allowed-tools: - Task - Read - mcp__bountyagent__bou",
-            "rule": "employment_terms"
-          },
-          {
-            "file": ".claude/skills/bob-hunt/SKILL.md",
-            "lines": [
-              81,
-              81
-            ],
-            "snippet": "` (`target URL` or `resume [domain] [force-merge]`, optionally `--deep` and `--egress <profile>`) ## Flags Checkpoint flags: `--normal` is t",
-            "rule": "employment_terms"
-          },
-          {
-            "file": ".claude/skills/bob-hunt/SKILL.md",
-            "lines": [
-              85,
-              85
-            ],
-            "snippet": "state.deep_mode` on resume. Resolve `--egress` once as `egress_profile` and pass it into AUTH `bounty_http_scan` calls plus every hunter, ch",
-            "rule": "employment_terms"
-          },
-          {
-            "file": ".claude/skills/bob-hunt/SKILL.md",
-            "lines": [
-              125,
-              125
-            ],
-            "snippet": "ays are needed. ## Resume - `resume [domain]` accepts one optional non-flag token: `force-merge`. - First call `bounty_read_state_summary({",
-            "rule": "employment_terms"
-          },
-          {
-            "file": ".claude/skills/bob-hunt/SKILL.md",
-            "lines": [
-              126,
-              126
-            ],
-            "snippet": "eded. ## Resume - `resume [domain]` accepts one optional non-flag token: `force-merge`. - First call `bounty_read_state_summary({ target_do",
-            "rule": "employment_terms"
-          },
-          {
-            "file": ".claude/skills/bob-status/SKILL.md",
-            "lines": [
-              74,
-              74
-            ],
-            "snippet": "sue. Use `/bob-hunt resume <target_domain>` as the next command when analytics gives a clear `missing_evidence` blocker or missing finding I",
-            "rule": "employment_terms"
-          },
-          {
-            "file": ".claude/skills/bob-status/SKILL.md",
-            "lines": [
-              75,
-              75
-            ],
-            "snippet": "--egress <profile> resume <target_domain>` only when the operator has chosen the profile. ## V2 Verification Panel When `bounty_read_verif",
-            "rule": "employment_terms"
-          },
-          {
-            "file": ".claude/skills/bob-status/SKILL.md",
-            "lines": [
-              96,
-              96
-            ],
-            "snippet": "usually `/bob-hunt resume <target_domain>`, `/bob-debug <target_domain>`, `/bob-debug --deep <target_domain>`, or no action needed. Do not",
-            "rule": "employment_terms"
-          },
-          {
-            "file": "CHANGELOG.md",
-            "lines": [
-              104,
-              104
-            ],
-            "snippet": "- Added JWT-shaped candidate extraction from JavaScript artifacts plus `jwt_tool` availability checks for later authorized token review wit",
-            "rule": "employment_terms"
-          },
-          {
-            "file": "CHANGELOG.md",
-            "lines": [
-              145,
-              145
-            ],
-            "snippet": "p_mode` persists on resume, so `/bob-hunt resume` keeps deep behavior even when `--deep` is omitted. ### Session summary, read guard, opera",
-            "rule": "employment_terms"
-          },
-          {
-            "file": "CHANGELOG.md",
-            "lines": [
-              145,
-              145
-            ],
-            "snippet": "sume, so `/bob-hunt resume` keeps deep behavior even when `--deep` is omitted. ### Session summary, read guard, operator notes (merged from",
-            "rule": "employment_terms"
-          },
-          {
-            "file": "README.md",
-            "lines": [
-              116,
-              116
-            ],
-            "snippet": "follow-up /bob-hunt resume target.com # resume an existing session /bob-status # show latest session status /bob-debug",
-            "rule": "employment_terms"
-          },
-          {
-            "file": "README.md",
-            "lines": [
-              116,
-              116
-            ],
-            "snippet": "esume target.com # resume an existing session /bob-status # show latest session status /bob-debug # insp",
-            "rule": "employment_terms"
-          },
-          {
             "file": "adapters/codex/index.js",
             "lines": [
               47,
@@ -1210,48 +1038,183 @@
             "rule": "employment_terms"
           },
           {
-            "file": "adapters/codex/skills/bob-export/SKILL.md",
+            "file": "adapters/index.js",
             "lines": [
-              15,
-              15
+              58,
+              58
             ],
-            "snippet": "; it does not hunt, resume sessions, or interact with targets.",
+            "snippet": "safeIsDir(fsModule, candidate) { try { return fsModule.statSync(candidate).isDirectory(); } catch { return false; } } functio",
             "rule": "employment_terms"
           },
           {
-            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+            "file": "adapters/index.js",
             "lines": [
-              3,
-              3
+              60,
+              60
             ],
-            "snippet": "description: Run or resume a Hacker Bob bug bounty hunt in Codex using the shared MCP runtime. --- You are the ORCHESTRATOR for Bob, an aut",
+            "snippet": "n fsModule.statSync(candidate).isDirectory(); } catch { return false; } } function safeIsFile(fsModule, candidate) { try { re",
             "rule": "employment_terms"
           },
           {
-            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+            "file": "adapters/index.js",
             "lines": [
-              8,
-              8
+              66,
+              66
             ],
-            "snippet": "` (`target URL` or `resume [domain] [force-merge]`, optionally `--deep` and `--egress <profile>`) ## Flags Checkpoint flags: `--normal` is t",
+            "snippet": "afeIsFile(fsModule, candidate) { try { return fsModule.statSync(candidate).isFile(); } catch { return false; } } // Layered a",
             "rule": "employment_terms"
           },
           {
-            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+            "file": "adapters/index.js",
             "lines": [
-              12,
-              12
+              68,
+              68
             ],
-            "snippet": "state.deep_mode` on resume. Resolve `--egress` once as `egress_profile` and pass it into AUTH `bounty_http_scan` calls plus every hunter, ch",
+            "snippet": "n fsModule.statSync(candidate).isFile(); } catch { return false; } } // Layered adapter detection for install-time intent. Returns",
             "rule": "employment_terms"
           },
           {
-            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+            "file": "docs/bob-architecture-event.html",
             "lines": [
-              57,
-              57
+              1379,
+              1379
             ],
-            "snippet": "ays are needed. ## Resume - `resume [domain]` accepts one optional non-flag token: `force-merge`. - First call `bounty_read_state_summary({",
+            "snippet": "arget.com /bob-hunt resume target.com /bob-status /bob-debug /bob-egress</pre> </div> </div> <div class=\"foot\"><sp",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "docs/bob-architecture-event.html",
+            "lines": [
+              1719,
+              1719
+            ],
+            "snippet": "report yet. It is a candidate that must survive chaining and verification.</p> </div> <div class=\"code-card\">",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "mcp/lib/audit-report-parser.js",
+            "lines": [
+              150,
+              150
+            ],
+            "snippet": "> title const candidate = line.replace(/^#\\s+/, \"\").trim(); if (title == null) { title = candidate; currentSecti",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "mcp/lib/audit-report-parser.js",
+            "lines": [
+              152,
+              152
+            ],
+            "snippet": ") { title = candidate; currentSection = \"_summary\"; } else { // Second H1 starts a new finding section as a fa",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "mcp/lib/audit-report-parser.js",
+            "lines": [
+              156,
+              156
+            ],
+            "snippet": "startFinding(candidate); } continue; } if (/^##\\s+/.test(line)) { const headingText = line.replace(/^##\\s+/",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "mcp/lib/bob-export.js",
+            "lines": [
+              126,
+              126
+            ],
+            "snippet": ", \"0\")}`; const candidate = path.join(root, `${timestamp}${suffix}`); try { fs.mkdirSync(candidate); return candidate;",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "mcp/lib/bob-export.js",
+            "lines": [
+              128,
+              128
+            ],
+            "snippet": "fs.mkdirSync(candidate); return candidate; } catch (error) { if (!error || error.code !== \"EEXIST\") throw error;",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "mcp/lib/bob-export.js",
+            "lines": [
+              129,
+              129
+            ],
+            "snippet": "date); return candidate; } catch (error) { if (!error || error.code !== \"EEXIST\") throw error; } } throw new Error(`",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "mcp/lib/foundry-runner.js",
+            "lines": [
+              361,
+              361
+            ],
+            "snippet": "ent)) { const candidate = suite && suite.kind && suite.kind.Standard && suite.kind.Standard.fork_block_number; if (typeof candid",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "mcp/lib/foundry-runner.js",
+            "lines": [
+              362,
+              362
+            ],
+            "snippet": "r; if (typeof candidate === \"number\" && Number.isFinite(candidate)) { forkBlockUsed = candidate; break; } }",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "mcp/lib/foundry-runner.js",
+            "lines": [
+              362,
+              362
+            ],
+            "snippet": "&& Number.isFinite(candidate)) { forkBlockUsed = candidate; break; } } } const envelope = { // ok requir",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "mcp/lib/foundry-runner.js",
+            "lines": [
+              363,
+              363
+            ],
+            "snippet": "forkBlockUsed = candidate; break; } } } const envelope = { // ok requires: forge exited cleanly, parsed JSON,",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "mcp/lib/pipeline-analytics.js",
+            "lines": [
+              144,
+              144
+            ],
+            "snippet": "eLatestIso(current, candidate) { if (!candidate) return current; if (!current) return candidate; return timestampMs(candidate) > times",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "mcp/lib/pipeline-analytics.js",
+            "lines": [
+              145,
+              145
+            ],
+            "snippet": "candidate) { if (!candidate) return current; if (!current) return candidate; return timestampMs(candidate) > timestampMs(current) ? ca",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "mcp/lib/pipeline-analytics.js",
+            "lines": [
+              146,
+              146
+            ],
+            "snippet": "f (!current) return candidate; return timestampMs(candidate) > timestampMs(current) ? candidate : current; } function normalizePositiveIn",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "mcp/lib/pipeline-analytics.js",
+            "lines": [
+              147,
+              147
+            ],
+            "snippet": "return timestampMs(candidate) > timestampMs(current) ? candidate : current; } function normalizePositiveInteger(value, defaultValue, maxVa",
             "rule": "employment_terms"
           }
         ]
@@ -1259,53 +1222,8 @@
       "bio_metric_signals": {
         "signal": "bio_metric_signals",
         "fired": true,
-        "strength": 0.83167249841905,
+        "strength": 0.7112605001534575,
         "evidence": [
-          {
-            "file": ".claude/agents/deep-recon-agent.md",
-            "lines": [
-              15,
-              15
-            ],
-            "snippet": "wling, and takeover fingerprint checks only: no brute forcing, credential attacks, form submission, destructive checks, or authenticated act",
-            "rule": "biometric_terms"
-          },
-          {
-            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
-            "lines": [
-              462,
-              462
-            ],
-            "snippet": "wling, and takeover fingerprint checks only: no brute forcing, credential attacks, form submission, destructive checks, or authenticated act",
-            "rule": "biometric_terms"
-          },
-          {
-            "file": "docs/capability-hypergraph.md",
-            "lines": [
-              424,
-              424
-            ],
-            "snippet": "e harness leaves no fingerprint on real session storage. Per-capability fixture: a known authorized target with seeded findings. Hunts run",
-            "rule": "biometric_terms"
-          },
-          {
-            "file": "docs/capability-hypergraph.md",
-            "lines": [
-              561,
-              561
-            ],
-            "snippet": "e harness leaves no fingerprint on real session storage. Closes X5. Tool count 93→94. Skill stays at the 340-line cap by inlining the prior",
-            "rule": "biometric_terms"
-          },
-          {
-            "file": "docs/hacker-bob-offline-guide.md",
-            "lines": [
-              1499,
-              1499
-            ],
-            "snippet": "ntext, and evidence fingerprint. Exact duplicates are not recorded unless `force_record` is true. ## 2. Chain Builder Tests Combinations T",
-            "rule": "biometric_terms"
-          },
           {
             "file": "mcp/auto-signup.js",
             "lines": [
@@ -1313,15 +1231,6 @@
               11
             ],
             "snippet": "system Chrome (TLS fingerprint, fonts, WebGL match) // 3. Headed mode — avoids headless signals // 4. ignoreDefaultArgs: ['--enable-aut",
-            "rule": "biometric_terms"
-          },
-          {
-            "file": "prompts/roles/deep-recon.md",
-            "lines": [
-              8,
-              8
-            ],
-            "snippet": "wling, and takeover fingerprint checks only: no brute forcing, credential attacks, form submission, destructive checks, or authenticated act",
             "rule": "biometric_terms"
           },
           {
@@ -1451,7 +1360,7 @@
     ],
     "rationale": [
       "Classified HIGH-RISK based on 2 Annex III signal(s).",
-      "Annex III §1 (Biometric ID, categorisation, emotion recognition) — signal \"bio_metric_signals\" fired with strength 0.83",
+      "Annex III §1 (Biometric ID, categorisation, emotion recognition) — signal \"bio_metric_signals\" fired with strength 0.71",
       "Annex III §4 (Employment, workers management, access to self-employment) — signal \"employment_signals\" fired with strength 1.00",
       "Art 50 50(1) (Interaction with natural persons) — signal \"agent_framework\" fired"
     ]
@@ -1555,30 +1464,30 @@
       "rawScore": 1,
       "evidence": [
         {
-          "file": ".claude/agents/deep-recon-agent.md",
+          "file": "mcp/auto-signup.js",
+          "lines": [
+            11,
+            11
+          ],
+          "snippet": "system Chrome (TLS fingerprint, fonts, WebGL match) // 3. Headed mode — avoids headless signals // 4. ignoreDefaultArgs: ['--enable-aut",
+          "rule": "biometric_terms"
+        },
+        {
+          "file": "test/priors-slice-brief.test.js",
           "lines": [
             15,
             15
           ],
-          "snippet": "wling, and takeover fingerprint checks only: no brute forcing, credential attacks, form submission, destructive checks, or authenticated act",
+          "snippet": "-index.js\"); const FINGERPRINT = `bobpriortest${crypto.randomBytes(6).toString(\"hex\")}`; function uniqueDomain(prefix = \"bob-priors-test\")",
           "rule": "biometric_terms"
         },
         {
-          "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+          "file": "test/priors-slice-brief.test.js",
           "lines": [
-            462,
-            462
+            48,
+            48
           ],
-          "snippet": "wling, and takeover fingerprint checks only: no brute forcing, credential attacks, form submission, destructive checks, or authenticated act",
-          "rule": "biometric_terms"
-        },
-        {
-          "file": "docs/capability-hypergraph.md",
-          "lines": [
-            424,
-            424
-          ],
-          "snippet": "e harness leaves no fingerprint on real session storage. Per-capability fixture: a known authorized target with seeded findings. Hunts run",
+          "snippet": ", title: `${FINGERPRINT} IDOR on user profile endpoint`, description: `${FINGERPRINT} broken object level authorization`,",
           "rule": "biometric_terms"
         }
       ],
@@ -1830,30 +1739,30 @@
           "rule": "log_at_tool_boundary"
         },
         {
-          "file": ".claude/skills/bob-hunt/SKILL.md",
+          "file": "bin/hacker-bob.js",
           "lines": [
-            171,
-            171
+            87,
+            87
           ],
-          "snippet": "ify(d, null, 2)); console.log(\"Copied! Paste in Claude Code.\"); })(); ``` After any successful signup, poll email up to 12 times, extract",
+          "snippet": "y.targetAbs); console.log(\"\"); if (summary.adapters.length === 1 && summary.adapters[0] === \"claude\") { console.log(\"Upd",
           "rule": "log_at_tool_boundary"
         },
         {
-          "file": "README.md",
+          "file": "bin/hacker-bob.js",
           "lines": [
-            29,
-            29
+            89,
+            89
           ],
-          "snippet": "'./mcp/server.js'); console.log('MCP ok')\" ``` Restart your host CLI from the same project directory, then run the matching command: | Hos",
+          "snippet": "\"claude\") { console.log(\"Update complete. Fully restart Claude Code in this project before continuing.\"); } else { con",
           "rule": "log_at_tool_boundary"
         },
         {
-          "file": "README.md",
+          "file": "bin/hacker-bob.js",
           "lines": [
-            230,
-            230
+            91,
+            91
           ],
-          "snippet": "'./mcp/server.js'); console.log('MCP ok')\"` should pass from the installed project. - Claude Code must be restarted after install or update",
+          "snippet": "} else { console.log(\"Update complete. Restart the selected host adapter before continuing.\"); } } return; } i",
           "rule": "log_at_tool_boundary"
         },
         {
@@ -1935,30 +1844,30 @@
           "rule": "log_at_tool_boundary"
         },
         {
-          "file": ".claude/skills/bob-hunt/SKILL.md",
+          "file": "bin/hacker-bob.js",
           "lines": [
-            171,
-            171
+            87,
+            87
           ],
-          "snippet": "ify(d, null, 2)); console.log(\"Copied! Paste in Claude Code.\"); })(); ``` After any successful signup, poll email up to 12 times, extract",
+          "snippet": "y.targetAbs); console.log(\"\"); if (summary.adapters.length === 1 && summary.adapters[0] === \"claude\") { console.log(\"Upd",
           "rule": "log_at_tool_boundary"
         },
         {
-          "file": "README.md",
+          "file": "bin/hacker-bob.js",
           "lines": [
-            29,
-            29
+            89,
+            89
           ],
-          "snippet": "'./mcp/server.js'); console.log('MCP ok')\" ``` Restart your host CLI from the same project directory, then run the matching command: | Hos",
+          "snippet": "\"claude\") { console.log(\"Update complete. Fully restart Claude Code in this project before continuing.\"); } else { con",
           "rule": "log_at_tool_boundary"
         },
         {
-          "file": "README.md",
+          "file": "bin/hacker-bob.js",
           "lines": [
-            230,
-            230
+            91,
+            91
           ],
-          "snippet": "'./mcp/server.js'); console.log('MCP ok')\"` should pass from the installed project. - Claude Code must be restarted after install or update",
+          "snippet": "} else { console.log(\"Update complete. Restart the selected host adapter before continuing.\"); } } return; } i",
           "rule": "log_at_tool_boundary"
         },
         {
@@ -2339,17 +2248,8 @@
       "title": "Cybersecurity measures appropriate to circumstances",
       "verdict": "fail",
       "score": 1,
-      "rawScore": 0.34817460144890905,
+      "rawScore": 0.33266899936762,
       "evidence": [
-        {
-          "file": ".claude/agents/hunter-evm-agent.md",
-          "lines": [
-            53,
-            53
-          ],
-          "snippet": "bridge_invariant`, `rate_limit_normalization`, `stale_module_allowlist`, `delegatecall`, `arbitrary_external_call`, `selector_collision`, `r",
-          "rule": "rate_limit_usage"
-        },
         {
           "file": ".claude/hooks/bounty-statusline.js",
           "lines": [
@@ -2369,15 +2269,6 @@
           "rule": "rate_limit_usage"
         },
         {
-          "file": "adapters/codex/skills/bob-hunt/SKILL.md",
-          "lines": [
-            1069,
-            1069
-          ],
-          "snippet": "bridge_invariant`, `rate_limit_normalization`, `stale_module_allowlist`, `delegatecall`, `arbitrary_external_call`, `selector_collision`, `r",
-          "rule": "rate_limit_usage"
-        },
-        {
           "file": "package-lock.json",
           "lines": [
             211,
@@ -2393,6 +2284,24 @@
             687
           ],
           "snippet": ", \"node_modules/express-rate-limit\": { \"version\": \"8.4.1\", \"resolved\": \"https://registry.npmjs.org/express-rate-limit/-/expr",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": "package-lock.json",
+          "lines": [
+            689,
+            689
+          ],
+          "snippet": "/registry.npmjs.org/express-rate-limit/-/express-rate-limit-8.4.1.tgz\", \"integrity\": \"sha512-NGVYwQSAyEQgzxX1iCM978PP9AdO/hW93gMcF6ZwQ",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": "package-lock.json",
+          "lines": [
+            689,
+            689
+          ],
+          "snippet": "xpress-rate-limit/-/express-rate-limit-8.4.1.tgz\", \"integrity\": \"sha512-NGVYwQSAyEQgzxX1iCM978PP9AdO/hW93gMcF6ZwQCm+rFvLsBH6w4xcXWTcli",
           "rule": "rate_limit_usage"
         },
         {
@@ -2449,12 +2358,12 @@
         },
         {
           "rule": "rate_limiting",
-          "matched": 0.8704365036222725,
+          "matched": 0.83167249841905,
           "weight": 0.2
         },
         {
           "rule": "secrets_not_in_prompts",
-          "matched": 0.8704365036222725,
+          "matched": 0.83167249841905,
           "weight": 0.2
         },
         {
@@ -2463,7 +2372,7 @@
           "weight": 0.2
         }
       ],
-      "rationale": "Composite raw score 0.35 (2/4 rules matched).",
+      "rationale": "Composite raw score 0.33 (2/4 rules matched).",
       "confidence": 1,
       "needsLlmJudge": true,
       "verified": true,
@@ -2551,24 +2460,13 @@
       "regulationId": "eu-ai-act-2024-08",
       "article": "50(2)",
       "title": "AI-generated content marked as such, machine-readable",
-      "verdict": "fail",
-      "score": 0,
-      "rawScore": 0,
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
       "evidence": [],
-      "rules": [
-        {
-          "rule": "c2pa_or_watermark_library_imported",
-          "matched": 0,
-          "weight": 0.5
-        },
-        {
-          "rule": "provenance_metadata_written_to_outputs",
-          "matched": 0,
-          "weight": 0.5
-        }
-      ],
-      "rationale": "Composite raw score 0.00 (0/2 rules matched).",
-      "confidence": 0.6,
+      "rules": [],
+      "rationale": "Clause subject matter not detected — required signals [content_generation_signals, provenance_hooks] did not fire in this repo.",
+      "confidence": 1,
       "needsLlmJudge": false,
       "verified": true,
       "verifyMethod": "deterministic-only"
@@ -2605,19 +2503,13 @@
       "regulationId": "eu-ai-act-2024-08",
       "article": "50(4)",
       "title": "Deepfake content labelled as artificially generated",
-      "verdict": "pass",
-      "score": 4,
-      "rawScore": 1,
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
       "evidence": [],
-      "rules": [
-        {
-          "rule": "deepfake_label_on_outputs",
-          "matched": 1,
-          "weight": 1
-        }
-      ],
-      "rationale": "Composite raw score 1.00 (1/1 rules matched).",
-      "confidence": 0.55,
+      "rules": [],
+      "rationale": "Clause subject matter not detected — required signals [content_generation_signals] did not fire in this repo.",
+      "confidence": 1,
       "needsLlmJudge": false,
       "verified": true,
       "verifyMethod": "deterministic-only"
@@ -2810,17 +2702,8 @@
       "title": "Security and resilience evaluated",
       "verdict": "fail",
       "score": 1,
-      "rawScore": 0.17408730072445452,
+      "rawScore": 0.16633449968381,
       "evidence": [
-        {
-          "file": ".claude/agents/hunter-evm-agent.md",
-          "lines": [
-            53,
-            53
-          ],
-          "snippet": "bridge_invariant`, `rate_limit_normalization`, `stale_module_allowlist`, `delegatecall`, `arbitrary_external_call`, `selector_collision`, `r",
-          "rule": "rate_limit_usage"
-        },
         {
           "file": ".claude/hooks/bounty-statusline.js",
           "lines": [
@@ -2840,15 +2723,6 @@
           "rule": "rate_limit_usage"
         },
         {
-          "file": "adapters/codex/skills/bob-hunt/SKILL.md",
-          "lines": [
-            1069,
-            1069
-          ],
-          "snippet": "bridge_invariant`, `rate_limit_normalization`, `stale_module_allowlist`, `delegatecall`, `arbitrary_external_call`, `selector_collision`, `r",
-          "rule": "rate_limit_usage"
-        },
-        {
           "file": "package-lock.json",
           "lines": [
             211,
@@ -2865,6 +2739,24 @@
           ],
           "snippet": ", \"node_modules/express-rate-limit\": { \"version\": \"8.4.1\", \"resolved\": \"https://registry.npmjs.org/express-rate-limit/-/expr",
           "rule": "rate_limit_usage"
+        },
+        {
+          "file": "package-lock.json",
+          "lines": [
+            689,
+            689
+          ],
+          "snippet": "/registry.npmjs.org/express-rate-limit/-/express-rate-limit-8.4.1.tgz\", \"integrity\": \"sha512-NGVYwQSAyEQgzxX1iCM978PP9AdO/hW93gMcF6ZwQ",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": "package-lock.json",
+          "lines": [
+            689,
+            689
+          ],
+          "snippet": "xpress-rate-limit/-/express-rate-limit-8.4.1.tgz\", \"integrity\": \"sha512-NGVYwQSAyEQgzxX1iCM978PP9AdO/hW93gMcF6ZwQCm+rFvLsBH6w4xcXWTcli",
+          "rule": "rate_limit_usage"
         }
       ],
       "rules": [
@@ -2880,12 +2772,12 @@
         },
         {
           "rule": "rate_limiting",
-          "matched": 0.8704365036222725,
+          "matched": 0.83167249841905,
           "weight": 0.2
         }
       ],
       "rationale": "Composite raw score 0.17 (1/3 rules matched).",
-      "confidence": 0.8240873007244546,
+      "confidence": 0.81633449968381,
       "needsLlmJudge": false,
       "verified": true,
       "verifyMethod": "deterministic-only"
@@ -2900,57 +2792,57 @@
       "rawScore": 0.5,
       "evidence": [
         {
-          "file": ".claude/agents/brutalist-verifier.md",
+          "file": "dev-sync.sh",
           "lines": [
-            26,
-            26
+            95,
+            95
           ],
-          "snippet": "im, severity, and a redacted PoC excerpt into `mcp__brutalist__roast`. 2. Fold the roast verdict into your `reasoning` for that finding's `b",
+          "snippet": "cp \"$SCRIPT_DIR/mcp/redaction.js\" \"$TARGET_ABS/mcp/\" cp \"$SCRIPT_DIR/mcp/lib/\"*.js \"$TARGET_ABS/mcp/lib/\" rm -rf \"$TARGET_ABS/mcp/lib/to",
           "rule": "pii_redaction_present"
         },
         {
-          "file": ".claude/agents/evidence-agent.md",
+          "file": "docs/bob-architecture-event.html",
           "lines": [
-            29,
-            29
+            1196,
+            1196
           ],
-          "snippet": "`observed_fields`, `redacted_object_id`. No raw bodies, no auth headers, no cookies. 4. **Smart-contract (`runner: \"bounty_<chain>_run\"`)**:",
+          "snippet": "t the proof needed, redact sensitive data, and report responsibly.</p></div> </div> </div> <div class=\"foot\"><span",
           "rule": "pii_redaction_present"
         },
         {
-          "file": ".claude/agents/evidence-agent.md",
+          "file": "docs/bob-architecture-event.html",
           "lines": [
-            45,
-            45
+            1603,
+            1603
           ],
-          "snippet": "chain state slot. - Redact or omit secrets, auth headers, cookies, tokens, passwords, API keys, full PII values, raw large response bodies,",
+          "snippet": "h MCP, which writes redacted audit metadata and egress information.</p> </div> <div class=\"code-card\"> <div",
           "rule": "pii_redaction_present"
         },
         {
-          "file": ".claude/agents/evidence-agent.md",
+          "file": "docs/bob-architecture-event.html",
           "lines": [
-            46,
-            46
+            1616,
+            1616
           ],
-          "snippet": "object type labels, redacted IDs, field names, short excerpts, count summaries, function signatures, role/owner addresses. - `sensitive_clus",
+          "snippet": "n>Audited requests, redacted URLs, visible egress</span></div> </section> <section class=\"slide\" data-title=\"Egress\"> <",
           "rule": "pii_redaction_present"
         },
         {
-          "file": ".claude/agents/evidence-agent.md",
+          "file": "docs/bob-architecture-event.html",
           "lines": [
-            47,
-            47
+            1858,
+            1858
           ],
-          "snippet": "ame data classes or redacted clusters, not raw sensitive values. - `report_snippet` should be prose the report writer can reuse as proof/imp",
+          "snippet": "b collects bounded, redacted evidence packs for final reportable findings.</p> <div class=\"pill-row\"> <span class=\"pil",
           "rule": "pii_redaction_present"
         },
         {
-          "file": ".claude/agents/evidence-agent.md",
+          "file": "docs/bob-architecture-event.html",
           "lines": [
-            68,
-            68
+            1860,
+            1860
           ],
-          "snippet": "_total\"], redacted_object_id: \"acct_...789\" } ], sensitive_clusters: [\"billing profile fields\", \"invoice metad",
+          "snippet": "<span class=\"pill\">redacted</span> <span class=\"pill\">bounded</span> <span class=\"pill\">per finding</span>",
           "rule": "pii_redaction_present"
         }
       ],
@@ -3174,16 +3066,16 @@
     }
   ],
   "grade": {
-    "overallScore": 1.8529411764705883,
+    "overallScore": 1.84375,
     "perRegulation": [
       {
         "regulationId": "eu-ai-act-2024-08",
-        "scoreAvg": 2.0833333333333335,
-        "passCount": 9,
+        "scoreAvg": 2.090909090909091,
+        "passCount": 8,
         "partialCount": 6,
-        "failCount": 9,
+        "failCount": 8,
         "externalCount": 1,
-        "naCount": 0
+        "naCount": 2
       },
       {
         "regulationId": "nist-ai-rmf-1.0",
@@ -3196,15 +3088,15 @@
       }
     ]
   },
-  "bundleHash": "fe7435c2af31823dd4093a9853e06bc8c7f7c4a60a6e289dbebf5e94f0487449",
+  "bundleHash": "b13207d647eeaf6107905870e37c89bf6596933c2a61f0e9a170a094e1da99b6",
   "checkerVersion": "v0.1.0",
   "regulationsVersions": {
     "eu-ai-act-2024-08": "db2bbc2958ff931f2ab69230b8470dddf309c34605c83e5141a208fd22051fe8",
     "nist-ai-rmf-1.0": "1f9bd8ceef4a6da5d776fca10cbdbb829c1b8f5e29d49131640e21aae12ce896"
   },
-  "startedAt": "2026-05-16T03:29:25.069Z",
-  "completedAt": "2026-05-16T03:29:28.903Z",
-  "durationMs": 3834,
+  "startedAt": "2026-05-16T03:46:15.423Z",
+  "completedAt": "2026-05-16T03:46:19.194Z",
+  "durationMs": 3771,
   "externalControls": [
     {
       "clauseId": "eu-ai-act/art-5/1h-realtime-rbi",

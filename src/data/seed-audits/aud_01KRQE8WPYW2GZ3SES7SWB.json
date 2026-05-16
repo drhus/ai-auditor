@@ -1,12 +1,12 @@
 {
-  "auditId": "aud_01KRQDAQQRPS5XB3ED36YW",
+  "auditId": "aud_01KRQE8WPYW2GZ3SES7SWB",
   "source": {
     "kind": "repo",
     "owner": "Significant-Gravitas",
     "repo": "Auto-GPT"
   },
   "input": {
-    "auditId": "aud_01KRQDAQQRPS5XB3ED36YW",
+    "auditId": "aud_01KRQE8WPYW2GZ3SES7SWB",
     "source": {
       "kind": "repo",
       "owner": "Significant-Gravitas",
@@ -24,7 +24,7 @@
     "repo": "Auto-GPT",
     "ref": "94ebce7f633f40af8fd59e5cdaea75159cf2e6d1",
     "commitSha": "94ebce7f633f40af8fd59e5cdaea75159cf2e6d1",
-    "worktreeDir": "/tmp/ai-auditor/aud_01KRQDAQQRPS5XB3ED36YW",
+    "worktreeDir": "/tmp/ai-auditor/aud_01KRQE8WPYW2GZ3SES7SWB",
     "fileCount": 3673,
     "totalBytes": 57734773,
     "languages": {
@@ -85,14 +85,14 @@
       ],
       "configFiles": []
     },
-    "fetchedAt": "2026-05-16T03:30:03.510Z"
+    "fetchedAt": "2026-05-16T03:46:31.141Z"
   },
   "recon": {
     "signals": {
       "agent_framework": {
         "signal": "agent_framework",
         "fired": true,
-        "strength": 0.7112605001534575,
+        "strength": 0.6795880017344076,
         "evidence": [
           {
             "file": "autogpt_platform/backend/backend/copilot/baseline/service_unit_test.py",
@@ -137,15 +137,6 @@
               757
             ],
             "snippet": "//github.com/openai/openai-python/blob/120d225b91a8453e15240a49fb1c6794d8119326/chatml.md \" # noqa \"for information on how",
-            "rule": "openai_sdk_use"
-          },
-          {
-            "file": "docs/content/classic/setup/index.md",
-            "lines": [
-              149,
-              149
-            ],
-            "snippet": "//github.com/openai/openai-python?tab=readme-ov-file#microsoft-azure-openai ### Anthropic 1. Make sure you have credits in your account:",
             "rule": "openai_sdk_use"
           }
         ]
@@ -416,42 +407,6 @@
         "strength": 1,
         "evidence": [
           {
-            "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
-            "lines": [
-              1034,
-              1034
-            ],
-            "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct: re-runs only when id changes** ```tsx useEffect(() => { console.log(u",
-            "rule": "log_at_tool_boundary"
-          },
-          {
-            "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
-            "lines": [
-              1042,
-              1042
-            ],
-            "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
-            "rule": "log_at_tool_boundary"
-          },
-          {
-            "file": ".claude/skills/vercel-react-best-practices/rules/rerender-dependencies.md",
-            "lines": [
-              16,
-              16
-            ],
-            "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct (re-runs only when id changes):** ```tsx useEffect(() => { console.log",
-            "rule": "log_at_tool_boundary"
-          },
-          {
-            "file": ".claude/skills/vercel-react-best-practices/rules/rerender-dependencies.md",
-            "lines": [
-              24,
-              24
-            ],
-            "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
-            "rule": "log_at_tool_boundary"
-          },
-          {
             "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
             "lines": [
               1,
@@ -578,24 +533,6 @@
             "rule": "import_logging"
           },
           {
-            "file": "autogpt_platform/backend/AGENTS.md",
-            "lines": [
-              70,
-              70
-            ],
-            "snippet": "e for readability: `logger.debug(\"Processing %s items\", count)`, `logger.info(f\"Processing {count} items\")` - **Sanitize error paths** — `os",
-            "rule": "log_at_tool_boundary"
-          },
-          {
-            "file": "autogpt_platform/backend/AGENTS.md",
-            "lines": [
-              70,
-              70
-            ],
-            "snippet": "s items\", count)`, `logger.info(f\"Processing {count} items\")` - **Sanitize error paths** — `os.path.basename()` in error messages to avoid l",
-            "rule": "log_at_tool_boundary"
-          },
-          {
             "file": "autogpt_platform/backend/backend/api/conn_manager.py",
             "lines": [
               3,
@@ -639,13 +576,67 @@
             ],
             "snippet": "eption: logger.warning( \"Failed to decode pubsub payload on %s\", channel_key, exc_info=True )",
             "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/conn_manager.py",
+            "lines": [
+              353,
+              353
+            ],
+            "snippet": "t): logger.debug(\"Dropped exec event on closed WS for %s\", channel_key) return logger.exception(",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/external/v1/integrations.py",
+            "lines": [
+              11,
+              11
+            ],
+            "snippet": "er credentials \"\"\" import logging from typing import TYPE_CHECKING, Annotated, Any, Literal, Optional, Union from urllib.parse import urlpa",
+            "rule": "import_logging"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/external/v1/integrations.py",
+            "lines": [
+              201,
+              201
+            ],
+            "snippet": "ption as e: logger.warning(f\"Failed to load blocks: {e}\") if provider_name not in HANDLERS_BY_NAME: raise HTTPException",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/external/v1/integrations.py",
+            "lines": [
+              232,
+              232
+            ],
+            "snippet": "nt_secret): logger.error(f\"Attempt to use unconfigured {provider_name} OAuth integration\") raise HTTPException(",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/external/v1/integrations.py",
+            "lines": [
+              270,
+              270
+            ],
+            "snippet": "ption as e: logger.warning(f\"Failed to load blocks: {e}\") from backend.sdk.registry import AutoRegistry providers = []",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/external/v1/integrations.py",
+            "lines": [
+              414,
+              414
+            ],
+            "snippet": "alid_state: logger.warning(f\"Invalid or expired state token for provider {provider}\") raise HTTPException( statu",
+            "rule": "log_at_tool_boundary"
           }
         ]
       },
       "oversight_hooks": {
         "signal": "oversight_hooks",
         "fired": true,
-        "strength": 0.81655707406329,
+        "strength": 0.8,
         "evidence": [
           {
             "file": "autogpt_platform/backend/backend/executor/manager.py",
@@ -735,15 +726,6 @@
               75
             ],
             "snippet": ") raise SystemExit(0) async def prompt_permission( self, cmd: str, args_str: str, args: dict[str, Any] ) -> App",
-            "rule": "kill_switch"
-          },
-          {
-            "file": "docs/content/challenges/building_challenges.md",
-            "lines": [
-              108,
-              108
-            ],
-            "snippet": "contextlib.suppress(SystemExit): run_interaction_loop(kubernetes_agent, None) # here we load the output file file_path = st",
             "rule": "kill_switch"
           }
         ]
@@ -875,78 +857,6 @@
         "fired": true,
         "strength": 1,
         "evidence": [
-          {
-            "file": ".claude/skills/orchestrate/SKILL.md",
-            "lines": [
-              677,
-              677
-            ],
-            "snippet": "our | Wait until `X-RateLimit-Reset` timestamp | **Prevention:** Agents must add `sleep 3` between individual thread reply API calls. For >",
-            "rule": "rate_limit_usage"
-          },
-          {
-            "file": ".claude/skills/pr-address/SKILL.md",
-            "lines": [
-              345,
-              345
-            ],
-            "snippet": "ser | Wait until `X-RateLimit-Reset` header timestamp | | `GraphQL: API rate limit already exceeded for user ID ...` | 403 on stderr, `gh` e",
-            "rule": "rate_limit_usage"
-          },
-          {
-            "file": ".claude/skills/pr-address/SKILL.md",
-            "lines": [
-              355,
-              355
-            ],
-            "snippet": "n): ```bash gh api rate_limit --jq '.resources.graphql' # { \"limit\": 5000, \"used\": 5000, \"remaining\": 0, \"reset\": 1729...} # Human-readab",
-            "rule": "rate_limit_usage"
-          },
-          {
-            "file": ".claude/skills/pr-address/SKILL.md",
-            "lines": [
-              357,
-              357
-            ],
-            "snippet": "dable reset: gh api rate_limit --jq '.resources.graphql.reset' | xargs -I{} date -r {} ``` Retry when `remaining > 0`. If you need to proce",
-            "rule": "rate_limit_usage"
-          },
-          {
-            "file": ".claude/skills/pr-address/SKILL.md",
-            "lines": [
-              366,
-              366
-            ],
-            "snippet": "`), and the `gh api rate_limit` probe. - **Degraded:** inline thread list — fall back to flat `/pulls/{N}/comments` REST, which drops thread",
-            "rule": "rate_limit_usage"
-          },
-          {
-            "file": ".claude/skills/pr-polish/SKILL.md",
-            "lines": [
-              231,
-              231
-            ],
-            "snippet": "e PRs. When `gh api rate_limit --jq .resources.graphql.remaining` drops below ~200, back off: - Fall back to REST for reads (flat `/pulls/{",
-            "rule": "rate_limit_usage"
-          },
-          {
-            "file": ".claude/skills/pr-test/SKILL.md",
-            "lines": [
-              61,
-              61
-            ],
-            "snippet": "INER redis-cli SET \"rate_limit:user:test@test.com\" 99 EX 3600 # Example: Check current value docker exec $REDIS_CONTAINER redis-cli GE",
-            "rule": "rate_limit_usage"
-          },
-          {
-            "file": ".claude/skills/pr-test/SKILL.md",
-            "lines": [
-              63,
-              63
-            ],
-            "snippet": "INER redis-cli GET \"rate_limit:user:test@test.com\" ``` 2. **Use API calls to check before/after state:** ```bash # BEFORE: Record",
-            "rule": "rate_limit_usage"
-          },
           {
             "file": "autogpt_platform/backend/backend/api/conftest.py",
             "lines": [
@@ -1099,6 +1009,78 @@
             ],
             "snippet": ".api.features.admin.rate_limit_admin_routes\" _TARGET_EMAIL = \"target@example.com\" @pytest.fixture(autouse=True) def setup_app_admin_auth(",
             "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/chat/routes.py",
+            "lines": [
+              47,
+              47
+            ],
+            "snippet": "rom backend.copilot.rate_limit import ( CoPilotUsagePublic, RateLimitExceeded, RateLimitUnavailable, acquire_reset_lock,",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/chat/routes.py",
+            "lines": [
+              49,
+              49
+            ],
+            "snippet": "lotUsagePublic, RateLimitExceeded, RateLimitUnavailable, acquire_reset_lock, check_rate_limit, enforce_payment_paywall,",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/chat/routes.py",
+            "lines": [
+              50,
+              50
+            ],
+            "snippet": "eLimitExceeded, RateLimitUnavailable, acquire_reset_lock, check_rate_limit, enforce_payment_paywall, get_daily_reset_cou",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/chat/routes.py",
+            "lines": [
+              687,
+              687
+            ],
+            "snippet": "ekly_limit, rate_limit_reset_cost=config.rate_limit_reset_cost, tier=tier, ) return CoPilotUsagePublic.from_status(s",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/chat/routes.py",
+            "lines": [
+              687,
+              687
+            ],
+            "snippet": "t_reset_cost=config.rate_limit_reset_cost, tier=tier, ) return CoPilotUsagePublic.from_status(status) class RateLimitReset",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/chat/routes_test.py",
+            "lines": [
+              13,
+              13
+            ],
+            "snippet": "rom backend.copilot.rate_limit import SubscriptionTier from backend.util.exceptions import NotFoundError app = fastapi.FastAPI() app.includ",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/chat/routes_test.py",
+            "lines": [
+              301,
+              301
+            ],
+            "snippet": "k_rate_limit raises RateLimitExceeded for daily limit the endpoint returns 429.\"\"\" from backend.copilot.rate_limit import RateLimitExcee",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/chat/routes_test.py",
+            "lines": [
+              302,
+              302
+            ],
+            "snippet": "rom backend.copilot.rate_limit import RateLimitExceeded _mock_stream_internals(mocker) # Ensure the rate-limit branch is entered by",
+            "rule": "rate_limit_usage"
           }
         ]
       },
@@ -1121,24 +1103,6 @@
             ],
             "snippet": "\"**/*.pyc\", \"**/playwright-report/**\", \"**/logs/**\", \"**/site/**\" ], \"worktreePathTemplate\": \"$BASE_PATH.worktree\", \"postC",
             "rule": "scraping_pattern"
-          },
-          {
-            "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
-            "lines": [
-              901,
-              901
-            ],
-            "snippet": "eEffect(() => { fetch('/api/users') .then(r => r.json()) .then(setUsers) }, []) } ``` **Correct: multiple instances share",
-            "rule": "http_external_io"
-          },
-          {
-            "file": ".claude/skills/vercel-react-best-practices/rules/client-swr-dedup.md",
-            "lines": [
-              18,
-              18
-            ],
-            "snippet": "eEffect(() => { fetch('/api/users') .then(r => r.json()) .then(setUsers) }, []) } ``` **Correct (multiple instances share",
-            "rule": "http_external_io"
           },
           {
             "file": ".github/workflows/classic-forge-ci.yml",
@@ -1337,6 +1301,24 @@
             ],
             "snippet": "sponse = await self.requests.post( endpoint, headers=self._get_headers(), json=payload, )",
             "rule": "http_external_io"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/mcp/client.py",
+            "lines": [
+              136,
+              136
+            ],
+            "snippet": "response = await requests.post(self.server_url, json=payload) # Capture session ID from response (MCP Streamable HTTP transport)",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/mcp/client.py",
+            "lines": [
+              179,
+              179
+            ],
+            "snippet": ") await requests.post(self.server_url, json=notification) async def discover_auth(self) -> dict[str, Any] | None: \"",
+            "rule": "http_external_io"
           }
         ]
       },
@@ -1345,114 +1327,6 @@
         "fired": true,
         "strength": 1,
         "evidence": [
-          {
-            "file": ".claude/skills/pr-test/SKILL.md",
-            "lines": [
-              130,
-              130
-            ],
-            "snippet": "esults manually): - Email: `test@test.com` - Password: `testtest123` ## Step 1: Understand the PR Before testing, understand what changed:",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": ".claude/skills/pr-test/SKILL.md",
-            "lines": [
-              484,
-              484
-            ],
-            "snippet": "ion/json' \\ -d '{\"email\":\"test@test.com\",\"password\":\"testtest123\"}') # If \"Database error finding user\", restart supabase-auth and retry",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": ".claude/skills/pr-test/SKILL.md",
-            "lines": [
-              492,
-              492
-            ],
-            "snippet": "n/json' \\ -d '{\"email\":\"test@test.com\",\"password\":\"testtest123\"}' fi # Get auth token TOKEN=$(curl -s -X POST 'http://localhost:8000/au",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": ".claude/skills/pr-test/SKILL.md",
-            "lines": [
-              499,
-              499
-            ],
-            "snippet": "ion/json' \\ -d '{\"email\":\"test@test.com\",\"password\":\"testtest123\"}' | jq -r '.access_token // \"\"') ``` **Use this token for ALL API calls",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
-            "lines": [
-              1922,
-              1922
-            ],
-            "snippet": "rs) { if (!user.email) { hasError = true errorMessage = 'Email required' } if (!user.name) { hasError = true",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
-            "lines": [
-              1924,
-              1924
-            ],
-            "snippet": "errorMessage = 'Email required' } if (!user.name) { hasError = true errorMessage = 'Name required' } // Cont",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
-            "lines": [
-              1942,
-              1942
-            ],
-            "snippet": "rs) { if (!user.email) { return { valid: false, error: 'Email required' } } if (!user.name) { return { valid: false,",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
-            "lines": [
-              1943,
-              1943
-            ],
-            "snippet": "lid: false, error: 'Email required' } } if (!user.name) { return { valid: false, error: 'Name required' } } } return",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": ".claude/skills/vercel-react-best-practices/rules/js-early-exit.md",
-            "lines": [
-              20,
-              20
-            ],
-            "snippet": "rs) { if (!user.email) { hasError = true errorMessage = 'Email required' } if (!user.name) { hasError = true",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": ".claude/skills/vercel-react-best-practices/rules/js-early-exit.md",
-            "lines": [
-              22,
-              22
-            ],
-            "snippet": "errorMessage = 'Email required' } if (!user.name) { hasError = true errorMessage = 'Name required' } // Cont",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": ".claude/skills/vercel-react-best-practices/rules/js-early-exit.md",
-            "lines": [
-              40,
-              40
-            ],
-            "snippet": "rs) { if (!user.email) { return { valid: false, error: 'Email required' } } if (!user.name) { return { valid: false,",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": ".claude/skills/vercel-react-best-practices/rules/js-early-exit.md",
-            "lines": [
-              41,
-              41
-            ],
-            "snippet": "lid: false, error: 'Email required' } } if (!user.name) { return { valid: false, error: 'Name required' } } } return",
-            "rule": "pii_keywords"
-          },
           {
             "file": ".github/scripts/detect_overlaps.py",
             "lines": [
@@ -1508,15 +1382,6 @@
             "rule": "pii_keywords"
           },
           {
-            "file": "CODE_OF_CONDUCT.md",
-            "lines": [
-              29,
-              29
-            ],
-            "snippet": "ject maintainers by email or other appropriate means. The maintainers will investigate and take appropriate action, which may include warnin",
-            "rule": "pii_keywords"
-          },
-          {
             "file": "autogpt_platform/analytics/queries/platform_cost_log.sql",
             "lines": [
               10,
@@ -1569,13 +1434,130 @@
             ],
             "snippet": "{authenticated_user.email}) \" f\"acting as user {impersonate_header} for requesting {request.method} {request.url}\" )",
             "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/dependencies_test.py",
+            "lines": [
+              52,
+              52
+            ],
+            "snippet": "\", \"role\": \"user\", \"email\": \"user@example.com\"} # Mock get_jwt_payload to return our test payload mocker.patch(",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/dependencies_test.py",
+            "lines": [
+              69,
+              69
+            ],
+            "snippet": "dmin\", \"email\": \"admin@example.com\", } mocker.patch( \"autogpt_libs.auth.dependencies.get_jwt_payloa",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/dependencies_test.py",
+            "lines": [
+              82,
+              82
+            ],
+            "snippet": "= {\"role\": \"user\", \"email\": \"user@example.com\"} with pytest.raises(HTTPException) as exc_info: await requires_user(jwt_",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/dependencies_test.py",
+            "lines": [
+              104,
+              104
+            ],
+            "snippet": "dmin\", \"email\": \"admin@example.com\", } mocker.patch( \"autogpt_libs.auth.dependencies.get_jwt_payloa",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/dependencies_test.py",
+            "lines": [
+              117,
+              117
+            ],
+            "snippet": "\", \"role\": \"user\", \"email\": \"user@example.com\"} with pytest.raises(HTTPException) as exc_info: await requires_admin_use",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/jwt_utils_test.py",
+            "lines": [
+              24,
+              24
+            ],
+            "snippet": "uthenticated\", \"email\": \"test@example.com\", } TEST_ADMIN_PAYLOAD = { \"sub\": \"admin-user-id\", \"role\": \"admin\", \"aud\": \"authen",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/jwt_utils_test.py",
+            "lines": [
+              30,
+              30
+            ],
+            "snippet": "uthenticated\", \"email\": \"admin@example.com\", } @pytest.fixture(autouse=True) def mock_config(mocker: MockerFixture): mocker.patch.",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/jwt_utils_test.py",
+            "lines": [
+              155,
+              155
+            ],
+            "snippet": "er\" assert user.email == \"test@example.com\" def test_verify_user_with_admin(): \"\"\"Test verifying an admin user.\"\"\" user = jwt_",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/jwt_utils_test.py",
+            "lines": [
+              184,
+              184
+            ],
+            "snippet": "= {\"role\": \"user\", \"email\": \"test@example.com\"} with pytest.raises(HTTPException) as exc_info: jwt_utils.verify_user(invalid_pay",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/jwt_utils_test.py",
+            "lines": [
+              268,
+              268
+            ],
+            "snippet": "nticated\", \"email\": \"test+special@example.com\", } user = jwt_utils.verify_user(payload, admin_only=True) assert \"special",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/models.py",
+            "lines": [
+              11,
+              11
+            ],
+            "snippet": "user_id: str email: str phone_number: str role: str @classmethod def from_payload(cls, payload): return cls(",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/models.py",
+            "lines": [
+              12,
+              12
+            ],
+            "snippet": "email: str phone_number: str role: str @classmethod def from_payload(cls, payload): return cls( us",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/models.py",
+            "lines": [
+              19,
+              19
+            ],
+            "snippet": "\"sub\"], email=payload.get(\"email\", \"\"), phone_number=payload.get(\"phone\", \"\"), role=payload[\"role\"],",
+            "rule": "pii_keywords"
           }
         ]
       },
       "bio_health_signals": {
         "signal": "bio_health_signals",
         "fired": true,
-        "strength": 0.5204119982655925,
+        "strength": 0.4,
         "evidence": [
           {
             "file": "autogpt_platform/frontend/src/app/(platform)/copilot/styleguide/page.tsx",
@@ -1585,15 +1567,6 @@
             ],
             "snippet": "ears to 3 years*\\n- Patient outcomes improved across `87%` of pilot programs\\n\\n> AI is not replacing doctors — it's augmenting their capabi",
             "rule": "health_terms"
-          },
-          {
-            "file": "docs/integrations/block-integrations/github/ci.md",
-            "lines": [
-              46,
-              46
-            ],
-            "snippet": "deploying. **Error Diagnosis**: Search CI logs for specific error patterns to quickly identify why builds are failing. **Automated PR Vali",
-            "rule": "health_terms"
           }
         ]
       },
@@ -1602,51 +1575,6 @@
         "fired": true,
         "strength": 1,
         "evidence": [
-          {
-            "file": ".claude/skills/orchestrate/SKILL.md",
-            "lines": [
-              78,
-              78
-            ],
-            "snippet": "e to recycle. **To resume a done or crashed session:** ```bash # Resume by stored session ID (preferred — exact session, full context) clau",
-            "rule": "employment_terms"
-          },
-          {
-            "file": ".claude/skills/orchestrate/SKILL.md",
-            "lines": [
-              80,
-              80
-            ],
-            "snippet": "ession:** ```bash # Resume by stored session ID (preferred — exact session, full context) claude --resume SESSION_ID --permission-mode bypas",
-            "rule": "employment_terms"
-          },
-          {
-            "file": ".claude/skills/orchestrate/SKILL.md",
-            "lines": [
-              81,
-              81
-            ],
-            "snippet": "l context) claude --resume SESSION_ID --permission-mode bypassPermissions # Or resume most recent session in that worktree directory cd /pa",
-            "rule": "employment_terms"
-          },
-          {
-            "file": ".claude/skills/orchestrate/SKILL.md",
-            "lines": [
-              83,
-              83
-            ],
-            "snippet": "ssPermissions # Or resume most recent session in that worktree directory cd /path/to/worktree && claude --continue --permission-mode bypass",
-            "rule": "employment_terms"
-          },
-          {
-            "file": ".claude/skills/orchestrate/SKILL.md",
-            "lines": [
-              137,
-              137
-            ],
-            "snippet": "use with `claude --resume UUID` to restore exact session context after a crash or window close. - `last_rebriefed_at` — Unix timestamp of l",
-            "rule": "employment_terms"
-          },
           {
             "file": ".claude/skills/orchestrate/scripts/run-loop.sh",
             "lines": [
@@ -1699,33 +1627,6 @@
               90
             ],
             "snippet": "crash: # claude --resume SESSION_ID --permission-mode bypassPermissions tmux send-keys -t \"$WINDOW\" \"cd '${WORKTREE_PATH}' && claude --per",
-            "rule": "employment_terms"
-          },
-          {
-            "file": ".claude/skills/pr-address/SKILL.md",
-            "lines": [
-              399,
-              399
-            ],
-            "snippet": "ts are stricter) 3. Resume with `sleep 3` between each call 4. If 403 persists after 2 min, wait another 2 min before retrying Never batch",
-            "rule": "employment_terms"
-          },
-          {
-            "file": ".claude/skills/pr-test/SKILL.md",
-            "lines": [
-              218,
-              218
-            ],
-            "snippet": "t until released or resume after $((STALE_AFTER_MIN - AGE_MIN))m.\" exit 1 fi fi cat > \"$LOCK\" <<EOF holder=pr-${PR_NUMBER}-e2e pid=se",
-            "rule": "employment_terms"
-          },
-          {
-            "file": "AGENTS.md",
-            "lines": [
-              69,
-              69
-            ],
-            "snippet": "ven codex/open-1668-resume-dropped-runs",
             "rule": "employment_terms"
           },
           {
@@ -1825,6 +1726,78 @@
               674
             ],
             "snippet": "xecutor service resume the session without manual intervention. Skipped for dry-run sessions (no real consumers listen to the queue",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/claude_code.py",
+            "lines": [
+              147,
+              147
+            ],
+            "snippet": "\"Session ID to resume a previous conversation. \" \"Leave empty for a new conversation. \" \"Use the sessio",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/claude_code.py",
+            "lines": [
+              388,
+              388
+            ],
+            "snippet": "f\"claude --resume {safe_session_id} {base_flags}\" ) else: # New session with specific I",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/nvidia/deepfake.py",
+            "lines": [
+              52,
+              52
+            ],
+            "snippet": "i.api.nvidia.com/v1/cv/hive/deepfake-image-detection\" headers = { \"accept\": \"application/json\", \"content-ty",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/orchestrator.py",
+            "lines": [
+              347,
+              347
+            ],
+            "snippet": "name]}\" candidate = f\"{name[: 64 - len(suffix)]}{suffix}\" if candidate not in taken: break",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/orchestrator.py",
+            "lines": [
+              348,
+              348
+            ],
+            "snippet": "ix}\" if candidate not in taken: break counters[name] += 1 func[\"name\"] = candidate",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/orchestrator.py",
+            "lines": [
+              352,
+              352
+            ],
+            "snippet": "func[\"name\"] = candidate taken.add(candidate) if defaults and isinstance(defaults, dict): parts: list[str]",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/orchestrator.py",
+            "lines": [
+              353,
+              353
+            ],
+            "snippet": "e taken.add(candidate) if defaults and isinstance(defaults, dict): parts: list[str] = [] for k, v i",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/copilot/anthropic_rate_card.py",
+            "lines": [
+              109,
+              109
+            ],
+            "snippet": "oad_rates() for candidate in (model, f\"anthropic/{model}\"): entry = rates.get(candidate) if isinstance(entry, dict):",
             "rule": "employment_terms"
           }
         ]
@@ -2700,13 +2673,13 @@
           "rule": "scraping_pattern"
         },
         {
-          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "file": ".github/workflows/classic-forge-ci.yml",
           "lines": [
-            901,
-            901
+            63,
+            63
           ],
-          "snippet": "eEffect(() => { fetch('/api/users') .then(r => r.json()) .then(setUsers) }, []) } ``` **Correct: multiple instances share",
-          "rule": "http_external_io"
+          "snippet": "run: poetry run playwright install chromium - name: Run pytest with coverage run: | poetry run pytest -vv \\",
+          "rule": "scraping_pattern"
         }
       ],
       "rules": [
@@ -2780,42 +2753,6 @@
       "rawScore": 0.5800000000000001,
       "evidence": [
         {
-          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
-          "lines": [
-            1034,
-            1034
-          ],
-          "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct: re-runs only when id changes** ```tsx useEffect(() => { console.log(u",
-          "rule": "log_at_tool_boundary"
-        },
-        {
-          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
-          "lines": [
-            1042,
-            1042
-          ],
-          "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
-          "rule": "log_at_tool_boundary"
-        },
-        {
-          "file": ".claude/skills/vercel-react-best-practices/rules/rerender-dependencies.md",
-          "lines": [
-            16,
-            16
-          ],
-          "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct (re-runs only when id changes):** ```tsx useEffect(() => { console.log",
-          "rule": "log_at_tool_boundary"
-        },
-        {
-          "file": ".claude/skills/vercel-react-best-practices/rules/rerender-dependencies.md",
-          "lines": [
-            24,
-            24
-          ],
-          "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
-          "rule": "log_at_tool_boundary"
-        },
-        {
           "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
           "lines": [
             40,
@@ -2834,21 +2771,57 @@
           "rule": "log_at_tool_boundary"
         },
         {
-          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
           "lines": [
-            1034,
-            1034
+            65,
+            65
           ],
-          "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct: re-runs only when id changes** ```tsx useEffect(() => { console.log(u",
+          "snippet": "(\"HS\"): logger.warning( f\"⚠️ JWT_SIGN_ALGORITHM is set to '{self.JWT_ALGORITHM}', \" \"a symmetric",
           "rule": "log_at_tool_boundary"
         },
         {
-          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/dependencies.py",
           "lines": [
-            1042,
-            1042
+            51,
+            51
           ],
-          "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
+          "snippet": "ption as e: logger.debug(f\"Auth token validation failed (anonymous access): {e}\") return None async def requires_user(jwt_",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/dependencies.py",
+          "lines": [
+            110,
+            110
+          ],
+          "snippet": "audit trail logger.info( f\"Admin impersonation: {authenticated_user.user_id} ({authenticated_user.email}) \"",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/jwt_utils.py",
+          "lines": [
+            39,
+            39
+          ],
+          "snippet": "redentials) logger.debug(\"Token decoded successfully\") return payload except ValueError as e: raise HTTPExceptio",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
+          "lines": [
+            1,
+            1
+          ],
+          "snippet": "import logging import os from jwt.algorithms import get_default_algorithms, has_crypto logger = logging.getLogger(__na",
+          "rule": "import_logging"
+        },
+        {
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
+          "lines": [
+            40,
+            40
+          ],
+          "snippet": ") < 32: logger.warning( \"⚠️ JWT_VERIFY_KEY appears weak (less than 32 characters). \" \"Consider u",
           "rule": "log_at_tool_boundary"
         }
       ],
@@ -2885,42 +2858,6 @@
       "rawScore": 0.675,
       "evidence": [
         {
-          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
-          "lines": [
-            1034,
-            1034
-          ],
-          "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct: re-runs only when id changes** ```tsx useEffect(() => { console.log(u",
-          "rule": "log_at_tool_boundary"
-        },
-        {
-          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
-          "lines": [
-            1042,
-            1042
-          ],
-          "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
-          "rule": "log_at_tool_boundary"
-        },
-        {
-          "file": ".claude/skills/vercel-react-best-practices/rules/rerender-dependencies.md",
-          "lines": [
-            16,
-            16
-          ],
-          "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct (re-runs only when id changes):** ```tsx useEffect(() => { console.log",
-          "rule": "log_at_tool_boundary"
-        },
-        {
-          "file": ".claude/skills/vercel-react-best-practices/rules/rerender-dependencies.md",
-          "lines": [
-            24,
-            24
-          ],
-          "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
-          "rule": "log_at_tool_boundary"
-        },
-        {
           "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
           "lines": [
             1,
@@ -2939,21 +2876,57 @@
           "rule": "log_at_tool_boundary"
         },
         {
-          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
           "lines": [
-            1034,
-            1034
+            48,
+            48
           ],
-          "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct: re-runs only when id changes** ```tsx useEffect(() => { console.log(u",
+          "snippet": "crypto: logger.warning( \"⚠️ Asymmetric JWT verification is not available \" \"because the 'cryptog",
           "rule": "log_at_tool_boundary"
         },
         {
-          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
           "lines": [
-            1042,
-            1042
+            65,
+            65
           ],
-          "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
+          "snippet": "(\"HS\"): logger.warning( f\"⚠️ JWT_SIGN_ALGORITHM is set to '{self.JWT_ALGORITHM}', \" \"a symmetric",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config_test.py",
+          "lines": [
+            6,
+            6
+          ],
+          "snippet": "token forgery. \"\"\" import logging import os import pytest from pytest_mock import MockerFixture from autogpt_libs.auth.config import Auth",
+          "rule": "import_logging"
+        },
+        {
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/dependencies.py",
+          "lines": [
+            7,
+            7
+          ],
+          "snippet": "e definitions. \"\"\" import logging import fastapi from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer from .jwt_utils im",
+          "rule": "import_logging"
+        },
+        {
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
+          "lines": [
+            1,
+            1
+          ],
+          "snippet": "import logging import os from jwt.algorithms import get_default_algorithms, has_crypto logger = logging.getLogger(__na",
+          "rule": "import_logging"
+        },
+        {
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
+          "lines": [
+            40,
+            40
+          ],
+          "snippet": ") < 32: logger.warning( \"⚠️ JWT_VERIFY_KEY appears weak (less than 32 characters). \" \"Consider u",
           "rule": "log_at_tool_boundary"
         }
       ],
@@ -3065,7 +3038,7 @@
       "title": "Interrupt / stop function reachable by overseer",
       "verdict": "pass",
       "score": 4,
-      "rawScore": 0.9449671222189869,
+      "rawScore": 0.94,
       "evidence": [
         {
           "file": "autogpt_platform/backend/backend/executor/manager.py",
@@ -3157,12 +3130,12 @@
         },
         {
           "rule": "graceful_shutdown_handler",
-          "matched": 0.81655707406329,
+          "matched": 0.8,
           "weight": 0.3
         }
       ],
       "rationale": "Composite raw score 0.94 (2/2 rules matched).",
-      "confidence": 0.655032877781013,
+      "confidence": 0.66,
       "needsLlmJudge": false,
       "verified": true,
       "verifyMethod": "deterministic-only"
@@ -3391,57 +3364,57 @@
       "rawScore": 0.2,
       "evidence": [
         {
-          "file": ".claude/skills/orchestrate/SKILL.md",
+          "file": "autogpt_platform/backend/backend/api/conftest.py",
           "lines": [
-            677,
-            677
+            55,
+            55
           ],
-          "snippet": "our | Wait until `X-RateLimit-Reset` timestamp | **Prevention:** Agents must add `sleep 3` between individual thread reply API calls. For >",
+          "snippet": "ed``) live in ``rate_limit_test.py`` and patch ``_fetch_user_tier`` directly, bypassing this helper. \"\"\" # Patch BOTH bindin",
           "rule": "rate_limit_usage"
         },
         {
-          "file": ".claude/skills/pr-address/SKILL.md",
+          "file": "autogpt_platform/backend/backend/api/conftest.py",
           "lines": [
-            345,
-            345
+            58,
+            58
           ],
-          "snippet": "ser | Wait until `X-RateLimit-Reset` header timestamp | | `GraphQL: API rate limit already exceeded for user ID ...` | 403 on stderr, `gh` e",
+          "snippet": "ch BOTH bindings: ``rate_limit.is_user_paywalled`` covers the # call inside ``enforce_payment_paywall`` (HTTP route dep); the # boun",
           "rule": "rate_limit_usage"
         },
         {
-          "file": ".claude/skills/pr-address/SKILL.md",
+          "file": "autogpt_platform/backend/backend/api/conftest.py",
           "lines": [
-            355,
-            355
+            64,
+            64
           ],
-          "snippet": "n): ```bash gh api rate_limit --jq '.resources.graphql' # { \"limit\": 5000, \"used\": 5000, \"remaining\": 0, \"reset\": 1729...} # Human-readab",
+          "snippet": "rom backend.copilot.rate_limit import is_user_paywalled`` at # import time. paywall_off = mocker.AsyncMock(return_value=False) m",
           "rule": "rate_limit_usage"
         },
         {
-          "file": ".claude/skills/pr-address/SKILL.md",
+          "file": "autogpt_platform/backend/backend/api/conftest.py",
           "lines": [
-            357,
-            357
+            67,
+            67
           ],
-          "snippet": "dable reset: gh api rate_limit --jq '.resources.graphql.reset' | xargs -I{} date -r {} ``` Retry when `remaining > 0`. If you need to proce",
+          "snippet": "ch(\"backend.copilot.rate_limit.is_user_paywalled\", new=paywall_off) mocker.patch(\"backend.executor.utils.is_user_paywalled\", new=paywall",
           "rule": "rate_limit_usage"
         },
         {
-          "file": ".claude/skills/pr-address/SKILL.md",
+          "file": "autogpt_platform/backend/backend/api/external/fastapi_app.py",
           "lines": [
-            366,
-            366
+            6,
+            6
           ],
-          "snippet": "`), and the `gh api rate_limit` probe. - **Degraded:** inline thread list — fall back to flat `/pulls/{N}/comments` REST, which drops thread",
+          "snippet": "rom backend.copilot.rate_limit import UserPaywalledError from backend.monitoring.instrumentation import instrument_fastapi from .v1.routes",
           "rule": "rate_limit_usage"
         },
         {
-          "file": ".claude/skills/pr-polish/SKILL.md",
+          "file": "autogpt_platform/backend/backend/api/external/v1/routes.py",
           "lines": [
-            231,
-            231
+            16,
+            16
           ],
-          "snippet": "e PRs. When `gh api rate_limit --jq .resources.graphql.remaining` drops below ~200, back off: - Fall back to REST for reads (flat `/pulls/{",
+          "snippet": "rom backend.copilot.rate_limit import UserPaywalledError, enforce_payment_paywall from backend.data import execution as execution_db from ba",
           "rule": "rate_limit_usage"
         }
       ],
@@ -3483,21 +3456,21 @@
       "rawScore": 0.5,
       "evidence": [
         {
-          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
           "lines": [
-            1034,
-            1034
+            1,
+            1
           ],
-          "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct: re-runs only when id changes** ```tsx useEffect(() => { console.log(u",
-          "rule": "log_at_tool_boundary"
+          "snippet": "import logging import os from jwt.algorithms import get_default_algorithms, has_crypto logger = logging.getLogger(__na",
+          "rule": "import_logging"
         },
         {
-          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
           "lines": [
-            1042,
-            1042
+            40,
+            40
           ],
-          "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
+          "snippet": ") < 32: logger.warning( \"⚠️ JWT_VERIFY_KEY appears weak (less than 32 characters). \" \"Consider u",
           "rule": "log_at_tool_boundary"
         }
       ],
@@ -3897,57 +3870,57 @@
       "rawScore": 0.2,
       "evidence": [
         {
-          "file": ".claude/skills/orchestrate/SKILL.md",
+          "file": "autogpt_platform/backend/backend/api/conftest.py",
           "lines": [
-            677,
-            677
+            55,
+            55
           ],
-          "snippet": "our | Wait until `X-RateLimit-Reset` timestamp | **Prevention:** Agents must add `sleep 3` between individual thread reply API calls. For >",
+          "snippet": "ed``) live in ``rate_limit_test.py`` and patch ``_fetch_user_tier`` directly, bypassing this helper. \"\"\" # Patch BOTH bindin",
           "rule": "rate_limit_usage"
         },
         {
-          "file": ".claude/skills/pr-address/SKILL.md",
+          "file": "autogpt_platform/backend/backend/api/conftest.py",
           "lines": [
-            345,
-            345
+            58,
+            58
           ],
-          "snippet": "ser | Wait until `X-RateLimit-Reset` header timestamp | | `GraphQL: API rate limit already exceeded for user ID ...` | 403 on stderr, `gh` e",
+          "snippet": "ch BOTH bindings: ``rate_limit.is_user_paywalled`` covers the # call inside ``enforce_payment_paywall`` (HTTP route dep); the # boun",
           "rule": "rate_limit_usage"
         },
         {
-          "file": ".claude/skills/pr-address/SKILL.md",
+          "file": "autogpt_platform/backend/backend/api/conftest.py",
           "lines": [
-            355,
-            355
+            64,
+            64
           ],
-          "snippet": "n): ```bash gh api rate_limit --jq '.resources.graphql' # { \"limit\": 5000, \"used\": 5000, \"remaining\": 0, \"reset\": 1729...} # Human-readab",
+          "snippet": "rom backend.copilot.rate_limit import is_user_paywalled`` at # import time. paywall_off = mocker.AsyncMock(return_value=False) m",
           "rule": "rate_limit_usage"
         },
         {
-          "file": ".claude/skills/pr-address/SKILL.md",
+          "file": "autogpt_platform/backend/backend/api/conftest.py",
           "lines": [
-            357,
-            357
+            67,
+            67
           ],
-          "snippet": "dable reset: gh api rate_limit --jq '.resources.graphql.reset' | xargs -I{} date -r {} ``` Retry when `remaining > 0`. If you need to proce",
+          "snippet": "ch(\"backend.copilot.rate_limit.is_user_paywalled\", new=paywall_off) mocker.patch(\"backend.executor.utils.is_user_paywalled\", new=paywall",
           "rule": "rate_limit_usage"
         },
         {
-          "file": ".claude/skills/pr-address/SKILL.md",
+          "file": "autogpt_platform/backend/backend/api/external/fastapi_app.py",
           "lines": [
-            366,
-            366
+            6,
+            6
           ],
-          "snippet": "`), and the `gh api rate_limit` probe. - **Degraded:** inline thread list — fall back to flat `/pulls/{N}/comments` REST, which drops thread",
+          "snippet": "rom backend.copilot.rate_limit import UserPaywalledError from backend.monitoring.instrumentation import instrument_fastapi from .v1.routes",
           "rule": "rate_limit_usage"
         },
         {
-          "file": ".claude/skills/pr-polish/SKILL.md",
+          "file": "autogpt_platform/backend/backend/api/external/v1/routes.py",
           "lines": [
-            231,
-            231
+            16,
+            16
           ],
-          "snippet": "e PRs. When `gh api rate_limit --jq .resources.graphql.remaining` drops below ~200, back off: - Fall back to REST for reads (flat `/pulls/{",
+          "snippet": "rom backend.copilot.rate_limit import UserPaywalledError, enforce_payment_paywall from backend.data import execution as execution_db from ba",
           "rule": "rate_limit_usage"
         }
       ],
@@ -4221,15 +4194,15 @@
       }
     ]
   },
-  "bundleHash": "7723d0bf1d28797a0f071222023e0c666fd12e42ed12d00def5be0d50ffcdfbc",
+  "bundleHash": "3bfb5dbc7d51f847423bf28b40806ece68756e8a4bea796c2ee367f79f54a94e",
   "checkerVersion": "v0.1.0",
   "regulationsVersions": {
     "eu-ai-act-2024-08": "db2bbc2958ff931f2ab69230b8470dddf309c34605c83e5141a208fd22051fe8",
     "nist-ai-rmf-1.0": "1f9bd8ceef4a6da5d776fca10cbdbb829c1b8f5e29d49131640e21aae12ce896"
   },
-  "startedAt": "2026-05-16T03:29:55.960Z",
-  "completedAt": "2026-05-16T03:30:06.126Z",
-  "durationMs": 10166,
+  "startedAt": "2026-05-16T03:46:24.094Z",
+  "completedAt": "2026-05-16T03:46:33.773Z",
+  "durationMs": 9679,
   "externalControls": [
     {
       "clauseId": "eu-ai-act/art-5/1h-realtime-rbi",

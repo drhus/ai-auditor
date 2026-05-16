@@ -1,12 +1,12 @@
 {
-  "auditId": "aud_01KRQDAP0FJXNXNHD4AQSK",
+  "auditId": "aud_01KRQE8V0V89ZVF23TF8D7",
   "source": {
     "kind": "repo",
     "owner": "OpenInterpreter",
     "repo": "open-interpreter"
   },
   "input": {
-    "auditId": "aud_01KRQDAP0FJXNXNHD4AQSK",
+    "auditId": "aud_01KRQE8V0V89ZVF23TF8D7",
     "source": {
       "kind": "repo",
       "owner": "OpenInterpreter",
@@ -24,7 +24,7 @@
     "repo": "open-interpreter",
     "ref": "9902a48f19ff6cf82a4705a52594150b250b73a3",
     "commitSha": "9902a48f19ff6cf82a4705a52594150b250b73a3",
-    "worktreeDir": "/tmp/ai-auditor/aud_01KRQDAP0FJXNXNHD4AQSK",
+    "worktreeDir": "/tmp/ai-auditor/aud_01KRQE8V0V89ZVF23TF8D7",
     "fileCount": 276,
     "totalBytes": 11730203,
     "languages": {
@@ -61,14 +61,14 @@
         "pyproject.toml"
       ]
     },
-    "fetchedAt": "2026-05-16T03:29:55.806Z"
+    "fetchedAt": "2026-05-16T03:46:23.946Z"
   },
   "recon": {
     "signals": {
       "agent_framework": {
         "signal": "agent_framework",
         "fired": true,
-        "strength": 0.640823996531185,
+        "strength": 0.590848501887865,
         "evidence": [
           {
             "file": "pyproject.toml",
@@ -79,15 +79,6 @@
             "file": "pyproject.toml",
             "rule": "manifest_framework_dep",
             "detail": "HuggingFace Transformers"
-          },
-          {
-            "file": "docs/server/usage.mdx",
-            "lines": [
-              202,
-              202
-            ],
-            "snippet": "library response = openai.ChatCompletion.create( model=\"gpt-3.5-turbo\", # This model name is ignored, but required messages=[",
-            "rule": "openai_sdk_use"
           },
           {
             "file": "interpreter/computer_use/loop.py",
@@ -363,17 +354,8 @@
       "logging_hooks": {
         "signal": "logging_hooks",
         "fired": true,
-        "strength": 0.7112605001534575,
+        "strength": 0.6795880017344076,
         "evidence": [
-          {
-            "file": "docs/protocols/lmc-messages.mdx",
-            "lines": [
-              57,
-              57
-            ],
-            "snippet": "tements in Python, `console.log()` statements in Javascript, etc. **This includes errors.**|`computer`| image|base64|A `base64` image in PNG",
-            "rule": "log_at_tool_boundary"
-          },
           {
             "file": "interpreter/core/computer/terminal/languages/javascript.py",
             "lines": [
@@ -503,35 +485,8 @@
       "data_io": {
         "signal": "data_io",
         "fired": true,
-        "strength": 0.9788632125368877,
+        "strength": 0.9591760034688152,
         "evidence": [
-          {
-            "file": "docs/NCU_MIGRATION_GUIDE.md",
-            "lines": [
-              176,
-              176
-            ],
-            "snippet": "rpreterCall = await fetch(\"https://YOUR_ENDPOINT/\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\",",
-            "rule": "http_external_io"
-          },
-          {
-            "file": "docs/server/usage.mdx",
-            "lines": [
-              168,
-              168
-            ],
-            "snippet": "True, } response = requests.post(\"http://localhost:8000/settings\", json=settings) print(response.status_code) ``` ### Retrieving Settings",
-            "rule": "http_external_io"
-          },
-          {
-            "file": "docs/server/usage.mdx",
-            "lines": [
-              177,
-              177
-            ],
-            "snippet": "``python response = requests.get(\"http://localhost:8000/settings/custom_instructions\") print(response.json()) # Output: {\"custom_instruction",
-            "rule": "http_external_io"
-          },
           {
             "file": "installers/oi-mac-installer.sh",
             "lines": [
@@ -729,95 +684,41 @@
             ],
             "snippet": "response = requests.post(post_url, json=settings) print(\"POST request sent, response:\", response.json()) #",
             "rule": "http_external_io"
+          },
+          {
+            "file": "tests/test_interpreter.py",
+            "lines": [
+              336,
+              336
+            ],
+            "snippet": "response = requests.post(post_url, json=settings) print(\"POST request sent, response:\", response.json()) #",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "tests/test_interpreter.py",
+            "lines": [
+              385,
+              385
+            ],
+            "snippet": "response = requests.post(post_url, json=settings) print(\"POST request sent, response:\", response.json()) #",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "tests/test_interpreter.py",
+            "lines": [
+              428,
+              428
+            ],
+            "snippet": "response = requests.get(get_url) print(\"GET request sent, response:\", response.json()) # Assert that the l",
+            "rule": "http_external_io"
           }
         ]
       },
       "pii_signals": {
         "signal": "pii_signals",
         "fired": true,
-        "strength": 1,
+        "strength": 0.9591760034688152,
         "evidence": [
-          {
-            "file": "docs/code-execution/computer-api.mdx",
-            "lines": [
-              147,
-              147
-            ],
-            "snippet": "il - Send Sends an email with the given parameters using the default mail app. (Mac only) ```python interpreter.computer.mail.send(\"john",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": "docs/code-execution/computer-api.mdx",
-            "lines": [
-              152,
-              152
-            ],
-            "snippet": "ter.mail.send(\"john@email.com\", \"Subject\", \"Body\", [\"path/to/attachment.pdf\", \"path/to/attachment2.pdf\"]) ``` ### Mail - Unread Count Re",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": "docs/code-execution/computer-api.mdx",
-            "lines": [
-              193,
-              193
-            ],
-            "snippet": "### Contacts - Get Email Address Returns the email of a contact name. (Mac only) ```python interpreter.computer.contacts.get_phone_numb",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": "docs/code-execution/computer-api.mdx",
-            "lines": [
-              195,
-              195
-            ],
-            "snippet": "ddress Returns the email of a contact name. (Mac only) ```python interpreter.computer.contacts.get_phone_number(\"John Doe\") ``` ### C",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": "docs/guides/demos.mdx",
-            "lines": [
-              55,
-              55
-            ],
-            "snippet": "e> #### Sending an Email with Gmail OS mode launches Safari, composes an email, and sends it: <iframe src=\"data:text/html;charset=utf-8,%",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": "docs/guides/demos.mdx",
-            "lines": [
-              57,
-              57
-            ],
-            "snippet": "Safari, composes an email, and sends it: <iframe src=\"data:text/html;charset=utf-8,%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cblockquote%20c",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": "docs/legal/license.mdx",
-            "lines": [
-              20,
-              20
-            ],
-            "snippet": "ion: - Name - Email address b) Usage Information: - Conversations with the AI chatbot - Code generated during use of the Applic",
-            "rule": "pii_keywords"
-          },
-          {
-            "file": "docs/legal/license.mdx",
-            "lines": [
-              36,
-              36
-            ],
-            "snippet": "generated code are anonymized before being used to improve our AI model. However, please be aware that if you explicitly instruct the AI to",
-            "rule": "pii_redaction_present"
-          },
-          {
-            "file": "docs/settings/all-settings.mdx",
-            "lines": [
-              590,
-              590
-            ],
-            "snippet": "Python interpreter.anonymized_telemetry = False ``` ```yaml Profile disable_telemetry: true ``` </CodeGroup> ### Offline This boolean f",
-            "rule": "pii_redaction_present"
-          },
           {
             "file": "interpreter/computer_use/loop.py",
             "lines": [
@@ -961,120 +862,101 @@
             ],
             "snippet": "ohn Doe\") # Send an email computer.mail.send(\"john@email.com\", \"Hello\", \"This is a test email.\") # Get unread emails computer.mail.get(4, un",
             "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/local-assistant.py",
+            "lines": [
+              69,
+              69
+            ],
+            "snippet": "ter.mail.send(\"john@email.com\", \"Hello\", \"This is a test email.\") # Get unread emails computer.mail.get(4, unread=True) # Send a text messag",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/local-assistant.py",
+            "lines": [
+              69,
+              69
+            ],
+            "snippet": "o\", \"This is a test email.\") # Get unread emails computer.mail.get(4, unread=True) # Send a text message computer.sms.send(to=computer.conta",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/local-assistant.py",
+            "lines": [
+              92,
+              92
+            ],
+            "snippet": "on # Get Jane Doe's email address jane_email = computer.contacts.get_email_address(\"Jane Doe\") # Send an email to Jane Doe with the news abo",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/local-assistant.py",
+            "lines": [
+              94,
+              94
+            ],
+            "snippet": "ane Doe\") # Send an email to Jane Doe with the news about the NASA Mars mission computer.mail.send(jane_email, \"NASA Mars Mission Update\", \"",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/local-os.py",
+            "lines": [
+              41,
+              41
+            ],
+            "snippet": "n you compose a new email for me Assistant: On it. First I will open Mail. ```python # Open Spotlight computer.keyboard.hotkey(\" \", \"command",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/os.py",
+            "lines": [
+              72,
+              72
+            ],
+            "snippet": "ter.mail.send(\"john@email.com\", \"Meeting Reminder\", \"Reminder that our meeting is at 3pm today.\", [\"path/to/attachment.pdf\", \"path/to/attach",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/os.py",
+            "lines": [
+              72,
+              72
+            ],
+            "snippet": "t2.pdf\"]) # Send an email with a optional attachments computer.mail.get(4, unread=True) # Returns the {number} of unread emails, or all emai",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/the01.py",
+            "lines": [
+              77,
+              77
+            ],
+            "snippet": "ter.mail.send(\"john@email.com\", \"Meeting Reminder\", \"Reminder that our meeting is at 3pm today.\", [\"path/to/attachment.pdf\", \"path/to/attach",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/the01.py",
+            "lines": [
+              77,
+              77
+            ],
+            "snippet": "t2.pdf\"]) # Send an email with a optional attachments emails_string = computer.mail.get(4, unread=True) # Returns the {number} of unread ema",
+            "rule": "pii_keywords"
           }
         ]
       },
       "bio_health_signals": {
         "signal": "bio_health_signals",
-        "fired": true,
-        "strength": 0.4,
-        "evidence": [
-          {
-            "file": "docs/CONTRIBUTING.md",
-            "lines": [
-              28,
-              28
-            ],
-            "snippet": "ribution. Please be patient as reviews take time. Once approved, your code will be merged. ## Running Your Local Fork **Note: for anyo",
-            "rule": "health_terms"
-          }
-        ]
+        "fired": false,
+        "strength": 0,
+        "evidence": []
       },
       "employment_signals": {
         "signal": "employment_signals",
         "fired": true,
-        "strength": 0.83167249841905,
+        "strength": 0.5204119982655925,
         "evidence": [
-          {
-            "file": "README.md",
-            "lines": [
-              146,
-              146
-            ],
-            "snippet": "hich can be used to resume a conversation with `interpreter.messages = messages`: ```python messages = interpreter.chat(\"My name is Killian",
-            "rule": "employment_terms"
-          },
-          {
-            "file": "README.md",
-            "lines": [
-              152,
-              152
-            ],
-            "snippet": "ssages = messages # Resume chat from 'messages' (\"Killian\" will be remembered) ``` ### Customize System Message You can inspect and config",
-            "rule": "employment_terms"
-          },
-          {
-            "file": "docs/guides/basic-usage.mdx",
-            "lines": [
-              87,
-              87
-            ],
-            "snippet": "sations/`. You can resume any of them by running `--conversations`. Use your arrow keys to select one , then press `ENTER` to resume it. I",
-            "rule": "employment_terms"
-          },
-          {
-            "file": "docs/guides/basic-usage.mdx",
-            "lines": [
-              87,
-              87
-            ],
-            "snippet": "en press `ENTER` to resume it. In Python, `interpreter.chat()` returns a List of messages, which can be used to resume a conversation with",
-            "rule": "employment_terms"
-          },
-          {
-            "file": "docs/guides/basic-usage.mdx",
-            "lines": [
-              89,
-              89
-            ],
-            "snippet": "hich can be used to resume a conversation with `interpreter.messages = messages`. <CodeGroup> ```shell Terminal interpreter --conversation",
-            "rule": "employment_terms"
-          },
-          {
-            "file": "docs/guides/basic-usage.mdx",
-            "lines": [
-              104,
-              104
-            ],
-            "snippet": "er.messages = [] # Resume chat from 'messages' (\"Killian\" will be remembered) interpreter.messages = messages ``` </CodeGroup> --- ### C",
-            "rule": "employment_terms"
-          },
-          {
-            "file": "docs/usage/examples.mdx",
-            "lines": [
-              82,
-              82
-            ],
-            "snippet": "sations/`. You can resume any of them by running `--conversations`. Use your arrow keys to select one , then press `ENTER` to resume it. `",
-            "rule": "employment_terms"
-          },
-          {
-            "file": "docs/usage/examples.mdx",
-            "lines": [
-              82,
-              82
-            ],
-            "snippet": "en press `ENTER` to resume it. ```shell interpreter --conversations ``` In Python, `interpreter.chat()` returns a List of messages, which",
-            "rule": "employment_terms"
-          },
-          {
-            "file": "docs/usage/examples.mdx",
-            "lines": [
-              88,
-              88
-            ],
-            "snippet": "hich can be used to resume a conversation with `interpreter.messages = messages`: ```python # Save messages to 'messages' messages = interp",
-            "rule": "employment_terms"
-          },
-          {
-            "file": "docs/usage/examples.mdx",
-            "lines": [
-              97,
-              97
-            ],
-            "snippet": "er.messages = [] # Resume chat from 'messages' (\"Killian\" will be remembered) interpreter.messages = messages ``` --- ### Configure Defau",
-            "rule": "employment_terms"
-          },
           {
             "file": "interpreter/terminal_interface/conversation_navigator.py",
             "lines": [
@@ -1216,7 +1098,7 @@
     "rationale": [
       "Classified HIGH-RISK based on 2 Annex III signal(s).",
       "Annex III §1 (Biometric ID, categorisation, emotion recognition) — signal \"bio_metric_signals\" fired with strength 0.40",
-      "Annex III §4 (Employment, workers management, access to self-employment) — signal \"employment_signals\" fired with strength 0.83",
+      "Annex III §4 (Employment, workers management, access to self-employment) — signal \"employment_signals\" fired with strength 0.52",
       "Art 50 50(2) (AI-generated synthetic content) — signal \"content_generation_signals\" fired",
       "Art 50 50(1) (Interaction with natural persons) — signal \"agent_framework\" fired"
     ]
@@ -1448,21 +1330,21 @@
       "rawScore": 0.1,
       "evidence": [
         {
-          "file": "docs/NCU_MIGRATION_GUIDE.md",
+          "file": "installers/oi-mac-installer.sh",
           "lines": [
-            176,
-            176
+            70,
+            70
           ],
-          "snippet": "rpreterCall = await fetch(\"https://YOUR_ENDPOINT/\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\",",
+          "snippet": "python -c \"import urllib.request; exec(urllib.request.urlopen('$INSTALL_URL').read())\" # elif command -v perl &> /dev/null; then #",
           "rule": "http_external_io"
         },
         {
-          "file": "docs/server/usage.mdx",
+          "file": "installers/oi-mac-installer.sh",
           "lines": [
-            168,
-            168
+            70,
+            70
           ],
-          "snippet": "True, } response = requests.post(\"http://localhost:8000/settings\", json=settings) print(response.status_code) ``` ### Retrieving Settings",
+          "snippet": "rllib.request; exec(urllib.request.urlopen('$INSTALL_URL').read())\" # elif command -v perl &> /dev/null; then # echo \"Using Perl",
           "rule": "http_external_io"
         }
       ],
@@ -1534,17 +1416,8 @@
       "title": "Automatic recording of events over the lifetime",
       "verdict": "partial",
       "score": 2,
-      "rawScore": 0.4356302500767288,
+      "rawScore": 0.4197940008672038,
       "evidence": [
-        {
-          "file": "docs/protocols/lmc-messages.mdx",
-          "lines": [
-            57,
-            57
-          ],
-          "snippet": "tements in Python, `console.log()` statements in Javascript, etc. **This includes errors.**|`computer`| image|base64|A `base64` image in PNG",
-          "rule": "log_at_tool_boundary"
-        },
         {
           "file": "interpreter/core/computer/terminal/languages/javascript.py",
           "lines": [
@@ -1573,21 +1446,21 @@
           "rule": "log_at_tool_boundary"
         },
         {
-          "file": "docs/protocols/lmc-messages.mdx",
-          "lines": [
-            57,
-            57
-          ],
-          "snippet": "tements in Python, `console.log()` statements in Javascript, etc. **This includes errors.**|`computer`| image|base64|A `base64` image in PNG",
-          "rule": "log_at_tool_boundary"
-        },
-        {
           "file": "interpreter/core/computer/terminal/languages/javascript.py",
           "lines": [
             54,
             54
           ],
           "snippet": "ssed_lines.append(f'console.log(\"##active_line{i}##\");') processed_lines.append(line) # Join lines to form the processe",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "interpreter/core/computer/terminal/languages/javascript.py",
+          "lines": [
+            65,
+            65
+          ],
+          "snippet": "}} catch (e) {{ console.log(e); }} console.log(\"##end_of_execution##\"); \"\"\" return code",
           "rule": "log_at_tool_boundary"
         }
       ],
@@ -1599,7 +1472,7 @@
         },
         {
           "rule": "logging_at_tool_call_boundaries",
-          "matched": 0.7112605001534575,
+          "matched": 0.6795880017344076,
           "weight": 0.5
         },
         {
@@ -1608,7 +1481,7 @@
           "weight": 0.2
         }
       ],
-      "rationale": "Composite raw score 0.44 (1/3 rules matched).",
+      "rationale": "Composite raw score 0.42 (1/3 rules matched).",
       "confidence": 1,
       "needsLlmJudge": true,
       "verified": true,
@@ -1621,17 +1494,8 @@
       "title": "Logging ensures traceability appropriate to risk",
       "verdict": "partial",
       "score": 2,
-      "rawScore": 0.5306302500767288,
+      "rawScore": 0.5147940008672038,
       "evidence": [
-        {
-          "file": "docs/protocols/lmc-messages.mdx",
-          "lines": [
-            57,
-            57
-          ],
-          "snippet": "tements in Python, `console.log()` statements in Javascript, etc. **This includes errors.**|`computer`| image|base64|A `base64` image in PNG",
-          "rule": "log_at_tool_boundary"
-        },
         {
           "file": "interpreter/core/computer/terminal/languages/javascript.py",
           "lines": [
@@ -1678,15 +1542,6 @@
           "rule": "import_logging"
         },
         {
-          "file": "docs/protocols/lmc-messages.mdx",
-          "lines": [
-            57,
-            57
-          ],
-          "snippet": "tements in Python, `console.log()` statements in Javascript, etc. **This includes errors.**|`computer`| image|base64|A `base64` image in PNG",
-          "rule": "log_at_tool_boundary"
-        },
-        {
           "file": "interpreter/core/computer/terminal/languages/javascript.py",
           "lines": [
             54,
@@ -1694,12 +1549,21 @@
           ],
           "snippet": "ssed_lines.append(f'console.log(\"##active_line{i}##\");') processed_lines.append(line) # Join lines to form the processe",
           "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "interpreter/core/computer/terminal/languages/javascript.py",
+          "lines": [
+            65,
+            65
+          ],
+          "snippet": "}} catch (e) {{ console.log(e); }} console.log(\"##end_of_execution##\"); \"\"\" return code",
+          "rule": "log_at_tool_boundary"
         }
       ],
       "rules": [
         {
           "rule": "logs_include_input_output_pairs",
-          "matched": 0.7112605001534575,
+          "matched": 0.6795880017344076,
           "weight": 0.5
         },
         {
@@ -1713,7 +1577,7 @@
           "weight": 0.25
         }
       ],
-      "rationale": "Composite raw score 0.53 (2/3 rules matched). Supporting docs may exist outside the repo.",
+      "rationale": "Composite raw score 0.51 (2/3 rules matched). Supporting docs may exist outside the repo.",
       "confidence": 1,
       "needsLlmJudge": true,
       "verified": true,
@@ -1802,24 +1666,13 @@
       "regulationId": "eu-ai-act-2024-08",
       "article": "14(4)(d)",
       "title": "Interrupt / stop function reachable by overseer",
-      "verdict": "fail",
-      "score": 0,
-      "rawScore": 0,
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
       "evidence": [],
-      "rules": [
-        {
-          "rule": "kill_switch_present",
-          "matched": 0,
-          "weight": 0.7
-        },
-        {
-          "rule": "graceful_shutdown_handler",
-          "matched": 0,
-          "weight": 0.3
-        }
-      ],
-      "rationale": "Composite raw score 0.00 (0/2 rules matched).",
-      "confidence": 0.6,
+      "rules": [],
+      "rationale": "Clause subject matter not detected — required signals [oversight_hooks] did not fire in this repo.",
+      "confidence": 1,
       "needsLlmJudge": false,
       "verified": true,
       "verifyMethod": "deterministic-only"
@@ -1829,24 +1682,13 @@
       "regulationId": "eu-ai-act-2024-08",
       "article": "14(4)(e)",
       "title": "Ability to override / reverse the system's output",
-      "verdict": "fail",
-      "score": 0,
-      "rawScore": 0,
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
       "evidence": [],
-      "rules": [
-        {
-          "rule": "override_path_present",
-          "matched": 0,
-          "weight": 0.6
-        },
-        {
-          "rule": "decisions_are_addressable",
-          "matched": 0,
-          "weight": 0.4
-        }
-      ],
-      "rationale": "Composite raw score 0.00 (0/2 rules matched).",
-      "confidence": 0.6,
+      "rules": [],
+      "rationale": "Clause subject matter not detected — required signals [oversight_hooks] did not fire in this repo.",
+      "confidence": 1,
       "needsLlmJudge": false,
       "verified": true,
       "verifyMethod": "deterministic-only"
@@ -1996,21 +1838,21 @@
       "rawScore": 0.5,
       "evidence": [
         {
-          "file": "docs/protocols/lmc-messages.mdx",
-          "lines": [
-            57,
-            57
-          ],
-          "snippet": "tements in Python, `console.log()` statements in Javascript, etc. **This includes errors.**|`computer`| image|base64|A `base64` image in PNG",
-          "rule": "log_at_tool_boundary"
-        },
-        {
           "file": "interpreter/core/computer/terminal/languages/javascript.py",
           "lines": [
             54,
             54
           ],
           "snippet": "ssed_lines.append(f'console.log(\"##active_line{i}##\");') processed_lines.append(line) # Join lines to form the processe",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "interpreter/core/computer/terminal/languages/javascript.py",
+          "lines": [
+            65,
+            65
+          ],
+          "snippet": "}} catch (e) {{ console.log(e); }} console.log(\"##end_of_execution##\"); \"\"\" return code",
           "rule": "log_at_tool_boundary"
         }
       ],
@@ -2355,33 +2197,14 @@
       "regulationId": "nist-ai-rmf-1.0",
       "article": "MEASURE 2.8",
       "title": "Privacy risk of the AI system evaluated",
-      "verdict": "partial",
-      "score": 2,
-      "rawScore": 0.5,
-      "evidence": [
-        {
-          "file": "docs/legal/license.mdx",
-          "lines": [
-            36,
-            36
-          ],
-          "snippet": "generated code are anonymized before being used to improve our AI model. However, please be aware that if you explicitly instruct the AI to",
-          "rule": "pii_redaction_present"
-        },
-        {
-          "file": "docs/settings/all-settings.mdx",
-          "lines": [
-            590,
-            590
-          ],
-          "snippet": "Python interpreter.anonymized_telemetry = False ``` ```yaml Profile disable_telemetry: true ``` </CodeGroup> ### Offline This boolean f",
-          "rule": "pii_redaction_present"
-        }
-      ],
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
       "rules": [
         {
           "rule": "pii_redaction_present",
-          "matched": 1,
+          "matched": 0,
           "weight": 0.5
         },
         {
@@ -2390,11 +2213,11 @@
           "weight": 0.5
         }
       ],
-      "rationale": "Composite raw score 0.50 (1/2 rules matched).",
-      "confidence": 1,
-      "needsLlmJudge": true,
+      "rationale": "Composite raw score 0.00 (0/2 rules matched).",
+      "confidence": 0.6,
+      "needsLlmJudge": false,
       "verified": true,
-      "verifyMethod": "skipped"
+      "verifyMethod": "deterministic-only"
     },
     {
       "clauseId": "nist-ai-rmf/measure-2.11",
@@ -2423,24 +2246,13 @@
       "regulationId": "nist-ai-rmf-1.0",
       "article": "MANAGE 2.3",
       "title": "Mechanisms to supersede or deactivate AI systems",
-      "verdict": "fail",
-      "score": 0,
-      "rawScore": 0,
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
       "evidence": [],
-      "rules": [
-        {
-          "rule": "kill_switch_present",
-          "matched": 0,
-          "weight": 0.6
-        },
-        {
-          "rule": "feature_flag_for_disable",
-          "matched": 0,
-          "weight": 0.4
-        }
-      ],
-      "rationale": "Composite raw score 0.00 (0/2 rules matched).",
-      "confidence": 0.6,
+      "rules": [],
+      "rationale": "Clause subject matter not detected — required signals [oversight_hooks] did not fire in this repo.",
+      "confidence": 1,
       "needsLlmJudge": false,
       "verified": true,
       "verifyMethod": "deterministic-only"
@@ -2484,37 +2296,37 @@
     }
   ],
   "grade": {
-    "overallScore": 1.588235294117647,
+    "overallScore": 1.6774193548387097,
     "perRegulation": [
       {
         "regulationId": "eu-ai-act-2024-08",
-        "scoreAvg": 1.8333333333333333,
+        "scoreAvg": 2,
         "passCount": 8,
         "partialCount": 5,
-        "failCount": 11,
+        "failCount": 9,
         "externalCount": 1,
-        "naCount": 0
+        "naCount": 2
       },
       {
         "regulationId": "nist-ai-rmf-1.0",
-        "scoreAvg": 1,
+        "scoreAvg": 0.8888888888888888,
         "passCount": 1,
-        "partialCount": 3,
+        "partialCount": 2,
         "failCount": 6,
         "externalCount": 0,
-        "naCount": 0
+        "naCount": 1
       }
     ]
   },
-  "bundleHash": "c9f6624b7b4d5cfe04a646bd00c53370e8198962a1a19abe8be2159bc59c81a0",
+  "bundleHash": "257799f3e4e9996721e5cc9c6fe697a643a8972faf2830c062576e76e46b9203",
   "checkerVersion": "v0.1.0",
   "regulationsVersions": {
     "eu-ai-act-2024-08": "db2bbc2958ff931f2ab69230b8470dddf309c34605c83e5141a208fd22051fe8",
     "nist-ai-rmf-1.0": "1f9bd8ceef4a6da5d776fca10cbdbb829c1b8f5e29d49131640e21aae12ce896"
   },
-  "startedAt": "2026-05-16T03:29:54.191Z",
-  "completedAt": "2026-05-16T03:29:55.959Z",
-  "durationMs": 1768,
+  "startedAt": "2026-05-16T03:46:22.363Z",
+  "completedAt": "2026-05-16T03:46:24.093Z",
+  "durationMs": 1730,
   "externalControls": [
     {
       "clauseId": "eu-ai-act/art-5/1h-realtime-rbi",

@@ -1,0 +1,857 @@
+{
+  "auditId": "aud_01KRQE965G7Z0ZF8F53QHT",
+  "source": {
+    "kind": "repo",
+    "owner": "thejoven",
+    "repo": "awesome-eliza"
+  },
+  "input": {
+    "auditId": "aud_01KRQE965G7Z0ZF8F53QHT",
+    "source": {
+      "kind": "repo",
+      "owner": "thejoven",
+      "repo": "awesome-eliza"
+    },
+    "repoUrl": "https://github.com/thejoven/awesome-eliza",
+    "regulations": [
+      "eu-ai-act-2024-08",
+      "nist-ai-rmf-1.0"
+    ]
+  },
+  "fetch": {
+    "repoUrl": "https://github.com/thejoven/awesome-eliza",
+    "owner": "thejoven",
+    "repo": "awesome-eliza",
+    "ref": "223af244192ce48699bd0ee5015317380b33ce59",
+    "commitSha": "223af244192ce48699bd0ee5015317380b33ce59",
+    "worktreeDir": "/tmp/ai-auditor/aud_01KRQE965G7Z0ZF8F53QHT",
+    "fileCount": 4,
+    "totalBytes": 908543,
+    "languages": {
+      "Markdown": 29909
+    },
+    "inventory": {
+      "hasReadme": true,
+      "hasLicense": true,
+      "hasModelCard": false,
+      "hasDataCard": false,
+      "hasRiskRegister": false,
+      "hasThreatModel": false,
+      "hasSecurityMd": false,
+      "hasPrivacyMd": false,
+      "hasCodeOfConduct": false,
+      "hasContributing": false,
+      "hasCiWorkflows": false,
+      "hasEvalDir": false,
+      "hasTestsDir": false,
+      "governanceDocFiles": [
+        "LICENSE",
+        "README.md"
+      ],
+      "configFiles": []
+    },
+    "fetchedAt": "2026-05-16T03:46:35.225Z"
+  },
+  "recon": {
+    "signals": {
+      "agent_framework": {
+        "signal": "agent_framework",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "model_usage": {
+        "signal": "model_usage",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "logging_hooks": {
+        "signal": "logging_hooks",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "oversight_hooks": {
+        "signal": "oversight_hooks",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "eval_artefacts": {
+        "signal": "eval_artefacts",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "governance_docs": {
+        "signal": "governance_docs",
+        "fired": true,
+        "strength": 0.5204119982655925,
+        "evidence": [
+          {
+            "file": "LICENSE",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "README.md",
+            "rule": "governance_doc_present"
+          }
+        ]
+      },
+      "cybersec_hooks": {
+        "signal": "cybersec_hooks",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "provenance_hooks": {
+        "signal": "provenance_hooks",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "data_io": {
+        "signal": "data_io",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "pii_signals": {
+        "signal": "pii_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "bio_health_signals": {
+        "signal": "bio_health_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "employment_signals": {
+        "signal": "employment_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "bio_metric_signals": {
+        "signal": "bio_metric_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "education_signals": {
+        "signal": "education_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "law_enforcement_signals": {
+        "signal": "law_enforcement_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "migration_signals": {
+        "signal": "migration_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "justice_signals": {
+        "signal": "justice_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "essential_services_signals": {
+        "signal": "essential_services_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "critical_infra_signals": {
+        "signal": "critical_infra_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "content_generation_signals": {
+        "signal": "content_generation_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "emotion_recognition_signals": {
+        "signal": "emotion_recognition_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      }
+    }
+  },
+  "scope": {
+    "regulationIds": [
+      "eu-ai-act-2024-08",
+      "nist-ai-rmf-1.0"
+    ],
+    "notes": [
+      "Auditing against packs: eu-ai-act-2024-08, nist-ai-rmf-1.0"
+    ]
+  },
+  "map": {
+    "classification": "unknown",
+    "annexIiiCategories": [],
+    "art50Triggers": [],
+    "drivingSignals": [],
+    "rationale": [
+      "No AI system detected in this repository — no agent framework or LLM call sites found.",
+      "EU AI Act and NIST AI RMF do not apply: the regulations target AI systems and these signals are absent."
+    ]
+  },
+  "checks": [
+    {
+      "clauseId": "eu-ai-act/art-5/1a-subliminal",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(a)",
+      "title": "Subliminal techniques distorting behaviour",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_manipulative_prompt_patterns",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1b-vulnerability",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(b)",
+      "title": "Exploiting vulnerabilities (age, disability, socio-economic)",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_protected_attribute_targeting",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1c-social-scoring",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(c)",
+      "title": "Social scoring leading to detrimental treatment",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_scoring_with_persistent_user_state",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1d-predictive-policing",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(d)",
+      "title": "Predictive policing solely from profiling",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_crime_risk_scoring_from_profile",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1e-facial-scraping",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(e)",
+      "title": "Untargeted facial image scraping for face databases",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_face_image_scraping",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1f-emotion-workplace-edu",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(f)",
+      "title": "Emotion recognition in workplace and education",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_emotion_recognition_in_workplace_education",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1g-biometric-categorisation",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(g)",
+      "title": "Biometric categorisation by protected attributes",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_biometric_categorisation_by_protected_attrs",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1h-realtime-rbi",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(h)",
+      "title": "Real-time remote biometric identification in public spaces",
+      "verdict": "external",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "Deployment context (public space, real-time, law enforcement use, judicial\nauthorisation) is operational, not knowable from code. Always external.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-9/risk-management",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "9",
+      "title": "Risk management system established, implemented, documented",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-10/data-governance",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "10",
+      "title": "Data and data governance practices documented",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-11/technical-documentation",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "11",
+      "title": "Technical documentation drawn up before placing on market",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-12/p1-automatic-logs",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "12(1)",
+      "title": "Automatic recording of events over the lifetime",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-12/p2-traceability",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "12(2)",
+      "title": "Logging ensures traceability appropriate to risk",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-13/deployer-instructions",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "13",
+      "title": "Transparent operation and instructions for use",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-14/p1-oversight-measures",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "14(1)",
+      "title": "Effective human oversight designed and built-in",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-14/p4d-stop-button",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "14(4)(d)",
+      "title": "Interrupt / stop function reachable by overseer",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-14/p4e-override",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "14(4)(e)",
+      "title": "Ability to override / reverse the system's output",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-15/p1-accuracy",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "15(1)",
+      "title": "Appropriate level of accuracy declared and tested",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-15/p4-robustness",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "15(4)",
+      "title": "Resilience to errors, faults, inconsistencies",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-15/p5-cybersecurity",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "15(5)",
+      "title": "Cybersecurity measures appropriate to circumstances",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-26/p6-keep-logs",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "26(6)",
+      "title": "Deployer log-retention capability supported",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-50/p1-ai-disclosure",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "50(1)",
+      "title": "Users informed they are interacting with an AI",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-50/p2-synthetic-content",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "50(2)",
+      "title": "AI-generated content marked as such, machine-readable",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-50/p3-emotion-biometric-disclosure",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "50(3)",
+      "title": "Emotion recognition / biometric categorisation disclosure",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-50/p4-deepfake-disclosure",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "50(4)",
+      "title": "Deepfake content labelled as artificially generated",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/govern-1.4",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "GOVERN 1.4",
+      "title": "Risk management process documented and accountable",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/govern-1.5",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "GOVERN 1.5",
+      "title": "Ongoing monitoring and periodic review of risk management",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/map-1.1",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MAP 1.1",
+      "title": "Context of use established and understood",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/map-3.4",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MAP 3.4",
+      "title": "Risks and benefits to people identified",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/measure-2.3",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MEASURE 2.3",
+      "title": "AI system performance evaluated and documented",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/measure-2.7",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MEASURE 2.7",
+      "title": "Security and resilience evaluated",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/measure-2.8",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MEASURE 2.8",
+      "title": "Privacy risk of the AI system evaluated",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/measure-2.11",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MEASURE 2.11",
+      "title": "Fairness and bias evaluated",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/manage-2.3",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MANAGE 2.3",
+      "title": "Mechanisms to supersede or deactivate AI systems",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/manage-4.1",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MANAGE 4.1",
+      "title": "Post-deployment monitoring, appeal and override, change management",
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    }
+  ],
+  "grade": {
+    "overallScore": 4,
+    "perRegulation": [
+      {
+        "regulationId": "eu-ai-act-2024-08",
+        "scoreAvg": 4,
+        "passCount": 7,
+        "partialCount": 0,
+        "failCount": 0,
+        "externalCount": 1,
+        "naCount": 17
+      },
+      {
+        "regulationId": "nist-ai-rmf-1.0",
+        "scoreAvg": null,
+        "passCount": 0,
+        "partialCount": 0,
+        "failCount": 0,
+        "externalCount": 0,
+        "naCount": 10
+      }
+    ]
+  },
+  "bundleHash": "26dc45b7f7a236f57ec27ac5607fed3dea5d45c44121da8cf0e2e620e93106ae",
+  "checkerVersion": "v0.1.0",
+  "regulationsVersions": {
+    "eu-ai-act-2024-08": "db2bbc2958ff931f2ab69230b8470dddf309c34605c83e5141a208fd22051fe8",
+    "nist-ai-rmf-1.0": "1f9bd8ceef4a6da5d776fca10cbdbb829c1b8f5e29d49131640e21aae12ce896"
+  },
+  "startedAt": "2026-05-16T03:46:33.776Z",
+  "completedAt": "2026-05-16T03:46:35.227Z",
+  "durationMs": 1451,
+  "externalControls": [
+    {
+      "clauseId": "eu-ai-act/art-5/1h-realtime-rbi",
+      "article": "5(1)(h)",
+      "title": "Real-time remote biometric identification in public spaces",
+      "note": "Deployment context (public space, real-time, law enforcement use, judicial\nauthorisation) is operational, not knowable from code. Always external."
+    }
+  ]
+}

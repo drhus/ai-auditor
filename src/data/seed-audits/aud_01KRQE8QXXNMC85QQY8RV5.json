@@ -1,12 +1,12 @@
 {
-  "auditId": "aud_01KRQDAGVF6RF0EA7B2TVE",
+  "auditId": "aud_01KRQE8QXXNMC85QQY8RV5",
   "source": {
     "kind": "repo",
     "owner": "gpt-engineer-org",
     "repo": "gpt-engineer"
   },
   "input": {
-    "auditId": "aud_01KRQDAGVF6RF0EA7B2TVE",
+    "auditId": "aud_01KRQE8QXXNMC85QQY8RV5",
     "source": {
       "kind": "repo",
       "owner": "gpt-engineer-org",
@@ -24,7 +24,7 @@
     "repo": "gpt-engineer",
     "ref": "a90fcd543eedcc0ff2c34561bc0785d2ba83c47e",
     "commitSha": "a90fcd543eedcc0ff2c34561bc0785d2ba83c47e",
-    "worktreeDir": "/tmp/ai-auditor/aud_01KRQDAGVF6RF0EA7B2TVE",
+    "worktreeDir": "/tmp/ai-auditor/aud_01KRQE8QXXNMC85QQY8RV5",
     "fileCount": 182,
     "totalBytes": 16764636,
     "languages": {
@@ -62,7 +62,7 @@
         "pyproject.toml"
       ]
     },
-    "fetchedAt": "2026-05-16T03:29:54.069Z"
+    "fetchedAt": "2026-05-16T03:46:22.273Z"
   },
   "recon": {
     "signals": {
@@ -800,19 +800,9 @@
       },
       "pii_signals": {
         "signal": "pii_signals",
-        "fired": true,
-        "strength": 0.4,
-        "evidence": [
-          {
-            "file": ".github/CODE_OF_CONDUCT.md",
-            "lines": [
-              34,
-              34
-            ],
-            "snippet": "ch as a physical or email address, without their explicit permission * Other conduct which could reasonably be considered inappropriate in",
-            "rule": "pii_keywords"
-          }
-        ]
+        "fired": false,
+        "strength": 0,
+        "evidence": []
       },
       "bio_health_signals": {
         "signal": "bio_health_signals",
@@ -1887,24 +1877,13 @@
       "regulationId": "eu-ai-act-2024-08",
       "article": "50(2)",
       "title": "AI-generated content marked as such, machine-readable",
-      "verdict": "fail",
-      "score": 0,
-      "rawScore": 0,
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
       "evidence": [],
-      "rules": [
-        {
-          "rule": "c2pa_or_watermark_library_imported",
-          "matched": 0,
-          "weight": 0.5
-        },
-        {
-          "rule": "provenance_metadata_written_to_outputs",
-          "matched": 0,
-          "weight": 0.5
-        }
-      ],
-      "rationale": "Composite raw score 0.00 (0/2 rules matched).",
-      "confidence": 0.6,
+      "rules": [],
+      "rationale": "Clause subject matter not detected — required signals [content_generation_signals, provenance_hooks] did not fire in this repo.",
+      "confidence": 1,
       "needsLlmJudge": false,
       "verified": true,
       "verifyMethod": "deterministic-only"
@@ -1914,19 +1893,13 @@
       "regulationId": "eu-ai-act-2024-08",
       "article": "50(3)",
       "title": "Emotion recognition / biometric categorisation disclosure",
-      "verdict": "pass",
-      "score": 4,
-      "rawScore": 1,
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
       "evidence": [],
-      "rules": [
-        {
-          "rule": "emotion_or_biometric_disclosure_string",
-          "matched": 1,
-          "weight": 1
-        }
-      ],
-      "rationale": "Composite raw score 1.00 (1/1 rules matched).",
-      "confidence": 0.55,
+      "rules": [],
+      "rationale": "Clause subject matter not detected — required signals [emotion_recognition_signals, bio_metric_signals] did not fire in this repo.",
+      "confidence": 1,
       "needsLlmJudge": false,
       "verified": true,
       "verifyMethod": "deterministic-only"
@@ -1936,19 +1909,13 @@
       "regulationId": "eu-ai-act-2024-08",
       "article": "50(4)",
       "title": "Deepfake content labelled as artificially generated",
-      "verdict": "pass",
-      "score": 4,
-      "rawScore": 1,
+      "verdict": "n/a",
+      "score": null,
+      "rawScore": null,
       "evidence": [],
-      "rules": [
-        {
-          "rule": "deepfake_label_on_outputs",
-          "matched": 1,
-          "weight": 1
-        }
-      ],
-      "rationale": "Composite raw score 1.00 (1/1 rules matched).",
-      "confidence": 0.55,
+      "rules": [],
+      "rationale": "Clause subject matter not detected — required signals [content_generation_signals] did not fire in this repo.",
+      "confidence": 1,
       "needsLlmJudge": false,
       "verified": true,
       "verifyMethod": "deterministic-only"
@@ -2351,16 +2318,16 @@
     }
   ],
   "grade": {
-    "overallScore": 1.7647058823529411,
+    "overallScore": 1.6774193548387097,
     "perRegulation": [
       {
         "regulationId": "eu-ai-act-2024-08",
-        "scoreAvg": 2.2083333333333335,
-        "passCount": 10,
+        "scoreAvg": 2.142857142857143,
+        "passCount": 8,
         "partialCount": 6,
-        "failCount": 8,
+        "failCount": 7,
         "externalCount": 1,
-        "naCount": 0
+        "naCount": 3
       },
       {
         "regulationId": "nist-ai-rmf-1.0",
@@ -2373,15 +2340,15 @@
       }
     ]
   },
-  "bundleHash": "e4c04f32ab73ac45e809041f5278fc20e9ea3594918d5b1275355351017b35af",
+  "bundleHash": "f001ed1b135cc59bc391e6283f113bf665dce2ec0c16bf0d6199083a5351af6b",
   "checkerVersion": "v0.1.0",
   "regulationsVersions": {
     "eu-ai-act-2024-08": "db2bbc2958ff931f2ab69230b8470dddf309c34605c83e5141a208fd22051fe8",
     "nist-ai-rmf-1.0": "1f9bd8ceef4a6da5d776fca10cbdbb829c1b8f5e29d49131640e21aae12ce896"
   },
-  "startedAt": "2026-05-16T03:29:48.912Z",
-  "completedAt": "2026-05-16T03:29:54.189Z",
-  "durationMs": 5277,
+  "startedAt": "2026-05-16T03:46:19.197Z",
+  "completedAt": "2026-05-16T03:46:22.362Z",
+  "durationMs": 3165,
   "externalControls": [
     {
       "clauseId": "eu-ai-act/art-5/1h-realtime-rbi",

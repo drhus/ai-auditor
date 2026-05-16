@@ -94,7 +94,11 @@ export function AuditsTable({ rows }: { rows: Row[] }) {
                   <RiskChip risk={r.risk ?? "unknown"} status={r.status} />
                 </td>
                 <td className="px-4 py-2 font-mono text-xs">
-                  {r.score != null ? `${r.score.toFixed(2)} / 4.0` : "—"}
+                  {r.risk === "unknown"
+                    ? <span className="text-ink-600">out of scope</span>
+                    : r.score != null
+                      ? `${r.score.toFixed(2)} / 4.0`
+                      : "—"}
                 </td>
                 <td className="px-4 py-2 font-mono text-[11px] text-ink-600">
                   {timeAgo(r.startedAt)}

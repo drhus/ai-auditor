@@ -352,6 +352,15 @@ const PATTERNS: PatternRule[] = [
   { signal: "data_io", rule: "scraping_pattern", pattern: /\b(?:beautifulsoup|BeautifulSoup|scrapy|playwright|puppeteer|cheerio\.load)\b/g },
 ];
 
+// Signals that should fire from documentation/markdown content (where mention
+// of the topic is itself meaningful — e.g. SECURITY.md discussing rate limits).
+// Everything else only fires from real source code, since markdown listings,
+// READMEs, and curated link-lists trip the keyword detectors falsely.
+const MARKDOWN_ELIGIBLE_SIGNALS: Set<SignalId> = new Set<SignalId>([
+  "governance_docs",
+  "provenance_hooks",
+]);
+
 function scanFile(
   rel: string,
   content: string,
@@ -361,9 +370,8 @@ function scanFile(
 ) {
   const isMarkdown = ext === ".md" || ext === ".mdx";
 
-  // Skip pure-markdown matching for code-style patterns (reduces false positives).
   for (const rule of PATTERNS) {
-    if (isMarkdown && /import|require|process\.env|os\.environ|model_string/i.test(rule.rule)) {
+    if (isMarkdown && !MARKDOWN_ELIGIBLE_SIGNALS.has(rule.signal)) {
       continue;
     }
     rule.pattern.lastIndex = 0;

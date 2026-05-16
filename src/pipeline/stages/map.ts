@@ -23,6 +23,24 @@ export function runMap(
   const drivingSignals: MapResult["drivingSignals"] = [];
   const rationale: string[] = [];
 
+  // Early bail-out: if neither an agent framework nor an LLM call site is
+  // present, this isn't an AI system at all. Don't promote false-positive
+  // domain signals (e.g. a README mentioning "employment") to a risk class.
+  const isAiSystem =
+    recon.signals.agent_framework?.fired || recon.signals.model_usage?.fired;
+  if (!isAiSystem) {
+    return {
+      classification: "unknown",
+      annexIiiCategories: [],
+      art50Triggers: [],
+      drivingSignals: [],
+      rationale: [
+        "No AI system detected in this repository — no agent framework or LLM call sites found.",
+        "EU AI Act and NIST AI RMF do not apply: the regulations target AI systems and these signals are absent.",
+      ],
+    };
+  }
+
   const euPack = packs.find((p) => p.familyId === "eu-ai-act");
   if (euPack?.annexIiiTriggers) {
     for (const trigger of euPack.annexIiiTriggers) {
@@ -61,18 +79,10 @@ export function runMap(
     rationale.unshift(
       `Classified LIMITED-RISK based on Art 50 transparency trigger(s).`,
     );
-  } else if (
-    recon.signals.agent_framework?.fired ||
-    recon.signals.model_usage?.fired
-  ) {
+  } else {
     classification = "minimal";
     rationale.unshift(
       `Classified MINIMAL-RISK — AI agent detected but no Annex III or Art 50 trigger fired.`,
-    );
-  } else {
-    classification = "unknown";
-    rationale.unshift(
-      `Could not classify — no AI agent framework or LLM call signals detected.`,
     );
   }
 

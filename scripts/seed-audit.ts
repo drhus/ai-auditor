@@ -15,6 +15,29 @@ import { runAudit } from "../src/pipeline/run.js";
 import { generateAuditId } from "../src/pipeline/id.js";
 import type { AuditInput } from "../src/pipeline/types.js";
 
+const SEED_DIR = path.join(process.cwd(), "src", "data", "seed-audits");
+
+async function regenerateIndex() {
+  const entries = (await fs.readdir(SEED_DIR)).filter((f) => f.endsWith(".json"));
+  entries.sort();
+  const imports = entries
+    .map((f, i) => `import s${i} from "./${f}";`)
+    .join("\n");
+  const exports = entries
+    .map((_, i) => `  s${i} as unknown as AuditReport,`)
+    .join("\n");
+  const content = `import type { AuditReport } from "@/pipeline/types";
+
+${imports}
+
+export const SEED_AUDITS: AuditReport[] = [
+${exports}
+];
+`;
+  await fs.writeFile(path.join(SEED_DIR, "index.ts"), content);
+  console.log(`  rewrote index.ts (${entries.length} seeds)`);
+}
+
 async function main() {
   const args = process.argv.slice(2);
   if (args.length === 0) {
@@ -22,8 +45,7 @@ async function main() {
     process.exit(1);
   }
 
-  const seedDir = path.join(process.cwd(), "public", "seed-audits");
-  await fs.mkdir(seedDir, { recursive: true });
+  await fs.mkdir(SEED_DIR, { recursive: true });
 
   for (const target of args) {
     const m = target.match(/^([\w.-]+)\/([\w.-]+)$/);
@@ -49,7 +71,7 @@ async function main() {
         else if (evt.kind === "score") console.log(`  Σ overall=${evt.overall.toFixed(2)}`);
         else if (evt.kind === "error") console.error(`  ✗ ${evt.message}`);
       });
-      const file = path.join(seedDir, `${input.auditId}.json`);
+      const file = path.join(SEED_DIR, `${input.auditId}.json`);
       await fs.writeFile(file, JSON.stringify(report, null, 2));
       console.log(`✓ wrote ${file}`);
       console.log(`✓ overall ${report.grade.overallScore.toFixed(2)} · ${Date.now() - t0}ms`);
@@ -59,7 +81,9 @@ async function main() {
   }
 }
 
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+main()
+  .then(regenerateIndex)
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  });

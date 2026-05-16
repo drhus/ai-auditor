@@ -75,7 +75,34 @@ async function runClause(
     };
   }
 
-  // In-scope predicate
+  // Determine polarity early — prohibitions stay in scope even on non-AI
+  // repos so they can correctly auto-pass ("no AI here → not violating Art 5").
+  const isProhibition =
+    clause.scoreMapping !== undefined &&
+    ("pass_default" in clause.scoreMapping || "fail_on_match" in clause.scoreMapping);
+
+  // First: is this an AI system at all? If no agent_framework AND no
+  // model_usage signals fired in RECON, the repository isn't an AI system
+  // and only the prohibition clauses (which trivially pass) remain relevant.
+  const isAiSystem =
+    ctx.recon.signals.agent_framework?.fired ||
+    ctx.recon.signals.model_usage?.fired;
+  if (!isAiSystem && !isProhibition) {
+    return {
+      ...base,
+      verdict: "n/a",
+      score: NaN,
+      rawScore: NaN,
+      evidence: [],
+      rules: [],
+      rationale:
+        "No AI system detected in this repository (no agent framework, no LLM call sites). Clause does not apply.",
+      confidence: 1,
+      needsLlmJudge: false,
+    };
+  }
+
+  // Second: in-scope predicate (risk class / Annex III / Art 50 trigger).
   const inScope = isInScope(clause, map);
   if (!inScope.ok) {
     return {
@@ -89,6 +116,28 @@ async function runClause(
       confidence: 1,
       needsLlmJudge: false,
     };
+  }
+
+  // Third: signals-required gate. If the clause lists required signals and
+  // none of them fired, the clause's regulatory subject matter isn't present
+  // in the repo (e.g. clause about PII handling but no PII keywords found).
+  if (!isProhibition && clause.signalsRequired && clause.signalsRequired.length > 0) {
+    const anyFired = clause.signalsRequired.some(
+      (sig) => ctx.recon.signals[sig]?.fired,
+    );
+    if (!anyFired) {
+      return {
+        ...base,
+        verdict: "n/a",
+        score: NaN,
+        rawScore: NaN,
+        evidence: [],
+        rules: [],
+        rationale: `Clause subject matter not detected — required signals [${clause.signalsRequired.join(", ")}] did not fire in this repo.`,
+        confidence: 1,
+        needsLlmJudge: false,
+      };
+    }
   }
 
   const detRules = clause.checker?.deterministic ?? [];
@@ -134,13 +183,6 @@ async function runClause(
   }
 
   const rawScore = totalWeight > 0 ? weightedSum / totalWeight : 0;
-
-  // Polarity — prohibition clauses (Art 5) invert: higher raw = more
-  // violation evidence = worse compliance. Detected via score_mapping
-  // containing `pass_default` / `fail_on_match`.
-  const isProhibition =
-    clause.scoreMapping !== undefined &&
-    ("pass_default" in clause.scoreMapping || "fail_on_match" in clause.scoreMapping);
 
   const score4 = isProhibition
     ? prohibitionScoreToOrdinal(rawScore)
