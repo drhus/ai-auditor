@@ -12,7 +12,7 @@ https://8004scan.io/agents/ethereum/9382  →  per-clause audit  →  on-chain a
 
 ## Why this exists
 
-The EU AI Act becomes fully applicable on **2 August 2026**. Penalties reach **€35M or 7% of global turnover**. ERC-8004 is already past **45,000 registered AI agents** as of 2026. None of them have a standard verifiable compliance record. AiAuditor is that record.
+The EU AI Act becomes fully applicable on **2 August 2026**. Penalties reach **€35M or 7% of global turnover**. ERC-8004 is already past **200,000 registered AI agents** as of 2026. None of them have a standard verifiable compliance record. AiAuditor is that record.
 
 ## How it works
 
