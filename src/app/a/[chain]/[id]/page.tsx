@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { isSupportedSlug } from "@/lib/chains";
 import { resolveAgent, type AgentRegistration } from "@/lib/erc8004";
 import { BrandMark } from "@/app/_components/brand-mark";
-import { AuditPanel } from "@/app/_components/audit-panel";
 import { AgentAuditWithFallback } from "./_agent-audit";
 
 interface PageProps {

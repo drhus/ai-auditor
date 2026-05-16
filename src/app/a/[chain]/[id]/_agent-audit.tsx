@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AuditPanel } from "@/app/_components/audit-panel";
+import { LiveAuditPanel } from "@/app/_components/live-audit-panel";
 
 interface Props {
   chain: string;
@@ -28,7 +28,7 @@ export function AgentAuditWithFallback({
         <p className="font-mono text-xs text-ink-600">
           Auditing <span className="text-ink-900">{effectiveRepo}</span>
         </p>
-        <AuditPanel
+        <LiveAuditPanel
           source={{
             kind: "agent",
             chain,

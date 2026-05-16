@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { AuditPanel } from "@/app/_components/audit-panel";
+import { LiveAuditPanel } from "@/app/_components/live-audit-panel";
 import { BrandMark } from "@/app/_components/brand-mark";
 
 interface PageProps {
@@ -92,7 +92,7 @@ export default async function RepoPage({ params }: PageProps) {
           <h2 className="mb-3 font-serif text-2xl font-bold text-ink-900">
             Run an audit against EU AI Act + NIST AI RMF
           </h2>
-          <AuditPanel source={{ kind: "repo", owner, repo }} />
+          <LiveAuditPanel source={{ kind: "repo", owner, repo }} />
         </div>
       </section>
     </main>

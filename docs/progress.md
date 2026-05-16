@@ -43,3 +43,10 @@ parent: "[overview](./overview.md)"
   - Domain locked: **[8RR8.com](https://8RR8.com)**.
 - **Updated everywhere:** `overview.md`, `prd.md`, `vision.md`, `team-brief.md`, `onchain-anchoring.md` reflect new stats, new domain, re-opened auto-registration.
 
+### 2026-05-16 — On-chain payload encoder wired
+
+- **Encoder shipped:** `src/pipeline/anchor.ts` turns a completed `AuditReport` into the exact arguments for `AiAuditorV1.publishAudit` plus the companion `ValidationRegistry.validationResponse` call. Pure function — does not broadcast.
+- Each clause encodes as 4 bytes per the [onchain-anchoring](./onchain-anchoring.md) spec: `uint16 clauseIdBytes | uint8 verdictByte (n/a=0, external=1, fail=2, partial=3, pass=4) | uint8 scoreTenths (0..40 or 0xFF)`. Canonical-sorted by `clauseIdBytes`. Asserts payload stays under the 1 KB contract cap.
+- SHA-1 commit/tree hashes left-aligned in `bytes32` (leading 20 bytes are the SHA itself). SHA-256 bundle/regulations versions go in directly. Checker version is hashed once before embedding so it fits `bytes32`.
+- **API preview route:** `GET /api/audit/[id]/onchain` returns the encoded payload as JSON so the UI can show "this is what we're about to anchor" before any tx is sent. 17 routes total after the addition; typecheck + build clean.
+- **Still pending:** fund Sepolia hot wallet → deploy `AiAuditorV1` → wire a server-side broadcaster behind the encoder. Encoder is the deterministic half; broadcaster is a thin viem `writeContract` call.

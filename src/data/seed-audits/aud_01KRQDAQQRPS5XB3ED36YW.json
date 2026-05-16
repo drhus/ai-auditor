@@ -1,0 +1,4241 @@
+{
+  "auditId": "aud_01KRQDAQQRPS5XB3ED36YW",
+  "source": {
+    "kind": "repo",
+    "owner": "Significant-Gravitas",
+    "repo": "Auto-GPT"
+  },
+  "input": {
+    "auditId": "aud_01KRQDAQQRPS5XB3ED36YW",
+    "source": {
+      "kind": "repo",
+      "owner": "Significant-Gravitas",
+      "repo": "Auto-GPT"
+    },
+    "repoUrl": "https://github.com/Significant-Gravitas/Auto-GPT",
+    "regulations": [
+      "eu-ai-act-2024-08",
+      "nist-ai-rmf-1.0"
+    ]
+  },
+  "fetch": {
+    "repoUrl": "https://github.com/Significant-Gravitas/Auto-GPT",
+    "owner": "Significant-Gravitas",
+    "repo": "Auto-GPT",
+    "ref": "94ebce7f633f40af8fd59e5cdaea75159cf2e6d1",
+    "commitSha": "94ebce7f633f40af8fd59e5cdaea75159cf2e6d1",
+    "worktreeDir": "/tmp/ai-auditor/aud_01KRQDAQQRPS5XB3ED36YW",
+    "fileCount": 3673,
+    "totalBytes": 57734773,
+    "languages": {
+      "JSON": 2066505,
+      "Markdown": 2044207,
+      "Shell": 57112,
+      "YAML": 905138,
+      "Python": 15448228,
+      "SQL": 274006,
+      "JavaScript": 347981,
+      "TypeScript": 5807020,
+      "CSS": 14076
+    },
+    "inventory": {
+      "hasReadme": true,
+      "hasLicense": true,
+      "hasModelCard": false,
+      "hasDataCard": false,
+      "hasRiskRegister": false,
+      "hasThreatModel": false,
+      "hasSecurityMd": true,
+      "hasPrivacyMd": false,
+      "hasCodeOfConduct": true,
+      "hasContributing": true,
+      "hasCiWorkflows": true,
+      "hasEvalDir": false,
+      "hasTestsDir": true,
+      "governanceDocFiles": [
+        "CODE_OF_CONDUCT.md",
+        "CONTRIBUTING.md",
+        "LICENSE",
+        "README.md",
+        "SECURITY.md",
+        "autogpt_platform/LICENSE.md",
+        "autogpt_platform/README.md",
+        "autogpt_platform/autogpt_libs/README.md",
+        "autogpt_platform/backend/README.md",
+        "autogpt_platform/backend/backend/api/features/store/README.md",
+        "autogpt_platform/backend/backend/api/middleware/security.py",
+        "autogpt_platform/backend/backend/copilot/bot/README.md",
+        "autogpt_platform/backend/backend/util/security.py",
+        "autogpt_platform/backend/load-tests/README.md",
+        "autogpt_platform/db/docker/README.md",
+        "autogpt_platform/frontend/CONTRIBUTING.md",
+        "autogpt_platform/frontend/README.md",
+        "classic/README.md",
+        "classic/SECURITY.md",
+        "classic/direct_benchmark/README.md",
+        "classic/direct_benchmark/challenges/README.md",
+        "classic/direct_benchmark/challenges/library/README.md",
+        "classic/forge/README.md",
+        "classic/forge/forge/components/README.md",
+        "classic/forge/forge/llm/providers/llamafile/README.md",
+        "classic/original_autogpt/README.md",
+        "classic/original_autogpt/autogpt/agents/README.md",
+        "docs/home/README.md",
+        "docs/integrations/README.md"
+      ],
+      "configFiles": []
+    },
+    "fetchedAt": "2026-05-16T03:30:03.510Z"
+  },
+  "recon": {
+    "signals": {
+      "agent_framework": {
+        "signal": "agent_framework",
+        "fired": true,
+        "strength": 0.7112605001534575,
+        "evidence": [
+          {
+            "file": "autogpt_platform/backend/backend/copilot/baseline/service_unit_test.py",
+            "lines": [
+              1485,
+              1485
+            ],
+            "snippet": "\"\"\"Newer ``openai-python`` declares ``cache_write_tokens`` as a typed attribute on ``PromptTokensDetails`` — it no longer l",
+            "rule": "openai_sdk_use"
+          },
+          {
+            "file": "classic/forge/forge/components/image_gen/image_gen.py",
+            "lines": [
+              196,
+              196
+            ],
+            "snippet": "response = OpenAI( api_key=self.openai_credentials.api_key.get_secret_value(), organization=(",
+            "rule": "openai_sdk_use"
+          },
+          {
+            "file": "classic/forge/forge/llm/providers/anthropic.py",
+            "lines": [
+              10,
+              10
+            ],
+            "snippet": "ity import tiktoken from anthropic import APIConnectionError, APIStatusError from pydantic import SecretStr from forge.models.config import",
+            "rule": "anthropic_sdk_use"
+          },
+          {
+            "file": "classic/forge/forge/llm/providers/anthropic.py",
+            "lines": [
+              254,
+              254
+            ],
+            "snippet": "er=logger) from anthropic import AsyncAnthropic self._client = AsyncAnthropic( **self._credentials.get_api_acc",
+            "rule": "anthropic_sdk_use"
+          },
+          {
+            "file": "classic/forge/forge/llm/providers/openai.py",
+            "lines": [
+              757,
+              757
+            ],
+            "snippet": "//github.com/openai/openai-python/blob/120d225b91a8453e15240a49fb1c6794d8119326/chatml.md \" # noqa \"for information on how",
+            "rule": "openai_sdk_use"
+          },
+          {
+            "file": "docs/content/classic/setup/index.md",
+            "lines": [
+              149,
+              149
+            ],
+            "snippet": "//github.com/openai/openai-python?tab=readme-ov-file#microsoft-azure-openai ### Anthropic 1. Make sure you have credits in your account:",
+            "rule": "openai_sdk_use"
+          }
+        ]
+      },
+      "model_usage": {
+        "signal": "model_usage",
+        "fired": true,
+        "strength": 1,
+        "evidence": [
+          {
+            "file": "autogpt_platform/analytics/queries/user_block_spending.sql",
+            "lines": [
+              25,
+              25
+            ],
+            "snippet": "Model name (e.g. 'gpt-4o', 'claude-3-5-sonnet') -- node_exec_id TEXT Linked node execution UUID -- llm_call_count",
+            "rule": "model_string_openai",
+            "detail": "gpt-4o"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_00fdd42c-a14c-4d19-a567-65374ea0e87f.json",
+            "lines": [
+              2126,
+              2126
+            ],
+            "snippet": "\"model\": \"claude-sonnet-4-20250514\", \"retry\": 3, \"prompt\": \"Make this into a high-quality html email repo",
+            "rule": "model_string_anthropic",
+            "detail": "claude-sonnet-4-20250514"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_00fdd42c-a14c-4d19-a567-65374ea0e87f.json",
+            "lines": [
+              3141,
+              3141
+            ],
+            "snippet": "thropic\", \"claude-haiku-4-5-20251001\": \"anthropic\", \"claude-opus-4-1-20250805\": \"anthropic\", \"claude-opus-4-20",
+            "rule": "model_string_anthropic",
+            "detail": "claude-haiku-4-5-20251001"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_00fdd42c-a14c-4d19-a567-65374ea0e87f.json",
+            "lines": [
+              3142,
+              3142
+            ],
+            "snippet": "thropic\", \"claude-opus-4-1-20250805\": \"anthropic\", \"claude-opus-4-20250514\": \"anthropic\", \"claude-opus-4-5-202",
+            "rule": "model_string_anthropic",
+            "detail": "claude-opus-4-1-20250805"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_00fdd42c-a14c-4d19-a567-65374ea0e87f.json",
+            "lines": [
+              3143,
+              3143
+            ],
+            "snippet": "thropic\", \"claude-opus-4-20250514\": \"anthropic\", \"claude-opus-4-5-20251101\": \"anthropic\", \"claude-sonnet-4-202",
+            "rule": "model_string_anthropic",
+            "detail": "claude-opus-4-20250514"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_00fdd42c-a14c-4d19-a567-65374ea0e87f.json",
+            "lines": [
+              3144,
+              3144
+            ],
+            "snippet": "thropic\", \"claude-opus-4-5-20251101\": \"anthropic\", \"claude-sonnet-4-20250514\": \"anthropic\", \"claude-sonnet-4-5",
+            "rule": "model_string_anthropic",
+            "detail": "claude-opus-4-5-20251101"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_00fdd42c-a14c-4d19-a567-65374ea0e87f.json",
+            "lines": [
+              424,
+              424
+            ],
+            "snippet": "{ \"model\": \"gpt-5-2025-08-07\", \"retry\": 3, \"prompt\": \"You are a skilled newsletter writer for a popular newsletter,",
+            "rule": "model_string_openai",
+            "detail": "gpt-5-2025-08-07"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_00fdd42c-a14c-4d19-a567-65374ea0e87f.json",
+            "lines": [
+              581,
+              581
+            ],
+            "snippet": "{ \"model\": \"gpt-5-2025-08-07\", \"retry\": 3, \"prompt\": \"Your task is to return a question that will best find me what",
+            "rule": "model_string_openai",
+            "detail": "gpt-5-2025-08-07"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_00fdd42c-a14c-4d19-a567-65374ea0e87f.json",
+            "lines": [
+              1057,
+              1057
+            ],
+            "snippet": "{ \"model\": \"gpt-5-2025-08-07\", \"retry\": 3, \"prompt\": \"Extract and list the individual stories mentioned in the foll",
+            "rule": "model_string_openai",
+            "detail": "gpt-5-2025-08-07"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_00fdd42c-a14c-4d19-a567-65374ea0e87f.json",
+            "lines": [
+              1150,
+              1150
+            ],
+            "snippet": "{ \"model\": \"gpt-5-2025-08-07\", \"retry\": 3, \"prompt\": \"You are given a newsletter. Each story includes an associated",
+            "rule": "model_string_openai",
+            "detail": "gpt-5-2025-08-07"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_00fdd42c-a14c-4d19-a567-65374ea0e87f.json",
+            "lines": [
+              2655,
+              2655
+            ],
+            "snippet": "\"model\": \"gpt-5-mini-2025-08-07\", \"retry\": 3, \"prompt\": \"Extract the most relevant image URL(s) that repr",
+            "rule": "model_string_openai",
+            "detail": "gpt-5-mini-2025-08-07"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_00fdd42c-a14c-4d19-a567-65374ea0e87f.json",
+            "lines": [
+              3131,
+              3131
+            ],
+            "snippet": "pping\": { \"Llama-3.3-70B-Instruct\": \"llama_api\", \"Llama-3.3-8B-Instruct\": \"llama_api\", \"Llama-4-Maverick-17B-1",
+            "rule": "model_string_llama",
+            "detail": "Llama-3.3-70B-Instruct"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_00fdd42c-a14c-4d19-a567-65374ea0e87f.json",
+            "lines": [
+              3132,
+              3132
+            ],
+            "snippet": "ama_api\", \"Llama-3.3-8B-Instruct\": \"llama_api\", \"Llama-4-Maverick-17B-128E-Instruct-FP8\": \"llama_api\", \"Llama-",
+            "rule": "model_string_llama",
+            "detail": "Llama-3.3-8B-Instruct"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_00fdd42c-a14c-4d19-a567-65374ea0e87f.json",
+            "lines": [
+              3133,
+              3133
+            ],
+            "snippet": "ama_api\", \"Llama-4-Maverick-17B-128E-Instruct-FP8\": \"llama_api\", \"Llama-4-Scout-17B-16E-Instruct-FP8\": \"llama_api\",",
+            "rule": "model_string_llama",
+            "detail": "Llama-4-Maverick-17B-128E-Instruct-FP8"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_00fdd42c-a14c-4d19-a567-65374ea0e87f.json",
+            "lines": [
+              3134,
+              3134
+            ],
+            "snippet": "ama_api\", \"Llama-4-Scout-17B-16E-Instruct-FP8\": \"llama_api\", \"Qwen/Qwen2.5-72B-Instruct-Turbo\": \"aiml_api\", \"a",
+            "rule": "model_string_llama",
+            "detail": "Llama-4-Scout-17B-16E-Instruct-FP8"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_00fdd42c-a14c-4d19-a567-65374ea0e87f.json",
+            "lines": [
+              3170,
+              3170
+            ],
+            "snippet": "_router\", \"llama-3.1-8b-instant\": \"groq\", \"llama-3.3-70b-versatile\": \"groq\", \"llama3\": \"ollama\", \"ll",
+            "rule": "model_string_llama",
+            "detail": "llama-3.1-8b-instant"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_31daf49d-31d3-476b-aa4c-099abc59b458.json",
+            "lines": [
+              513,
+              513
+            ],
+            "snippet": "thropic\", \"claude-haiku-4-5-20251001\": \"anthropic\", \"claude-opus-4-1-20250805\": \"anthropic\", \"claude-opus-4-20",
+            "rule": "model_string_anthropic",
+            "detail": "claude-haiku-4-5-20251001"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_31daf49d-31d3-476b-aa4c-099abc59b458.json",
+            "lines": [
+              514,
+              514
+            ],
+            "snippet": "thropic\", \"claude-opus-4-1-20250805\": \"anthropic\", \"claude-opus-4-20250514\": \"anthropic\", \"claude-opus-4-5-202",
+            "rule": "model_string_anthropic",
+            "detail": "claude-opus-4-1-20250805"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_31daf49d-31d3-476b-aa4c-099abc59b458.json",
+            "lines": [
+              515,
+              515
+            ],
+            "snippet": "thropic\", \"claude-opus-4-20250514\": \"anthropic\", \"claude-opus-4-5-20251101\": \"anthropic\", \"claude-sonnet-4-202",
+            "rule": "model_string_anthropic",
+            "detail": "claude-opus-4-20250514"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_31daf49d-31d3-476b-aa4c-099abc59b458.json",
+            "lines": [
+              516,
+              516
+            ],
+            "snippet": "thropic\", \"claude-opus-4-5-20251101\": \"anthropic\", \"claude-sonnet-4-20250514\": \"anthropic\", \"claude-sonnet-4-5",
+            "rule": "model_string_anthropic",
+            "detail": "claude-opus-4-5-20251101"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_31daf49d-31d3-476b-aa4c-099abc59b458.json",
+            "lines": [
+              517,
+              517
+            ],
+            "snippet": "thropic\", \"claude-sonnet-4-20250514\": \"anthropic\", \"claude-sonnet-4-5-20250929\": \"anthropic\", \"cohere/command-",
+            "rule": "model_string_anthropic",
+            "detail": "claude-sonnet-4-20250514"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_31daf49d-31d3-476b-aa4c-099abc59b458.json",
+            "lines": [
+              245,
+              245
+            ],
+            "snippet": "{ \"model\": \"gpt-4o\", \"prompt\": \"<example_output>\\nA photo of a sloth lounging on a desk, with its head resting on a keyboar",
+            "rule": "model_string_openai",
+            "detail": "gpt-4o"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_31daf49d-31d3-476b-aa4c-099abc59b458.json",
+            "lines": [
+              530,
+              530
+            ],
+            "snippet": "_router\", \"gpt-3.5-turbo\": \"openai\", \"gpt-4-turbo\": \"openai\", \"gpt-4.1-2025-04-14\": \"openai\", \"gpt-4",
+            "rule": "model_string_openai",
+            "detail": "gpt-3.5-turbo"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_31daf49d-31d3-476b-aa4c-099abc59b458.json",
+            "lines": [
+              531,
+              531
+            ],
+            "snippet": "\"openai\", \"gpt-4-turbo\": \"openai\", \"gpt-4.1-2025-04-14\": \"openai\", \"gpt-4.1-mini-2025-04-14\": \"openai\",",
+            "rule": "model_string_openai",
+            "detail": "gpt-4-turbo"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_31daf49d-31d3-476b-aa4c-099abc59b458.json",
+            "lines": [
+              532,
+              532
+            ],
+            "snippet": "\"openai\", \"gpt-4.1-2025-04-14\": \"openai\", \"gpt-4.1-mini-2025-04-14\": \"openai\", \"gpt-4o\": \"openai\", \"",
+            "rule": "model_string_openai",
+            "detail": "gpt-4.1-2025-04-14"
+          }
+        ],
+        "meta": {
+          "models": {}
+        }
+      },
+      "logging_hooks": {
+        "signal": "logging_hooks",
+        "fired": true,
+        "strength": 1,
+        "evidence": [
+          {
+            "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+            "lines": [
+              1034,
+              1034
+            ],
+            "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct: re-runs only when id changes** ```tsx useEffect(() => { console.log(u",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+            "lines": [
+              1042,
+              1042
+            ],
+            "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": ".claude/skills/vercel-react-best-practices/rules/rerender-dependencies.md",
+            "lines": [
+              16,
+              16
+            ],
+            "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct (re-runs only when id changes):** ```tsx useEffect(() => { console.log",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": ".claude/skills/vercel-react-best-practices/rules/rerender-dependencies.md",
+            "lines": [
+              24,
+              24
+            ],
+            "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
+            "lines": [
+              1,
+              1
+            ],
+            "snippet": "import logging import os from jwt.algorithms import get_default_algorithms, has_crypto logger = logging.getLogger(__na",
+            "rule": "import_logging"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
+            "lines": [
+              40,
+              40
+            ],
+            "snippet": ") < 32: logger.warning( \"⚠️ JWT_VERIFY_KEY appears weak (less than 32 characters). \" \"Consider u",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
+            "lines": [
+              48,
+              48
+            ],
+            "snippet": "crypto: logger.warning( \"⚠️ Asymmetric JWT verification is not available \" \"because the 'cryptog",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
+            "lines": [
+              65,
+              65
+            ],
+            "snippet": "(\"HS\"): logger.warning( f\"⚠️ JWT_SIGN_ALGORITHM is set to '{self.JWT_ALGORITHM}', \" \"a symmetric",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config_test.py",
+            "lines": [
+              6,
+              6
+            ],
+            "snippet": "token forgery. \"\"\" import logging import os import pytest from pytest_mock import MockerFixture from autogpt_libs.auth.config import Auth",
+            "rule": "import_logging"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/dependencies.py",
+            "lines": [
+              7,
+              7
+            ],
+            "snippet": "e definitions. \"\"\" import logging import fastapi from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer from .jwt_utils im",
+            "rule": "import_logging"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/dependencies.py",
+            "lines": [
+              51,
+              51
+            ],
+            "snippet": "ption as e: logger.debug(f\"Auth token validation failed (anonymous access): {e}\") return None async def requires_user(jwt_",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/dependencies.py",
+            "lines": [
+              110,
+              110
+            ],
+            "snippet": "audit trail logger.info( f\"Admin impersonation: {authenticated_user.user_id} ({authenticated_user.email}) \"",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/jwt_utils.py",
+            "lines": [
+              1,
+              1
+            ],
+            "snippet": "import logging from typing import Any import jwt from fastapi import HTTPException, Security from fastapi.security impo",
+            "rule": "import_logging"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/jwt_utils.py",
+            "lines": [
+              39,
+              39
+            ],
+            "snippet": "redentials) logger.debug(\"Token decoded successfully\") return payload except ValueError as e: raise HTTPExceptio",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/logging/config.py",
+            "lines": [
+              3,
+              3
+            ],
+            "snippet": "e for Auto-GPT.\"\"\" import logging import os import socket import sys from logging.handlers import RotatingFileHandler from pathlib import P",
+            "rule": "import_logging"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/logging/filters.py",
+            "lines": [
+              1,
+              1
+            ],
+            "snippet": "import logging class BelowLevelFilter(logging.Filter): \"\"\"Filter for logging levels below a certain threshold.\"\"\"",
+            "rule": "import_logging"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/logging/formatters.py",
+            "lines": [
+              1,
+              1
+            ],
+            "snippet": "import logging from colorama import Fore, Style from .utils import remove_color_codes class FancyConsoleFormatter(lo",
+            "rule": "import_logging"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/logging/handlers.py",
+            "lines": [
+              4,
+              4
+            ],
+            "snippet": "ations import json import logging class JsonFileHandler(logging.FileHandler): def format(self, record: logging.LogRecord) -> str:",
+            "rule": "import_logging"
+          },
+          {
+            "file": "autogpt_platform/backend/AGENTS.md",
+            "lines": [
+              70,
+              70
+            ],
+            "snippet": "e for readability: `logger.debug(\"Processing %s items\", count)`, `logger.info(f\"Processing {count} items\")` - **Sanitize error paths** — `os",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "autogpt_platform/backend/AGENTS.md",
+            "lines": [
+              70,
+              70
+            ],
+            "snippet": "s items\", count)`, `logger.info(f\"Processing {count} items\")` - **Sanitize error paths** — `os.path.basename()` in error messages to avoid l",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/conn_manager.py",
+            "lines": [
+              3,
+              3
+            ],
+            "snippet": "asyncio import json import logging import time from typing import Awaitable, Callable, Dict, Optional, Set from fastapi import WebSocket, W",
+            "rule": "import_logging"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/conn_manager.py",
+            "lines": [
+              164,
+              164
+            ],
+            "snippet": "urn logger.warning( \"Pubsub pump reconnecting for %s after %s: %s\", self.full_channe",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/conn_manager.py",
+            "lines": [
+              183,
+              183
+            ],
+            "snippet": "xc: logger.warning( \"Pubsub pump reopen failed for %s: %s\", self.full_channel,",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/conn_manager.py",
+            "lines": [
+              203,
+              203
+            ],
+            "snippet": "on: logger.warning( \"SUNSUBSCRIBE failed for %s\", self.full_channel, exc_info=True )",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/conn_manager.py",
+            "lines": [
+              331,
+              331
+            ],
+            "snippet": "eption: logger.warning( \"Failed to decode pubsub payload on %s\", channel_key, exc_info=True )",
+            "rule": "log_at_tool_boundary"
+          }
+        ]
+      },
+      "oversight_hooks": {
+        "signal": "oversight_hooks",
+        "fired": true,
+        "strength": 0.81655707406329,
+        "evidence": [
+          {
+            "file": "autogpt_platform/backend/backend/executor/manager.py",
+            "lines": [
+              777,
+              777
+            ],
+            "snippet": "# CancelledError or SystemExit log_metadata.warning( f\"Interruption error on node execution {node_exec.n",
+            "rule": "kill_switch"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/util/process.py",
+            "lines": [
+              69,
+              69
+            ],
+            "snippet": "f not isinstance(e, SystemExit) else None, ) # Send error to Sentry before cleanup if not isinstance(e,",
+            "rule": "kill_switch"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/util/process.py",
+            "lines": [
+              72,
+              72
+            ],
+            "snippet": "(KeyboardInterrupt, SystemExit)): try: from backend.util.metrics import sentry_capture_error",
+            "rule": "kill_switch"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/util/process.py",
+            "lines": [
+              55,
+              55
+            ],
+            "snippet": "f, silent): signal.signal(signal.SIGTERM, self._self_terminate) signal.signal(signal.SIGINT, self._self_terminate)",
+            "rule": "graceful_shutdown"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/util/process.py",
+            "lines": [
+              56,
+              56
+            ],
+            "snippet": "_terminate) signal.signal(signal.SIGINT, self._self_terminate) try: if silent: sys.stdout = ope",
+            "rule": "graceful_shutdown"
+          },
+          {
+            "file": "autogpt_platform/backend/scripts/refresh_anthropic_rates.py",
+            "lines": [
+              62,
+              62
+            ],
+            "snippet": "_main__\": raise SystemExit(main())",
+            "rule": "kill_switch"
+          },
+          {
+            "file": "autogpt_platform/backend/scripts/seed_block_preflight_estimates.py",
+            "lines": [
+              32,
+              32
+            ],
+            "snippet": "<= 0: raise SystemExit(\"--days must be a positive integer\") if not os.environ.get(\"DATABASE_URL\"): raise SystemExit(\"DAT",
+            "rule": "kill_switch"
+          },
+          {
+            "file": "autogpt_platform/backend/scripts/seed_block_preflight_estimates.py",
+            "lines": [
+              34,
+              34
+            ],
+            "snippet": "RL\"): raise SystemExit(\"DATABASE_URL must be set\") # Imported lazily so --help works without the backend env being loaded.",
+            "rule": "kill_switch"
+          },
+          {
+            "file": "classic/original_autogpt/autogpt/app/main.py",
+            "lines": [
+              670,
+              670
+            ],
+            "snippet": "for the agent. signal.signal(signal.SIGINT, graceful_agent_interrupt) ######################### # Application Main Loop #",
+            "rule": "graceful_shutdown"
+          },
+          {
+            "file": "classic/original_autogpt/autogpt/app/ui/terminal/provider.py",
+            "lines": [
+              75,
+              75
+            ],
+            "snippet": ") raise SystemExit(0) async def prompt_permission( self, cmd: str, args_str: str, args: dict[str, Any] ) -> App",
+            "rule": "kill_switch"
+          },
+          {
+            "file": "docs/content/challenges/building_challenges.md",
+            "lines": [
+              108,
+              108
+            ],
+            "snippet": "contextlib.suppress(SystemExit): run_interaction_loop(kubernetes_agent, None) # here we load the output file file_path = st",
+            "rule": "kill_switch"
+          }
+        ]
+      },
+      "eval_artefacts": {
+        "signal": "eval_artefacts",
+        "fired": true,
+        "strength": 0.5204119982655925,
+        "evidence": [
+          {
+            "file": "tests/",
+            "rule": "eval_or_test_dir_present"
+          },
+          {
+            "file": ".github/workflows/",
+            "rule": "ci_workflows_present"
+          }
+        ]
+      },
+      "governance_docs": {
+        "signal": "governance_docs",
+        "fired": true,
+        "strength": 0.9849591991595825,
+        "evidence": [
+          {
+            "file": "CODE_OF_CONDUCT.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "CONTRIBUTING.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "LICENSE",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "SECURITY.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "autogpt_platform/LICENSE.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "autogpt_platform/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "autogpt_platform/backend/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/store/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/middleware/security.py",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/copilot/bot/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/util/security.py",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "autogpt_platform/backend/load-tests/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "autogpt_platform/db/docker/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "autogpt_platform/frontend/CONTRIBUTING.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "autogpt_platform/frontend/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "classic/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "classic/SECURITY.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "classic/direct_benchmark/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "classic/direct_benchmark/challenges/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "classic/direct_benchmark/challenges/library/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "classic/forge/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "classic/forge/forge/components/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "classic/forge/forge/llm/providers/llamafile/README.md",
+            "rule": "governance_doc_present"
+          }
+        ]
+      },
+      "cybersec_hooks": {
+        "signal": "cybersec_hooks",
+        "fired": true,
+        "strength": 1,
+        "evidence": [
+          {
+            "file": ".claude/skills/orchestrate/SKILL.md",
+            "lines": [
+              677,
+              677
+            ],
+            "snippet": "our | Wait until `X-RateLimit-Reset` timestamp | **Prevention:** Agents must add `sleep 3` between individual thread reply API calls. For >",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": ".claude/skills/pr-address/SKILL.md",
+            "lines": [
+              345,
+              345
+            ],
+            "snippet": "ser | Wait until `X-RateLimit-Reset` header timestamp | | `GraphQL: API rate limit already exceeded for user ID ...` | 403 on stderr, `gh` e",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": ".claude/skills/pr-address/SKILL.md",
+            "lines": [
+              355,
+              355
+            ],
+            "snippet": "n): ```bash gh api rate_limit --jq '.resources.graphql' # { \"limit\": 5000, \"used\": 5000, \"remaining\": 0, \"reset\": 1729...} # Human-readab",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": ".claude/skills/pr-address/SKILL.md",
+            "lines": [
+              357,
+              357
+            ],
+            "snippet": "dable reset: gh api rate_limit --jq '.resources.graphql.reset' | xargs -I{} date -r {} ``` Retry when `remaining > 0`. If you need to proce",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": ".claude/skills/pr-address/SKILL.md",
+            "lines": [
+              366,
+              366
+            ],
+            "snippet": "`), and the `gh api rate_limit` probe. - **Degraded:** inline thread list — fall back to flat `/pulls/{N}/comments` REST, which drops thread",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": ".claude/skills/pr-polish/SKILL.md",
+            "lines": [
+              231,
+              231
+            ],
+            "snippet": "e PRs. When `gh api rate_limit --jq .resources.graphql.remaining` drops below ~200, back off: - Fall back to REST for reads (flat `/pulls/{",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": ".claude/skills/pr-test/SKILL.md",
+            "lines": [
+              61,
+              61
+            ],
+            "snippet": "INER redis-cli SET \"rate_limit:user:test@test.com\" 99 EX 3600 # Example: Check current value docker exec $REDIS_CONTAINER redis-cli GE",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": ".claude/skills/pr-test/SKILL.md",
+            "lines": [
+              63,
+              63
+            ],
+            "snippet": "INER redis-cli GET \"rate_limit:user:test@test.com\" ``` 2. **Use API calls to check before/after state:** ```bash # BEFORE: Record",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/conftest.py",
+            "lines": [
+              55,
+              55
+            ],
+            "snippet": "ed``) live in ``rate_limit_test.py`` and patch ``_fetch_user_tier`` directly, bypassing this helper. \"\"\" # Patch BOTH bindin",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/conftest.py",
+            "lines": [
+              58,
+              58
+            ],
+            "snippet": "ch BOTH bindings: ``rate_limit.is_user_paywalled`` covers the # call inside ``enforce_payment_paywall`` (HTTP route dep); the # boun",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/conftest.py",
+            "lines": [
+              64,
+              64
+            ],
+            "snippet": "rom backend.copilot.rate_limit import is_user_paywalled`` at # import time. paywall_off = mocker.AsyncMock(return_value=False) m",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/conftest.py",
+            "lines": [
+              67,
+              67
+            ],
+            "snippet": "ch(\"backend.copilot.rate_limit.is_user_paywalled\", new=paywall_off) mocker.patch(\"backend.executor.utils.is_user_paywalled\", new=paywall",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/external/fastapi_app.py",
+            "lines": [
+              6,
+              6
+            ],
+            "snippet": "rom backend.copilot.rate_limit import UserPaywalledError from backend.monitoring.instrumentation import instrument_fastapi from .v1.routes",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/external/v1/routes.py",
+            "lines": [
+              16,
+              16
+            ],
+            "snippet": "rom backend.copilot.rate_limit import UserPaywalledError, enforce_payment_paywall from backend.data import execution as execution_db from ba",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/external/v1/routes_test.py",
+            "lines": [
+              12,
+              12
+            ],
+            "snippet": "rom backend.copilot.rate_limit import UserPaywalledError from backend.data.auth.base import APIAuthorizationInfo from backend.util.exception",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/admin/rate_limit_admin_routes.py",
+            "lines": [
+              11,
+              11
+            ],
+            "snippet": "rom backend.copilot.rate_limit import ( SubscriptionTier, get_global_rate_limits, get_usage_status, get_user_tier, reset",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/admin/rate_limit_admin_routes.py",
+            "lines": [
+              85,
+              85
+            ],
+            "snippet": "@router.get( \"/rate_limit\", response_model=UserRateLimitResponse, summary=\"Get User Rate Limit\", ) async def get_user_rate_limi",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/admin/rate_limit_admin_routes.py",
+            "lines": [
+              122,
+              122
+            ],
+            "snippet": "@router.post( \"/rate_limit/reset\", response_model=UserRateLimitResponse, summary=\"Reset User Rate Limit Usage\", ) async def rese",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/admin/rate_limit_admin_routes.py",
+            "lines": [
+              170,
+              170
+            ],
+            "snippet": "@router.get( \"/rate_limit/tier\", response_model=UserTierResponse, summary=\"Get User Rate Limit Tier\", ) async def get_user_rate",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/admin/rate_limit_admin_routes.py",
+            "lines": [
+              193,
+              193
+            ],
+            "snippet": "@router.post( \"/rate_limit/tier\", response_model=UserTierResponse, summary=\"Set User Rate Limit Tier\", ) async def set_user_rate",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/admin/rate_limit_admin_routes_test.py",
+            "lines": [
+              12,
+              12
+            ],
+            "snippet": "rom backend.copilot.rate_limit import CoPilotUsageStatus, SubscriptionTier, UsageWindow from .rate_limit_admin_routes import router as rate",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/admin/rate_limit_admin_routes_test.py",
+            "lines": [
+              14,
+              14
+            ],
+            "snippet": "UsageWindow from .rate_limit_admin_routes import router as rate_limit_admin_router app = fastapi.FastAPI() app.include_router(rate_limit_",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/admin/rate_limit_admin_routes_test.py",
+            "lines": [
+              14,
+              14
+            ],
+            "snippet": "es import router as rate_limit_admin_router app = fastapi.FastAPI() app.include_router(rate_limit_admin_router) client = fastapi.testclien",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/admin/rate_limit_admin_routes_test.py",
+            "lines": [
+              17,
+              17
+            ],
+            "snippet": "app.include_router(rate_limit_admin_router) client = fastapi.testclient.TestClient(app) _MOCK_MODULE = \"backend.api.features.admin.rate_l",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/admin/rate_limit_admin_routes_test.py",
+            "lines": [
+              21,
+              21
+            ],
+            "snippet": ".api.features.admin.rate_limit_admin_routes\" _TARGET_EMAIL = \"target@example.com\" @pytest.fixture(autouse=True) def setup_app_admin_auth(",
+            "rule": "rate_limit_usage"
+          }
+        ]
+      },
+      "provenance_hooks": {
+        "signal": "provenance_hooks",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "data_io": {
+        "signal": "data_io",
+        "fired": true,
+        "strength": 1,
+        "evidence": [
+          {
+            "file": ".branchlet.json",
+            "lines": [
+              24,
+              24
+            ],
+            "snippet": "\"**/*.pyc\", \"**/playwright-report/**\", \"**/logs/**\", \"**/site/**\" ], \"worktreePathTemplate\": \"$BASE_PATH.worktree\", \"postC",
+            "rule": "scraping_pattern"
+          },
+          {
+            "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+            "lines": [
+              901,
+              901
+            ],
+            "snippet": "eEffect(() => { fetch('/api/users') .then(r => r.json()) .then(setUsers) }, []) } ``` **Correct: multiple instances share",
+            "rule": "http_external_io"
+          },
+          {
+            "file": ".claude/skills/vercel-react-best-practices/rules/client-swr-dedup.md",
+            "lines": [
+              18,
+              18
+            ],
+            "snippet": "eEffect(() => { fetch('/api/users') .then(r => r.json()) .then(setUsers) }, []) } ``` **Correct (multiple instances share",
+            "rule": "http_external_io"
+          },
+          {
+            "file": ".github/workflows/classic-forge-ci.yml",
+            "lines": [
+              63,
+              63
+            ],
+            "snippet": "run: poetry run playwright install chromium - name: Run pytest with coverage run: | poetry run pytest -vv \\",
+            "rule": "scraping_pattern"
+          },
+          {
+            "file": ".github/workflows/claude-dependabot.yml",
+            "lines": [
+              98,
+              98
+            ],
+            "snippet": "# run: pnpm playwright install --with-deps chromium # Docker setup for development environment - name: Set up Docker Bu",
+            "rule": "scraping_pattern"
+          },
+          {
+            "file": ".github/workflows/claude.yml",
+            "lines": [
+              111,
+              111
+            ],
+            "snippet": "# run: pnpm playwright install --with-deps chromium # Docker setup for development environment - name: Set up Docker Bu",
+            "rule": "scraping_pattern"
+          },
+          {
+            "file": ".github/workflows/copilot-setup-steps.yml",
+            "lines": [
+              108,
+              108
+            ],
+            "snippet": "# run: pnpm playwright install --with-deps chromium # Docker setup for development environment - name: Free up disk spa",
+            "rule": "scraping_pattern"
+          },
+          {
+            "file": ".github/workflows/platform-fullstack-ci.yml",
+            "lines": [
+              301,
+              301
+            ],
+            "snippet": "path: ~/.cache/ms-playwright key: playwright-${{ runner.os }}-${{ hashFiles('autogpt_platform/frontend/pnpm-lock.yaml') }}",
+            "rule": "scraping_pattern"
+          },
+          {
+            "file": ".github/workflows/platform-fullstack-ci.yml",
+            "lines": [
+              302,
+              302
+            ],
+            "snippet": "ight key: playwright-${{ runner.os }}-${{ hashFiles('autogpt_platform/frontend/pnpm-lock.yaml') }} restore-keys: |",
+            "rule": "scraping_pattern"
+          },
+          {
+            "file": ".github/workflows/platform-fullstack-ci.yml",
+            "lines": [
+              304,
+              304
+            ],
+            "snippet": "keys: | playwright-${{ runner.os }}- - name: Copy source maps from Docker for E2E coverage run: | FRONT",
+            "rule": "scraping_pattern"
+          },
+          {
+            "file": ".github/workflows/platform-fullstack-ci.yml",
+            "lines": [
+              315,
+              315
+            ],
+            "snippet": "' run: pnpm playwright install --with-deps chromium - name: Run Playwright E2E suite run: pnpm test:e2e:no-build",
+            "rule": "scraping_pattern"
+          },
+          {
+            "file": ".github/workflows/platform-fullstack-ci.yml",
+            "lines": [
+              334,
+              334
+            ],
+            "snippet": "th: name: playwright-report path: autogpt_platform/frontend/playwright-report if-no-files-found: ignore",
+            "rule": "scraping_pattern"
+          },
+          {
+            "file": ".github/workflows/scripts/check_actions_status.py",
+            "lines": [
+              39,
+              39
+            ],
+            "snippet": "response = requests.get(url, headers=headers, timeout=10) response.raise_for_status() return response.json() ex",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/apollo/_api.py",
+            "lines": [
+              33,
+              33
+            ],
+            "snippet": "sponse = await self.requests.post( f\"{self.API_URL}/mixed_people/search\", headers=self._get_headers(), j",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/apollo/_api.py",
+            "lines": [
+              57,
+              57
+            ],
+            "snippet": "sponse = await self.requests.post( f\"{self.API_URL}/mixed_people/search\", headers=self._get_headers(",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/apollo/_api.py",
+            "lines": [
+              73,
+              73
+            ],
+            "snippet": "sponse = await self.requests.post( f\"{self.API_URL}/mixed_companies/search\", headers=self._get_headers(),",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/apollo/_api.py",
+            "lines": [
+              97,
+              97
+            ],
+            "snippet": "sponse = await self.requests.post( f\"{self.API_URL}/mixed_companies/search\", headers=self._get_heade",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/apollo/_api.py",
+            "lines": [
+              117,
+              117
+            ],
+            "snippet": "sponse = await self.requests.post( f\"{self.API_URL}/people/match\", headers=self._get_headers(), json=que",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/baas/_api.py",
+            "lines": [
+              78,
+              78
+            ],
+            "snippet": "sponse = await self.requests.post( f\"{self.BASE_URL}/bots\", headers=self.headers, json=body, )",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/baas/_api.py",
+            "lines": [
+              115,
+              115
+            ],
+            "snippet": "sponse = await self.requests.post( f\"{self.BASE_URL}/bots/retranscribe\", headers=self.headers, json=body",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/baas/_api.py",
+            "lines": [
+              140,
+              140
+            ],
+            "snippet": "sponse = await self.requests.get( f\"{self.BASE_URL}/bots/meeting_data\", headers=self.headers, params=par",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/baas/_api.py",
+            "lines": [
+              153,
+              153
+            ],
+            "snippet": "sponse = await self.requests.get( f\"{self.BASE_URL}/bots/{bot_id}/screenshots\", headers=self.headers, )",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/baas/_api.py",
+            "lines": [
+              169,
+              169
+            ],
+            "snippet": "sponse = await self.requests.post( f\"{self.BASE_URL}/bots/{bot_id}/delete_data\", headers=self.headers, )",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/dataforseo/_api.py",
+            "lines": [
+              85,
+              85
+            ],
+            "snippet": "sponse = await self.requests.post( endpoint, headers=self._get_headers(), json=payload, )",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/dataforseo/_api.py",
+            "lines": [
+              165,
+              165
+            ],
+            "snippet": "sponse = await self.requests.post( endpoint, headers=self._get_headers(), json=payload, )",
+            "rule": "http_external_io"
+          }
+        ]
+      },
+      "pii_signals": {
+        "signal": "pii_signals",
+        "fired": true,
+        "strength": 1,
+        "evidence": [
+          {
+            "file": ".claude/skills/pr-test/SKILL.md",
+            "lines": [
+              130,
+              130
+            ],
+            "snippet": "esults manually): - Email: `test@test.com` - Password: `testtest123` ## Step 1: Understand the PR Before testing, understand what changed:",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".claude/skills/pr-test/SKILL.md",
+            "lines": [
+              484,
+              484
+            ],
+            "snippet": "ion/json' \\ -d '{\"email\":\"test@test.com\",\"password\":\"testtest123\"}') # If \"Database error finding user\", restart supabase-auth and retry",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".claude/skills/pr-test/SKILL.md",
+            "lines": [
+              492,
+              492
+            ],
+            "snippet": "n/json' \\ -d '{\"email\":\"test@test.com\",\"password\":\"testtest123\"}' fi # Get auth token TOKEN=$(curl -s -X POST 'http://localhost:8000/au",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".claude/skills/pr-test/SKILL.md",
+            "lines": [
+              499,
+              499
+            ],
+            "snippet": "ion/json' \\ -d '{\"email\":\"test@test.com\",\"password\":\"testtest123\"}' | jq -r '.access_token // \"\"') ``` **Use this token for ALL API calls",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+            "lines": [
+              1922,
+              1922
+            ],
+            "snippet": "rs) { if (!user.email) { hasError = true errorMessage = 'Email required' } if (!user.name) { hasError = true",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+            "lines": [
+              1924,
+              1924
+            ],
+            "snippet": "errorMessage = 'Email required' } if (!user.name) { hasError = true errorMessage = 'Name required' } // Cont",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+            "lines": [
+              1942,
+              1942
+            ],
+            "snippet": "rs) { if (!user.email) { return { valid: false, error: 'Email required' } } if (!user.name) { return { valid: false,",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+            "lines": [
+              1943,
+              1943
+            ],
+            "snippet": "lid: false, error: 'Email required' } } if (!user.name) { return { valid: false, error: 'Name required' } } } return",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".claude/skills/vercel-react-best-practices/rules/js-early-exit.md",
+            "lines": [
+              20,
+              20
+            ],
+            "snippet": "rs) { if (!user.email) { hasError = true errorMessage = 'Email required' } if (!user.name) { hasError = true",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".claude/skills/vercel-react-best-practices/rules/js-early-exit.md",
+            "lines": [
+              22,
+              22
+            ],
+            "snippet": "errorMessage = 'Email required' } if (!user.name) { hasError = true errorMessage = 'Name required' } // Cont",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".claude/skills/vercel-react-best-practices/rules/js-early-exit.md",
+            "lines": [
+              40,
+              40
+            ],
+            "snippet": "rs) { if (!user.email) { return { valid: false, error: 'Email required' } } if (!user.name) { return { valid: false,",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".claude/skills/vercel-react-best-practices/rules/js-early-exit.md",
+            "lines": [
+              41,
+              41
+            ],
+            "snippet": "lid: false, error: 'Email required' } } if (!user.name) { return { valid: false, error: 'Name required' } } } return",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".github/scripts/detect_overlaps.py",
+            "lines": [
+              710,
+              710
+            ],
+            "snippet": "it([\"config\", \"user.email\", \"github-actions[bot]@users.noreply.github.com\"], cwd=tmpdir, check=False) run_git([\"config\", \"user.name\", \"g",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".github/workflows/classic-autogpt-ci.yml",
+            "lines": [
+              55,
+              55
+            ],
+            "snippet": "onfig --global user.email \"github-bot@agpt.co\" - name: Set up Python 3.12 uses: actions/setup-python@v5 with:",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".github/workflows/claude-ci-failure-auto-fix.yml",
+            "lines": [
+              33,
+              33
+            ],
+            "snippet": "onfig --global user.email \"claude[bot]@users.noreply.github.com\" git config --global user.name \"claude[bot]\" - name: Create",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".github/workflows/docs-enhance.yml",
+            "lines": [
+              161,
+              161
+            ],
+            "snippet": "git config user.email \"github-actions[bot]@users.noreply.github.com\" # Create branch and commit BRANCH_NAME=\"docs/e",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".github/workflows/pr-overlap-check.yml",
+            "lines": [
+              30,
+              30
+            ],
+            "snippet": "git config user.email \"github-actions[bot]@users.noreply.github.com\" git config user.name \"github-actions[bot]\" - name:",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".github/workflows/scripts/docker-ci-summary.sh",
+            "lines": [
+              82,
+              82
+            ],
+            "snippet": "name) <\\(.committer.email)></sub>\" else \"\" end), \"<sub>**Timestamp:** \\(.timestamp)</sub>\" ] | map(\"> \\(.)\\n\") | join(\"\")) | join(\"\\n\")'",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "CODE_OF_CONDUCT.md",
+            "lines": [
+              29,
+              29
+            ],
+            "snippet": "ject maintainers by email or other appropriate means. The maintainers will investigate and take appropriate action, which may include warnin",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/analytics/queries/platform_cost_log.sql",
+            "lines": [
+              10,
+              10
+            ],
+            "snippet": "er table to provide email for per-user breakdowns. -- -- SOURCE TABLES -- platform.PlatformCostLog — Per-call cost records -- platform.",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/analytics/queries/platform_cost_log.sql",
+            "lines": [
+              14,
+              14
+            ],
+            "snippet": "— User email -- -- OUTPUT COLUMNS -- id TEXT Log entry UUID -- createdAt TIMESTA",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/analytics/queries/platform_cost_log.sql",
+            "lines": [
+              20,
+              20
+            ],
+            "snippet": "ost (nullable) -- email TEXT User email (nullable) -- graphExecId TEXT Graph execution UUI",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/analytics/queries/platform_cost_log.sql",
+            "lines": [
+              20,
+              20
+            ],
+            "snippet": "TEXT User email (nullable) -- graphExecId TEXT Graph execution UUID (nullable) -- nodeExecId",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/analytics/queries/platform_cost_log.sql",
+            "lines": [
+              54,
+              54
+            ],
+            "snippet": "SELECT \"userId\", email, SUM(\"costUsd\") AS total_usd, COUNT(*) AS calls -- FROM analytics.platform_cost_log -- WHERE \"userId\" IS NOT N",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/dependencies.py",
+            "lines": [
+              111,
+              111
+            ],
+            "snippet": "{authenticated_user.email}) \" f\"acting as user {impersonate_header} for requesting {request.method} {request.url}\" )",
+            "rule": "pii_keywords"
+          }
+        ]
+      },
+      "bio_health_signals": {
+        "signal": "bio_health_signals",
+        "fired": true,
+        "strength": 0.5204119982655925,
+        "evidence": [
+          {
+            "file": "autogpt_platform/frontend/src/app/(platform)/copilot/styleguide/page.tsx",
+            "lines": [
+              1414,
+              1414
+            ],
+            "snippet": "ears to 3 years*\\n- Patient outcomes improved across `87%` of pilot programs\\n\\n> AI is not replacing doctors — it's augmenting their capabi",
+            "rule": "health_terms"
+          },
+          {
+            "file": "docs/integrations/block-integrations/github/ci.md",
+            "lines": [
+              46,
+              46
+            ],
+            "snippet": "deploying. **Error Diagnosis**: Search CI logs for specific error patterns to quickly identify why builds are failing. **Automated PR Vali",
+            "rule": "health_terms"
+          }
+        ]
+      },
+      "employment_signals": {
+        "signal": "employment_signals",
+        "fired": true,
+        "strength": 1,
+        "evidence": [
+          {
+            "file": ".claude/skills/orchestrate/SKILL.md",
+            "lines": [
+              78,
+              78
+            ],
+            "snippet": "e to recycle. **To resume a done or crashed session:** ```bash # Resume by stored session ID (preferred — exact session, full context) clau",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/orchestrate/SKILL.md",
+            "lines": [
+              80,
+              80
+            ],
+            "snippet": "ession:** ```bash # Resume by stored session ID (preferred — exact session, full context) claude --resume SESSION_ID --permission-mode bypas",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/orchestrate/SKILL.md",
+            "lines": [
+              81,
+              81
+            ],
+            "snippet": "l context) claude --resume SESSION_ID --permission-mode bypassPermissions # Or resume most recent session in that worktree directory cd /pa",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/orchestrate/SKILL.md",
+            "lines": [
+              83,
+              83
+            ],
+            "snippet": "ssPermissions # Or resume most recent session in that worktree directory cd /path/to/worktree && claude --continue --permission-mode bypass",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/orchestrate/SKILL.md",
+            "lines": [
+              137,
+              137
+            ],
+            "snippet": "use with `claude --resume UUID` to restore exact session context after a crash or window close. - `last_rebriefed_at` — Unix timestamp of l",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/orchestrate/scripts/run-loop.sh",
+            "lines": [
+              5,
+              5
+            ],
+            "snippet": "tart claude using --resume SESSION_ID (or --continue) to restore context # approve → auto-approve safe dialogs, press Enter on numbered-op",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/orchestrate/scripts/run-loop.sh",
+            "lines": [
+              126,
+              126
+            ],
+            "snippet": "e still busy before resume, sending anyway\" # Resume the exact session so the agent retains full context — no need to re-send objective",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/orchestrate/scripts/run-loop.sh",
+            "lines": [
+              128,
+              128
+            ],
+            "snippet": "ending anyway\" # Resume the exact session so the agent retains full context — no need to re-send objective if [ -n \"$session_id\" ]; the",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/orchestrate/scripts/run-loop.sh",
+            "lines": [
+              130,
+              130
+            ],
+            "snippet": "_path}' && claude --resume '${session_id}' --permission-mode bypassPermissions\" Enter else tmux send-keys -t \"$window\" \"cd '${worktree",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/orchestrate/scripts/spawn-agent.sh",
+            "lines": [
+              34,
+              34
+            ],
+            "snippet": "sumed: # claude --resume $SESSION_ID --permission-mode bypassPermissions SESSION_ID=$(uuidgen 2>/dev/null || python3 -c \"import uuid; prin",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/orchestrate/scripts/spawn-agent.sh",
+            "lines": [
+              90,
+              90
+            ],
+            "snippet": "crash: # claude --resume SESSION_ID --permission-mode bypassPermissions tmux send-keys -t \"$WINDOW\" \"cd '${WORKTREE_PATH}' && claude --per",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/pr-address/SKILL.md",
+            "lines": [
+              399,
+              399
+            ],
+            "snippet": "ts are stricter) 3. Resume with `sleep 3` between each call 4. If 403 persists after 2 min, wait another 2 min before retrying Never batch",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/pr-test/SKILL.md",
+            "lines": [
+              218,
+              218
+            ],
+            "snippet": "t until released or resume after $((STALE_AFTER_MIN - AGE_MIN))m.\" exit 1 fi fi cat > \"$LOCK\" <<EOF holder=pr-${PR_NUMBER}-e2e pid=se",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "AGENTS.md",
+            "lines": [
+              69,
+              69
+            ],
+            "snippet": "ven codex/open-1668-resume-dropped-runs",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/agents/agent_415b7352-0dc6-4214-9d87-0ad3751b711d.json",
+            "lines": [
+              3581,
+              3581
+            ],
+            "snippet": "Perplexity accept a candidate ONLY if \\u22652 of:\\n1) The public profile is clearly software/AI/engineering related (exclude unrelated homon",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/chat/routes.py",
+            "lines": [
+              1008,
+              1008
+            ],
+            "snippet": "ion_id}/stream`` to resume. Follow-up messages typed while a turn is already running should use ``POST /sessions/{session_id}/messa",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/chat/routes.py",
+            "lines": [
+              1411,
+              1411
+            ],
+            "snippet": "id), ): \"\"\" Resume an active stream for a session. Called by the AI SDK's ``useChat(resume: true)`` on page load. Checks fo",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/chat/routes.py",
+            "lines": [
+              1413,
+              1413
+            ],
+            "snippet": "AI SDK's ``useChat(resume: true)`` on page load. Checks for an active (in-progress) task on the session and either replays the full",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/chat/routes.py",
+            "lines": [
+              1433,
+              1433
+            ],
+            "snippet": "_chunk_id on stream resume\", extra={\"session_id\": session_id, \"last_chunk_id\": last_chunk_id}, ) subscriber_queue =",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/chat/routes.py",
+            "lines": [
+              1455,
+              1455
+            ],
+            "snippet": "\"Resume stream chunk\", extra={ \"session_id\": session_id,",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/executions/review/model.py",
+            "lines": [
+              195,
+              195
+            ],
+            "snippet": "The execution will resume only after ALL reviews are processed. Each review item can individually specify whether to auto-approve futu",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/executions/review/routes.py",
+            "lines": [
+              325,
+              325
+            ],
+            "snippet": "JECTED ) # Resume graph execution only for real graph executions (not CoPilot) # CoPilot sessions are resumed by the LLM retryi",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/executions/review/routes.py",
+            "lines": [
+              360,
+              360
+            ],
+            "snippet": "r.error(f\"Failed to resume execution {graph_exec_id}: {str(e)}\") # Build error message if auto-approvals failed error_message = Non",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/autopilot.py",
+            "lines": [
+              443,
+              443
+            ],
+            "snippet": "callers can inspect/resume the session. \"\"\" if not input_data.prompt.strip(): yield \"error\", \"Prompt cannot be e",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/autopilot.py",
+            "lines": [
+              674,
+              674
+            ],
+            "snippet": "xecutor service resume the session without manual intervention. Skipped for dry-run sessions (no real consumers listen to the queue",
+            "rule": "employment_terms"
+          }
+        ]
+      },
+      "bio_metric_signals": {
+        "signal": "bio_metric_signals",
+        "fired": true,
+        "strength": 1,
+        "evidence": [
+          {
+            "file": "autogpt_platform/backend/backend/blocks/ai_shortform_video_block.py",
+            "lines": [
+              133,
+              133
+            ],
+            "snippet": "@property def voice_id(self): voice_id_map = { Voice.LILY: \"pFZP5JQG7iQjIQuC4Bku\", Voice.DANIEL: \"onwK",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/ai_shortform_video_block.py",
+            "lines": [
+              317,
+              317
+            ],
+            "snippet": "\": input_data.voice.voice_id, \"hasEnhancedGeneration\": True, \"generationPreset\": input_data.generation_prese",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/ai_shortform_video_block.py",
+            "lines": [
+              515,
+              515
+            ],
+            "snippet": "\": input_data.voice.voice_id, \"selectedAvatar\": \"https://cdn.revid.ai/avatars/young-woman.mp4\", \"selectedAva",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/ai_shortform_video_block.py",
+            "lines": [
+              711,
+              711
+            ],
+            "snippet": "\": input_data.voice.voice_id, \"selectedAvatar\": \"https://cdn.revid.ai/avatars/young-woman.mp4\", \"selectedAva",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/talking_head.py",
+            "lines": [
+              55,
+              55
+            ],
+            "snippet": "\" ) voice_id: str = SchemaField( description=\"The voice ID to use, see [available voice IDs](https://agpt.co/doc",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/talking_head.py",
+            "lines": [
+              95,
+              95
+            ],
+            "snippet": "\", \"voice_id\": \"en-US-JennyNeural\", \"presenter_id\": \"amy-Aq6OmGZnMt\", \"driver_id\": \"Vcq0R4a8",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/talking_head.py",
+            "lines": [
+              159,
+              159
+            ],
+            "snippet": "\"voice_id\": input_data.voice_id, }, \"ssml\": str(input_data.ssml).lower(),",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/talking_head.py",
+            "lines": [
+              159,
+              159
+            ],
+            "snippet": "ice_id\": input_data.voice_id, }, \"ssml\": str(input_data.ssml).lower(), \"input\": input_data.s",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/text_to_speech_block.py",
+            "lines": [
+              43,
+              43
+            ],
+            "snippet": ", ) voice_id: str = SchemaField( description=\"The voice ID to use for text-to-speech conversion\", pl",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/text_to_speech_block.py",
+            "lines": [
+              67,
+              67
+            ],
+            "snippet": "\", \"voice_id\": \"Scarlett\", \"credentials\": TEST_CREDENTIALS_INPUT, }, test_output=[(\"",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/text_to_speech_block.py",
+            "lines": [
+              81,
+              81
+            ],
+            "snippet": "cretStr, text: str, voice_id: str ) -> dict[str, Any]: url = \"https://api.v7.unrealspeech.com/speech\" headers = {",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/text_to_speech_block.py",
+            "lines": [
+              90,
+              90
+            ],
+            "snippet": "\"VoiceId\": voice_id, \"Bitrate\": \"192k\", \"Speed\": \"0\", \"Pitch\": \"1\", \"TimestampType\"",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/text_to_speech_block.py",
+            "lines": [
+              106,
+              106
+            ],
+            "snippet": "input_data.voice_id, ) # Unreal Speech: $16 / 1M chars = $0.000016/char. Emit USD so the # COST_USD resolve",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/video/narration.py",
+            "lines": [
+              46,
+              46
+            ],
+            "snippet": "ript text\") voice_id: str = SchemaField( description=\"ElevenLabs voice ID\", default=\"21m00Tcm4TlvDq8ikWAM\",",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/video/narration.py",
+            "lines": [
+              149,
+              149
+            ],
+            "snippet": ": str, script: str, voice_id: str, model_id: str ) -> bytes: \"\"\"Generate narration audio via ElevenLabs API.\"\"\" client =",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/video/narration.py",
+            "lines": [
+              154,
+              154
+            ],
+            "snippet": "onvert( voice_id=voice_id, text=script, model_id=model_id, ) # The SDK returns a generat",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/video/narration.py",
+            "lines": [
+              154,
+              154
+            ],
+            "snippet": "voice_id=voice_id, text=script, model_id=model_id, ) # The SDK returns a generator, colle",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/video/narration.py",
+            "lines": [
+              243,
+              243
+            ],
+            "snippet": "input_data.voice_id, input_data.model_id, ) self._record_script_cost(input_data.script, in",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/copilot/sdk/tool_adapter.py",
+            "lines": [
+              301,
+              301
+            ],
+            "snippet": "\"\"\"Compute a stable fingerprint for (tool_name, args) used by the circuit breaker.\"\"\" args_key = json.dumps(args, sort_keys=True, defaul",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/frontend/src/app/(platform)/copilot/__tests__/helpers.test.ts",
+            "lines": [
+              455,
+              455
+            ],
+            "snippet": "ty; the guard skips fingerprint // tracking so these messages are never incorrectly deduplicated against each other. const msgs: UIM",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/frontend/src/app/(platform)/copilot/__tests__/helpers.test.ts",
+            "lines": [
+              466,
+              466
+            ],
+            "snippet": "t parts to the same fingerprint\", () => { // Parts lacking both 'text' and 'toolCallId' (e.g. step-start, step-end) // previously al",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/frontend/src/app/(platform)/copilot/helpers.ts",
+            "lines": [
+              326,
+              326
+            ],
+            "snippet": "consecutive content fingerprint. * * ID dedup catches exact duplicates within the same source. * Content dedup uses a composite key of `r",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/frontend/src/app/(platform)/copilot/helpers.ts",
+            "lines": [
+              330,
+              330
+            ],
+            "snippet": "age-id + * content-fingerprint` to detect replayed messages that arrive with new * IDs after an SSE reconnection replays from the beginnin",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/frontend/src/app/(platform)/copilot/helpers.ts",
+            "lines": [
+              360,
+              360
+            ],
+            "snippet": "e same empty-string fingerprint element. const contentFingerprint = JSON.stringify( msg.parts.map( (p) =>",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "autogpt_platform/frontend/src/app/(platform)/copilot/helpers.ts",
+            "lines": [
+              374,
+              374
+            ],
+            "snippet": "partial // fingerprint that differs from its final form, so it would not be // caught by this dedup. This is safe because e",
+            "rule": "biometric_terms"
+          }
+        ]
+      },
+      "education_signals": {
+        "signal": "education_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "law_enforcement_signals": {
+        "signal": "law_enforcement_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "migration_signals": {
+        "signal": "migration_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "justice_signals": {
+        "signal": "justice_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "essential_services_signals": {
+        "signal": "essential_services_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "critical_infra_signals": {
+        "signal": "critical_infra_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "content_generation_signals": {
+        "signal": "content_generation_signals",
+        "fired": true,
+        "strength": 1,
+        "evidence": [
+          {
+            "file": "autogpt_platform/backend/backend/api/features/store/routes.py",
+            "lines": [
+              465,
+              465
+            ],
+            "snippet": "( \"/submissions/generate_image\", summary=\"Generate submission image\", tags=[\"store\", \"private\"], dependencies=[Security(auto",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/api/features/store/routes.py",
+            "lines": [
+              470,
+              470
+            ],
+            "snippet": "user)], ) async def generate_image( graph_id: str, user_id: str = Security(autogpt_libs.auth.get_user_id), ) -> ImageURLResponse:",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/ai_image_generator_block.py",
+            "lines": [
+              219,
+              219
+            ],
+            "snippet": "e}\") async def generate_image(self, input_data: Input, credentials: APIKeyCredentials): try: # Handle style-based p",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/ai_image_generator_block.py",
+            "lines": [
+              239,
+              239
+            ],
+            "snippet": "\"stability-ai/stable-diffusion-3.5-medium\", input_params, ) return output",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/ai_image_generator_block.py",
+            "lines": [
+              350,
+              350
+            ],
+            "snippet": "url = await self.generate_image(input_data, credentials) if url: # Store the generated image to the user's wo",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/elevenlabs/_auth.py",
+            "lines": [
+              1,
+              1
+            ],
+            "snippet": "\"\"\"ElevenLabs integration blocks - test credentials and shared utilities.\"\"\" from typing import Literal from pydantic imp",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/elevenlabs/_auth.py",
+            "lines": [
+              12,
+              12
+            ],
+            "snippet": "def\", provider=\"elevenlabs\", api_key=SecretStr(\"mock-elevenlabs-api-key\"), title=\"Mock ElevenLabs API key\", expires_at=None,",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/elevenlabs/_auth.py",
+            "lines": [
+              13,
+              13
+            ],
+            "snippet": "key=SecretStr(\"mock-elevenlabs-api-key\"), title=\"Mock ElevenLabs API key\", expires_at=None, ) TEST_CREDENTIALS_INPUT = { \"provi",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/elevenlabs/_auth.py",
+            "lines": [
+              14,
+              14
+            ],
+            "snippet": "\"), title=\"Mock ElevenLabs API key\", expires_at=None, ) TEST_CREDENTIALS_INPUT = { \"provider\": TEST_CREDENTIALS.provider, \"",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/elevenlabs/_auth.py",
+            "lines": [
+              27,
+              27
+            ],
+            "snippet": "iteral[ProviderName.ELEVENLABS], Literal[\"api_key\"] ]",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/elevenlabs/_config.py",
+            "lines": [
+              1,
+              1
+            ],
+            "snippet": "er registration for ElevenLabs — metadata only (auth lives in ``_auth.py``).\"\"\" from backend.sdk import ProviderBuilder elevenlabs = (",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/elevenlabs/_config.py",
+            "lines": [
+              5,
+              5
+            ],
+            "snippet": "rt ProviderBuilder elevenlabs = ( ProviderBuilder(\"elevenlabs\") .with_description(\"Realistic AI voice synthesis\") .with_support",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/elevenlabs/_config.py",
+            "lines": [
+              6,
+              6
+            ],
+            "snippet": "ProviderBuilder(\"elevenlabs\") .with_description(\"Realistic AI voice synthesis\") .with_supported_auth_types(\"api_key\") .build(",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/replicate/replicate_block.py",
+            "lines": [
+              55,
+              55
+            ],
+            "snippet": "older=\"stability-ai/stable-diffusion\", advanced=False, ) model_inputs: dict[str, str | int | float | bool] = Sch",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/talking_head.py",
+            "lines": [
+              52,
+              52
+            ],
+            "snippet": "teral[\"microsoft\", \"elevenlabs\", \"amazon\"] = SchemaField( description=\"The voice provider to use\", default=\"microsoft\" )",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/video/__init__.py",
+            "lines": [
+              16,
+              16
+            ],
+            "snippet": "diting operations - elevenlabs: For AI narration (optional) \"\"\" from backend.blocks.video.add_audio import AddAudioToVideoBlock from backen",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/video/narration.py",
+            "lines": [
+              6,
+              6
+            ],
+            "snippet": "mport Literal from elevenlabs import ElevenLabs from moviepy import CompositeAudioClip from moviepy.audio.io.AudioFileClip import AudioFile",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/video/narration.py",
+            "lines": [
+              6,
+              6
+            ],
+            "snippet": "m elevenlabs import ElevenLabs from moviepy import CompositeAudioClip from moviepy.audio.io.AudioFileClip import AudioFileClip from moviepy.",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/video/narration.py",
+            "lines": [
+              18,
+              18
+            ],
+            "snippet": "from backend.blocks.elevenlabs._auth import ( TEST_CREDENTIALS, TEST_CREDENTIALS_INPUT, ElevenLabsCredentials, ElevenLabsCre",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/video/narration.py",
+            "lines": [
+              40,
+              40
+            ],
+            "snippet": "description=\"ElevenLabs API key for voice synthesis\" ) video_in: MediaFileType = SchemaField( description",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/blocks/video/narration.py",
+            "lines": [
+              47,
+              47
+            ],
+            "snippet": "description=\"ElevenLabs voice ID\", default=\"21m00Tcm4TlvDq8ikWAM\", # Rachel ) model_id: Literal[",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/data/block_cost_config.py",
+            "lines": [
+              1093,
+              1093
+            ],
+            "snippet": "ock: block computes ElevenLabs USD from script # length (~$0.000167/char Starter tier) and emits cost_usd. 150 cr/$ # margin matches",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/executor/cost_tracking.py",
+            "lines": [
+              29,
+              29
+            ],
+            "snippet": "value, ProviderName.ELEVENLABS.value} ) _WALLTIME_BILLED_PROVIDERS = frozenset( { ProviderName.FAL.value, ProviderName.R",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/executor/cost_tracking.py",
+            "lines": [
+              178,
+              178
+            ],
+            "snippet": "e 0.0 # D-ID + ElevenLabs voice: billed per character of script if provider in _CHARACTER_BILLED_PROVIDERS: text = (",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "autogpt_platform/backend/backend/executor/manager_cost_tracking_test.py",
+            "lines": [
+              70,
+              70
+            ],
+            "snippet": "= resolve_tracking(\"elevenlabs\", stats, {\"text\": \"Say this\"}) assert tt == \"characters\" assert amt == 8.0 def test_elev",
+            "rule": "content_gen_pattern"
+          }
+        ]
+      },
+      "emotion_recognition_signals": {
+        "signal": "emotion_recognition_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      }
+    }
+  },
+  "scope": {
+    "regulationIds": [
+      "eu-ai-act-2024-08",
+      "nist-ai-rmf-1.0"
+    ],
+    "notes": [
+      "Auditing against packs: eu-ai-act-2024-08, nist-ai-rmf-1.0"
+    ]
+  },
+  "map": {
+    "classification": "high",
+    "annexIiiCategories": [
+      "1",
+      "4"
+    ],
+    "art50Triggers": [
+      "50(2)",
+      "50(1)"
+    ],
+    "drivingSignals": [
+      {
+        "signal": "bio_metric_signals",
+        "category": "1"
+      },
+      {
+        "signal": "employment_signals",
+        "category": "4"
+      }
+    ],
+    "rationale": [
+      "Classified HIGH-RISK based on 2 Annex III signal(s).",
+      "Annex III §1 (Biometric ID, categorisation, emotion recognition) — signal \"bio_metric_signals\" fired with strength 1.00",
+      "Annex III §4 (Employment, workers management, access to self-employment) — signal \"employment_signals\" fired with strength 1.00",
+      "Art 50 50(2) (AI-generated synthetic content) — signal \"content_generation_signals\" fired",
+      "Art 50 50(1) (Interaction with natural persons) — signal \"agent_framework\" fired"
+    ]
+  },
+  "checks": [
+    {
+      "clauseId": "eu-ai-act/art-5/1a-subliminal",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(a)",
+      "title": "Subliminal techniques distorting behaviour",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_manipulative_prompt_patterns",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1b-vulnerability",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(b)",
+      "title": "Exploiting vulnerabilities (age, disability, socio-economic)",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_protected_attribute_targeting",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1c-social-scoring",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(c)",
+      "title": "Social scoring leading to detrimental treatment",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_scoring_with_persistent_user_state",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1d-predictive-policing",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(d)",
+      "title": "Predictive policing solely from profiling",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_crime_risk_scoring_from_profile",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1e-facial-scraping",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(e)",
+      "title": "Untargeted facial image scraping for face databases",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 1,
+      "evidence": [
+        {
+          "file": "autogpt_platform/backend/backend/blocks/ai_shortform_video_block.py",
+          "lines": [
+            133,
+            133
+          ],
+          "snippet": "@property def voice_id(self): voice_id_map = { Voice.LILY: \"pFZP5JQG7iQjIQuC4Bku\", Voice.DANIEL: \"onwK",
+          "rule": "biometric_terms"
+        },
+        {
+          "file": "autogpt_platform/backend/backend/blocks/ai_shortform_video_block.py",
+          "lines": [
+            317,
+            317
+          ],
+          "snippet": "\": input_data.voice.voice_id, \"hasEnhancedGeneration\": True, \"generationPreset\": input_data.generation_prese",
+          "rule": "biometric_terms"
+        },
+        {
+          "file": "autogpt_platform/backend/backend/blocks/ai_shortform_video_block.py",
+          "lines": [
+            515,
+            515
+          ],
+          "snippet": "\": input_data.voice.voice_id, \"selectedAvatar\": \"https://cdn.revid.ai/avatars/young-woman.mp4\", \"selectedAva",
+          "rule": "biometric_terms"
+        },
+        {
+          "file": ".branchlet.json",
+          "lines": [
+            24,
+            24
+          ],
+          "snippet": "\"**/*.pyc\", \"**/playwright-report/**\", \"**/logs/**\", \"**/site/**\" ], \"worktreePathTemplate\": \"$BASE_PATH.worktree\", \"postC",
+          "rule": "scraping_pattern"
+        },
+        {
+          "file": ".github/workflows/classic-forge-ci.yml",
+          "lines": [
+            63,
+            63
+          ],
+          "snippet": "run: poetry run playwright install chromium - name: Run pytest with coverage run: | poetry run pytest -vv \\",
+          "rule": "scraping_pattern"
+        },
+        {
+          "file": ".github/workflows/claude-dependabot.yml",
+          "lines": [
+            98,
+            98
+          ],
+          "snippet": "# run: pnpm playwright install --with-deps chromium # Docker setup for development environment - name: Set up Docker Bu",
+          "rule": "scraping_pattern"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "detect_face_image_scraping",
+          "matched": 1,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 1.00 (1/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1f-emotion-workplace-edu",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(f)",
+      "title": "Emotion recognition in workplace and education",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_emotion_recognition_in_workplace_education",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1g-biometric-categorisation",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(g)",
+      "title": "Biometric categorisation by protected attributes",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_biometric_categorisation_by_protected_attrs",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1h-realtime-rbi",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(h)",
+      "title": "Real-time remote biometric identification in public spaces",
+      "verdict": "external",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "Deployment context (public space, real-time, law enforcement use, judicial\nauthorisation) is operational, not knowable from code. Always external.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-9/risk-management",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "9",
+      "title": "Risk management system established, implemented, documented",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.44999999999999996,
+      "evidence": [
+        {
+          "file": "SECURITY.md",
+          "rule": "presence_of_threat_model"
+        },
+        {
+          "file": ".github/workflows/classic-autogpt-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-autogpt-docker-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-autogpts-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-benchmark-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-benchmark_publish_package.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-forge-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-python-checks.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/claude-ci-failure-auto-fix.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/claude-dependabot.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/claude.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/copilot-setup-steps.yml",
+          "rule": "ci_eval_gates"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "presence_of_risk_register",
+          "matched": 0,
+          "weight": 0.4
+        },
+        {
+          "rule": "presence_of_threat_model",
+          "matched": 0.5,
+          "weight": 0.3
+        },
+        {
+          "rule": "ci_eval_gates",
+          "matched": 1,
+          "weight": 0.3
+        }
+      ],
+      "rationale": "Composite raw score 0.45 (2/3 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-10/data-governance",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "10",
+      "title": "Data and data governance practices documented",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0.1,
+      "evidence": [
+        {
+          "file": ".branchlet.json",
+          "lines": [
+            24,
+            24
+          ],
+          "snippet": "\"**/*.pyc\", \"**/playwright-report/**\", \"**/logs/**\", \"**/site/**\" ], \"worktreePathTemplate\": \"$BASE_PATH.worktree\", \"postC",
+          "rule": "scraping_pattern"
+        },
+        {
+          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "lines": [
+            901,
+            901
+          ],
+          "snippet": "eEffect(() => { fetch('/api/users') .then(r => r.json()) .then(setUsers) }, []) } ``` **Correct: multiple instances share",
+          "rule": "http_external_io"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "presence_of_data_card",
+          "matched": 0,
+          "weight": 0.5
+        },
+        {
+          "rule": "data_loading_code_quality",
+          "matched": 0.4,
+          "weight": 0.25
+        },
+        {
+          "rule": "bias_evaluation_present",
+          "matched": 0,
+          "weight": 0.25
+        }
+      ],
+      "rationale": "Composite raw score 0.10 (0/3 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.75,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-11/technical-documentation",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "11",
+      "title": "Technical documentation drawn up before placing on market",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.15,
+      "evidence": [
+        {
+          "file": "README.md",
+          "rule": "readme_quality",
+          "detail": "2 required sections present"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "presence_of_model_card",
+          "matched": 0,
+          "weight": 0.5
+        },
+        {
+          "rule": "readme_quality",
+          "matched": 0.5,
+          "weight": 0.3
+        },
+        {
+          "rule": "architecture_docs",
+          "matched": 0,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.15 (1/3 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.8,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-12/p1-automatic-logs",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "12(1)",
+      "title": "Automatic recording of events over the lifetime",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.5800000000000001,
+      "evidence": [
+        {
+          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "lines": [
+            1034,
+            1034
+          ],
+          "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct: re-runs only when id changes** ```tsx useEffect(() => { console.log(u",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "lines": [
+            1042,
+            1042
+          ],
+          "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/skills/vercel-react-best-practices/rules/rerender-dependencies.md",
+          "lines": [
+            16,
+            16
+          ],
+          "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct (re-runs only when id changes):** ```tsx useEffect(() => { console.log",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/skills/vercel-react-best-practices/rules/rerender-dependencies.md",
+          "lines": [
+            24,
+            24
+          ],
+          "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
+          "lines": [
+            40,
+            40
+          ],
+          "snippet": ") < 32: logger.warning( \"⚠️ JWT_VERIFY_KEY appears weak (less than 32 characters). \" \"Consider u",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
+          "lines": [
+            48,
+            48
+          ],
+          "snippet": "crypto: logger.warning( \"⚠️ Asymmetric JWT verification is not available \" \"because the 'cryptog",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "lines": [
+            1034,
+            1034
+          ],
+          "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct: re-runs only when id changes** ```tsx useEffect(() => { console.log(u",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "lines": [
+            1042,
+            1042
+          ],
+          "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
+          "rule": "log_at_tool_boundary"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "structured_logging_imported",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "logging_at_tool_call_boundaries",
+          "matched": 1,
+          "weight": 0.5
+        },
+        {
+          "rule": "logging_persistent_sink",
+          "matched": 0.4,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.58 (1/3 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-12/p2-traceability",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "12(2)",
+      "title": "Logging ensures traceability appropriate to risk",
+      "verdict": "pass",
+      "score": 3,
+      "rawScore": 0.675,
+      "evidence": [
+        {
+          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "lines": [
+            1034,
+            1034
+          ],
+          "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct: re-runs only when id changes** ```tsx useEffect(() => { console.log(u",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "lines": [
+            1042,
+            1042
+          ],
+          "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/skills/vercel-react-best-practices/rules/rerender-dependencies.md",
+          "lines": [
+            16,
+            16
+          ],
+          "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct (re-runs only when id changes):** ```tsx useEffect(() => { console.log",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/skills/vercel-react-best-practices/rules/rerender-dependencies.md",
+          "lines": [
+            24,
+            24
+          ],
+          "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
+          "lines": [
+            1,
+            1
+          ],
+          "snippet": "import logging import os from jwt.algorithms import get_default_algorithms, has_crypto logger = logging.getLogger(__na",
+          "rule": "import_logging"
+        },
+        {
+          "file": "autogpt_platform/autogpt_libs/autogpt_libs/auth/config.py",
+          "lines": [
+            40,
+            40
+          ],
+          "snippet": ") < 32: logger.warning( \"⚠️ JWT_VERIFY_KEY appears weak (less than 32 characters). \" \"Consider u",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "lines": [
+            1034,
+            1034
+          ],
+          "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct: re-runs only when id changes** ```tsx useEffect(() => { console.log(u",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "lines": [
+            1042,
+            1042
+          ],
+          "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
+          "rule": "log_at_tool_boundary"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "logs_include_input_output_pairs",
+          "matched": 1,
+          "weight": 0.5
+        },
+        {
+          "rule": "logs_include_model_identity",
+          "matched": 0.7,
+          "weight": 0.25
+        },
+        {
+          "rule": "logs_include_request_id",
+          "matched": 0,
+          "weight": 0.25
+        }
+      ],
+      "rationale": "Composite raw score 0.68 (2/3 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.975,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-13/deployer-instructions",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "13",
+      "title": "Transparent operation and instructions for use",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.25,
+      "evidence": [
+        {
+          "file": "README.md",
+          "rule": "readme_quality",
+          "detail": "2 required sections present"
+        },
+        {
+          "file": "README.md",
+          "rule": "output_interpretation_guidance"
+        },
+        {
+          "file": "README.md",
+          "rule": "limitations_section_present"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "presence_of_deployer_instructions",
+          "matched": 0.5,
+          "weight": 0.5
+        },
+        {
+          "rule": "output_interpretation_guidance",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "limitations_section_present",
+          "matched": 0,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.25 (1/3 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.9,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-14/p1-oversight-measures",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "14(1)",
+      "title": "Effective human oversight designed and built-in",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "human_in_loop_hooks_present",
+          "matched": 0,
+          "weight": 0.5
+        },
+        {
+          "rule": "oversight_ui_present",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "tool_calls_have_dry_run",
+          "matched": 0,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/3 rules matched).",
+      "confidence": 0.65,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-14/p4d-stop-button",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "14(4)(d)",
+      "title": "Interrupt / stop function reachable by overseer",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0.9449671222189869,
+      "evidence": [
+        {
+          "file": "autogpt_platform/backend/backend/executor/manager.py",
+          "lines": [
+            777,
+            777
+          ],
+          "snippet": "# CancelledError or SystemExit log_metadata.warning( f\"Interruption error on node execution {node_exec.n",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/backend/util/process.py",
+          "lines": [
+            69,
+            69
+          ],
+          "snippet": "f not isinstance(e, SystemExit) else None, ) # Send error to Sentry before cleanup if not isinstance(e,",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/backend/util/process.py",
+          "lines": [
+            72,
+            72
+          ],
+          "snippet": "(KeyboardInterrupt, SystemExit)): try: from backend.util.metrics import sentry_capture_error",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/scripts/refresh_anthropic_rates.py",
+          "lines": [
+            62,
+            62
+          ],
+          "snippet": "_main__\": raise SystemExit(main())",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/scripts/seed_block_preflight_estimates.py",
+          "lines": [
+            32,
+            32
+          ],
+          "snippet": "<= 0: raise SystemExit(\"--days must be a positive integer\") if not os.environ.get(\"DATABASE_URL\"): raise SystemExit(\"DAT",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/scripts/seed_block_preflight_estimates.py",
+          "lines": [
+            34,
+            34
+          ],
+          "snippet": "RL\"): raise SystemExit(\"DATABASE_URL must be set\") # Imported lazily so --help works without the backend env being loaded.",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/backend/util/process.py",
+          "lines": [
+            55,
+            55
+          ],
+          "snippet": "f, silent): signal.signal(signal.SIGTERM, self._self_terminate) signal.signal(signal.SIGINT, self._self_terminate)",
+          "rule": "graceful_shutdown"
+        },
+        {
+          "file": "autogpt_platform/backend/backend/util/process.py",
+          "lines": [
+            56,
+            56
+          ],
+          "snippet": "_terminate) signal.signal(signal.SIGINT, self._self_terminate) try: if silent: sys.stdout = ope",
+          "rule": "graceful_shutdown"
+        },
+        {
+          "file": "classic/original_autogpt/autogpt/app/main.py",
+          "lines": [
+            670,
+            670
+          ],
+          "snippet": "for the agent. signal.signal(signal.SIGINT, graceful_agent_interrupt) ######################### # Application Main Loop #",
+          "rule": "graceful_shutdown"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "kill_switch_present",
+          "matched": 1,
+          "weight": 0.7
+        },
+        {
+          "rule": "graceful_shutdown_handler",
+          "matched": 0.81655707406329,
+          "weight": 0.3
+        }
+      ],
+      "rationale": "Composite raw score 0.94 (2/2 rules matched).",
+      "confidence": 0.655032877781013,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-14/p4e-override",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "14(4)(e)",
+      "title": "Ability to override / reverse the system's output",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.6,
+      "evidence": [
+        {
+          "file": "autogpt_platform/backend/backend/executor/manager.py",
+          "lines": [
+            777,
+            777
+          ],
+          "snippet": "# CancelledError or SystemExit log_metadata.warning( f\"Interruption error on node execution {node_exec.n",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/backend/util/process.py",
+          "lines": [
+            69,
+            69
+          ],
+          "snippet": "f not isinstance(e, SystemExit) else None, ) # Send error to Sentry before cleanup if not isinstance(e,",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/backend/util/process.py",
+          "lines": [
+            72,
+            72
+          ],
+          "snippet": "(KeyboardInterrupt, SystemExit)): try: from backend.util.metrics import sentry_capture_error",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/scripts/refresh_anthropic_rates.py",
+          "lines": [
+            62,
+            62
+          ],
+          "snippet": "_main__\": raise SystemExit(main())",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/scripts/seed_block_preflight_estimates.py",
+          "lines": [
+            32,
+            32
+          ],
+          "snippet": "<= 0: raise SystemExit(\"--days must be a positive integer\") if not os.environ.get(\"DATABASE_URL\"): raise SystemExit(\"DAT",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/scripts/seed_block_preflight_estimates.py",
+          "lines": [
+            34,
+            34
+          ],
+          "snippet": "RL\"): raise SystemExit(\"DATABASE_URL must be set\") # Imported lazily so --help works without the backend env being loaded.",
+          "rule": "kill_switch"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "override_path_present",
+          "matched": 1,
+          "weight": 0.6
+        },
+        {
+          "rule": "decisions_are_addressable",
+          "matched": 0,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.60 (1/2 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-15/p1-accuracy",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "15(1)",
+      "title": "Appropriate level of accuracy declared and tested",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.45,
+      "evidence": [
+        {
+          "file": "tests/",
+          "rule": "eval_suite_present"
+        },
+        {
+          "file": "README.md",
+          "rule": "metrics_documented"
+        },
+        {
+          "file": ".github/workflows/classic-autogpt-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-autogpt-docker-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-autogpts-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-benchmark-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-benchmark_publish_package.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-forge-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-python-checks.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/claude-ci-failure-auto-fix.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/claude-dependabot.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/claude.yml",
+          "rule": "ci_eval_gates"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "eval_suite_present",
+          "matched": 0.5,
+          "weight": 0.5
+        },
+        {
+          "rule": "metrics_documented",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "eval_in_ci",
+          "matched": 1,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.45 (2/3 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-15/p4-robustness",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "15(4)",
+      "title": "Resilience to errors, faults, inconsistencies",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.16000000000000003,
+      "evidence": [
+        {
+          "file": "autogpt_platform/backend/backend/copilot/baseline/service_unit_test.py",
+          "lines": [
+            1485,
+            1485
+          ],
+          "snippet": "\"\"\"Newer ``openai-python`` declares ``cache_write_tokens`` as a typed attribute on ``PromptTokensDetails`` — it no longer l",
+          "rule": "openai_sdk_use"
+        },
+        {
+          "file": "classic/forge/forge/components/image_gen/image_gen.py",
+          "lines": [
+            196,
+            196
+          ],
+          "snippet": "response = OpenAI( api_key=self.openai_credentials.api_key.get_secret_value(), organization=(",
+          "rule": "openai_sdk_use"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "error_handling_at_tool_boundaries",
+          "matched": 0.4,
+          "weight": 0.4
+        },
+        {
+          "rule": "retry_logic",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "fallback_behaviour",
+          "matched": 0,
+          "weight": 0.3
+        }
+      ],
+      "rationale": "Composite raw score 0.16 (0/3 rules matched).",
+      "confidence": 0.81,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-15/p5-cybersecurity",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "15(5)",
+      "title": "Cybersecurity measures appropriate to circumstances",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.2,
+      "evidence": [
+        {
+          "file": ".claude/skills/orchestrate/SKILL.md",
+          "lines": [
+            677,
+            677
+          ],
+          "snippet": "our | Wait until `X-RateLimit-Reset` timestamp | **Prevention:** Agents must add `sleep 3` between individual thread reply API calls. For >",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": ".claude/skills/pr-address/SKILL.md",
+          "lines": [
+            345,
+            345
+          ],
+          "snippet": "ser | Wait until `X-RateLimit-Reset` header timestamp | | `GraphQL: API rate limit already exceeded for user ID ...` | 403 on stderr, `gh` e",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": ".claude/skills/pr-address/SKILL.md",
+          "lines": [
+            355,
+            355
+          ],
+          "snippet": "n): ```bash gh api rate_limit --jq '.resources.graphql' # { \"limit\": 5000, \"used\": 5000, \"remaining\": 0, \"reset\": 1729...} # Human-readab",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": ".claude/skills/pr-address/SKILL.md",
+          "lines": [
+            357,
+            357
+          ],
+          "snippet": "dable reset: gh api rate_limit --jq '.resources.graphql.reset' | xargs -I{} date -r {} ``` Retry when `remaining > 0`. If you need to proce",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": ".claude/skills/pr-address/SKILL.md",
+          "lines": [
+            366,
+            366
+          ],
+          "snippet": "`), and the `gh api rate_limit` probe. - **Degraded:** inline thread list — fall back to flat `/pulls/{N}/comments` REST, which drops thread",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": ".claude/skills/pr-polish/SKILL.md",
+          "lines": [
+            231,
+            231
+          ],
+          "snippet": "e PRs. When `gh api rate_limit --jq .resources.graphql.remaining` drops below ~200, back off: - Fall back to REST for reads (flat `/pulls/{",
+          "rule": "rate_limit_usage"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "prompt_injection_defences",
+          "matched": 0,
+          "weight": 0.4
+        },
+        {
+          "rule": "rate_limiting",
+          "matched": 1,
+          "weight": 0.2
+        },
+        {
+          "rule": "secrets_not_in_prompts",
+          "matched": 0,
+          "weight": 0.2
+        },
+        {
+          "rule": "adversarial_eval_present",
+          "matched": 0,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.20 (1/4 rules matched).",
+      "confidence": 0.8999999999999999,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-26/p6-keep-logs",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "26(6)",
+      "title": "Deployer log-retention capability supported",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.5,
+      "evidence": [
+        {
+          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "lines": [
+            1034,
+            1034
+          ],
+          "snippet": "useEffect(() => { console.log(user.id) }, [user]) ``` **Correct: re-runs only when id changes** ```tsx useEffect(() => { console.log(u",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/skills/vercel-react-best-practices/AGENTS.md",
+          "lines": [
+            1042,
+            1042
+          ],
+          "snippet": "useEffect(() => { console.log(user.id) }, [user.id]) ``` **For derived state, compute outside effect:** ```tsx // Incorrect: runs on wid",
+          "rule": "log_at_tool_boundary"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "logs_externally_exportable",
+          "matched": 0.5,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.50 (1/1 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-50/p1-ai-disclosure",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "50(1)",
+      "title": "Users informed they are interacting with an AI",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.4,
+      "evidence": [
+        {
+          "file": "README.md",
+          "rule": "ai_disclosure_in_user_facing_strings"
+        },
+        {
+          "file": "autogpt_platform/backend/backend/util/prompt.py",
+          "rule": "persona_not_human_impersonating"
+        },
+        {
+          "file": "docs/content/imgs/ollama/Ollama-Add-Prompts.png",
+          "rule": "persona_not_human_impersonating"
+        },
+        {
+          "file": "docs/integrations/.gitbook/assets/Ollama-Add-Prompts.png",
+          "rule": "persona_not_human_impersonating"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "ai_disclosure_in_user_facing_strings",
+          "matched": 0,
+          "weight": 0.6
+        },
+        {
+          "rule": "persona_not_human_impersonating",
+          "matched": 1,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.40 (1/2 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-50/p2-synthetic-content",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "50(2)",
+      "title": "AI-generated content marked as such, machine-readable",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "c2pa_or_watermark_library_imported",
+          "matched": 0,
+          "weight": 0.5
+        },
+        {
+          "rule": "provenance_metadata_written_to_outputs",
+          "matched": 0,
+          "weight": 0.5
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/2 rules matched).",
+      "confidence": 0.6,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-50/p3-emotion-biometric-disclosure",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "50(3)",
+      "title": "Emotion recognition / biometric categorisation disclosure",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [
+        {
+          "file": "README.md",
+          "rule": "emotion_or_biometric_disclosure_string"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "emotion_or_biometric_disclosure_string",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-50/p4-deepfake-disclosure",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "50(4)",
+      "title": "Deepfake content labelled as artificially generated",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "deepfake_label_on_outputs",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/govern-1.4",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "GOVERN 1.4",
+      "title": "Risk management process documented and accountable",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "presence_of_risk_register",
+          "matched": 0,
+          "weight": 0.6
+        },
+        {
+          "rule": "risk_owner_assignment",
+          "matched": 0,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/2 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.6,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/govern-1.5",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "GOVERN 1.5",
+      "title": "Ongoing monitoring and periodic review of risk management",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.5,
+      "evidence": [
+        {
+          "file": ".github/workflows/classic-autogpt-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-autogpt-docker-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-autogpts-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-benchmark-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-benchmark_publish_package.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-forge-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-python-checks.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/claude-ci-failure-auto-fix.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/claude-dependabot.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/claude.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/copilot-setup-steps.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/platform-backend-ci.yml",
+          "rule": "ci_eval_gates"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "ci_eval_gates",
+          "matched": 1,
+          "weight": 0.5
+        },
+        {
+          "rule": "drift_monitoring_present",
+          "matched": 0,
+          "weight": 0.5
+        }
+      ],
+      "rationale": "Composite raw score 0.50 (1/2 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "nist-ai-rmf/map-1.1",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MAP 1.1",
+      "title": "Context of use established and understood",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.3,
+      "evidence": [
+        {
+          "file": "README.md",
+          "rule": "readme_quality",
+          "detail": "2 required sections present"
+        },
+        {
+          "file": "README.md",
+          "rule": "output_interpretation_guidance"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "intended_use_documented",
+          "matched": 0.5,
+          "weight": 0.6
+        },
+        {
+          "rule": "deployment_context_documented",
+          "matched": 0,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.30 (1/2 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.9,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "nist-ai-rmf/map-3.4",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MAP 3.4",
+      "title": "Risks and benefits to people identified",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.2,
+      "evidence": [
+        {
+          "file": "SECURITY.md",
+          "rule": "presence_of_threat_model"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "presence_of_risk_register",
+          "matched": 0,
+          "weight": 0.6
+        },
+        {
+          "rule": "presence_of_threat_model",
+          "matched": 0.5,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.20 (1/2 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.7999999999999999,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/measure-2.3",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MEASURE 2.3",
+      "title": "AI system performance evaluated and documented",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.45,
+      "evidence": [
+        {
+          "file": "tests/",
+          "rule": "eval_suite_present"
+        },
+        {
+          "file": "README.md",
+          "rule": "metrics_documented"
+        },
+        {
+          "file": ".github/workflows/classic-autogpt-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-autogpt-docker-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-autogpts-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-benchmark-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-benchmark_publish_package.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-forge-ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/classic-python-checks.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/claude-ci-failure-auto-fix.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/claude-dependabot.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/claude.yml",
+          "rule": "ci_eval_gates"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "eval_suite_present",
+          "matched": 0.5,
+          "weight": 0.5
+        },
+        {
+          "rule": "metrics_documented",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "eval_in_ci",
+          "matched": 1,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.45 (2/3 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "nist-ai-rmf/measure-2.7",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MEASURE 2.7",
+      "title": "Security and resilience evaluated",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.2,
+      "evidence": [
+        {
+          "file": ".claude/skills/orchestrate/SKILL.md",
+          "lines": [
+            677,
+            677
+          ],
+          "snippet": "our | Wait until `X-RateLimit-Reset` timestamp | **Prevention:** Agents must add `sleep 3` between individual thread reply API calls. For >",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": ".claude/skills/pr-address/SKILL.md",
+          "lines": [
+            345,
+            345
+          ],
+          "snippet": "ser | Wait until `X-RateLimit-Reset` header timestamp | | `GraphQL: API rate limit already exceeded for user ID ...` | 403 on stderr, `gh` e",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": ".claude/skills/pr-address/SKILL.md",
+          "lines": [
+            355,
+            355
+          ],
+          "snippet": "n): ```bash gh api rate_limit --jq '.resources.graphql' # { \"limit\": 5000, \"used\": 5000, \"remaining\": 0, \"reset\": 1729...} # Human-readab",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": ".claude/skills/pr-address/SKILL.md",
+          "lines": [
+            357,
+            357
+          ],
+          "snippet": "dable reset: gh api rate_limit --jq '.resources.graphql.reset' | xargs -I{} date -r {} ``` Retry when `remaining > 0`. If you need to proce",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": ".claude/skills/pr-address/SKILL.md",
+          "lines": [
+            366,
+            366
+          ],
+          "snippet": "`), and the `gh api rate_limit` probe. - **Degraded:** inline thread list — fall back to flat `/pulls/{N}/comments` REST, which drops thread",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": ".claude/skills/pr-polish/SKILL.md",
+          "lines": [
+            231,
+            231
+          ],
+          "snippet": "e PRs. When `gh api rate_limit --jq .resources.graphql.remaining` drops below ~200, back off: - Fall back to REST for reads (flat `/pulls/{",
+          "rule": "rate_limit_usage"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "prompt_injection_defences",
+          "matched": 0,
+          "weight": 0.4
+        },
+        {
+          "rule": "adversarial_eval_present",
+          "matched": 0,
+          "weight": 0.4
+        },
+        {
+          "rule": "rate_limiting",
+          "matched": 1,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.20 (1/3 rules matched).",
+      "confidence": 0.85,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/measure-2.8",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MEASURE 2.8",
+      "title": "Privacy risk of the AI system evaluated",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "pii_redaction_present",
+          "matched": 0,
+          "weight": 0.5
+        },
+        {
+          "rule": "privacy_documentation",
+          "matched": 0,
+          "weight": 0.5
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/2 rules matched).",
+      "confidence": 0.6,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/measure-2.11",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MEASURE 2.11",
+      "title": "Fairness and bias evaluated",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "bias_evaluation_present",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/manage-2.3",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MANAGE 2.3",
+      "title": "Mechanisms to supersede or deactivate AI systems",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.6,
+      "evidence": [
+        {
+          "file": "autogpt_platform/backend/backend/executor/manager.py",
+          "lines": [
+            777,
+            777
+          ],
+          "snippet": "# CancelledError or SystemExit log_metadata.warning( f\"Interruption error on node execution {node_exec.n",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/backend/util/process.py",
+          "lines": [
+            69,
+            69
+          ],
+          "snippet": "f not isinstance(e, SystemExit) else None, ) # Send error to Sentry before cleanup if not isinstance(e,",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/backend/util/process.py",
+          "lines": [
+            72,
+            72
+          ],
+          "snippet": "(KeyboardInterrupt, SystemExit)): try: from backend.util.metrics import sentry_capture_error",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/scripts/refresh_anthropic_rates.py",
+          "lines": [
+            62,
+            62
+          ],
+          "snippet": "_main__\": raise SystemExit(main())",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/scripts/seed_block_preflight_estimates.py",
+          "lines": [
+            32,
+            32
+          ],
+          "snippet": "<= 0: raise SystemExit(\"--days must be a positive integer\") if not os.environ.get(\"DATABASE_URL\"): raise SystemExit(\"DAT",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/scripts/seed_block_preflight_estimates.py",
+          "lines": [
+            34,
+            34
+          ],
+          "snippet": "RL\"): raise SystemExit(\"DATABASE_URL must be set\") # Imported lazily so --help works without the backend env being loaded.",
+          "rule": "kill_switch"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "kill_switch_present",
+          "matched": 1,
+          "weight": 0.6
+        },
+        {
+          "rule": "feature_flag_for_disable",
+          "matched": 0,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.60 (1/2 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "nist-ai-rmf/manage-4.1",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MANAGE 4.1",
+      "title": "Post-deployment monitoring, appeal and override, change management",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.36,
+      "evidence": [
+        {
+          "file": "autogpt_platform/backend/backend/executor/manager.py",
+          "lines": [
+            777,
+            777
+          ],
+          "snippet": "# CancelledError or SystemExit log_metadata.warning( f\"Interruption error on node execution {node_exec.n",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/backend/util/process.py",
+          "lines": [
+            69,
+            69
+          ],
+          "snippet": "f not isinstance(e, SystemExit) else None, ) # Send error to Sentry before cleanup if not isinstance(e,",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/backend/util/process.py",
+          "lines": [
+            72,
+            72
+          ],
+          "snippet": "(KeyboardInterrupt, SystemExit)): try: from backend.util.metrics import sentry_capture_error",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/scripts/refresh_anthropic_rates.py",
+          "lines": [
+            62,
+            62
+          ],
+          "snippet": "_main__\": raise SystemExit(main())",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/scripts/seed_block_preflight_estimates.py",
+          "lines": [
+            32,
+            32
+          ],
+          "snippet": "<= 0: raise SystemExit(\"--days must be a positive integer\") if not os.environ.get(\"DATABASE_URL\"): raise SystemExit(\"DAT",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "autogpt_platform/backend/scripts/seed_block_preflight_estimates.py",
+          "lines": [
+            34,
+            34
+          ],
+          "snippet": "RL\"): raise SystemExit(\"DATABASE_URL must be set\") # Imported lazily so --help works without the backend env being loaded.",
+          "rule": "kill_switch"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "feedback_capture_present",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "override_path_present",
+          "matched": 1,
+          "weight": 0.3
+        },
+        {
+          "rule": "structured_logging_imported",
+          "matched": 0,
+          "weight": 0.2
+        },
+        {
+          "rule": "versioning_visible",
+          "matched": 0.3,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.36 (1/4 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    }
+  ],
+  "grade": {
+    "overallScore": 1.6764705882352942,
+    "perRegulation": [
+      {
+        "regulationId": "eu-ai-act-2024-08",
+        "scoreAvg": 1.9583333333333333,
+        "passCount": 8,
+        "partialCount": 6,
+        "failCount": 10,
+        "externalCount": 1,
+        "naCount": 0
+      },
+      {
+        "regulationId": "nist-ai-rmf-1.0",
+        "scoreAvg": 1,
+        "passCount": 0,
+        "partialCount": 3,
+        "failCount": 7,
+        "externalCount": 0,
+        "naCount": 0
+      }
+    ]
+  },
+  "bundleHash": "7723d0bf1d28797a0f071222023e0c666fd12e42ed12d00def5be0d50ffcdfbc",
+  "checkerVersion": "v0.1.0",
+  "regulationsVersions": {
+    "eu-ai-act-2024-08": "db2bbc2958ff931f2ab69230b8470dddf309c34605c83e5141a208fd22051fe8",
+    "nist-ai-rmf-1.0": "1f9bd8ceef4a6da5d776fca10cbdbb829c1b8f5e29d49131640e21aae12ce896"
+  },
+  "startedAt": "2026-05-16T03:29:55.960Z",
+  "completedAt": "2026-05-16T03:30:06.126Z",
+  "durationMs": 10166,
+  "externalControls": [
+    {
+      "clauseId": "eu-ai-act/art-5/1h-realtime-rbi",
+      "article": "5(1)(h)",
+      "title": "Real-time remote biometric identification in public spaces",
+      "note": "Deployment context (public space, real-time, law enforcement use, judicial\nauthorisation) is operational, not knowable from code. Always external."
+    }
+  ]
+}

@@ -1,0 +1,3216 @@
+{
+  "auditId": "aud_01KRQD9SJCVFBMS57S3F2G",
+  "source": {
+    "kind": "repo",
+    "owner": "vmihalis",
+    "repo": "hacker-bob"
+  },
+  "input": {
+    "auditId": "aud_01KRQD9SJCVFBMS57S3F2G",
+    "source": {
+      "kind": "repo",
+      "owner": "vmihalis",
+      "repo": "hacker-bob"
+    },
+    "repoUrl": "https://github.com/vmihalis/hacker-bob",
+    "regulations": [
+      "eu-ai-act-2024-08",
+      "nist-ai-rmf-1.0"
+    ]
+  },
+  "fetch": {
+    "repoUrl": "https://github.com/vmihalis/hacker-bob",
+    "owner": "vmihalis",
+    "repo": "hacker-bob",
+    "ref": "945d55ae0a060e205b38044487c300af55a08702",
+    "commitSha": "945d55ae0a060e205b38044487c300af55a08702",
+    "worktreeDir": "/tmp/ai-auditor/aud_01KRQD9SJCVFBMS57S3F2G",
+    "fileCount": 437,
+    "totalBytes": 7103712,
+    "languages": {
+      "Markdown": 1187136,
+      "JSON": 130458,
+      "JavaScript": 2832999,
+      "Shell": 22183,
+      "YAML": 7557,
+      "HTML": 80404,
+      "TypeScript": 25040,
+      "CSS": 15575,
+      "Python": 14769
+    },
+    "inventory": {
+      "hasReadme": true,
+      "hasLicense": true,
+      "hasModelCard": false,
+      "hasDataCard": false,
+      "hasRiskRegister": false,
+      "hasThreatModel": false,
+      "hasSecurityMd": true,
+      "hasPrivacyMd": false,
+      "hasCodeOfConduct": true,
+      "hasContributing": true,
+      "hasCiWorkflows": true,
+      "hasEvalDir": false,
+      "hasTestsDir": true,
+      "governanceDocFiles": [
+        "CODE_OF_CONDUCT.md",
+        "CONTRIBUTING.md",
+        "LICENSE",
+        "README.md",
+        "SECURITY.md",
+        "docs/media/README.md",
+        "packages/hacker-bob-cc/README.md",
+        "packages/hacker-bob-codex/README.md",
+        "scripts/replay-prompts/README.md",
+        "testing/policy-replay/README.md"
+      ],
+      "configFiles": [
+        "package.json"
+      ]
+    },
+    "fetchedAt": "2026-05-16T03:29:28.441Z"
+  },
+  "recon": {
+    "signals": {
+      "agent_framework": {
+        "signal": "agent_framework",
+        "fired": true,
+        "strength": 0.4,
+        "evidence": [
+          {
+            "file": "package.json",
+            "rule": "manifest_framework_dep",
+            "detail": "Anthropic SDK"
+          }
+        ]
+      },
+      "model_usage": {
+        "signal": "model_usage",
+        "fired": true,
+        "strength": 0.4,
+        "evidence": [
+          {
+            "file": "scripts/replay-refusal.js",
+            "lines": [
+              38,
+              38
+            ],
+            "snippet": "nst DEFAULT_MODEL = \"claude-opus-4-7\"; const DEFAULT_SYSTEM = path.resolve( __dirname, \"..\", \".claude\", \"agents\", \"hunter-agent.md",
+            "rule": "model_string_anthropic",
+            "detail": "claude-opus-4-7"
+          }
+        ],
+        "meta": {
+          "models": {}
+        }
+      },
+      "logging_hooks": {
+        "signal": "logging_hooks",
+        "fired": true,
+        "strength": 1,
+        "evidence": [
+          {
+            "file": ".claude/hooks/bob-update.js",
+            "lines": [
+              64,
+              64
+            ],
+            "snippet": "he(projectDir); console.log(\"Hacker Bob update cache cleared.\"); return; } usage(); process.exit(1); } main(process.argv.sli",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": ".claude/hooks/hunter-subagent-stop.js",
+            "lines": [
+              238,
+              238
+            ],
+            "snippet": "ndoff, })); console.log(JSON.stringify({ ok: true, message: \"post-report evidence run accepted\" })); process.exit(0); } con",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": ".claude/hooks/hunter-subagent-stop.js",
+            "lines": [
+              247,
+              247
+            ],
+            "snippet": "cess.exit(2); } console.log(JSON.stringify({ ok: true, message: finalization.reason })); process.exit(0); } if (require.main === modu",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": ".claude/skills/bob-hunt/SKILL.md",
+            "lines": [
+              171,
+              171
+            ],
+            "snippet": "ify(d, null, 2)); console.log(\"Copied! Paste in Claude Code.\"); })(); ``` After any successful signup, poll email up to 12 times, extract",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "README.md",
+            "lines": [
+              29,
+              29
+            ],
+            "snippet": "'./mcp/server.js'); console.log('MCP ok')\" ``` Restart your host CLI from the same project directory, then run the matching command: | Hos",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "README.md",
+            "lines": [
+              230,
+              230
+            ],
+            "snippet": "'./mcp/server.js'); console.log('MCP ok')\"` should pass from the installed project. - Claude Code must be restarted after install or update",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+            "lines": [
+              112,
+              112
+            ],
+            "snippet": "ify(d, null, 2)); console.log(\"Copied! Paste in the current Codex session.\"); })(); ``` After any successful signup, poll email up to 12",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "adapters/codex/skills/bob-status/SKILL.md",
+            "lines": [
+              26,
+              26
+            ],
+            "snippet": "/update-check.js'); console.log(JSON.stringify(update.readUpdateCache(process.cwd()) || null, null, 2));\" ``` This command must only read th",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "adapters/codex/skills/bob-update/SKILL.md",
+            "lines": [
+              13,
+              13
+            ],
+            "snippet": "/update-check.js'); console.log(JSON.stringify(update.readUpdateCache(process.cwd()) || null, null, 2));\" ``` ## Check Latest Run this only",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "adapters/codex/skills/bob-update/SKILL.md",
+            "lines": [
+              19,
+              19
+            ],
+            "snippet": "}).then((result) => console.log(update.renderUpdatePlan(result))).catch((error) => { console.error(error.message || String(error)); process.",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "bin/hacker-bob.js",
+            "lines": [
+              87,
+              87
+            ],
+            "snippet": "y.targetAbs); console.log(\"\"); if (summary.adapters.length === 1 && summary.adapters[0] === \"claude\") { console.log(\"Upd",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "bin/hacker-bob.js",
+            "lines": [
+              89,
+              89
+            ],
+            "snippet": "\"claude\") { console.log(\"Update complete. Fully restart Claude Code in this project before continuing.\"); } else { con",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "bin/hacker-bob.js",
+            "lines": [
+              91,
+              91
+            ],
+            "snippet": "} else { console.log(\"Update complete. Restart the selected host adapter before continuing.\"); } } return; } i",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "docs/hacker-bob-offline-guide.md",
+            "lines": [
+              2259,
+              2259
+            ],
+            "snippet": "TOOL_REGISTRY) { console.log(`${t.name} roles=${t.role_bundles.join(',')} writes=${t.session_artifacts_written.join(',') || '-'}`); } NOD",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "docs/hacker-bob-offline-guide.md",
+            "lines": [
+              2290,
+              2290
+            ],
+            "snippet": "'./mcp/server.js'); console.log(s.TOOLS.length)\" ``` ## Search For Artifact Ownership Rules ```bash rg \"MCP-owned|handoff|evidence-packs|p",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "docs/releases/v1.1.8.md",
+            "lines": [
+              13,
+              13
+            ],
+            "snippet": "'./mcp/server.js'); console.log('MCP ok')\"` to the repo-link install flow. - Documented the stale-runtime failure mode where `mcp/lib/tool-r",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "prompts/roles/orchestrator.md",
+            "lines": [
+              87,
+              87
+            ],
+            "snippet": "ify(d, null, 2)); console.log(\"Copied! Paste in the current agent session.\"); })(); ``` After any successful signup, poll email up to 12",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/generate-agent-tools.js",
+            "lines": [
+              126,
+              126
+            ],
+            "snippet": "k && changed) { console.log(\"updated agent tools frontmatter\"); } } if (require.main === module) { try { main(); } catch (err",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/generate-bountyagent-skill.js",
+            "lines": [
+              52,
+              52
+            ],
+            "snippet": "(changed && !check) console.log(\"updated bob-hunt skill frontmatter\"); } if (require.main === module) { try { main(); } catch (erro",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/generate-claude-roles.js",
+            "lines": [
+              13,
+              13
+            ],
+            "snippet": "(changed && !check) console.log(\"updated Claude role and command files\"); } if (require.main === module) { try { main(); } catch (e",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/generate-codex-skills.js",
+            "lines": [
+              11,
+              11
+            ],
+            "snippet": "(changed && !check) console.log(\"updated Codex skill files\"); } if (require.main === module) { try { main(); } catch (error) {",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/install.js",
+            "lines": [
+              429,
+              429
+            ],
+            "snippet": "ummary(summary) { console.log(`Installing Hacker Bob ${summary.version} into ${summary.targetAbs}/`); console.log(\"\"); console.log(`",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/install.js",
+            "lines": [
+              430,
+              430
+            ],
+            "snippet": "ry.targetAbs}/`); console.log(\"\"); console.log(` host adapters: ${summary.adapters.join(\", \")}`); if (summary.adapterResults.claude)",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/install.js",
+            "lines": [
+              431,
+              431
+            ],
+            "snippet": "console.log(\"\"); console.log(` host adapters: ${summary.adapters.join(\", \")}`); if (summary.adapterResults.claude) { console.log(`",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "scripts/install.js",
+            "lines": [
+              433,
+              433
+            ],
+            "snippet": "sults.claude) { console.log(` ${summary.agents} Claude agent definitions`); console.log(\" Claude command shims (/bob-update, /bob-",
+            "rule": "log_at_tool_boundary"
+          }
+        ]
+      },
+      "oversight_hooks": {
+        "signal": "oversight_hooks",
+        "fired": true,
+        "strength": 0.7612359947967775,
+        "evidence": [
+          {
+            "file": ".claude/hooks/session-read-guard.sh",
+            "lines": [
+              150,
+              150
+            ],
+            "snippet": "rr, ) raise SystemExit(2) def looks_like_path(token): if not token or token.startswith(\"-\"): return False if token",
+            "rule": "kill_switch"
+          },
+          {
+            "file": ".claude/hooks/session-read-guard.sh",
+            "lines": [
+              208,
+              208
+            ],
+            "snippet": "(blocked) raise SystemExit(0) command = tool_input.get(\"command\", \"\") if command: check_bash_command(command) raise SystemExit(0)",
+            "rule": "kill_switch"
+          },
+          {
+            "file": ".claude/hooks/session-read-guard.sh",
+            "lines": [
+              214,
+              214
+            ],
+            "snippet": "and(command) raise SystemExit(0) PY",
+            "rule": "kill_switch"
+          },
+          {
+            "file": ".claude/hooks/session-write-guard.sh",
+            "lines": [
+              138,
+              138
+            ],
+            "snippet": "s.stderr) raise SystemExit(2) def extract_redirect_targets(command): \"\"\"Extract file paths from shell redirect operators and tee c",
+            "rule": "kill_switch"
+          },
+          {
+            "file": ".claude/hooks/session-write-guard.sh",
+            "lines": [
+              202,
+              202
+            ],
+            "snippet": ") raise SystemExit(0) # Bash tool command = tool_input.get(\"command\", \"\") if not command: raise SystemExit(0) # Quick gate",
+            "rule": "kill_switch"
+          },
+          {
+            "file": ".claude/hooks/session-write-guard.sh",
+            "lines": [
+              207,
+              207
+            ],
+            "snippet": "command: raise SystemExit(0) # Quick gate: skip if no write indicators has_redirects = re.search(r\">{1,2}\\s|tee\\s\", command) has_open_",
+            "rule": "kill_switch"
+          },
+          {
+            "file": ".claude/hooks/session-write-guard.sh",
+            "lines": [
+              214,
+              214
+            ],
+            "snippet": "pen_call: raise SystemExit(0) # Extract and check redirect targets if has_redirects: for target in extract_redirect_targets(command",
+            "rule": "kill_switch"
+          },
+          {
+            "file": ".claude/hooks/session-write-guard.sh",
+            "lines": [
+              236,
+              236
+            ],
+            "snippet": ") raise SystemExit(0) PY",
+            "rule": "kill_switch"
+          }
+        ]
+      },
+      "eval_artefacts": {
+        "signal": "eval_artefacts",
+        "fired": true,
+        "strength": 0.5204119982655925,
+        "evidence": [
+          {
+            "file": "tests/",
+            "rule": "eval_or_test_dir_present"
+          },
+          {
+            "file": ".github/workflows/",
+            "rule": "ci_workflows_present"
+          }
+        ]
+      },
+      "governance_docs": {
+        "signal": "governance_docs",
+        "fired": true,
+        "strength": 0.8,
+        "evidence": [
+          {
+            "file": "CODE_OF_CONDUCT.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "CONTRIBUTING.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "LICENSE",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "SECURITY.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "docs/media/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "packages/hacker-bob-cc/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "packages/hacker-bob-codex/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "scripts/replay-prompts/README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "testing/policy-replay/README.md",
+            "rule": "governance_doc_present"
+          }
+        ]
+      },
+      "cybersec_hooks": {
+        "signal": "cybersec_hooks",
+        "fired": true,
+        "strength": 0.8704365036222725,
+        "evidence": [
+          {
+            "file": ".claude/agents/hunter-evm-agent.md",
+            "lines": [
+              53,
+              53
+            ],
+            "snippet": "bridge_invariant`, `rate_limit_normalization`, `stale_module_allowlist`, `delegatecall`, `arbitrary_external_call`, `selector_collision`, `r",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": ".claude/hooks/bounty-statusline.js",
+            "lines": [
+              63,
+              63
+            ],
+            "snippet": "const fiveHr = data.rate_limits?.five_hour?.used_percentage; const sevenDay = data.rate_limits?.seven_day?.used_percentage; const wo",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": ".claude/hooks/bounty-statusline.js",
+            "lines": [
+              64,
+              64
+            ],
+            "snippet": "nst sevenDay = data.rate_limits?.seven_day?.used_percentage; const worst = Math.max(fiveHr || 0, sevenDay || 0); if (worst >= 80) ra",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+            "lines": [
+              1069,
+              1069
+            ],
+            "snippet": "bridge_invariant`, `rate_limit_normalization`, `stale_module_allowlist`, `delegatecall`, `arbitrary_external_call`, `selector_collision`, `r",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "mcp/lib/evm-source.js",
+            "lines": [
+              283,
+              283
+            ],
+            "snippet": "const apiKey = process.env.BOB_ETHERSCAN_API_KEY || null; const etherscan = await fetchFromEtherscanV2(numericChainId, lower, apiKe",
+            "rule": "secrets_loaded_from_env"
+          },
+          {
+            "file": "mcp/lib/signup.js",
+            "lines": [
+              284,
+              284
+            ],
+            "snippet": "capsolver_api_key: process.env.CAPSOLVER_API_KEY || null, proxy: args.proxy || process.env.BOUNTY_PROXY || null, timeout_ms: args.t",
+            "rule": "secrets_loaded_from_env"
+          },
+          {
+            "file": "package-lock.json",
+            "lines": [
+              211,
+              211
+            ],
+            "snippet": "\"^5.2.1\", \"express-rate-limit\": \"^8.2.1\", \"hono\": \"^4.11.4\", \"jose\": \"^6.1.3\", \"json-schema-typed\": \"^8.0.2",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "package-lock.json",
+            "lines": [
+              687,
+              687
+            ],
+            "snippet": ", \"node_modules/express-rate-limit\": { \"version\": \"8.4.1\", \"resolved\": \"https://registry.npmjs.org/express-rate-limit/-/expr",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "package-lock.json",
+            "lines": [
+              689,
+              689
+            ],
+            "snippet": "/registry.npmjs.org/express-rate-limit/-/express-rate-limit-8.4.1.tgz\", \"integrity\": \"sha512-NGVYwQSAyEQgzxX1iCM978PP9AdO/hW93gMcF6ZwQ",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "package-lock.json",
+            "lines": [
+              689,
+              689
+            ],
+            "snippet": "xpress-rate-limit/-/express-rate-limit-8.4.1.tgz\", \"integrity\": \"sha512-NGVYwQSAyEQgzxX1iCM978PP9AdO/hW93gMcF6ZwQCm+rFvLsBH6w4xcXWTcli",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "package-lock.json",
+            "lines": [
+              699,
+              699
+            ],
+            "snippet": "github.com/sponsors/express-rate-limit\" }, \"peerDependencies\": { \"express\": \">= 4.11\" } }, \"node_modules/f",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "prompts/roles/hunter-evm.md",
+            "lines": [
+              39,
+              39
+            ],
+            "snippet": "bridge_invariant`, `rate_limit_normalization`, `stale_module_allowlist`, `delegatecall`, `arbitrary_external_call`, `selector_collision`, `r",
+            "rule": "rate_limit_usage"
+          },
+          {
+            "file": "scripts/install.js",
+            "lines": [
+              476,
+              476
+            ],
+            "snippet": "romium`); } if (process.env.CAPSOLVER_API_KEY) { console.log(\" OK: CAPSOLVER_API_KEY is set\"); } else { console.log(\" NOT SE",
+            "rule": "secrets_loaded_from_env"
+          },
+          {
+            "file": "scripts/lifecycle.js",
+            "lines": [
+              408,
+              408
+            ],
+            "snippet": "abled\"); } if (process.env.CAPSOLVER_API_KEY) { addCheck(checks, \"ok\", \"optional_capsolver\", \"CAPSOLVER_API_KEY is set\"); } else",
+            "rule": "secrets_loaded_from_env"
+          },
+          {
+            "file": "scripts/replay-refusal.js",
+            "lines": [
+              217,
+              217
+            ],
+            "snippet": "} const apiKey = process.env.ANTHROPIC_API_KEY; if (!apiKey && !args[\"dry-run\"]) { console.error( \"error: ANTHROPIC_API_KEY e",
+            "rule": "secrets_loaded_from_env"
+          }
+        ]
+      },
+      "provenance_hooks": {
+        "signal": "provenance_hooks",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "data_io": {
+        "signal": "data_io",
+        "fired": true,
+        "strength": 0.88164799306237,
+        "evidence": [
+          {
+            "file": "mcp/auto-signup.js",
+            "lines": [
+              78,
+              78
+            ],
+            "snippet": "createResp = await fetch(\"https://api.capsolver.com/createTask\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\" },",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "mcp/auto-signup.js",
+            "lines": [
+              93,
+              93
+            ],
+            "snippet": "st pollResp = await fetch(\"https://api.capsolver.com/getTaskResult\", { method: \"POST\", headers: { \"Content-Type\": \"application/j",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "mcp/lib/aptos-client.js",
+            "lines": [
+              75,
+              75
+            ],
+            "snippet": "const resp = await fetch(url, { method: \"GET\", headers: { Accept: \"application/json\", \"User-Agent\": \"Mozilla/5.0 (compatible; h",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "mcp/lib/cosmwasm-client.js",
+            "lines": [
+              73,
+              73
+            ],
+            "snippet": "const resp = await fetch(url, { method: \"GET\", headers: { Accept: \"application/json\", \"User-Agent\": \"Mozilla/5.0 (compatible; h",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "mcp/lib/evm-client.js",
+            "lines": [
+              76,
+              76
+            ],
+            "snippet": "const resp = await fetch(url, { method: \"POST\", headers: { \"Content-Type\": \"application/json\", Accept: \"application/json\", \"Use",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "mcp/lib/evm-source.js",
+            "lines": [
+              91,
+              91
+            ],
+            "snippet": "const resp = await fetch(url, { headers: { Accept: \"application/json,text/plain\", \"User-Agent\": \"Mozilla/5.0 (compatible; hacker-bob)",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "mcp/lib/public-intel.js",
+            "lines": [
+              166,
+              166
+            ],
+            "snippet": "const resp = await fetch(safeUrl, { headers: { \"User-Agent\": \"Mozilla/5.0 (compatible; bountyagent-public-intel)\", Ac",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "mcp/lib/substrate-client.js",
+            "lines": [
+              70,
+              70
+            ],
+            "snippet": "const resp = await fetch(url, { method: \"POST\", headers: { \"Content-Type\": \"application/json\", Accept: \"application/json\", \"Use",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "mcp/lib/sui-client.js",
+            "lines": [
+              58,
+              58
+            ],
+            "snippet": "const resp = await fetch(url, { method: \"POST\", headers: { \"Content-Type\": \"application/json\", Accept: \"application/json\", \"Use",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "mcp/lib/svm-client.js",
+            "lines": [
+              50,
+              50
+            ],
+            "snippet": "const resp = await fetch(url, { method: \"POST\", headers: { \"Content-Type\": \"application/json\", Accept: \"application/json\", \"Use",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "mcp/lib/temp-email.js",
+            "lines": [
+              43,
+              43
+            ],
+            "snippet": "domainResp = await fetch(\"https://api.mail.tm/domains\", { headers: { ...BROWSER_HEADERS, Accept: \"application/json\" }, })",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "mcp/lib/temp-email.js",
+            "lines": [
+              56,
+              56
+            ],
+            "snippet": "createResp = await fetch(\"https://api.mail.tm/accounts\", { method: \"POST\", headers: { ...BROWSER_HEADERS, \"Content-Type",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "mcp/lib/temp-email.js",
+            "lines": [
+              64,
+              64
+            ],
+            "snippet": "t tokenResp = await fetch(\"https://api.mail.tm/token\", { method: \"POST\", headers: { ...BROWSER_HEADERS, \"Content-Type\":",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "mcp/lib/temp-email.js",
+            "lines": [
+              78,
+              78
+            ],
+            "snippet": "const resp = await fetch(\"https://api.guerrillamail.com/ajax.php?f=get_email_address\", { headers: BROWSER_HEADERS, });",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "mcp/lib/temp-email.js",
+            "lines": [
+              110,
+              110
+            ],
+            "snippet": "const resp = await fetch(\"https://api.mail.tm/messages\", { headers: { ...BROWSER_HEADERS, Authorization: `Bearer ${mailbox.token}`,",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "scripts/replay-refusal.js",
+            "lines": [
+              175,
+              175
+            ],
+            "snippet": "const res = await fetch(API_URL, { method: \"POST\", headers: { \"x-api-key\": apiKey, \"anthropic-version\": ANTHROPIC_VERS",
+            "rule": "http_external_io"
+          }
+        ]
+      },
+      "pii_signals": {
+        "signal": "pii_signals",
+        "fired": true,
+        "strength": 1,
+        "evidence": [
+          {
+            "file": ".claude/agents/brutalist-verifier.md",
+            "lines": [
+              26,
+              26
+            ],
+            "snippet": "im, severity, and a redacted PoC excerpt into `mcp__brutalist__roast`. 2. Fold the roast verdict into your `reasoning` for that finding's `b",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": ".claude/agents/evidence-agent.md",
+            "lines": [
+              67,
+              67
+            ],
+            "snippet": "ds: [\"account_id\", \"email\", \"invoice_total\"], redacted_object_id: \"acct_...789\" } ], sensitive_clusters: [\"bil",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".claude/agents/evidence-agent.md",
+            "lines": [
+              29,
+              29
+            ],
+            "snippet": "`observed_fields`, `redacted_object_id`. No raw bodies, no auth headers, no cookies. 4. **Smart-contract (`runner: \"bounty_<chain>_run\"`)**:",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": ".claude/agents/evidence-agent.md",
+            "lines": [
+              45,
+              45
+            ],
+            "snippet": "chain state slot. - Redact or omit secrets, auth headers, cookies, tokens, passwords, API keys, full PII values, raw large response bodies,",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": ".claude/agents/evidence-agent.md",
+            "lines": [
+              46,
+              46
+            ],
+            "snippet": "object type labels, redacted IDs, field names, short excerpts, count summaries, function signatures, role/owner addresses. - `sensitive_clus",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": ".claude/agents/evidence-agent.md",
+            "lines": [
+              47,
+              47
+            ],
+            "snippet": "ame data classes or redacted clusters, not raw sensitive values. - `report_snippet` should be prose the report writer can reuse as proof/imp",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": ".claude/agents/evidence-agent.md",
+            "lines": [
+              68,
+              68
+            ],
+            "snippet": "_total\"], redacted_object_id: \"acct_...789\" } ], sensitive_clusters: [\"billing profile fields\", \"invoice metad",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": ".claude/agents/hunter-agent.md",
+            "lines": [
+              36,
+              36
+            ],
+            "snippet": "_hints` as bounded, redacted static-analysis leads only. If you need to scan token contract source, first import pasted content with `bounty",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": ".claude/skills/bob-hunt/SKILL.md",
+            "lines": [
+              158,
+              158
+            ],
+            "snippet": "endpoint with temp email and generated password. 3. Tier 2 browser signup: call `bounty_auto_signup({ target_domain, signup_url, email, pas",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".claude/skills/bob-hunt/SKILL.md",
+            "lines": [
+              159,
+              159
+            ],
+            "snippet": "domain, signup_url, email, password, profile_name: \"attacker\" })`; if `result.data.auth_stored` is true, continue to verification, and if `r",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".claude/skills/bob-hunt/SKILL.md",
+            "lines": [
+              160,
+              160
+            ],
+            "snippet": "ister with the temp email/password, then poll/extract verification mail and store auth with `bounty_auth_store({ target_domain, profile_name",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".claude/skills/bob-hunt/SKILL.md",
+            "lines": [
+              175,
+              175
+            ],
+            "snippet": "essful signup, poll email up to 12 times, extract a code/link, complete verification through `bounty_http_scan` with `target_domain` and `eg",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".claude/skills/bob-hunt/SKILL.md",
+            "lines": [
+              175,
+              175
+            ],
+            "snippet": "ile with a new temp email. Verify auth with `bounty_http_scan` with `target_domain` and `egress_profile` against a protected endpoint and ca",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".claude/skills/bob-hunt/SKILL.md",
+            "lines": [
+              113,
+              113
+            ],
+            "snippet": "ic_artifact` writes redacted token contract source under `static-imports/` and metadata to `static-artifacts.jsonl`. - `bounty_static_scan`",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": ".hacker-bob/knowledge/hunter-techniques.json",
+            "lines": [
+              44,
+              44
+            ],
+            "snippet": "1: user(id: 1) { id email } a2: user(id: 2) { id email } }\", \"mutation { updateUserRole(userId: \\\"VICTIM_ID\\\", role: ADMIN) { id rol",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".hacker-bob/knowledge/hunter-techniques.json",
+            "lines": [
+              44,
+              44
+            ],
+            "snippet": "2: user(id: 2) { id email } }\", \"mutation { updateUserRole(userId: \\\"VICTIM_ID\\\", role: ADMIN) { id role } }\", \"GET /graphql",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".hacker-bob/knowledge/hunter-techniques.json",
+            "lines": [
+              103,
+              103
+            ],
+            "snippet": "cker JWKS, role/sub/email edits.\", \"For OAuth/OIDC, chain open redirects into redirect_uri validation, state/nonce weakness, missing",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".hacker-bob/knowledge/hunter-techniques.json",
+            "lines": [
+              112,
+              112
+            ],
+            "snippet": "cope=openid profile email admin offline_access\" ] }, { \"id\": \"ssrf-url-fetch\", \"title\": \"SSRF and server-side URL",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": ".hacker-bob/knowledge/hunter-techniques.json",
+            "lines": [
+              148,
+              148
+            ],
+            "snippet": "ation, PDF preview, email templates, and shared documents.\", \"Do not report upload of inert files. Prove script execution, sensitive",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "CHANGELOG.md",
+            "lines": [
+              218,
+              218
+            ],
+            "snippet": "idation, credential redaction, and audit fields for `egress_profile` and `egress_region`. - Added geofence/reachability visibility for repea",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": "CONTRIBUTING.md",
+            "lines": [
+              78,
+              78
+            ],
+            "snippet": "ssion-write, secret-redaction, or authorization guardrails without tests and a clear rationale. ## Testing installed changes For local e",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": "adapters/codex/hacker-bob/.codex-plugin/plugin.json",
+            "lines": [
+              7,
+              7
+            ],
+            "snippet": "contributors\", \"email\": \"maintainers@example.invalid\", \"url\": \"https://github.com/vmihalis/hacker-bob\" }, \"homepage\": \"https://g",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+            "lines": [
+              99,
+              99
+            ],
+            "snippet": "endpoint with temp email and generated password. 3. Tier 2 browser signup: call `bounty_auto_signup({ target_domain, signup_url, email, pas",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+            "lines": [
+              100,
+              100
+            ],
+            "snippet": "domain, signup_url, email, password, profile_name: \"attacker\" })`; if `result.data.auth_stored` is true, continue to verification, and if `r",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+            "lines": [
+              101,
+              101
+            ],
+            "snippet": "ister with the temp email/password, then poll/extract verification mail and store auth with `bounty_auth_store({ target_domain, profile_name",
+            "rule": "pii_keywords"
+          }
+        ]
+      },
+      "bio_health_signals": {
+        "signal": "bio_health_signals",
+        "fired": true,
+        "strength": 0.4,
+        "evidence": [
+          {
+            "file": "docs/releases/v1.2.2.md",
+            "lines": [
+              13,
+              13
+            ],
+            "snippet": "sions before deeper diagnosis. - The canonical npm package no longer includes ignored local install metadata such as `.claude/bob/VERSION`,",
+            "rule": "health_terms"
+          }
+        ]
+      },
+      "employment_signals": {
+        "signal": "employment_signals",
+        "fired": true,
+        "strength": 1,
+        "evidence": [
+          {
+            "file": ".claude/agents/deep-recon-agent.md",
+            "lines": [
+              314,
+              314
+            ],
+            "snippet": "d(f\"tech/CVE review candidate: {name}\") def classify(text): text_l = text.lower() hints, flows = [], [] if re.search(r'graphql|g",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/agents/deep-recon-agent.md",
+            "lines": [
+              415,
+              415
+            ],
+            "snippet": "ates.txt; the broad candidate set is not fed into CDX, nuclei, JS extraction, or active probing\"], 35) counts = { \"subdomains\": len(line",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/hooks/session-read-guard.sh",
+            "lines": [
+              187,
+              187
+            ],
+            "snippet": "OMMANDS for candidate in tokens[index + 1:]: if candidate in {\"|\", \";\", \"&&\", \"||\"}: break f",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/hooks/session-read-guard.sh",
+            "lines": [
+              188,
+              188
+            ],
+            "snippet": "1:]: if candidate in {\"|\", \";\", \"&&\", \"||\"}: break for path_candidate in candidate_paths(candidate):",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/hooks/session-read-guard.sh",
+            "lines": [
+              190,
+              190
+            ],
+            "snippet": "in candidate_paths(candidate): blocked = check_file(path_candidate, block_session_dirs=block_session_dirs)",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/bob-hunt/SKILL.md",
+            "lines": [
+              4,
+              4
+            ],
+            "snippet": "int: \"[target-url | resume <domain> [force-merge]] [--deep] [--egress <profile>]\" allowed-tools: - Task - Read - mcp__bountyagent__bou",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/bob-hunt/SKILL.md",
+            "lines": [
+              81,
+              81
+            ],
+            "snippet": "` (`target URL` or `resume [domain] [force-merge]`, optionally `--deep` and `--egress <profile>`) ## Flags Checkpoint flags: `--normal` is t",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/bob-hunt/SKILL.md",
+            "lines": [
+              85,
+              85
+            ],
+            "snippet": "state.deep_mode` on resume. Resolve `--egress` once as `egress_profile` and pass it into AUTH `bounty_http_scan` calls plus every hunter, ch",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/bob-hunt/SKILL.md",
+            "lines": [
+              125,
+              125
+            ],
+            "snippet": "ays are needed. ## Resume - `resume [domain]` accepts one optional non-flag token: `force-merge`. - First call `bounty_read_state_summary({",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/bob-hunt/SKILL.md",
+            "lines": [
+              126,
+              126
+            ],
+            "snippet": "eded. ## Resume - `resume [domain]` accepts one optional non-flag token: `force-merge`. - First call `bounty_read_state_summary({ target_do",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/bob-status/SKILL.md",
+            "lines": [
+              74,
+              74
+            ],
+            "snippet": "sue. Use `/bob-hunt resume <target_domain>` as the next command when analytics gives a clear `missing_evidence` blocker or missing finding I",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/bob-status/SKILL.md",
+            "lines": [
+              75,
+              75
+            ],
+            "snippet": "--egress <profile> resume <target_domain>` only when the operator has chosen the profile. ## V2 Verification Panel When `bounty_read_verif",
+            "rule": "employment_terms"
+          },
+          {
+            "file": ".claude/skills/bob-status/SKILL.md",
+            "lines": [
+              96,
+              96
+            ],
+            "snippet": "usually `/bob-hunt resume <target_domain>`, `/bob-debug <target_domain>`, `/bob-debug --deep <target_domain>`, or no action needed. Do not",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "CHANGELOG.md",
+            "lines": [
+              104,
+              104
+            ],
+            "snippet": "- Added JWT-shaped candidate extraction from JavaScript artifacts plus `jwt_tool` availability checks for later authorized token review wit",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "CHANGELOG.md",
+            "lines": [
+              145,
+              145
+            ],
+            "snippet": "p_mode` persists on resume, so `/bob-hunt resume` keeps deep behavior even when `--deep` is omitted. ### Session summary, read guard, opera",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "CHANGELOG.md",
+            "lines": [
+              145,
+              145
+            ],
+            "snippet": "sume, so `/bob-hunt resume` keeps deep behavior even when `--deep` is omitted. ### Session summary, read guard, operator notes (merged from",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "README.md",
+            "lines": [
+              116,
+              116
+            ],
+            "snippet": "follow-up /bob-hunt resume target.com # resume an existing session /bob-status # show latest session status /bob-debug",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "README.md",
+            "lines": [
+              116,
+              116
+            ],
+            "snippet": "esume target.com # resume an existing session /bob-status # show latest session status /bob-debug # insp",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "adapters/codex/index.js",
+            "lines": [
+              47,
+              47
+            ],
+            "snippet": "escription: \"Run or resume a Hacker Bob bug bounty hunt.\", argumentHint: \"<target|resume target [force-merge]> [--no-auth|--normal|--par",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "adapters/codex/index.js",
+            "lines": [
+              48,
+              48
+            ],
+            "snippet": "umentHint: \"<target|resume target [force-merge]> [--no-auth|--normal|--paranoid|--yolo]\", }), status: Object.freeze({ file: \"bob-sta",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "adapters/codex/skills/bob-export/SKILL.md",
+            "lines": [
+              15,
+              15
+            ],
+            "snippet": "; it does not hunt, resume sessions, or interact with targets.",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+            "lines": [
+              3,
+              3
+            ],
+            "snippet": "description: Run or resume a Hacker Bob bug bounty hunt in Codex using the shared MCP runtime. --- You are the ORCHESTRATOR for Bob, an aut",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+            "lines": [
+              8,
+              8
+            ],
+            "snippet": "` (`target URL` or `resume [domain] [force-merge]`, optionally `--deep` and `--egress <profile>`) ## Flags Checkpoint flags: `--normal` is t",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+            "lines": [
+              12,
+              12
+            ],
+            "snippet": "state.deep_mode` on resume. Resolve `--egress` once as `egress_profile` and pass it into AUTH `bounty_http_scan` calls plus every hunter, ch",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+            "lines": [
+              57,
+              57
+            ],
+            "snippet": "ays are needed. ## Resume - `resume [domain]` accepts one optional non-flag token: `force-merge`. - First call `bounty_read_state_summary({",
+            "rule": "employment_terms"
+          }
+        ]
+      },
+      "bio_metric_signals": {
+        "signal": "bio_metric_signals",
+        "fired": true,
+        "strength": 0.83167249841905,
+        "evidence": [
+          {
+            "file": ".claude/agents/deep-recon-agent.md",
+            "lines": [
+              15,
+              15
+            ],
+            "snippet": "wling, and takeover fingerprint checks only: no brute forcing, credential attacks, form submission, destructive checks, or authenticated act",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+            "lines": [
+              462,
+              462
+            ],
+            "snippet": "wling, and takeover fingerprint checks only: no brute forcing, credential attacks, form submission, destructive checks, or authenticated act",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "docs/capability-hypergraph.md",
+            "lines": [
+              424,
+              424
+            ],
+            "snippet": "e harness leaves no fingerprint on real session storage. Per-capability fixture: a known authorized target with seeded findings. Hunts run",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "docs/capability-hypergraph.md",
+            "lines": [
+              561,
+              561
+            ],
+            "snippet": "e harness leaves no fingerprint on real session storage. Closes X5. Tool count 93→94. Skill stays at the 340-line cap by inlining the prior",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "docs/hacker-bob-offline-guide.md",
+            "lines": [
+              1499,
+              1499
+            ],
+            "snippet": "ntext, and evidence fingerprint. Exact duplicates are not recorded unless `force_record` is true. ## 2. Chain Builder Tests Combinations T",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "mcp/auto-signup.js",
+            "lines": [
+              11,
+              11
+            ],
+            "snippet": "system Chrome (TLS fingerprint, fonts, WebGL match) // 3. Headed mode — avoids headless signals // 4. ignoreDefaultArgs: ['--enable-aut",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "prompts/roles/deep-recon.md",
+            "lines": [
+              8,
+              8
+            ],
+            "snippet": "wling, and takeover fingerprint checks only: no brute forcing, credential attacks, form submission, destructive checks, or authenticated act",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "test/priors-slice-brief.test.js",
+            "lines": [
+              15,
+              15
+            ],
+            "snippet": "-index.js\"); const FINGERPRINT = `bobpriortest${crypto.randomBytes(6).toString(\"hex\")}`; function uniqueDomain(prefix = \"bob-priors-test\")",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "test/priors-slice-brief.test.js",
+            "lines": [
+              48,
+              48
+            ],
+            "snippet": ", title: `${FINGERPRINT} IDOR on user profile endpoint`, description: `${FINGERPRINT} broken object level authorization`,",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "test/priors-slice-brief.test.js",
+            "lines": [
+              49,
+              49
+            ],
+            "snippet": "description: `${FINGERPRINT} broken object level authorization`, severity: \"high\", attack_class: \"idor\", endpoin",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "test/priors-slice-brief.test.js",
+            "lines": [
+              52,
+              52
+            ],
+            "snippet": "endpoint: `/${FINGERPRINT}/users/{id}`, tech_stack: [\"express\"], }, calibration_label: \"real\", }); const s",
+            "rule": "biometric_terms"
+          },
+          {
+            "file": "test/priors-slice-brief.test.js",
+            "lines": [
+              58,
+              58
+            ],
+            "snippet": "endpoint: `/${FINGERPRINT}/users/{id}`, bug_class: \"idor\", tech_stack: [\"express\"], }); assert.ok(slice); asse",
+            "rule": "biometric_terms"
+          }
+        ]
+      },
+      "education_signals": {
+        "signal": "education_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "law_enforcement_signals": {
+        "signal": "law_enforcement_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "migration_signals": {
+        "signal": "migration_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "justice_signals": {
+        "signal": "justice_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "essential_services_signals": {
+        "signal": "essential_services_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "critical_infra_signals": {
+        "signal": "critical_infra_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "content_generation_signals": {
+        "signal": "content_generation_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "emotion_recognition_signals": {
+        "signal": "emotion_recognition_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      }
+    }
+  },
+  "scope": {
+    "regulationIds": [
+      "eu-ai-act-2024-08",
+      "nist-ai-rmf-1.0"
+    ],
+    "notes": [
+      "Auditing against packs: eu-ai-act-2024-08, nist-ai-rmf-1.0"
+    ]
+  },
+  "map": {
+    "classification": "high",
+    "annexIiiCategories": [
+      "1",
+      "4"
+    ],
+    "art50Triggers": [
+      "50(1)"
+    ],
+    "drivingSignals": [
+      {
+        "signal": "bio_metric_signals",
+        "category": "1"
+      },
+      {
+        "signal": "employment_signals",
+        "category": "4"
+      }
+    ],
+    "rationale": [
+      "Classified HIGH-RISK based on 2 Annex III signal(s).",
+      "Annex III §1 (Biometric ID, categorisation, emotion recognition) — signal \"bio_metric_signals\" fired with strength 0.83",
+      "Annex III §4 (Employment, workers management, access to self-employment) — signal \"employment_signals\" fired with strength 1.00",
+      "Art 50 50(1) (Interaction with natural persons) — signal \"agent_framework\" fired"
+    ]
+  },
+  "checks": [
+    {
+      "clauseId": "eu-ai-act/art-5/1a-subliminal",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(a)",
+      "title": "Subliminal techniques distorting behaviour",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_manipulative_prompt_patterns",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1b-vulnerability",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(b)",
+      "title": "Exploiting vulnerabilities (age, disability, socio-economic)",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_protected_attribute_targeting",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1c-social-scoring",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(c)",
+      "title": "Social scoring leading to detrimental treatment",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_scoring_with_persistent_user_state",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1d-predictive-policing",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(d)",
+      "title": "Predictive policing solely from profiling",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_crime_risk_scoring_from_profile",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1e-facial-scraping",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(e)",
+      "title": "Untargeted facial image scraping for face databases",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 1,
+      "evidence": [
+        {
+          "file": ".claude/agents/deep-recon-agent.md",
+          "lines": [
+            15,
+            15
+          ],
+          "snippet": "wling, and takeover fingerprint checks only: no brute forcing, credential attacks, form submission, destructive checks, or authenticated act",
+          "rule": "biometric_terms"
+        },
+        {
+          "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+          "lines": [
+            462,
+            462
+          ],
+          "snippet": "wling, and takeover fingerprint checks only: no brute forcing, credential attacks, form submission, destructive checks, or authenticated act",
+          "rule": "biometric_terms"
+        },
+        {
+          "file": "docs/capability-hypergraph.md",
+          "lines": [
+            424,
+            424
+          ],
+          "snippet": "e harness leaves no fingerprint on real session storage. Per-capability fixture: a known authorized target with seeded findings. Hunts run",
+          "rule": "biometric_terms"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "detect_face_image_scraping",
+          "matched": 1,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 1.00 (1/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1f-emotion-workplace-edu",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(f)",
+      "title": "Emotion recognition in workplace and education",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_emotion_recognition_in_workplace_education",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1g-biometric-categorisation",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(g)",
+      "title": "Biometric categorisation by protected attributes",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_biometric_categorisation_by_protected_attrs",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1h-realtime-rbi",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(h)",
+      "title": "Real-time remote biometric identification in public spaces",
+      "verdict": "external",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "Deployment context (public space, real-time, law enforcement use, judicial\nauthorisation) is operational, not knowable from code. Always external.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-9/risk-management",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "9",
+      "title": "Risk management system established, implemented, documented",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.44999999999999996,
+      "evidence": [
+        {
+          "file": "SECURITY.md",
+          "rule": "presence_of_threat_model"
+        },
+        {
+          "file": ".github/workflows/ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/release.yml",
+          "rule": "ci_eval_gates"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "presence_of_risk_register",
+          "matched": 0,
+          "weight": 0.4
+        },
+        {
+          "rule": "presence_of_threat_model",
+          "matched": 0.5,
+          "weight": 0.3
+        },
+        {
+          "rule": "ci_eval_gates",
+          "matched": 1,
+          "weight": 0.3
+        }
+      ],
+      "rationale": "Composite raw score 0.45 (2/3 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-10/data-governance",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "10",
+      "title": "Data and data governance practices documented",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0.1,
+      "evidence": [
+        {
+          "file": "mcp/auto-signup.js",
+          "lines": [
+            78,
+            78
+          ],
+          "snippet": "createResp = await fetch(\"https://api.capsolver.com/createTask\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\" },",
+          "rule": "http_external_io"
+        },
+        {
+          "file": "mcp/auto-signup.js",
+          "lines": [
+            93,
+            93
+          ],
+          "snippet": "st pollResp = await fetch(\"https://api.capsolver.com/getTaskResult\", { method: \"POST\", headers: { \"Content-Type\": \"application/j",
+          "rule": "http_external_io"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "presence_of_data_card",
+          "matched": 0,
+          "weight": 0.5
+        },
+        {
+          "rule": "data_loading_code_quality",
+          "matched": 0.4,
+          "weight": 0.25
+        },
+        {
+          "rule": "bias_evaluation_present",
+          "matched": 0,
+          "weight": 0.25
+        }
+      ],
+      "rationale": "Composite raw score 0.10 (0/3 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.75,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-11/technical-documentation",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "11",
+      "title": "Technical documentation drawn up before placing on market",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.35,
+      "evidence": [
+        {
+          "file": "README.md",
+          "rule": "readme_quality",
+          "detail": "2 required sections present"
+        },
+        {
+          "file": "scripts/replay-prompts/00-baseline.md",
+          "rule": "architecture_docs"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "presence_of_model_card",
+          "matched": 0,
+          "weight": 0.5
+        },
+        {
+          "rule": "readme_quality",
+          "matched": 0.5,
+          "weight": 0.3
+        },
+        {
+          "rule": "architecture_docs",
+          "matched": 1,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.35 (2/3 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-12/p1-automatic-logs",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "12(1)",
+      "title": "Automatic recording of events over the lifetime",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.5800000000000001,
+      "evidence": [
+        {
+          "file": ".claude/hooks/bob-update.js",
+          "lines": [
+            64,
+            64
+          ],
+          "snippet": "he(projectDir); console.log(\"Hacker Bob update cache cleared.\"); return; } usage(); process.exit(1); } main(process.argv.sli",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/hooks/hunter-subagent-stop.js",
+          "lines": [
+            238,
+            238
+          ],
+          "snippet": "ndoff, })); console.log(JSON.stringify({ ok: true, message: \"post-report evidence run accepted\" })); process.exit(0); } con",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/hooks/hunter-subagent-stop.js",
+          "lines": [
+            247,
+            247
+          ],
+          "snippet": "cess.exit(2); } console.log(JSON.stringify({ ok: true, message: finalization.reason })); process.exit(0); } if (require.main === modu",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/skills/bob-hunt/SKILL.md",
+          "lines": [
+            171,
+            171
+          ],
+          "snippet": "ify(d, null, 2)); console.log(\"Copied! Paste in Claude Code.\"); })(); ``` After any successful signup, poll email up to 12 times, extract",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "README.md",
+          "lines": [
+            29,
+            29
+          ],
+          "snippet": "'./mcp/server.js'); console.log('MCP ok')\" ``` Restart your host CLI from the same project directory, then run the matching command: | Hos",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "README.md",
+          "lines": [
+            230,
+            230
+          ],
+          "snippet": "'./mcp/server.js'); console.log('MCP ok')\"` should pass from the installed project. - Claude Code must be restarted after install or update",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/hooks/bob-update.js",
+          "lines": [
+            64,
+            64
+          ],
+          "snippet": "he(projectDir); console.log(\"Hacker Bob update cache cleared.\"); return; } usage(); process.exit(1); } main(process.argv.sli",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/hooks/hunter-subagent-stop.js",
+          "lines": [
+            238,
+            238
+          ],
+          "snippet": "ndoff, })); console.log(JSON.stringify({ ok: true, message: \"post-report evidence run accepted\" })); process.exit(0); } con",
+          "rule": "log_at_tool_boundary"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "structured_logging_imported",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "logging_at_tool_call_boundaries",
+          "matched": 1,
+          "weight": 0.5
+        },
+        {
+          "rule": "logging_persistent_sink",
+          "matched": 0.4,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.58 (1/3 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-12/p2-traceability",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "12(2)",
+      "title": "Logging ensures traceability appropriate to risk",
+      "verdict": "pass",
+      "score": 3,
+      "rawScore": 0.675,
+      "evidence": [
+        {
+          "file": ".claude/hooks/bob-update.js",
+          "lines": [
+            64,
+            64
+          ],
+          "snippet": "he(projectDir); console.log(\"Hacker Bob update cache cleared.\"); return; } usage(); process.exit(1); } main(process.argv.sli",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/hooks/hunter-subagent-stop.js",
+          "lines": [
+            238,
+            238
+          ],
+          "snippet": "ndoff, })); console.log(JSON.stringify({ ok: true, message: \"post-report evidence run accepted\" })); process.exit(0); } con",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/hooks/hunter-subagent-stop.js",
+          "lines": [
+            247,
+            247
+          ],
+          "snippet": "cess.exit(2); } console.log(JSON.stringify({ ok: true, message: finalization.reason })); process.exit(0); } if (require.main === modu",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/skills/bob-hunt/SKILL.md",
+          "lines": [
+            171,
+            171
+          ],
+          "snippet": "ify(d, null, 2)); console.log(\"Copied! Paste in Claude Code.\"); })(); ``` After any successful signup, poll email up to 12 times, extract",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "README.md",
+          "lines": [
+            29,
+            29
+          ],
+          "snippet": "'./mcp/server.js'); console.log('MCP ok')\" ``` Restart your host CLI from the same project directory, then run the matching command: | Hos",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "README.md",
+          "lines": [
+            230,
+            230
+          ],
+          "snippet": "'./mcp/server.js'); console.log('MCP ok')\"` should pass from the installed project. - Claude Code must be restarted after install or update",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/hooks/bob-update.js",
+          "lines": [
+            64,
+            64
+          ],
+          "snippet": "he(projectDir); console.log(\"Hacker Bob update cache cleared.\"); return; } usage(); process.exit(1); } main(process.argv.sli",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/hooks/hunter-subagent-stop.js",
+          "lines": [
+            238,
+            238
+          ],
+          "snippet": "ndoff, })); console.log(JSON.stringify({ ok: true, message: \"post-report evidence run accepted\" })); process.exit(0); } con",
+          "rule": "log_at_tool_boundary"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "logs_include_input_output_pairs",
+          "matched": 1,
+          "weight": 0.5
+        },
+        {
+          "rule": "logs_include_model_identity",
+          "matched": 0.7,
+          "weight": 0.25
+        },
+        {
+          "rule": "logs_include_request_id",
+          "matched": 0,
+          "weight": 0.25
+        }
+      ],
+      "rationale": "Composite raw score 0.68 (2/3 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.975,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-13/deployer-instructions",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "13",
+      "title": "Transparent operation and instructions for use",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.25,
+      "evidence": [
+        {
+          "file": "README.md",
+          "rule": "readme_quality",
+          "detail": "2 required sections present"
+        },
+        {
+          "file": "README.md",
+          "rule": "output_interpretation_guidance"
+        },
+        {
+          "file": "README.md",
+          "rule": "limitations_section_present"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "presence_of_deployer_instructions",
+          "matched": 0.5,
+          "weight": 0.5
+        },
+        {
+          "rule": "output_interpretation_guidance",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "limitations_section_present",
+          "matched": 0,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.25 (1/3 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.9,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-14/p1-oversight-measures",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "14(1)",
+      "title": "Effective human oversight designed and built-in",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "human_in_loop_hooks_present",
+          "matched": 0,
+          "weight": 0.5
+        },
+        {
+          "rule": "oversight_ui_present",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "tool_calls_have_dry_run",
+          "matched": 0,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/3 rules matched).",
+      "confidence": 0.65,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-14/p4d-stop-button",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "14(4)(d)",
+      "title": "Interrupt / stop function reachable by overseer",
+      "verdict": "pass",
+      "score": 3,
+      "rawScore": 0.7,
+      "evidence": [
+        {
+          "file": ".claude/hooks/session-read-guard.sh",
+          "lines": [
+            150,
+            150
+          ],
+          "snippet": "rr, ) raise SystemExit(2) def looks_like_path(token): if not token or token.startswith(\"-\"): return False if token",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-read-guard.sh",
+          "lines": [
+            208,
+            208
+          ],
+          "snippet": "(blocked) raise SystemExit(0) command = tool_input.get(\"command\", \"\") if command: check_bash_command(command) raise SystemExit(0)",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-read-guard.sh",
+          "lines": [
+            214,
+            214
+          ],
+          "snippet": "and(command) raise SystemExit(0) PY",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-write-guard.sh",
+          "lines": [
+            138,
+            138
+          ],
+          "snippet": "s.stderr) raise SystemExit(2) def extract_redirect_targets(command): \"\"\"Extract file paths from shell redirect operators and tee c",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-write-guard.sh",
+          "lines": [
+            202,
+            202
+          ],
+          "snippet": ") raise SystemExit(0) # Bash tool command = tool_input.get(\"command\", \"\") if not command: raise SystemExit(0) # Quick gate",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-write-guard.sh",
+          "lines": [
+            207,
+            207
+          ],
+          "snippet": "command: raise SystemExit(0) # Quick gate: skip if no write indicators has_redirects = re.search(r\">{1,2}\\s|tee\\s\", command) has_open_",
+          "rule": "kill_switch"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "kill_switch_present",
+          "matched": 1,
+          "weight": 0.7
+        },
+        {
+          "rule": "graceful_shutdown_handler",
+          "matched": 0,
+          "weight": 0.3
+        }
+      ],
+      "rationale": "Composite raw score 0.70 (1/2 rules matched).",
+      "confidence": 0.9,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-14/p4e-override",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "14(4)(e)",
+      "title": "Ability to override / reverse the system's output",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.6,
+      "evidence": [
+        {
+          "file": ".claude/hooks/session-read-guard.sh",
+          "lines": [
+            150,
+            150
+          ],
+          "snippet": "rr, ) raise SystemExit(2) def looks_like_path(token): if not token or token.startswith(\"-\"): return False if token",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-read-guard.sh",
+          "lines": [
+            208,
+            208
+          ],
+          "snippet": "(blocked) raise SystemExit(0) command = tool_input.get(\"command\", \"\") if command: check_bash_command(command) raise SystemExit(0)",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-read-guard.sh",
+          "lines": [
+            214,
+            214
+          ],
+          "snippet": "and(command) raise SystemExit(0) PY",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-write-guard.sh",
+          "lines": [
+            138,
+            138
+          ],
+          "snippet": "s.stderr) raise SystemExit(2) def extract_redirect_targets(command): \"\"\"Extract file paths from shell redirect operators and tee c",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-write-guard.sh",
+          "lines": [
+            202,
+            202
+          ],
+          "snippet": ") raise SystemExit(0) # Bash tool command = tool_input.get(\"command\", \"\") if not command: raise SystemExit(0) # Quick gate",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-write-guard.sh",
+          "lines": [
+            207,
+            207
+          ],
+          "snippet": "command: raise SystemExit(0) # Quick gate: skip if no write indicators has_redirects = re.search(r\">{1,2}\\s|tee\\s\", command) has_open_",
+          "rule": "kill_switch"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "override_path_present",
+          "matched": 1,
+          "weight": 0.6
+        },
+        {
+          "rule": "decisions_are_addressable",
+          "matched": 0,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.60 (1/2 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-15/p1-accuracy",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "15(1)",
+      "title": "Appropriate level of accuracy declared and tested",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.45,
+      "evidence": [
+        {
+          "file": "tests/",
+          "rule": "eval_suite_present"
+        },
+        {
+          "file": "README.md",
+          "rule": "metrics_documented"
+        },
+        {
+          "file": ".github/workflows/ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/release.yml",
+          "rule": "ci_eval_gates"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "eval_suite_present",
+          "matched": 0.5,
+          "weight": 0.5
+        },
+        {
+          "rule": "metrics_documented",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "eval_in_ci",
+          "matched": 1,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.45 (2/3 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-15/p4-robustness",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "15(4)",
+      "title": "Resilience to errors, faults, inconsistencies",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.16000000000000003,
+      "evidence": [
+        {
+          "file": "package.json",
+          "rule": "manifest_framework_dep",
+          "detail": "Anthropic SDK"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "error_handling_at_tool_boundaries",
+          "matched": 0.4,
+          "weight": 0.4
+        },
+        {
+          "rule": "retry_logic",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "fallback_behaviour",
+          "matched": 0,
+          "weight": 0.3
+        }
+      ],
+      "rationale": "Composite raw score 0.16 (0/3 rules matched).",
+      "confidence": 0.81,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-15/p5-cybersecurity",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "15(5)",
+      "title": "Cybersecurity measures appropriate to circumstances",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.34817460144890905,
+      "evidence": [
+        {
+          "file": ".claude/agents/hunter-evm-agent.md",
+          "lines": [
+            53,
+            53
+          ],
+          "snippet": "bridge_invariant`, `rate_limit_normalization`, `stale_module_allowlist`, `delegatecall`, `arbitrary_external_call`, `selector_collision`, `r",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": ".claude/hooks/bounty-statusline.js",
+          "lines": [
+            63,
+            63
+          ],
+          "snippet": "const fiveHr = data.rate_limits?.five_hour?.used_percentage; const sevenDay = data.rate_limits?.seven_day?.used_percentage; const wo",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": ".claude/hooks/bounty-statusline.js",
+          "lines": [
+            64,
+            64
+          ],
+          "snippet": "nst sevenDay = data.rate_limits?.seven_day?.used_percentage; const worst = Math.max(fiveHr || 0, sevenDay || 0); if (worst >= 80) ra",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+          "lines": [
+            1069,
+            1069
+          ],
+          "snippet": "bridge_invariant`, `rate_limit_normalization`, `stale_module_allowlist`, `delegatecall`, `arbitrary_external_call`, `selector_collision`, `r",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": "package-lock.json",
+          "lines": [
+            211,
+            211
+          ],
+          "snippet": "\"^5.2.1\", \"express-rate-limit\": \"^8.2.1\", \"hono\": \"^4.11.4\", \"jose\": \"^6.1.3\", \"json-schema-typed\": \"^8.0.2",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": "package-lock.json",
+          "lines": [
+            687,
+            687
+          ],
+          "snippet": ", \"node_modules/express-rate-limit\": { \"version\": \"8.4.1\", \"resolved\": \"https://registry.npmjs.org/express-rate-limit/-/expr",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": "mcp/lib/evm-source.js",
+          "lines": [
+            283,
+            283
+          ],
+          "snippet": "const apiKey = process.env.BOB_ETHERSCAN_API_KEY || null; const etherscan = await fetchFromEtherscanV2(numericChainId, lower, apiKe",
+          "rule": "secrets_loaded_from_env"
+        },
+        {
+          "file": "mcp/lib/signup.js",
+          "lines": [
+            284,
+            284
+          ],
+          "snippet": "capsolver_api_key: process.env.CAPSOLVER_API_KEY || null, proxy: args.proxy || process.env.BOUNTY_PROXY || null, timeout_ms: args.t",
+          "rule": "secrets_loaded_from_env"
+        },
+        {
+          "file": "scripts/install.js",
+          "lines": [
+            476,
+            476
+          ],
+          "snippet": "romium`); } if (process.env.CAPSOLVER_API_KEY) { console.log(\" OK: CAPSOLVER_API_KEY is set\"); } else { console.log(\" NOT SE",
+          "rule": "secrets_loaded_from_env"
+        },
+        {
+          "file": "scripts/lifecycle.js",
+          "lines": [
+            408,
+            408
+          ],
+          "snippet": "abled\"); } if (process.env.CAPSOLVER_API_KEY) { addCheck(checks, \"ok\", \"optional_capsolver\", \"CAPSOLVER_API_KEY is set\"); } else",
+          "rule": "secrets_loaded_from_env"
+        },
+        {
+          "file": "scripts/replay-refusal.js",
+          "lines": [
+            217,
+            217
+          ],
+          "snippet": "} const apiKey = process.env.ANTHROPIC_API_KEY; if (!apiKey && !args[\"dry-run\"]) { console.error( \"error: ANTHROPIC_API_KEY e",
+          "rule": "secrets_loaded_from_env"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "prompt_injection_defences",
+          "matched": 0,
+          "weight": 0.4
+        },
+        {
+          "rule": "rate_limiting",
+          "matched": 0.8704365036222725,
+          "weight": 0.2
+        },
+        {
+          "rule": "secrets_not_in_prompts",
+          "matched": 0.8704365036222725,
+          "weight": 0.2
+        },
+        {
+          "rule": "adversarial_eval_present",
+          "matched": 0,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.35 (2/4 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-26/p6-keep-logs",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "26(6)",
+      "title": "Deployer log-retention capability supported",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.5,
+      "evidence": [
+        {
+          "file": ".claude/hooks/bob-update.js",
+          "lines": [
+            64,
+            64
+          ],
+          "snippet": "he(projectDir); console.log(\"Hacker Bob update cache cleared.\"); return; } usage(); process.exit(1); } main(process.argv.sli",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": ".claude/hooks/hunter-subagent-stop.js",
+          "lines": [
+            238,
+            238
+          ],
+          "snippet": "ndoff, })); console.log(JSON.stringify({ ok: true, message: \"post-report evidence run accepted\" })); process.exit(0); } con",
+          "rule": "log_at_tool_boundary"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "logs_externally_exportable",
+          "matched": 0.5,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.50 (1/1 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-50/p1-ai-disclosure",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "50(1)",
+      "title": "Users informed they are interacting with an AI",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.4,
+      "evidence": [
+        {
+          "file": "README.md",
+          "rule": "ai_disclosure_in_user_facing_strings"
+        },
+        {
+          "file": "scripts/bench-prompts.sh",
+          "rule": "persona_not_human_impersonating"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "ai_disclosure_in_user_facing_strings",
+          "matched": 0,
+          "weight": 0.6
+        },
+        {
+          "rule": "persona_not_human_impersonating",
+          "matched": 1,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.40 (1/2 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-50/p2-synthetic-content",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "50(2)",
+      "title": "AI-generated content marked as such, machine-readable",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "c2pa_or_watermark_library_imported",
+          "matched": 0,
+          "weight": 0.5
+        },
+        {
+          "rule": "provenance_metadata_written_to_outputs",
+          "matched": 0,
+          "weight": 0.5
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/2 rules matched).",
+      "confidence": 0.6,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-50/p3-emotion-biometric-disclosure",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "50(3)",
+      "title": "Emotion recognition / biometric categorisation disclosure",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [
+        {
+          "file": "README.md",
+          "rule": "emotion_or_biometric_disclosure_string"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "emotion_or_biometric_disclosure_string",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-50/p4-deepfake-disclosure",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "50(4)",
+      "title": "Deepfake content labelled as artificially generated",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 1,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "deepfake_label_on_outputs",
+          "matched": 1,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 1.00 (1/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/govern-1.4",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "GOVERN 1.4",
+      "title": "Risk management process documented and accountable",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "presence_of_risk_register",
+          "matched": 0,
+          "weight": 0.6
+        },
+        {
+          "rule": "risk_owner_assignment",
+          "matched": 0,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/2 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.6,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/govern-1.5",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "GOVERN 1.5",
+      "title": "Ongoing monitoring and periodic review of risk management",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.5,
+      "evidence": [
+        {
+          "file": ".github/workflows/ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/release.yml",
+          "rule": "ci_eval_gates"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "ci_eval_gates",
+          "matched": 1,
+          "weight": 0.5
+        },
+        {
+          "rule": "drift_monitoring_present",
+          "matched": 0,
+          "weight": 0.5
+        }
+      ],
+      "rationale": "Composite raw score 0.50 (1/2 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "nist-ai-rmf/map-1.1",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MAP 1.1",
+      "title": "Context of use established and understood",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.3,
+      "evidence": [
+        {
+          "file": "README.md",
+          "rule": "readme_quality",
+          "detail": "2 required sections present"
+        },
+        {
+          "file": "README.md",
+          "rule": "output_interpretation_guidance"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "intended_use_documented",
+          "matched": 0.5,
+          "weight": 0.6
+        },
+        {
+          "rule": "deployment_context_documented",
+          "matched": 0,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.30 (1/2 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.9,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "nist-ai-rmf/map-3.4",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MAP 3.4",
+      "title": "Risks and benefits to people identified",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.2,
+      "evidence": [
+        {
+          "file": "SECURITY.md",
+          "rule": "presence_of_threat_model"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "presence_of_risk_register",
+          "matched": 0,
+          "weight": 0.6
+        },
+        {
+          "rule": "presence_of_threat_model",
+          "matched": 0.5,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.20 (1/2 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.7999999999999999,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/measure-2.3",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MEASURE 2.3",
+      "title": "AI system performance evaluated and documented",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.45,
+      "evidence": [
+        {
+          "file": "tests/",
+          "rule": "eval_suite_present"
+        },
+        {
+          "file": "README.md",
+          "rule": "metrics_documented"
+        },
+        {
+          "file": ".github/workflows/ci.yml",
+          "rule": "ci_eval_gates"
+        },
+        {
+          "file": ".github/workflows/release.yml",
+          "rule": "ci_eval_gates"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "eval_suite_present",
+          "matched": 0.5,
+          "weight": 0.5
+        },
+        {
+          "rule": "metrics_documented",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "eval_in_ci",
+          "matched": 1,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.45 (2/3 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "nist-ai-rmf/measure-2.7",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MEASURE 2.7",
+      "title": "Security and resilience evaluated",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.17408730072445452,
+      "evidence": [
+        {
+          "file": ".claude/agents/hunter-evm-agent.md",
+          "lines": [
+            53,
+            53
+          ],
+          "snippet": "bridge_invariant`, `rate_limit_normalization`, `stale_module_allowlist`, `delegatecall`, `arbitrary_external_call`, `selector_collision`, `r",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": ".claude/hooks/bounty-statusline.js",
+          "lines": [
+            63,
+            63
+          ],
+          "snippet": "const fiveHr = data.rate_limits?.five_hour?.used_percentage; const sevenDay = data.rate_limits?.seven_day?.used_percentage; const wo",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": ".claude/hooks/bounty-statusline.js",
+          "lines": [
+            64,
+            64
+          ],
+          "snippet": "nst sevenDay = data.rate_limits?.seven_day?.used_percentage; const worst = Math.max(fiveHr || 0, sevenDay || 0); if (worst >= 80) ra",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": "adapters/codex/skills/bob-hunt/SKILL.md",
+          "lines": [
+            1069,
+            1069
+          ],
+          "snippet": "bridge_invariant`, `rate_limit_normalization`, `stale_module_allowlist`, `delegatecall`, `arbitrary_external_call`, `selector_collision`, `r",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": "package-lock.json",
+          "lines": [
+            211,
+            211
+          ],
+          "snippet": "\"^5.2.1\", \"express-rate-limit\": \"^8.2.1\", \"hono\": \"^4.11.4\", \"jose\": \"^6.1.3\", \"json-schema-typed\": \"^8.0.2",
+          "rule": "rate_limit_usage"
+        },
+        {
+          "file": "package-lock.json",
+          "lines": [
+            687,
+            687
+          ],
+          "snippet": ", \"node_modules/express-rate-limit\": { \"version\": \"8.4.1\", \"resolved\": \"https://registry.npmjs.org/express-rate-limit/-/expr",
+          "rule": "rate_limit_usage"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "prompt_injection_defences",
+          "matched": 0,
+          "weight": 0.4
+        },
+        {
+          "rule": "adversarial_eval_present",
+          "matched": 0,
+          "weight": 0.4
+        },
+        {
+          "rule": "rate_limiting",
+          "matched": 0.8704365036222725,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.17 (1/3 rules matched).",
+      "confidence": 0.8240873007244546,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/measure-2.8",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MEASURE 2.8",
+      "title": "Privacy risk of the AI system evaluated",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.5,
+      "evidence": [
+        {
+          "file": ".claude/agents/brutalist-verifier.md",
+          "lines": [
+            26,
+            26
+          ],
+          "snippet": "im, severity, and a redacted PoC excerpt into `mcp__brutalist__roast`. 2. Fold the roast verdict into your `reasoning` for that finding's `b",
+          "rule": "pii_redaction_present"
+        },
+        {
+          "file": ".claude/agents/evidence-agent.md",
+          "lines": [
+            29,
+            29
+          ],
+          "snippet": "`observed_fields`, `redacted_object_id`. No raw bodies, no auth headers, no cookies. 4. **Smart-contract (`runner: \"bounty_<chain>_run\"`)**:",
+          "rule": "pii_redaction_present"
+        },
+        {
+          "file": ".claude/agents/evidence-agent.md",
+          "lines": [
+            45,
+            45
+          ],
+          "snippet": "chain state slot. - Redact or omit secrets, auth headers, cookies, tokens, passwords, API keys, full PII values, raw large response bodies,",
+          "rule": "pii_redaction_present"
+        },
+        {
+          "file": ".claude/agents/evidence-agent.md",
+          "lines": [
+            46,
+            46
+          ],
+          "snippet": "object type labels, redacted IDs, field names, short excerpts, count summaries, function signatures, role/owner addresses. - `sensitive_clus",
+          "rule": "pii_redaction_present"
+        },
+        {
+          "file": ".claude/agents/evidence-agent.md",
+          "lines": [
+            47,
+            47
+          ],
+          "snippet": "ame data classes or redacted clusters, not raw sensitive values. - `report_snippet` should be prose the report writer can reuse as proof/imp",
+          "rule": "pii_redaction_present"
+        },
+        {
+          "file": ".claude/agents/evidence-agent.md",
+          "lines": [
+            68,
+            68
+          ],
+          "snippet": "_total\"], redacted_object_id: \"acct_...789\" } ], sensitive_clusters: [\"billing profile fields\", \"invoice metad",
+          "rule": "pii_redaction_present"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "pii_redaction_present",
+          "matched": 1,
+          "weight": 0.5
+        },
+        {
+          "rule": "privacy_documentation",
+          "matched": 0,
+          "weight": 0.5
+        }
+      ],
+      "rationale": "Composite raw score 0.50 (1/2 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "nist-ai-rmf/measure-2.11",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MEASURE 2.11",
+      "title": "Fairness and bias evaluated",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "bias_evaluation_present",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/manage-2.3",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MANAGE 2.3",
+      "title": "Mechanisms to supersede or deactivate AI systems",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.6,
+      "evidence": [
+        {
+          "file": ".claude/hooks/session-read-guard.sh",
+          "lines": [
+            150,
+            150
+          ],
+          "snippet": "rr, ) raise SystemExit(2) def looks_like_path(token): if not token or token.startswith(\"-\"): return False if token",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-read-guard.sh",
+          "lines": [
+            208,
+            208
+          ],
+          "snippet": "(blocked) raise SystemExit(0) command = tool_input.get(\"command\", \"\") if command: check_bash_command(command) raise SystemExit(0)",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-read-guard.sh",
+          "lines": [
+            214,
+            214
+          ],
+          "snippet": "and(command) raise SystemExit(0) PY",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-write-guard.sh",
+          "lines": [
+            138,
+            138
+          ],
+          "snippet": "s.stderr) raise SystemExit(2) def extract_redirect_targets(command): \"\"\"Extract file paths from shell redirect operators and tee c",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-write-guard.sh",
+          "lines": [
+            202,
+            202
+          ],
+          "snippet": ") raise SystemExit(0) # Bash tool command = tool_input.get(\"command\", \"\") if not command: raise SystemExit(0) # Quick gate",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-write-guard.sh",
+          "lines": [
+            207,
+            207
+          ],
+          "snippet": "command: raise SystemExit(0) # Quick gate: skip if no write indicators has_redirects = re.search(r\">{1,2}\\s|tee\\s\", command) has_open_",
+          "rule": "kill_switch"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "kill_switch_present",
+          "matched": 1,
+          "weight": 0.6
+        },
+        {
+          "rule": "feature_flag_for_disable",
+          "matched": 0,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.60 (1/2 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "nist-ai-rmf/manage-4.1",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MANAGE 4.1",
+      "title": "Post-deployment monitoring, appeal and override, change management",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.5,
+      "evidence": [
+        {
+          "file": ".claude/hooks/session-read-guard.sh",
+          "lines": [
+            150,
+            150
+          ],
+          "snippet": "rr, ) raise SystemExit(2) def looks_like_path(token): if not token or token.startswith(\"-\"): return False if token",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-read-guard.sh",
+          "lines": [
+            208,
+            208
+          ],
+          "snippet": "(blocked) raise SystemExit(0) command = tool_input.get(\"command\", \"\") if command: check_bash_command(command) raise SystemExit(0)",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-read-guard.sh",
+          "lines": [
+            214,
+            214
+          ],
+          "snippet": "and(command) raise SystemExit(0) PY",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-write-guard.sh",
+          "lines": [
+            138,
+            138
+          ],
+          "snippet": "s.stderr) raise SystemExit(2) def extract_redirect_targets(command): \"\"\"Extract file paths from shell redirect operators and tee c",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-write-guard.sh",
+          "lines": [
+            202,
+            202
+          ],
+          "snippet": ") raise SystemExit(0) # Bash tool command = tool_input.get(\"command\", \"\") if not command: raise SystemExit(0) # Quick gate",
+          "rule": "kill_switch"
+        },
+        {
+          "file": ".claude/hooks/session-write-guard.sh",
+          "lines": [
+            207,
+            207
+          ],
+          "snippet": "command: raise SystemExit(0) # Quick gate: skip if no write indicators has_redirects = re.search(r\">{1,2}\\s|tee\\s\", command) has_open_",
+          "rule": "kill_switch"
+        },
+        {
+          "file": "package.json",
+          "rule": "versioning_visible"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "feedback_capture_present",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "override_path_present",
+          "matched": 1,
+          "weight": 0.3
+        },
+        {
+          "rule": "structured_logging_imported",
+          "matched": 0,
+          "weight": 0.2
+        },
+        {
+          "rule": "versioning_visible",
+          "matched": 1,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.50 (2/4 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    }
+  ],
+  "grade": {
+    "overallScore": 1.8529411764705883,
+    "perRegulation": [
+      {
+        "regulationId": "eu-ai-act-2024-08",
+        "scoreAvg": 2.0833333333333335,
+        "passCount": 9,
+        "partialCount": 6,
+        "failCount": 9,
+        "externalCount": 1,
+        "naCount": 0
+      },
+      {
+        "regulationId": "nist-ai-rmf-1.0",
+        "scoreAvg": 1.3,
+        "passCount": 0,
+        "partialCount": 5,
+        "failCount": 5,
+        "externalCount": 0,
+        "naCount": 0
+      }
+    ]
+  },
+  "bundleHash": "fe7435c2af31823dd4093a9853e06bc8c7f7c4a60a6e289dbebf5e94f0487449",
+  "checkerVersion": "v0.1.0",
+  "regulationsVersions": {
+    "eu-ai-act-2024-08": "db2bbc2958ff931f2ab69230b8470dddf309c34605c83e5141a208fd22051fe8",
+    "nist-ai-rmf-1.0": "1f9bd8ceef4a6da5d776fca10cbdbb829c1b8f5e29d49131640e21aae12ce896"
+  },
+  "startedAt": "2026-05-16T03:29:25.069Z",
+  "completedAt": "2026-05-16T03:29:28.903Z",
+  "durationMs": 3834,
+  "externalControls": [
+    {
+      "clauseId": "eu-ai-act/art-5/1h-realtime-rbi",
+      "article": "5(1)(h)",
+      "title": "Real-time remote biometric identification in public spaces",
+      "note": "Deployment context (public space, real-time, law enforcement use, judicial\nauthorisation) is operational, not knowable from code. Always external."
+    }
+  ]
+}

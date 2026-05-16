@@ -1,4 +1,5 @@
 import { kv } from "@vercel/kv";
+import { SEED_AUDITS } from "@/data/seed-audits";
 import type { AuditReport, PipelineState, PipelineStatus } from "./types";
 
 // In-memory fallback for local dev or when KV isn't provisioned.
@@ -9,6 +10,26 @@ const memStore: Map<string, PipelineState> =
 const KV_AVAILABLE = Boolean(
   process.env.KV_REST_API_URL || process.env.KV_URL || process.env.UPSTASH_REDIS_REST_URL,
 );
+
+// Static seed audits bundled with the deploy — real reports produced by
+// running the pipeline against well-known agent repos. Loaded into memStore
+// at module init so /audits is never empty even when KV isn't provisioned.
+let seedsLoaded = false;
+function ensureSeedsLoaded() {
+  if (seedsLoaded) return;
+  seedsLoaded = true;
+  for (const report of SEED_AUDITS) {
+    if (!report?.auditId || !report?.bundleHash) continue;
+    if (memStore.has(report.auditId)) continue;
+    memStore.set(report.auditId, {
+      auditId: report.auditId,
+      status: "completed",
+      startedAt: report.startedAt ?? new Date(0).toISOString(),
+      updatedAt: report.completedAt ?? new Date(0).toISOString(),
+      report,
+    });
+  }
+}
 
 // Key shapes
 const k = (id: string) => `audit:${id}`;
@@ -42,10 +63,11 @@ export async function updateState(
 }
 
 export async function getState(auditId: string): Promise<PipelineState | undefined> {
+  ensureSeedsLoaded();
   if (KV_AVAILABLE) {
     try {
       const value = await kv.get<PipelineState>(k(auditId));
-      return value ?? undefined;
+      if (value) return value;
     } catch {
       // fall through to memory
     }
@@ -68,18 +90,25 @@ export async function setReport(
 }
 
 export async function listRecent(limit = 50): Promise<PipelineState[]> {
+  ensureSeedsLoaded();
+  const kvStates: PipelineState[] = [];
   if (KV_AVAILABLE) {
     try {
-      // Sorted set of audit IDs by created-at (negative ts for desc).
       const ids = await kv.zrange<string[]>(INDEX_KEY, 0, limit - 1);
-      if (ids.length === 0) return [];
-      const states = await Promise.all(ids.map((id) => kv.get<PipelineState>(k(id))));
-      return states.filter((s): s is PipelineState => Boolean(s));
+      if (ids.length > 0) {
+        const states = await Promise.all(ids.map((id) => kv.get<PipelineState>(k(id))));
+        kvStates.push(...states.filter((s): s is PipelineState => Boolean(s)));
+      }
     } catch {
       // fall through
     }
   }
-  return [...memStore.values()]
+  // Merge KV + memory + seeds, dedupe by auditId, sort desc by updatedAt.
+  const merged = new Map<string, PipelineState>();
+  for (const s of [...memStore.values(), ...kvStates]) {
+    merged.set(s.auditId, s);
+  }
+  return [...merged.values()]
     .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
     .slice(0, limit);
 }

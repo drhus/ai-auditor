@@ -1,29 +1,27 @@
+
+.ai-auditor/
+# Audit run artefacts (these are ephemeral)
+build/
+dist/
 .DS_Store
-node_modules/
-.venv/
-__pycache__/
-*.pyc
+# env
 .env
 .env.*
 !.env.example
+.env*.local
+.env.local
 .idea/
-.vscode/
-dist/
-build/
+.mypy_cache/
+.next/
+next-env.d.ts
+# Next.js
+node_modules/
+out/
+*.pyc
+__pycache__/
 .pytest_cache/
 .ruff_cache/
-.mypy_cache/
-
-# Audit run artefacts (these are ephemeral)
-.ai-auditor/
 sessions/
-
-# Next.js
-.next/
-out/
-next-env.d.ts
-
-# env
-.env.local
-.env*.local
 tsconfig.tsbuildinfo
+.venv/
+.vscode/

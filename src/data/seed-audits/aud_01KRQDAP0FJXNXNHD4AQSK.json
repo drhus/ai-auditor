@@ -1,0 +1,2526 @@
+{
+  "auditId": "aud_01KRQDAP0FJXNXNHD4AQSK",
+  "source": {
+    "kind": "repo",
+    "owner": "OpenInterpreter",
+    "repo": "open-interpreter"
+  },
+  "input": {
+    "auditId": "aud_01KRQDAP0FJXNXNHD4AQSK",
+    "source": {
+      "kind": "repo",
+      "owner": "OpenInterpreter",
+      "repo": "open-interpreter"
+    },
+    "repoUrl": "https://github.com/OpenInterpreter/open-interpreter",
+    "regulations": [
+      "eu-ai-act-2024-08",
+      "nist-ai-rmf-1.0"
+    ]
+  },
+  "fetch": {
+    "repoUrl": "https://github.com/OpenInterpreter/open-interpreter",
+    "owner": "OpenInterpreter",
+    "repo": "open-interpreter",
+    "ref": "9902a48f19ff6cf82a4705a52594150b250b73a3",
+    "commitSha": "9902a48f19ff6cf82a4705a52594150b250b73a3",
+    "worktreeDir": "/tmp/ai-auditor/aud_01KRQDAP0FJXNXNHD4AQSK",
+    "fileCount": 276,
+    "totalBytes": 11730203,
+    "languages": {
+      "JSON": 4418,
+      "YAML": 15235,
+      "Markdown": 311476,
+      "CSS": 343,
+      "Python": 756815,
+      "Shell": 5045
+    },
+    "inventory": {
+      "hasReadme": true,
+      "hasLicense": true,
+      "hasModelCard": false,
+      "hasDataCard": false,
+      "hasRiskRegister": false,
+      "hasThreatModel": false,
+      "hasSecurityMd": true,
+      "hasPrivacyMd": false,
+      "hasCodeOfConduct": false,
+      "hasContributing": true,
+      "hasCiWorkflows": true,
+      "hasEvalDir": false,
+      "hasTestsDir": true,
+      "governanceDocFiles": [
+        "LICENSE",
+        "README.md",
+        "docs/CONTRIBUTING.md",
+        "docs/SECURITY.md",
+        "docs/legal/license.mdx",
+        "examples/README.md"
+      ],
+      "configFiles": [
+        "pyproject.toml"
+      ]
+    },
+    "fetchedAt": "2026-05-16T03:29:55.806Z"
+  },
+  "recon": {
+    "signals": {
+      "agent_framework": {
+        "signal": "agent_framework",
+        "fired": true,
+        "strength": 0.640823996531185,
+        "evidence": [
+          {
+            "file": "pyproject.toml",
+            "rule": "manifest_framework_dep",
+            "detail": "Anthropic SDK"
+          },
+          {
+            "file": "pyproject.toml",
+            "rule": "manifest_framework_dep",
+            "detail": "HuggingFace Transformers"
+          },
+          {
+            "file": "docs/server/usage.mdx",
+            "lines": [
+              202,
+              202
+            ],
+            "snippet": "library response = openai.ChatCompletion.create( model=\"gpt-3.5-turbo\", # This model name is ignored, but required messages=[",
+            "rule": "openai_sdk_use"
+          },
+          {
+            "file": "interpreter/computer_use/loop.py",
+            "lines": [
+              23,
+              23
+            ],
+            "snippet": "st import requests from anthropic import Anthropic, AnthropicBedrock, AnthropicVertex, APIResponse from anthropic.types import ToolResultBl",
+            "rule": "anthropic_sdk_use"
+          }
+        ]
+      },
+      "model_usage": {
+        "signal": "model_usage",
+        "fired": true,
+        "strength": 1,
+        "evidence": [
+          {
+            "file": "interpreter/core/computer/browser/browser.py",
+            "lines": [
+              145,
+              145
+            ],
+            "snippet": "rpreter.llm.model = \"gpt-4o-mini\" # response = self.computer.ai.chat(ai_query, base64=screenshot) # self.computer.interprete",
+            "rule": "model_string_openai",
+            "detail": "gpt-4o-mini"
+          },
+          {
+            "file": "interpreter/core/computer/browser/browser.py",
+            "lines": [
+              150,
+              150
+            ],
+            "snippet": "rpreter.llm.model = \"gpt-4o-mini\" response = self.computer.ai.chat(ai_query) self.computer.interpreter.llm.model = old_model",
+            "rule": "model_string_openai",
+            "detail": "gpt-4o-mini"
+          },
+          {
+            "file": "interpreter/core/llm/llm.py",
+            "lines": [
+              57,
+              57
+            ],
+            "snippet": "self.model = \"gpt-4o\" self.temperature = 0.0 self.supports_vision = None # Will try to auto-detect self.vis",
+            "rule": "model_string_openai",
+            "detail": "gpt-4o"
+          },
+          {
+            "file": "interpreter/terminal_interface/local_setup.py",
+            "lines": [
+              50,
+              50
+            ],
+            "snippet": "\"name\": \"Llama-3.1-8B-Instruct\", \"file_name\": \"Meta-Llama-3-8B-Instruct.Q4_K_M.llamafile\",",
+            "rule": "model_string_llama",
+            "detail": "Llama-3.1-8B-Instruct"
+          },
+          {
+            "file": "interpreter/terminal_interface/local_setup.py",
+            "lines": [
+              116,
+              116
+            ],
+            "snippet": "\"name\": \"Mixtral-8x7B-Instruct\", \"file_name\": \"mixtral-8x7b-instruct-v0.1.Q5_K_M.llamafile\",",
+            "rule": "model_string_llama",
+            "detail": "Mixtral-8x7B-Instruct"
+          },
+          {
+            "file": "interpreter/terminal_interface/local_setup.py",
+            "lines": [
+              117,
+              117
+            ],
+            "snippet": "\"file_name\": \"mixtral-8x7b-instruct-v0.1.Q5_K_M.llamafile\", \"size\": 30.03, \"url\": \"https://hu",
+            "rule": "model_string_llama",
+            "detail": "mixtral-8x7b-instruct-v0.1.Q5_K_M.llamafile"
+          },
+          {
+            "file": "interpreter/terminal_interface/local_setup.py",
+            "lines": [
+              254,
+              254
+            ],
+            "snippet": "priority_models = [\"llama3\", \"codestral\"] priority_models_found = [] for word in priority_models: m",
+            "rule": "model_string_llama",
+            "detail": "llama3"
+          },
+          {
+            "file": "interpreter/terminal_interface/local_setup.py",
+            "lines": [
+              268,
+              268
+            ],
+            "snippet": "for model in [\"llama3.1\", \"phi3\", \"mistral-nemo\", \"gemma2\", \"codestral\"]: if model not in names: n",
+            "rule": "model_string_llama",
+            "detail": "llama3.1"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/assistant.py",
+            "lines": [
+              11,
+              11
+            ],
+            "snippet": "rpreter.llm.model = \"gpt-4o\" interpreter.llm.context_window = 100000 interpreter.llm.max_tokens = 4096 # Tell your 01 where to find and sav",
+            "rule": "model_string_openai",
+            "detail": "gpt-4o"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/aws-docs.py",
+            "lines": [
+              27,
+              27
+            ],
+            "snippet": "{ \"model\": \"llama-3.1-sonar-small-128k-online\", \"messages\": [ { \"role\": \"system\",",
+            "rule": "model_string_llama",
+            "detail": "llama-3.1-sonar-small-128k-online"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/default.yaml",
+            "lines": [
+              7,
+              7
+            ],
+            "snippet": "tings llm: model: \"gpt-4o\" temperature: 0 # api_key: ... # Your API key, if the API requires it # api_base: ... # The URL where an",
+            "rule": "model_string_openai",
+            "detail": "gpt-4o"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/default.yaml",
+            "lines": [
+              29,
+              29
+            ],
+            "snippet": ": # wtf: # model: \"gpt-4o-mini\" # Documentation # All options: https://docs.openinterpreter.com/settings",
+            "rule": "model_string_openai",
+            "detail": "gpt-4o-mini"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/fast.yaml",
+            "lines": [
+              6,
+              6
+            ],
+            "snippet": "hem. llm: model: \"gpt-4o-mini\" temperature: 0 # api_key: ... # Your API key, if the API requires it # api_base: ... # The URL whe",
+            "rule": "model_string_openai",
+            "detail": "gpt-4o-mini"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/os.py",
+            "lines": [
+              8,
+              8
+            ],
+            "snippet": "rpreter.llm.model = \"gpt-4o\" interpreter.computer.import_computer_api = True interpreter.llm.supports_functions = True interpreter.llm.con",
+            "rule": "model_string_openai",
+            "detail": "gpt-4o"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/snowpark.yml",
+            "lines": [
+              7,
+              7
+            ],
+            "snippet": "tings llm: model: \"gpt-4o\" temperature: 0 # api_key: ... # Your API key, if the API requires it # api_base: ... # The URL where an",
+            "rule": "model_string_openai",
+            "detail": "gpt-4o"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/the01.py",
+            "lines": [
+              12,
+              12
+            ],
+            "snippet": "rpreter.llm.model = \"gpt-4o-mini\" interpreter.llm.context_window = 100000 interpreter.llm.max_tokens = 4096 # interpreter.llm.api_key = \"<yo",
+            "rule": "model_string_openai",
+            "detail": "gpt-4o-mini"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/vision.yaml",
+            "lines": [
+              6,
+              6
+            ],
+            "snippet": "True llm: model: \"gpt-4o\" temperature: 0 supports_vision: True supports_functions: True context_window: 110000 max_tokens: 4096",
+            "rule": "model_string_openai",
+            "detail": "gpt-4o"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/profiles.py",
+            "lines": [
+              172,
+              172
+            ],
+            "snippet": "[\"llm\"][\"model\"] == \"gpt-4\": text = text.replace(\"gpt-4\", \"gpt-4o\") profile[\"llm\"][\"model\"]",
+            "rule": "model_string_openai",
+            "detail": "gpt-4"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/profiles.py",
+            "lines": [
+              173,
+              173
+            ],
+            "snippet": "text = text.replace(\"gpt-4\", \"gpt-4o\") profile[\"llm\"][\"model\"] = \"gpt-4o\" elif profile[\"llm\"][\"m",
+            "rule": "model_string_openai",
+            "detail": "gpt-4"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/profiles.py",
+            "lines": [
+              173,
+              173
+            ],
+            "snippet": "xt.replace(\"gpt-4\", \"gpt-4o\") profile[\"llm\"][\"model\"] = \"gpt-4o\" elif profile[\"llm\"][\"model\"] ==",
+            "rule": "model_string_openai",
+            "detail": "gpt-4o"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/profiles.py",
+            "lines": [
+              174,
+              174
+            ],
+            "snippet": "e[\"llm\"][\"model\"] = \"gpt-4o\" elif profile[\"llm\"][\"model\"] == \"gpt-4-turbo-preview\": text = text.",
+            "rule": "model_string_openai",
+            "detail": "gpt-4o"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/profiles.py",
+            "lines": [
+              175,
+              175
+            ],
+            "snippet": "[\"llm\"][\"model\"] == \"gpt-4-turbo-preview\": text = text.replace(\"gpt-4-turbo-preview\", \"gpt-4o\")",
+            "rule": "model_string_openai",
+            "detail": "gpt-4-turbo-preview"
+          },
+          {
+            "file": "interpreter/terminal_interface/start_terminal_interface.py",
+            "lines": [
+              486,
+              486
+            ],
+            "snippet": "preter.llm.model == \"gpt-4\" or interpreter.llm.model == \"openai/gpt-4\": if interpreter.llm.context_window is None: inter",
+            "rule": "model_string_openai",
+            "detail": "gpt-4"
+          },
+          {
+            "file": "interpreter/terminal_interface/start_terminal_interface.py",
+            "lines": [
+              496,
+              496
+            ],
+            "snippet": "lm.model.startswith(\"gpt-4\") or interpreter.llm.model.startswith( \"openai/gpt-4\" ): if interpreter.llm.context_window is",
+            "rule": "model_string_openai",
+            "detail": "gpt-4"
+          },
+          {
+            "file": "interpreter/terminal_interface/start_terminal_interface.py",
+            "lines": [
+              509,
+              509
+            ],
+            "snippet": "startswith( \"gpt-3.5-turbo\" ) or interpreter.llm.model.startswith(\"openai/gpt-3.5-turbo\"): if interpreter.llm.context_wi",
+            "rule": "model_string_openai",
+            "detail": "gpt-3.5-turbo"
+          }
+        ],
+        "meta": {
+          "models": {}
+        }
+      },
+      "logging_hooks": {
+        "signal": "logging_hooks",
+        "fired": true,
+        "strength": 0.7112605001534575,
+        "evidence": [
+          {
+            "file": "docs/protocols/lmc-messages.mdx",
+            "lines": [
+              57,
+              57
+            ],
+            "snippet": "tements in Python, `console.log()` statements in Javascript, etc. **This includes errors.**|`computer`| image|base64|A `base64` image in PNG",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "interpreter/core/computer/terminal/languages/javascript.py",
+            "lines": [
+              54,
+              54
+            ],
+            "snippet": "ssed_lines.append(f'console.log(\"##active_line{i}##\");') processed_lines.append(line) # Join lines to form the processe",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "interpreter/core/computer/terminal/languages/javascript.py",
+            "lines": [
+              65,
+              65
+            ],
+            "snippet": "}} catch (e) {{ console.log(e); }} console.log(\"##end_of_execution##\"); \"\"\" return code",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "interpreter/core/computer/terminal/languages/javascript.py",
+            "lines": [
+              67,
+              67
+            ],
+            "snippet": "console.log(e); }} console.log(\"##end_of_execution##\"); \"\"\" return code",
+            "rule": "log_at_tool_boundary"
+          },
+          {
+            "file": "interpreter/core/computer/terminal/languages/jupyter_language.py",
+            "lines": [
+              7,
+              7
+            ],
+            "snippet": "his \"\"\" import ast import logging import os import queue import re import sys import threading import time import traceback os.environ[\"LI",
+            "rule": "import_logging"
+          },
+          {
+            "file": "interpreter/core/llm/llm.py",
+            "lines": [
+              15,
+              15
+            ],
+            "snippet": "999999 import json import logging import subprocess import time import uuid import requests import tokentrim as tt from .run_text_llm imp",
+            "rule": "import_logging"
+          }
+        ]
+      },
+      "oversight_hooks": {
+        "signal": "oversight_hooks",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "eval_artefacts": {
+        "signal": "eval_artefacts",
+        "fired": true,
+        "strength": 0.590848501887865,
+        "evidence": [
+          {
+            "file": "tests/",
+            "rule": "eval_or_test_dir_present"
+          },
+          {
+            "file": ".github/workflows/",
+            "rule": "ci_workflows_present"
+          },
+          {
+            "file": "pyproject.toml",
+            "rule": "manifest_eval_dep",
+            "detail": "pytest"
+          }
+        ]
+      },
+      "governance_docs": {
+        "signal": "governance_docs",
+        "fired": true,
+        "strength": 0.7112605001534575,
+        "evidence": [
+          {
+            "file": "LICENSE",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "README.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "docs/CONTRIBUTING.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "docs/SECURITY.md",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "docs/legal/license.mdx",
+            "rule": "governance_doc_present"
+          },
+          {
+            "file": "examples/README.md",
+            "rule": "governance_doc_present"
+          }
+        ]
+      },
+      "cybersec_hooks": {
+        "signal": "cybersec_hooks",
+        "fired": true,
+        "strength": 0.4,
+        "evidence": [
+          {
+            "file": "interpreter/core/respond.py",
+            "lines": [
+              117,
+              117
+            ],
+            "snippet": "litellm.exceptions.RateLimitError) and (\"exceeded\" in str(e).lower() or \"insufficient_quota\" i",
+            "rule": "rate_limit_usage"
+          }
+        ]
+      },
+      "provenance_hooks": {
+        "signal": "provenance_hooks",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "data_io": {
+        "signal": "data_io",
+        "fired": true,
+        "strength": 0.9788632125368877,
+        "evidence": [
+          {
+            "file": "docs/NCU_MIGRATION_GUIDE.md",
+            "lines": [
+              176,
+              176
+            ],
+            "snippet": "rpreterCall = await fetch(\"https://YOUR_ENDPOINT/\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\",",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "docs/server/usage.mdx",
+            "lines": [
+              168,
+              168
+            ],
+            "snippet": "True, } response = requests.post(\"http://localhost:8000/settings\", json=settings) print(response.status_code) ``` ### Retrieving Settings",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "docs/server/usage.mdx",
+            "lines": [
+              177,
+              177
+            ],
+            "snippet": "``python response = requests.get(\"http://localhost:8000/settings/custom_instructions\") print(response.json()) # Output: {\"custom_instruction",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "installers/oi-mac-installer.sh",
+            "lines": [
+              70,
+              70
+            ],
+            "snippet": "python -c \"import urllib.request; exec(urllib.request.urlopen('$INSTALL_URL').read())\" # elif command -v perl &> /dev/null; then #",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "installers/oi-mac-installer.sh",
+            "lines": [
+              70,
+              70
+            ],
+            "snippet": "rllib.request; exec(urllib.request.urlopen('$INSTALL_URL').read())\" # elif command -v perl &> /dev/null; then # echo \"Using Perl",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/__init__.py",
+            "lines": [
+              37,
+              37
+            ],
+            "snippet": "response = requests.get(f\"https://pypi.org/pypi/open-interpreter/json\") latest_version = response.json()[\"info\"][\"version\"]",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/computer_use/loop.py",
+            "lines": [
+              484,
+              484
+            ],
+            "snippet": "response = requests.post(url, json=data) except requests.RequestException as e: pass print",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/computer_use/unused_markdown.py",
+            "lines": [
+              204,
+              204
+            ],
+            "snippet": "E.md\" ) response = requests.get(url) markdown_text = response.text markdown_text = ( \"\"\"```python print(\"Hello, world!\") ```\\n\"\"\"",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/core/computer/browser/browser.py",
+            "lines": [
+              32,
+              32
+            ],
+            "snippet": "response = requests.get( f'{self.computer.api_base.strip(\"/\")}/browser/search', params={\"query\": query},",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/core/computer/browser/browser.py",
+            "lines": [
+              48,
+              48
+            ],
+            "snippet": "e\", requests.get( f'{self.computer.api_base.strip(\"/\")}/browser/search', params={\"qu",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/core/computer/display/display.py",
+            "lines": [
+              266,
+              266
+            ],
+            "snippet": "response = requests.post( f'{self.computer.api_base.strip(\"/\")}/point/', json={\"que",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/core/computer/display/display.py",
+            "lines": [
+              291,
+              291
+            ],
+            "snippet": "response = requests.post( f'{self.computer.api_base.strip(\"/\")}/point/text/', json={\"query\"",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/core/computer/display/display.py",
+            "lines": [
+              323,
+              323
+            ],
+            "snippet": "response = requests.post( f'{self.computer.api_base.strip(\"/\")}/text/', json={\"base64\": scr",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/core/llm/llm.py",
+            "lines": [
+              356,
+              356
+            ],
+            "snippet": "response = requests.get(f\"{api_base}/api/tags\") if response.ok: data = response.json()",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/core/llm/llm.py",
+            "lines": [
+              375,
+              375
+            ],
+            "snippet": "n\") requests.post(f\"{api_base}/api/pull\", json={\"name\": model_name}) # Get context window if not set",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/core/llm/llm.py",
+            "lines": [
+              379,
+              379
+            ],
+            "snippet": "response = requests.post( f\"{api_base}/api/show\", json={\"name\": model_name} ) m",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/core/utils/telemetry.py",
+            "lines": [
+              60,
+              60
+            ],
+            "snippet": ", } requests.post(url, headers=headers, data=json.dumps(data)) except: pass",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/terminal_interface/contributing_conversations.py",
+            "lines": [
+              190,
+              190
+            ],
+            "snippet": "\" try: requests.post(url, json=payload) except: # Non blocking pass",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/terminal_interface/local_setup.py",
+            "lines": [
+              350,
+              350
+            ],
+            "snippet": "response = requests.get(f\"{interpreter.llm.api_base}/models\") models = response.json()[\"data\"] # Extract the model",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/screenpipe.py",
+            "lines": [
+              33,
+              33
+            ],
+            "snippet": "response = requests.get(base_url) if response.status_code == 200: data = response.json() # Remove duplicates ba",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/profiles.py",
+            "lines": [
+              79,
+              79
+            ],
+            "snippet": "response = requests.get(filename_or_url + ext) response.raise_for_status() filename",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/profiles.py",
+            "lines": [
+              111,
+              111
+            ],
+            "snippet": "URL response = requests.get(filename_or_url) response.raise_for_status() if extension == \".py\": return {\"start_script\":",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "interpreter/terminal_interface/utils/check_for_update.py",
+            "lines": [
+              8,
+              8
+            ],
+            "snippet": "API response = requests.get(f\"https://pypi.org/pypi/open-interpreter/json\") latest_version = response.json()[\"info\"][\"version\"]",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "tests/test_interpreter.py",
+            "lines": [
+              128,
+              128
+            ],
+            "snippet": "response = requests.post( post_url, json=settings, headers={\"X-API-KEY\": \"testing\"} ) print",
+            "rule": "http_external_io"
+          },
+          {
+            "file": "tests/test_interpreter.py",
+            "lines": [
+              280,
+              280
+            ],
+            "snippet": "response = requests.post(post_url, json=settings) print(\"POST request sent, response:\", response.json()) #",
+            "rule": "http_external_io"
+          }
+        ]
+      },
+      "pii_signals": {
+        "signal": "pii_signals",
+        "fired": true,
+        "strength": 1,
+        "evidence": [
+          {
+            "file": "docs/code-execution/computer-api.mdx",
+            "lines": [
+              147,
+              147
+            ],
+            "snippet": "il - Send Sends an email with the given parameters using the default mail app. (Mac only) ```python interpreter.computer.mail.send(\"john",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "docs/code-execution/computer-api.mdx",
+            "lines": [
+              152,
+              152
+            ],
+            "snippet": "ter.mail.send(\"john@email.com\", \"Subject\", \"Body\", [\"path/to/attachment.pdf\", \"path/to/attachment2.pdf\"]) ``` ### Mail - Unread Count Re",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "docs/code-execution/computer-api.mdx",
+            "lines": [
+              193,
+              193
+            ],
+            "snippet": "### Contacts - Get Email Address Returns the email of a contact name. (Mac only) ```python interpreter.computer.contacts.get_phone_numb",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "docs/code-execution/computer-api.mdx",
+            "lines": [
+              195,
+              195
+            ],
+            "snippet": "ddress Returns the email of a contact name. (Mac only) ```python interpreter.computer.contacts.get_phone_number(\"John Doe\") ``` ### C",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "docs/guides/demos.mdx",
+            "lines": [
+              55,
+              55
+            ],
+            "snippet": "e> #### Sending an Email with Gmail OS mode launches Safari, composes an email, and sends it: <iframe src=\"data:text/html;charset=utf-8,%",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "docs/guides/demos.mdx",
+            "lines": [
+              57,
+              57
+            ],
+            "snippet": "Safari, composes an email, and sends it: <iframe src=\"data:text/html;charset=utf-8,%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cblockquote%20c",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "docs/legal/license.mdx",
+            "lines": [
+              20,
+              20
+            ],
+            "snippet": "ion: - Name - Email address b) Usage Information: - Conversations with the AI chatbot - Code generated during use of the Applic",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "docs/legal/license.mdx",
+            "lines": [
+              36,
+              36
+            ],
+            "snippet": "generated code are anonymized before being used to improve our AI model. However, please be aware that if you explicitly instruct the AI to",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": "docs/settings/all-settings.mdx",
+            "lines": [
+              590,
+              590
+            ],
+            "snippet": "Python interpreter.anonymized_telemetry = False ``` ```yaml Profile disable_telemetry: true ``` </CodeGroup> ### Offline This boolean f",
+            "rule": "pii_redaction_present"
+          },
+          {
+            "file": "interpreter/computer_use/loop.py",
+            "lines": [
+              478,
+              478
+            ],
+            "snippet": "strip() email = input(\"What's your email? \").strip() url = \"https://neyguovvcjxfzhqpkicj.supabase.co/functions/v1/a",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/computer_use/loop.py",
+            "lines": [
+              478,
+              478
+            ],
+            "snippet": "input(\"What's your email? \").strip() url = \"https://neyguovvcjxfzhqpkicj.supabase.co/functions/v1/addEmailToWaitlist\"",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/computer_use/loop.py",
+            "lines": [
+              481,
+              481
+            ],
+            "snippet": "name\": first_name, \"email\": email} try: response = requests.post(url, json=data) except requests.Re",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/computer_use/loop.py",
+            "lines": [
+              481,
+              481
+            ],
+            "snippet": "irst_name, \"email\": email} try: response = requests.post(url, json=data) except requests.RequestExc",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/computer_use/loop.py",
+            "lines": [
+              488,
+              488
+            ],
+            "snippet": "t_markdown(\"\\nWe'll email you shortly. ✓\\n---\\n\") continue messages.append( {\"role\": \"user\", \"content\": [{\"",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/core/computer/contacts/contacts.py",
+            "lines": [
+              47,
+              47
+            ],
+            "snippet": "Returns the email address of a contact by name. \"\"\" if platform.system() != \"Darwin\": return \"This metho",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/core/computer/contacts/contacts.py",
+            "lines": [
+              55,
+              55
+            ],
+            "snippet": "l to value of first email of thePerson return theEmail end tell \"\"\" stout, stderr = run_applescript_capt",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/core/computer/mail/mail.py",
+            "lines": [
+              63,
+              63
+            ],
+            "snippet": "\"\" Sends an email with the given parameters using the default mail app. \"\"\" if platform.system() != \"Darwin\":",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/core/computer/mail/mail.py",
+            "lines": [
+              90,
+              90
+            ],
+            "snippet": "e llm to specify an email to send from script = f\"\"\" tell application \"{self.mail_app}\" set new_message to make",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/core/computer/mail/mail.py",
+            "lines": [
+              105,
+              105
+            ],
+            "snippet": "return f\"\"\"Email sent to {to}\"\"\" except subprocess.CalledProcessError: return \"Failed to send email\" def u",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/core/computer/mail/mail.py",
+            "lines": [
+              107,
+              107
+            ],
+            "snippet": "urn \"Failed to send email\" def unread_count(self): \"\"\" Retrieves the count of unread emails in the inbox, limited to 50",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/assistant.py",
+            "lines": [
+              57,
+              57
+            ],
+            "snippet": "ter.mail.send(\"john@email.com\", \"Meeting Reminder\", \"Reminder that our meeting is at 3pm today.\", [\"path/to/attachment.pdf\", \"path/to/attach",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/assistant.py",
+            "lines": [
+              57,
+              57
+            ],
+            "snippet": "t2.pdf\"]) # Send an email with a optional attachments emails_string = computer.mail.get(4, unread=True) # Returns the {number} of unread ema",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/codestral-os.py",
+            "lines": [
+              69,
+              69
+            ],
+            "snippet": "n you compose a new email for me Assistant: On it. First I will open Mail. ```python # Open Spotlight computer.keyboard.hotkey(\" \", \"command",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/llama3-os.py",
+            "lines": [
+              38,
+              38
+            ],
+            "snippet": "n you compose a new email for me Assistant: On it. First I will open Mail. ```python # Open Spotlight computer.keyboard.hotkey(\" \", \"command",
+            "rule": "pii_keywords"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/local-assistant.py",
+            "lines": [
+              68,
+              68
+            ],
+            "snippet": "ohn Doe\") # Send an email computer.mail.send(\"john@email.com\", \"Hello\", \"This is a test email.\") # Get unread emails computer.mail.get(4, un",
+            "rule": "pii_keywords"
+          }
+        ]
+      },
+      "bio_health_signals": {
+        "signal": "bio_health_signals",
+        "fired": true,
+        "strength": 0.4,
+        "evidence": [
+          {
+            "file": "docs/CONTRIBUTING.md",
+            "lines": [
+              28,
+              28
+            ],
+            "snippet": "ribution. Please be patient as reviews take time. Once approved, your code will be merged. ## Running Your Local Fork **Note: for anyo",
+            "rule": "health_terms"
+          }
+        ]
+      },
+      "employment_signals": {
+        "signal": "employment_signals",
+        "fired": true,
+        "strength": 0.83167249841905,
+        "evidence": [
+          {
+            "file": "README.md",
+            "lines": [
+              146,
+              146
+            ],
+            "snippet": "hich can be used to resume a conversation with `interpreter.messages = messages`: ```python messages = interpreter.chat(\"My name is Killian",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "README.md",
+            "lines": [
+              152,
+              152
+            ],
+            "snippet": "ssages = messages # Resume chat from 'messages' (\"Killian\" will be remembered) ``` ### Customize System Message You can inspect and config",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "docs/guides/basic-usage.mdx",
+            "lines": [
+              87,
+              87
+            ],
+            "snippet": "sations/`. You can resume any of them by running `--conversations`. Use your arrow keys to select one , then press `ENTER` to resume it. I",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "docs/guides/basic-usage.mdx",
+            "lines": [
+              87,
+              87
+            ],
+            "snippet": "en press `ENTER` to resume it. In Python, `interpreter.chat()` returns a List of messages, which can be used to resume a conversation with",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "docs/guides/basic-usage.mdx",
+            "lines": [
+              89,
+              89
+            ],
+            "snippet": "hich can be used to resume a conversation with `interpreter.messages = messages`. <CodeGroup> ```shell Terminal interpreter --conversation",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "docs/guides/basic-usage.mdx",
+            "lines": [
+              104,
+              104
+            ],
+            "snippet": "er.messages = [] # Resume chat from 'messages' (\"Killian\" will be remembered) interpreter.messages = messages ``` </CodeGroup> --- ### C",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "docs/usage/examples.mdx",
+            "lines": [
+              82,
+              82
+            ],
+            "snippet": "sations/`. You can resume any of them by running `--conversations`. Use your arrow keys to select one , then press `ENTER` to resume it. `",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "docs/usage/examples.mdx",
+            "lines": [
+              82,
+              82
+            ],
+            "snippet": "en press `ENTER` to resume it. ```shell interpreter --conversations ``` In Python, `interpreter.chat()` returns a List of messages, which",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "docs/usage/examples.mdx",
+            "lines": [
+              88,
+              88
+            ],
+            "snippet": "hich can be used to resume a conversation with `interpreter.messages = messages`: ```python # Save messages to 'messages' messages = interp",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "docs/usage/examples.mdx",
+            "lines": [
+              97,
+              97
+            ],
+            "snippet": "er.messages = [] # Resume chat from 'messages' (\"Killian\" will be remembered) interpreter.messages = messages ``` --- ### Configure Defau",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "interpreter/terminal_interface/conversation_navigator.py",
+            "lines": [
+              24,
+              24
+            ],
+            "snippet": "t a conversation to resume. \"\"\" ) # Check if conversations directory exists if not os.path.exists(conversations_dir):",
+            "rule": "employment_terms"
+          },
+          {
+            "file": "interpreter/terminal_interface/start_terminal_interface.py",
+            "lines": [
+              264,
+              264
+            ],
+            "snippet": "st conversations to resume\", \"type\": bool, }, { \"name\": \"server\", \"help_text\": \"start op",
+            "rule": "employment_terms"
+          }
+        ]
+      },
+      "bio_metric_signals": {
+        "signal": "bio_metric_signals",
+        "fired": true,
+        "strength": 0.4,
+        "evidence": [
+          {
+            "file": "pyproject.toml",
+            "rule": "manifest_biometric_dep"
+          }
+        ]
+      },
+      "education_signals": {
+        "signal": "education_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "law_enforcement_signals": {
+        "signal": "law_enforcement_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "migration_signals": {
+        "signal": "migration_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "justice_signals": {
+        "signal": "justice_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "essential_services_signals": {
+        "signal": "essential_services_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "critical_infra_signals": {
+        "signal": "critical_infra_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      },
+      "content_generation_signals": {
+        "signal": "content_generation_signals",
+        "fired": true,
+        "strength": 0.590848501887865,
+        "evidence": [
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/the01.py",
+            "lines": [
+              6,
+              6
+            ],
+            "snippet": "01 supports OpenAI, ElevenLabs, and Coqui (Local) TTS providers # {OpenAI: \"openai\", ElevenLabs: \"elevenlabs\", Coqui: \"coqui\"} interpreter.t",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/the01.py",
+            "lines": [
+              7,
+              7
+            ],
+            "snippet": "{OpenAI: \"openai\", ElevenLabs: \"elevenlabs\", Coqui: \"coqui\"} interpreter.tts = \"openai\" # Connect your 01 to a language model interpreter.",
+            "rule": "content_gen_pattern"
+          },
+          {
+            "file": "interpreter/terminal_interface/profiles/defaults/the01.py",
+            "lines": [
+              7,
+              7
+            ],
+            "snippet": "enai\", ElevenLabs: \"elevenlabs\", Coqui: \"coqui\"} interpreter.tts = \"openai\" # Connect your 01 to a language model interpreter.llm.model = \"",
+            "rule": "content_gen_pattern"
+          }
+        ]
+      },
+      "emotion_recognition_signals": {
+        "signal": "emotion_recognition_signals",
+        "fired": false,
+        "strength": 0,
+        "evidence": []
+      }
+    }
+  },
+  "scope": {
+    "regulationIds": [
+      "eu-ai-act-2024-08",
+      "nist-ai-rmf-1.0"
+    ],
+    "notes": [
+      "Auditing against packs: eu-ai-act-2024-08, nist-ai-rmf-1.0"
+    ]
+  },
+  "map": {
+    "classification": "high",
+    "annexIiiCategories": [
+      "1",
+      "4"
+    ],
+    "art50Triggers": [
+      "50(2)",
+      "50(1)"
+    ],
+    "drivingSignals": [
+      {
+        "signal": "bio_metric_signals",
+        "category": "1"
+      },
+      {
+        "signal": "employment_signals",
+        "category": "4"
+      }
+    ],
+    "rationale": [
+      "Classified HIGH-RISK based on 2 Annex III signal(s).",
+      "Annex III §1 (Biometric ID, categorisation, emotion recognition) — signal \"bio_metric_signals\" fired with strength 0.40",
+      "Annex III §4 (Employment, workers management, access to self-employment) — signal \"employment_signals\" fired with strength 0.83",
+      "Art 50 50(2) (AI-generated synthetic content) — signal \"content_generation_signals\" fired",
+      "Art 50 50(1) (Interaction with natural persons) — signal \"agent_framework\" fired"
+    ]
+  },
+  "checks": [
+    {
+      "clauseId": "eu-ai-act/art-5/1a-subliminal",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(a)",
+      "title": "Subliminal techniques distorting behaviour",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_manipulative_prompt_patterns",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1b-vulnerability",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(b)",
+      "title": "Exploiting vulnerabilities (age, disability, socio-economic)",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_protected_attribute_targeting",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1c-social-scoring",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(c)",
+      "title": "Social scoring leading to detrimental treatment",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_scoring_with_persistent_user_state",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1d-predictive-policing",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(d)",
+      "title": "Predictive policing solely from profiling",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_crime_risk_scoring_from_profile",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1e-facial-scraping",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(e)",
+      "title": "Untargeted facial image scraping for face databases",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [
+        {
+          "file": "pyproject.toml",
+          "rule": "manifest_biometric_dep"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "detect_face_image_scraping",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1f-emotion-workplace-edu",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(f)",
+      "title": "Emotion recognition in workplace and education",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_emotion_recognition_in_workplace_education",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1g-biometric-categorisation",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(g)",
+      "title": "Biometric categorisation by protected attributes",
+      "verdict": "pass",
+      "score": 4,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "detect_biometric_categorisation_by_protected_attrs",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-5/1h-realtime-rbi",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "5(1)(h)",
+      "title": "Real-time remote biometric identification in public spaces",
+      "verdict": "external",
+      "score": null,
+      "rawScore": null,
+      "evidence": [],
+      "rules": [],
+      "rationale": "Deployment context (public space, real-time, law enforcement use, judicial\nauthorisation) is operational, not knowable from code. Always external.",
+      "confidence": 1,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-9/risk-management",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "9",
+      "title": "Risk management system established, implemented, documented",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.44999999999999996,
+      "evidence": [
+        {
+          "file": "SECURITY.md",
+          "rule": "presence_of_threat_model"
+        },
+        {
+          "file": ".github/workflows/python-package.yml",
+          "rule": "ci_eval_gates"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "presence_of_risk_register",
+          "matched": 0,
+          "weight": 0.4
+        },
+        {
+          "rule": "presence_of_threat_model",
+          "matched": 0.5,
+          "weight": 0.3
+        },
+        {
+          "rule": "ci_eval_gates",
+          "matched": 1,
+          "weight": 0.3
+        }
+      ],
+      "rationale": "Composite raw score 0.45 (2/3 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-10/data-governance",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "10",
+      "title": "Data and data governance practices documented",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0.1,
+      "evidence": [
+        {
+          "file": "docs/NCU_MIGRATION_GUIDE.md",
+          "lines": [
+            176,
+            176
+          ],
+          "snippet": "rpreterCall = await fetch(\"https://YOUR_ENDPOINT/\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\",",
+          "rule": "http_external_io"
+        },
+        {
+          "file": "docs/server/usage.mdx",
+          "lines": [
+            168,
+            168
+          ],
+          "snippet": "True, } response = requests.post(\"http://localhost:8000/settings\", json=settings) print(response.status_code) ``` ### Retrieving Settings",
+          "rule": "http_external_io"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "presence_of_data_card",
+          "matched": 0,
+          "weight": 0.5
+        },
+        {
+          "rule": "data_loading_code_quality",
+          "matched": 0.4,
+          "weight": 0.25
+        },
+        {
+          "rule": "bias_evaluation_present",
+          "matched": 0,
+          "weight": 0.25
+        }
+      ],
+      "rationale": "Composite raw score 0.10 (0/3 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.75,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-11/technical-documentation",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "11",
+      "title": "Technical documentation drawn up before placing on market",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.15,
+      "evidence": [
+        {
+          "file": "README.md",
+          "rule": "readme_quality",
+          "detail": "2 required sections present"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "presence_of_model_card",
+          "matched": 0,
+          "weight": 0.5
+        },
+        {
+          "rule": "readme_quality",
+          "matched": 0.5,
+          "weight": 0.3
+        },
+        {
+          "rule": "architecture_docs",
+          "matched": 0,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.15 (1/3 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.8,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-12/p1-automatic-logs",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "12(1)",
+      "title": "Automatic recording of events over the lifetime",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.4356302500767288,
+      "evidence": [
+        {
+          "file": "docs/protocols/lmc-messages.mdx",
+          "lines": [
+            57,
+            57
+          ],
+          "snippet": "tements in Python, `console.log()` statements in Javascript, etc. **This includes errors.**|`computer`| image|base64|A `base64` image in PNG",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "interpreter/core/computer/terminal/languages/javascript.py",
+          "lines": [
+            54,
+            54
+          ],
+          "snippet": "ssed_lines.append(f'console.log(\"##active_line{i}##\");') processed_lines.append(line) # Join lines to form the processe",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "interpreter/core/computer/terminal/languages/javascript.py",
+          "lines": [
+            65,
+            65
+          ],
+          "snippet": "}} catch (e) {{ console.log(e); }} console.log(\"##end_of_execution##\"); \"\"\" return code",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "interpreter/core/computer/terminal/languages/javascript.py",
+          "lines": [
+            67,
+            67
+          ],
+          "snippet": "console.log(e); }} console.log(\"##end_of_execution##\"); \"\"\" return code",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "docs/protocols/lmc-messages.mdx",
+          "lines": [
+            57,
+            57
+          ],
+          "snippet": "tements in Python, `console.log()` statements in Javascript, etc. **This includes errors.**|`computer`| image|base64|A `base64` image in PNG",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "interpreter/core/computer/terminal/languages/javascript.py",
+          "lines": [
+            54,
+            54
+          ],
+          "snippet": "ssed_lines.append(f'console.log(\"##active_line{i}##\");') processed_lines.append(line) # Join lines to form the processe",
+          "rule": "log_at_tool_boundary"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "structured_logging_imported",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "logging_at_tool_call_boundaries",
+          "matched": 0.7112605001534575,
+          "weight": 0.5
+        },
+        {
+          "rule": "logging_persistent_sink",
+          "matched": 0.4,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.44 (1/3 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-12/p2-traceability",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "12(2)",
+      "title": "Logging ensures traceability appropriate to risk",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.5306302500767288,
+      "evidence": [
+        {
+          "file": "docs/protocols/lmc-messages.mdx",
+          "lines": [
+            57,
+            57
+          ],
+          "snippet": "tements in Python, `console.log()` statements in Javascript, etc. **This includes errors.**|`computer`| image|base64|A `base64` image in PNG",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "interpreter/core/computer/terminal/languages/javascript.py",
+          "lines": [
+            54,
+            54
+          ],
+          "snippet": "ssed_lines.append(f'console.log(\"##active_line{i}##\");') processed_lines.append(line) # Join lines to form the processe",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "interpreter/core/computer/terminal/languages/javascript.py",
+          "lines": [
+            65,
+            65
+          ],
+          "snippet": "}} catch (e) {{ console.log(e); }} console.log(\"##end_of_execution##\"); \"\"\" return code",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "interpreter/core/computer/terminal/languages/javascript.py",
+          "lines": [
+            67,
+            67
+          ],
+          "snippet": "console.log(e); }} console.log(\"##end_of_execution##\"); \"\"\" return code",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "interpreter/core/computer/terminal/languages/jupyter_language.py",
+          "lines": [
+            7,
+            7
+          ],
+          "snippet": "his \"\"\" import ast import logging import os import queue import re import sys import threading import time import traceback os.environ[\"LI",
+          "rule": "import_logging"
+        },
+        {
+          "file": "interpreter/core/llm/llm.py",
+          "lines": [
+            15,
+            15
+          ],
+          "snippet": "999999 import json import logging import subprocess import time import uuid import requests import tokentrim as tt from .run_text_llm imp",
+          "rule": "import_logging"
+        },
+        {
+          "file": "docs/protocols/lmc-messages.mdx",
+          "lines": [
+            57,
+            57
+          ],
+          "snippet": "tements in Python, `console.log()` statements in Javascript, etc. **This includes errors.**|`computer`| image|base64|A `base64` image in PNG",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "interpreter/core/computer/terminal/languages/javascript.py",
+          "lines": [
+            54,
+            54
+          ],
+          "snippet": "ssed_lines.append(f'console.log(\"##active_line{i}##\");') processed_lines.append(line) # Join lines to form the processe",
+          "rule": "log_at_tool_boundary"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "logs_include_input_output_pairs",
+          "matched": 0.7112605001534575,
+          "weight": 0.5
+        },
+        {
+          "rule": "logs_include_model_identity",
+          "matched": 0.7,
+          "weight": 0.25
+        },
+        {
+          "rule": "logs_include_request_id",
+          "matched": 0,
+          "weight": 0.25
+        }
+      ],
+      "rationale": "Composite raw score 0.53 (2/3 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-13/deployer-instructions",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "13",
+      "title": "Transparent operation and instructions for use",
+      "verdict": "pass",
+      "score": 3,
+      "rawScore": 0.75,
+      "evidence": [
+        {
+          "file": "README.md",
+          "rule": "readme_quality",
+          "detail": "2 required sections present"
+        },
+        {
+          "file": "README.md",
+          "rule": "output_interpretation_guidance"
+        },
+        {
+          "file": "README.md",
+          "rule": "limitations_section_present"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "presence_of_deployer_instructions",
+          "matched": 0.5,
+          "weight": 0.5
+        },
+        {
+          "rule": "output_interpretation_guidance",
+          "matched": 1,
+          "weight": 0.3
+        },
+        {
+          "rule": "limitations_section_present",
+          "matched": 1,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.75 (3/3 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.9,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-14/p1-oversight-measures",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "14(1)",
+      "title": "Effective human oversight designed and built-in",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "human_in_loop_hooks_present",
+          "matched": 0,
+          "weight": 0.5
+        },
+        {
+          "rule": "oversight_ui_present",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "tool_calls_have_dry_run",
+          "matched": 0,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/3 rules matched).",
+      "confidence": 0.65,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-14/p4d-stop-button",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "14(4)(d)",
+      "title": "Interrupt / stop function reachable by overseer",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "kill_switch_present",
+          "matched": 0,
+          "weight": 0.7
+        },
+        {
+          "rule": "graceful_shutdown_handler",
+          "matched": 0,
+          "weight": 0.3
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/2 rules matched).",
+      "confidence": 0.6,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-14/p4e-override",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "14(4)(e)",
+      "title": "Ability to override / reverse the system's output",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "override_path_present",
+          "matched": 0,
+          "weight": 0.6
+        },
+        {
+          "rule": "decisions_are_addressable",
+          "matched": 0,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/2 rules matched).",
+      "confidence": 0.6,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-15/p1-accuracy",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "15(1)",
+      "title": "Appropriate level of accuracy declared and tested",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.45,
+      "evidence": [
+        {
+          "file": "tests/",
+          "rule": "eval_suite_present"
+        },
+        {
+          "file": "README.md",
+          "rule": "metrics_documented"
+        },
+        {
+          "file": ".github/workflows/python-package.yml",
+          "rule": "ci_eval_gates"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "eval_suite_present",
+          "matched": 0.5,
+          "weight": 0.5
+        },
+        {
+          "rule": "metrics_documented",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "eval_in_ci",
+          "matched": 1,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.45 (2/3 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-15/p4-robustness",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "15(4)",
+      "title": "Resilience to errors, faults, inconsistencies",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.16000000000000003,
+      "evidence": [
+        {
+          "file": "pyproject.toml",
+          "rule": "manifest_framework_dep",
+          "detail": "Anthropic SDK"
+        },
+        {
+          "file": "pyproject.toml",
+          "rule": "manifest_framework_dep",
+          "detail": "HuggingFace Transformers"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "error_handling_at_tool_boundaries",
+          "matched": 0.4,
+          "weight": 0.4
+        },
+        {
+          "rule": "retry_logic",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "fallback_behaviour",
+          "matched": 0,
+          "weight": 0.3
+        }
+      ],
+      "rationale": "Composite raw score 0.16 (0/3 rules matched).",
+      "confidence": 0.81,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-15/p5-cybersecurity",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "15(5)",
+      "title": "Cybersecurity measures appropriate to circumstances",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0.08000000000000002,
+      "evidence": [
+        {
+          "file": "interpreter/core/respond.py",
+          "lines": [
+            117,
+            117
+          ],
+          "snippet": "litellm.exceptions.RateLimitError) and (\"exceeded\" in str(e).lower() or \"insufficient_quota\" i",
+          "rule": "rate_limit_usage"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "prompt_injection_defences",
+          "matched": 0,
+          "weight": 0.4
+        },
+        {
+          "rule": "rate_limiting",
+          "matched": 0.4,
+          "weight": 0.2
+        },
+        {
+          "rule": "secrets_not_in_prompts",
+          "matched": 0,
+          "weight": 0.2
+        },
+        {
+          "rule": "adversarial_eval_present",
+          "matched": 0,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.08 (0/4 rules matched).",
+      "confidence": 0.78,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-26/p6-keep-logs",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "26(6)",
+      "title": "Deployer log-retention capability supported",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.5,
+      "evidence": [
+        {
+          "file": "docs/protocols/lmc-messages.mdx",
+          "lines": [
+            57,
+            57
+          ],
+          "snippet": "tements in Python, `console.log()` statements in Javascript, etc. **This includes errors.**|`computer`| image|base64|A `base64` image in PNG",
+          "rule": "log_at_tool_boundary"
+        },
+        {
+          "file": "interpreter/core/computer/terminal/languages/javascript.py",
+          "lines": [
+            54,
+            54
+          ],
+          "snippet": "ssed_lines.append(f'console.log(\"##active_line{i}##\");') processed_lines.append(line) # Join lines to form the processe",
+          "rule": "log_at_tool_boundary"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "logs_externally_exportable",
+          "matched": 0.5,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.50 (1/1 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "eu-ai-act/art-50/p1-ai-disclosure",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "50(1)",
+      "title": "Users informed they are interacting with an AI",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.2,
+      "evidence": [
+        {
+          "file": "README.md",
+          "rule": "ai_disclosure_in_user_facing_strings"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "ai_disclosure_in_user_facing_strings",
+          "matched": 0,
+          "weight": 0.6
+        },
+        {
+          "rule": "persona_not_human_impersonating",
+          "matched": 0.5,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.20 (1/2 rules matched).",
+      "confidence": 0.7999999999999999,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-50/p2-synthetic-content",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "50(2)",
+      "title": "AI-generated content marked as such, machine-readable",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "c2pa_or_watermark_library_imported",
+          "matched": 0,
+          "weight": 0.5
+        },
+        {
+          "rule": "provenance_metadata_written_to_outputs",
+          "matched": 0,
+          "weight": 0.5
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/2 rules matched).",
+      "confidence": 0.6,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-50/p3-emotion-biometric-disclosure",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "50(3)",
+      "title": "Emotion recognition / biometric categorisation disclosure",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [
+        {
+          "file": "README.md",
+          "rule": "emotion_or_biometric_disclosure_string"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "emotion_or_biometric_disclosure_string",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "eu-ai-act/art-50/p4-deepfake-disclosure",
+      "regulationId": "eu-ai-act-2024-08",
+      "article": "50(4)",
+      "title": "Deepfake content labelled as artificially generated",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "deepfake_label_on_outputs",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/govern-1.4",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "GOVERN 1.4",
+      "title": "Risk management process documented and accountable",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "presence_of_risk_register",
+          "matched": 0,
+          "weight": 0.6
+        },
+        {
+          "rule": "risk_owner_assignment",
+          "matched": 0,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/2 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.6,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/govern-1.5",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "GOVERN 1.5",
+      "title": "Ongoing monitoring and periodic review of risk management",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.5,
+      "evidence": [
+        {
+          "file": ".github/workflows/python-package.yml",
+          "rule": "ci_eval_gates"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "ci_eval_gates",
+          "matched": 1,
+          "weight": 0.5
+        },
+        {
+          "rule": "drift_monitoring_present",
+          "matched": 0,
+          "weight": 0.5
+        }
+      ],
+      "rationale": "Composite raw score 0.50 (1/2 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "nist-ai-rmf/map-1.1",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MAP 1.1",
+      "title": "Context of use established and understood",
+      "verdict": "pass",
+      "score": 3,
+      "rawScore": 0.7,
+      "evidence": [
+        {
+          "file": "README.md",
+          "rule": "readme_quality",
+          "detail": "2 required sections present"
+        },
+        {
+          "file": "README.md",
+          "rule": "output_interpretation_guidance"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "intended_use_documented",
+          "matched": 0.5,
+          "weight": 0.6
+        },
+        {
+          "rule": "deployment_context_documented",
+          "matched": 1,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.70 (2/2 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.9,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "nist-ai-rmf/map-3.4",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MAP 3.4",
+      "title": "Risks and benefits to people identified",
+      "verdict": "fail",
+      "score": 1,
+      "rawScore": 0.2,
+      "evidence": [
+        {
+          "file": "SECURITY.md",
+          "rule": "presence_of_threat_model"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "presence_of_risk_register",
+          "matched": 0,
+          "weight": 0.6
+        },
+        {
+          "rule": "presence_of_threat_model",
+          "matched": 0.5,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.20 (1/2 rules matched). Supporting docs may exist outside the repo.",
+      "confidence": 0.7999999999999999,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/measure-2.3",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MEASURE 2.3",
+      "title": "AI system performance evaluated and documented",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.45,
+      "evidence": [
+        {
+          "file": "tests/",
+          "rule": "eval_suite_present"
+        },
+        {
+          "file": "README.md",
+          "rule": "metrics_documented"
+        },
+        {
+          "file": ".github/workflows/python-package.yml",
+          "rule": "ci_eval_gates"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "eval_suite_present",
+          "matched": 0.5,
+          "weight": 0.5
+        },
+        {
+          "rule": "metrics_documented",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "eval_in_ci",
+          "matched": 1,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.45 (2/3 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "nist-ai-rmf/measure-2.7",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MEASURE 2.7",
+      "title": "Security and resilience evaluated",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0.08000000000000002,
+      "evidence": [
+        {
+          "file": "interpreter/core/respond.py",
+          "lines": [
+            117,
+            117
+          ],
+          "snippet": "litellm.exceptions.RateLimitError) and (\"exceeded\" in str(e).lower() or \"insufficient_quota\" i",
+          "rule": "rate_limit_usage"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "prompt_injection_defences",
+          "matched": 0,
+          "weight": 0.4
+        },
+        {
+          "rule": "adversarial_eval_present",
+          "matched": 0,
+          "weight": 0.4
+        },
+        {
+          "rule": "rate_limiting",
+          "matched": 0.4,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.08 (0/3 rules matched).",
+      "confidence": 0.7300000000000001,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/measure-2.8",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MEASURE 2.8",
+      "title": "Privacy risk of the AI system evaluated",
+      "verdict": "partial",
+      "score": 2,
+      "rawScore": 0.5,
+      "evidence": [
+        {
+          "file": "docs/legal/license.mdx",
+          "lines": [
+            36,
+            36
+          ],
+          "snippet": "generated code are anonymized before being used to improve our AI model. However, please be aware that if you explicitly instruct the AI to",
+          "rule": "pii_redaction_present"
+        },
+        {
+          "file": "docs/settings/all-settings.mdx",
+          "lines": [
+            590,
+            590
+          ],
+          "snippet": "Python interpreter.anonymized_telemetry = False ``` ```yaml Profile disable_telemetry: true ``` </CodeGroup> ### Offline This boolean f",
+          "rule": "pii_redaction_present"
+        }
+      ],
+      "rules": [
+        {
+          "rule": "pii_redaction_present",
+          "matched": 1,
+          "weight": 0.5
+        },
+        {
+          "rule": "privacy_documentation",
+          "matched": 0,
+          "weight": 0.5
+        }
+      ],
+      "rationale": "Composite raw score 0.50 (1/2 rules matched).",
+      "confidence": 1,
+      "needsLlmJudge": true,
+      "verified": true,
+      "verifyMethod": "skipped"
+    },
+    {
+      "clauseId": "nist-ai-rmf/measure-2.11",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MEASURE 2.11",
+      "title": "Fairness and bias evaluated",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "bias_evaluation_present",
+          "matched": 0,
+          "weight": 1
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/1 rules matched).",
+      "confidence": 0.55,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/manage-2.3",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MANAGE 2.3",
+      "title": "Mechanisms to supersede or deactivate AI systems",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "kill_switch_present",
+          "matched": 0,
+          "weight": 0.6
+        },
+        {
+          "rule": "feature_flag_for_disable",
+          "matched": 0,
+          "weight": 0.4
+        }
+      ],
+      "rationale": "Composite raw score 0.00 (0/2 rules matched).",
+      "confidence": 0.6,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    },
+    {
+      "clauseId": "nist-ai-rmf/manage-4.1",
+      "regulationId": "nist-ai-rmf-1.0",
+      "article": "MANAGE 4.1",
+      "title": "Post-deployment monitoring, appeal and override, change management",
+      "verdict": "fail",
+      "score": 0,
+      "rawScore": 0.06,
+      "evidence": [],
+      "rules": [
+        {
+          "rule": "feedback_capture_present",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "override_path_present",
+          "matched": 0,
+          "weight": 0.3
+        },
+        {
+          "rule": "structured_logging_imported",
+          "matched": 0,
+          "weight": 0.2
+        },
+        {
+          "rule": "versioning_visible",
+          "matched": 0.3,
+          "weight": 0.2
+        }
+      ],
+      "rationale": "Composite raw score 0.06 (0/4 rules matched).",
+      "confidence": 0.76,
+      "needsLlmJudge": false,
+      "verified": true,
+      "verifyMethod": "deterministic-only"
+    }
+  ],
+  "grade": {
+    "overallScore": 1.588235294117647,
+    "perRegulation": [
+      {
+        "regulationId": "eu-ai-act-2024-08",
+        "scoreAvg": 1.8333333333333333,
+        "passCount": 8,
+        "partialCount": 5,
+        "failCount": 11,
+        "externalCount": 1,
+        "naCount": 0
+      },
+      {
+        "regulationId": "nist-ai-rmf-1.0",
+        "scoreAvg": 1,
+        "passCount": 1,
+        "partialCount": 3,
+        "failCount": 6,
+        "externalCount": 0,
+        "naCount": 0
+      }
+    ]
+  },
+  "bundleHash": "c9f6624b7b4d5cfe04a646bd00c53370e8198962a1a19abe8be2159bc59c81a0",
+  "checkerVersion": "v0.1.0",
+  "regulationsVersions": {
+    "eu-ai-act-2024-08": "db2bbc2958ff931f2ab69230b8470dddf309c34605c83e5141a208fd22051fe8",
+    "nist-ai-rmf-1.0": "1f9bd8ceef4a6da5d776fca10cbdbb829c1b8f5e29d49131640e21aae12ce896"
+  },
+  "startedAt": "2026-05-16T03:29:54.191Z",
+  "completedAt": "2026-05-16T03:29:55.959Z",
+  "durationMs": 1768,
+  "externalControls": [
+    {
+      "clauseId": "eu-ai-act/art-5/1h-realtime-rbi",
+      "article": "5(1)(h)",
+      "title": "Real-time remote biometric identification in public spaces",
+      "note": "Deployment context (public space, real-time, law enforcement use, judicial\nauthorisation) is operational, not knowable from code. Always external."
+    }
+  ]
+}
