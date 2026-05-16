@@ -9,6 +9,7 @@ interface LiveAuditPanelProps {
   source:
     | { kind: "repo"; owner: string; repo: string; ref?: string }
     | { kind: "agent"; chain: string; tokenId: string; repoUrl: string };
+  autoStart?: boolean;
 }
 
 interface LogLine {
@@ -50,7 +51,7 @@ const STAGE_LABEL: Record<StageName, string> = {
   report: "REPORT",
 };
 
-export function LiveAuditPanel({ source }: LiveAuditPanelProps) {
+export function LiveAuditPanel({ source, autoStart = false }: LiveAuditPanelProps) {
   const [running, setRunning] = useState(false);
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
@@ -263,6 +264,15 @@ export function LiveAuditPanel({ source }: LiveAuditPanelProps) {
       }
     });
   }, [source, handleEvent, pushLog]);
+
+  // Auto-start when the page navigates directly into the audit view.
+  const startedRef = useRef(false);
+  useEffect(() => {
+    if (!autoStart) return;
+    if (startedRef.current) return;
+    startedRef.current = true;
+    run();
+  }, [autoStart, run]);
 
   // ---------- render ----------
 

@@ -92,7 +92,7 @@ export default async function RepoPage({ params }: PageProps) {
           <h2 className="mb-3 font-serif text-2xl font-bold text-ink-900">
             Run an audit against EU AI Act + NIST AI RMF
           </h2>
-          <LiveAuditPanel source={{ kind: "repo", owner, repo }} />
+          <LiveAuditPanel source={{ kind: "repo", owner, repo }} autoStart />
         </div>
       </section>
     </main>

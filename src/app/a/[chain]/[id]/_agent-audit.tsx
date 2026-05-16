@@ -35,6 +35,7 @@ export function AgentAuditWithFallback({
             tokenId,
             repoUrl: effectiveRepo,
           }}
+          autoStart
         />
         {!resolvedRepoUrl && (
           <button
